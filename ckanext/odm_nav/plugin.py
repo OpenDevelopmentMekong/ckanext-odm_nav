@@ -98,12 +98,13 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_top_topics': odm_nav_helper.top_topics,
       'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
       'odm_nav_last_dataset': odm_nav_helper.last_dataset,
+      'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
       'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
       'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
       'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
       'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
       'odm_nav_json_load_top_topics':odm_nav_helper.json_load_top_topics,
-      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
+      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html
 	}
 
   # IPackageController

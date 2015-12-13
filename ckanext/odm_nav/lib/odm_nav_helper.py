@@ -16,6 +16,7 @@ print(socket.gethostname())
 
 log = logging.getLogger(__name__)
 
+taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
 
 def get_tag_dictionaries(vocab_id):
@@ -33,7 +34,7 @@ def get_tag_dictionaries(vocab_id):
 def get_taxonomy_dictionary():
   '''Returns the tag dictionary for the taxonomy'''
 
-  return get_tag_dictionaries(odm_nav_helper.taxonomy_dictionary)
+  return get_tag_dictionaries(taxonomy_dictionary)
 
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
