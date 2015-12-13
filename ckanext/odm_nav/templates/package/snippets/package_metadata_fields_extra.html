@@ -1,0 +1,4 @@
+<h3>{{ _('Add extra fields if needed') }}</h3>
+{% block custom_fields %}
+  {% snippet 'snippets/custom_form_fields.html', extras=data.extras, errors=errors, limit=1 %}
+{% endblock %}

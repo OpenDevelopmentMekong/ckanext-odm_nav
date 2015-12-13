@@ -1,0 +1,5 @@
+recursive-include ckanext/odm_nav/fanstatic *
+recursive-include ckanext/odm_nav/lib *
+recursive-include ckanext/odm_nav/public *
+recursive-include ckanext/odm_nav/odm-taxonomy *
+recursive-include ckanext/odm_nav/templates *

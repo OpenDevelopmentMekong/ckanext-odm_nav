@@ -1,0 +1,13 @@
+{% ckan_extends %}
+
+{% set last_dataset = h.odm_theme_last_dataset() %}
+{% set title = data.name or last_dataset['title']%}
+{% set description = data.description or last_dataset['notes'] %}
+
+{% block basic_fields_name %}
+  {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('eg. January 2011 Gold Prices'), value=title, error=errors.name, classes=['control-full']) }}
+{% endblock %}
+
+{% block basic_fields_description %}
+  {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('Some useful notes about the data'), value=description, error=errors.description) }}
+{% endblock %}
