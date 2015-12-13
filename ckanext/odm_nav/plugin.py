@@ -34,8 +34,6 @@ jsonPath=os.path.join(os.path.dirname(__file__), "lib/top_topics_multilingual.js
 with open(jsonPath) as data_file:
    data = json.load(data_file)
 
-pprint(data)
-
 strs ={}
 strs['children']={}
 # strs['titles']= dict([ (top_topic["titles"]["en"],top_topic["titles"]["th"]) for top_topic in data ])
@@ -269,9 +267,8 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     return {
       'odm_nav_last_dataset': last_dataset,
-      'odm_nav_build_top_topic_nav_menu':build_top_topic_nav_menu,
       'odm_nav_json_load_top_topics':json_load_top_topics
-    }
+	}
 
   # IDatasetForm
 
