@@ -1,0 +1,79 @@
+{% import 'macros/form.html' as form %}
+
+{% block package_metadata_fields %}
+
+ {% resource 'odm_theme/moment.js' %}
+  {% resource 'odm_theme/daterangepicker.js' %}
+  {% resource 'odm_theme/daterangepicker-bs3.css' %}
+  {% resource 'odm_theme/daterangepicker-module.js' %}
+ {% resource 'odm_theme/multiselect-module.js' %}
+
+ {% block package_odc_fields %}
+  {% for field in h.odm_theme_odc_fields() %}
+   {% set field_name = field[0] %}
+   {% set field_label = field[1] %}
+   {% set field_id = 'field-'+field_name %}
+
+   {% if data[field_name] %}
+    {{ form.input(field_name, label=field_label, id=field_id, value=data[field_name], error=errors[field_name], classes=['control-full']) }}
+   {% endif %}
+  {% endfor %}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_contact %}
+   {{ form.markdown('odm_contact', is_required=false, label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_language %}
+  {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_date_created %}
+  {{ form.input_readonly('odm_date_created', is_required=true, label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_date_uploaded %}
+  {{ form.input_readonly('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {% endblock %}
+
+ {% block package_metadata_fields_odm_date_modified %}
+  {{ form.input_readonly('odm_date_modified', label=_('Date Modified'), id='field-odm_date_modified', placeholder=_('Date a new version or update of the dataset was uploaded to the OD CKAN database.'), value=data.odm_date_modified, error=errors.odm_date_modified, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {% endblock %}
+
+ {% block package_metadata_fields_odm_temporal_range %}
+  {{ form.input('odm_temporal_range', label=_('Temporal Range'), id='field-odm_temporal_range', placeholder=_('The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).'), value=data.odm_temporal_range, error=errors.odm_temporal_range, classes=['control-full'], attrs={'data-module': 'daterangepicker-module'}) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_spatial_range %}
+   {{ form.input('odm_spatial_range', is_required=true, label=_('Geographic area (Spatial Range)'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': h.odm_theme_jsonify_countries()}) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_accuracy %}
+   {{ form.input('odm_accuracy', label=_('Accuracy'), id='field-odm_accuracy', placeholder=_('Details on the level of accuracy of the dataset and any existing issues.'), value=data.odm_accuracy, error=errors.odm_accuracy, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_logical_consistency %}
+   {{ form.markdown('odm_logical_consistency', label=_('Logical Consistency'), id='field-odm_logical_consistency', placeholder=_('Issues with logical consistency in the dataset and the steps, if any, being taken to validate its content.'), value=data.odm_logical_consistency, error=errors.odm_logical_consistency, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_completeness %}
+   {{ form.markdown('odm_completeness', label=_('Completeness'), id='field-odm_completeness', placeholder=_('Brief description of the level of completeness of the dataset\'s contents and the steps, if any, being taken to make the dataset more complete.'), value=data.odm_completeness, error=errors.odm_completeness, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_process %}
+   {{ form.markdown('odm_process', is_required=true, label=_('Process(es)'), id='field-odm_process', placeholder=_('The steps taken to acquire, aggregate, or transform any of the resources in the dataset.'), value=data.odm_process, error=errors.odm_process, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_sources %}
+   {{ form.markdown('odm_source', is_required=true, label=_('Source(s)'), id='field-odm_source', placeholder=_('Ordered citations for all information sources that went into producing the dataset.'), value=data.odm_source, error=errors.odm_source, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_metadata_reference_information %}
+   {{ form.markdown('odm_metadata_reference_information', label=_('Metadata Reference Information'), id='field-odm_metadata_reference_information', placeholder=_('Information about how up-to-date the metadata is and who is responsible for maintaining it.'), value=data.odm_metadata_reference_information, error=errors.odm_metadata_reference_information, classes=['control-full']) }}
+ {% endblock %}
+
+ {% block package_metadata_fields_odm_attributes %}
+   {{ form.markdown('odm_attributes', label=_('Attributes'), id='field-odm_attributes', placeholder=_('Details about the information content of the dataset.'), value=data.odm_attributes, error=errors.odm_attributes, classes=['control-full']) }}
+ {% endblock %}
+
+{% endblock %}

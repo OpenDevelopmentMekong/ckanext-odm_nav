@@ -1,0 +1,4 @@
+*.pyc
+.remote-sync.json
+**/odm_nav_config.py
+ckanext_odm_nav.egg-info

@@ -1,0 +1,142 @@
+[{
+  "name": "Land",
+  "titles": {
+    "en": "Land",
+    "km": "ដី",
+    "th": "ที่ดิน"
+  },
+  "children": [{
+    "name": "Agriculture and fishing",
+    "titles": {
+      "en": "Agriculture and fishing",
+      "km": "កសិកម្ម និងការនេសាទ",
+      "th": "การเกษตรและการประมง"
+    }
+  }, {
+    "name": "Disasters and emergency response",
+    "titles": {
+      "en": "Disasters and emergency response",
+      "km": "គ្រោះមហន្តរាយ និងការឆ្លើយតបក្នុងគ្រាអាសន្ន",
+      "th": "ภัยพิบัติและการรับมือสถานการณ์ฉุกเฉิน"
+    }
+  }, {
+    "name": "Environment and natural resources",
+    "titles": {
+      "en": "Environment and natural resources",
+      "km": "បរិស្ថាន និងធនធានធម្មជាតិ",
+      "th": "ทรัพยากรธรรมชาติและสิ่งแวดล้อม"
+    }
+  }, {
+    "name": "Extractive industries",
+    "titles": {
+      "en": "Extractive industries",
+      "km": "ឧស្សាហកម្មនិស្សារណកម្ម",
+      "th": "อุตสาหกรรมสาร"
+    }
+  }, {
+    "name": "Land",
+    "titles": {
+      "en": "Land",
+      "km": "ដី",
+      "th": "ที่ดิน"
+    },
+    "class": "tooltip"
+  }]
+}, {
+  "name": "Economy",
+  "titles": {
+    "en": "Economy",
+    "km": "Economy",
+    "th": "Economy"
+  },
+  "children": [{
+    "name": "Economy and commerce",
+    "titles": {
+      "en": "Economy and commerce",
+      "km": "សេដ្ឋកិច្ច និងពាណិជ្ជកម្ម ",
+      "th": "เศรษฐกิจและการพานิชย์"
+    }
+  }, {
+    "name": "Energy",
+    "titles": {
+      "en": "Energy",
+      "km": "ថាមពល",
+      "th": "พลังงาน"
+    }
+  }, {
+    "name": "Infrastructure",
+    "titles": {
+      "en": "Infrastructure",
+      "km": "ហេដ្ឋារចនាសម្ព័ន្ធ",
+      "th": "โครงสร้าง"
+    },
+    "class": "tooltip"
+  }, {
+    "name": "Industry",
+    "titles": {
+      "en": "Industry",
+      "km": "Industry",
+      "th": "Industry"
+    }
+  }, {
+    "name": "Labor",
+    "titles": {
+      "en": "Labor",
+      "km": "ពលកម្ម",
+      "th": "แรงงาน"
+    }
+  }]
+}, {
+  "name": "People",
+  "titles": {
+    "en": "People",
+    "km": "People",
+    "th": "People"
+  },
+  "children": [{
+    "name": "Aid and development",
+    "titles": {
+      "en": "Aid and development",
+      "km": "ជំនួយ និងការអភិវឌ្ឍ",
+      "th": "ความช่วยเหลือและการพัฒนา"
+    }
+  }, {
+    "name": "Government",
+    "titles": {
+      "en": "Government",
+      "km": "រដ្ឋាភិបាល",
+      "th": "รัฐบาล"
+    },
+    "class": "tooltip"
+  }, {
+    "name": "Law and judiciary",
+    "titles": {
+      "en": "Law and judiciary",
+      "km": "ច្បាប់ និងប្រព័ន្ធតុលាការ",
+      "th": "กฎหมายและตุลาการ"
+    },
+    "class": "tooltip"
+  }, {
+    "name": "Population and censuses",
+    "titles": {
+      "en": "Population and censuses",
+      "km": "ប្រជាជន និងជំរឿន",
+      "th": "ประชากรและสำมะโนประชากร"
+    }
+  }, {
+    "name": "Social development",
+    "titles": {
+      "en": "Social development",
+      "km": "ការអភិវឌ្ឍសង្គម",
+      "th": "การพัฒนาสังคม"
+    },
+    "class": "tooltip"
+  }, {
+    "name": "Urban administration and development",
+    "titles": {
+      "en": "Urban administration and development",
+      "km": "ការអភិវឌ្ឍ និងការគ្រប់គ្រងទីក្រុង",
+      "th": "การบริหารและการพัฒนาเมือง"
+    }
+  }]
+}]

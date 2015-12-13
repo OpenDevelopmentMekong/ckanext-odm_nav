@@ -1,0 +1,51 @@
+<div role="main" class="hero">
+  <div class="container intro">
+    <div class="row row1">
+     <div class="span9 col1">
+      <h1>{{ _('Welcome to Open Development Datahub') }}</h1>
+      <p>{{ _('Open Development Mekong (OD Mekong) provides information on development trends in the Mekong Region to increase public awareness, enable individual analysis, improve information sharing, and inform debate - all contributing to sustainable development from a social, economic and environmental perspective.') }}</p>
+      <div class="intro-buttons">
+       <ul>
+        <li>
+         <h2>{{ _('Contribute') }}</h2>
+         {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-large btn-primary', icon='plus-sign-alt' %}
+        </li>
+        <li>
+         <h2>{{ _('Need Help?') }}</h2>
+         <a target="_blank" href="http://wiki.opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="documentation"><i class="icon-info-sign"></i>{{ _('Documentation') }}</button></a>
+        </li>
+        <li>
+         <h2>{{ _('Discover more') }}</h2>
+         <a target="_blank" href="http://opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="web"><i class="icon-info-sign"></i>{{ _('Visit OD Mekong\'s website') }}</button></a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="homepage_stats span3 col2">
+      <h2>{{ _('Statistics') }}</h2>
+      {% snippet 'home/snippets/stats.html' %}
+     </div>
+    </div>
+  </div>
+</div>
+<div role="main" class="homepage_search">
+  <div class="container">
+    <div class="row row3">
+     <div class="span12 col1">
+      {% snippet 'home/snippets/search.html' %}
+     </div>
+    </div>
+  </div>
+</div>
+<div role="main" class="homepage_popular">
+  <div class="container">
+    <div class="row row4">
+      <div class="span6 col1">
+       {% snippet 'home/snippets/popular_datasets.html' %}
+      </div>
+      <div class="span6 col2">
+        {% snippet 'home/snippets/recent_datasets.html' %}
+      </div>
+    </div>
+  </div>
+</div>

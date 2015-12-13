@@ -1,0 +1,12 @@
+{#
+  render a list of tags linking to the dataset search page
+  tags: list of tags
+#}
+{% set _class = _class or 'tag-list' %}
+<ul class="{{ _class }}">
+  {% for tag in tags %}
+  <li>
+    <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_theme_get_localized_tag(tag.display_name) }}</a>
+  </li>
+  {% endfor %}
+</ul>
