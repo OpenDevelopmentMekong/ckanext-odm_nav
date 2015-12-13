@@ -94,10 +94,7 @@
        {{ h.build_nav_main(
         ('search', _('All records')),
         ('organizations_index', _('Organizations')),
-        ('group_index', _('Records by type')),
-        ('odm_library_index',_('Library')),
-        ('odm_laws_index',_('Laws'))
-
+        ('group_index', _('Records by type'))
         ) }}
       {% else %}
        {{ h.build_nav_main(
@@ -124,22 +121,16 @@
    </div>
   </div>
  </header>
- <!-- #################### -->
 
-       <!-- {{ h.odm_theme_build_top_topic_nav_menu}} -->
-     <!-- NEW NAV -->
-     {% snippet 'snippets/top_topics.html'%}
-     <!-- end nav new -->
-     <!-- #################### -->
  <header class="sec_header">
     <div class="container">
       <hgroup>
        <div class="row">
          <div class="span9 col1">
           <h4>{{ _('Browse by topic') }}</h4>
-          {% for top_topic in h.odm_theme_top_topics() %}
-            {% set tag_name = h.odm_theme_tag_for_topic(top_topic) %}
-            <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag_name %}">{{ h.odm_theme_get_localized_tag(top_topic) }}</a>
+          {% for top_topic in h.odm_dataset_top_topics() %}
+            {% set tag_name = h.odm_dataset_tag_for_topic(top_topic) %}
+            <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag_name %}">{{ h.odm_dataset_get_localized_tag(top_topic) }}</a>
           {% endfor %}
          </div>
          <div class="span3 col2 header-selection">
@@ -167,5 +158,6 @@
     </div>
   </header>
 
+ {#% snippet 'snippets/top_topics.html'%#}
 
  {% endblock %}

@@ -52,7 +52,7 @@
 
     {% block package_odc_fields %}
 
-      {% for field in h.odm_theme_odc_fields() %}
+      {% for field in h.odm_nav_odc_fields() %}
         {% set field_name = field[0] %}
         {% set field_label = field[1] %}
 
@@ -91,7 +91,7 @@
     <tbody>
       {% block package_odm_fields %}
 
-        {% for field in h.odm_theme_metadata_fields_combined() %}
+        {% for field in h.odm_nav_metadata_fields_combined() %}
           {% set field_name = field[0] %}
           {% set field_label = field[1] %}
 

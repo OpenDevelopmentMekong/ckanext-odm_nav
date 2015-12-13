@@ -44,3 +44,6 @@ def sanitize_html(string):
   string = ''.join(ch for ch in string if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
   string = string.replace(' ','-').lower()
   return string
+
+
+session = {}

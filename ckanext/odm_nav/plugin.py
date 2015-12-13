@@ -65,7 +65,7 @@ def get_taxonomy_dictionary():
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
-  log.debug('odm_theme_get_localized_tag: %s', tag)
+  log.debug('odm_nav_get_localized_tag: %s', tag)
 
   desired_lang_code = pylons.request.environ['CKAN_LANG']
 

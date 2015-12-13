@@ -26,7 +26,7 @@
         {# Show a list of the site's most popular groups. #}
         <h3>Most popular groups</h3>
         <ul>
-          {% for group in h.odm_theme_popular_groups() %}
+          {% for group in h.odm_nav_popular_groups() %}
             <li>{{ group.display_name }}</li>
           {% endfor %}
         </ul>

@@ -50,7 +50,7 @@ Example:
       {% endif %}
 	    {% set resource = image_resources|last %}
 	    {% if resource %}
-	      <img class="dataset_thumb_s" src="{{ h.odm_theme_localize_resource_url(resource.url) }}"></img>
+	      <img class="dataset_thumb_s" src="{{ h.odm_nav_localize_resource_url(resource.url) }}"></img>
 	    {% endif %}
 	    {% if notes %}
 	    <div>
@@ -72,7 +72,7 @@ Example:
     <ul class="dataset-tags unstyled">
      {% for tag in package.tags %}
       <li>
-       <a class="label" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_theme_get_localized_tag(tag.display_name) }}</a>
+       <a class="label" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_nav_get_localized_tag(tag.display_name) }}</a>
       </li>
      {% endfor %}
     </ul>

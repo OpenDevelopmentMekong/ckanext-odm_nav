@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block package_basic_fields_taxonomy %}
-{% set taxonomy_tags = h.odm_theme_taxonomy_dictionary() %}
+{% set taxonomy_tags = h.odm_nav_taxonomy_dictionary() %}
 {% if taxonomy_tags|length > 0 %}
 <div class="control-group">
   <label class="control-label" for="field-taxonomy">{{ _("Topics") }}</label>
@@ -32,9 +32,9 @@
     <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder="{{ _("eg. economy, mental health, government") }}">
       {% for tag in taxonomy_tags %}
       {% if tag not in data.tag_string %}
-        <option value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+        <option value="{{ tag }}">{{ h.odm_nav_get_localized_tag(tag) }}</option>
       {% else %}
-        <option selected="selected" value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+        <option selected="selected" value="{{ tag }}">{{ h.odm_nav_get_localized_tag(tag) }}</option>
       {% endif %}
       {% endfor %}
     </select>
@@ -90,12 +90,12 @@
 
 {% block package_basic_fields_orga %}
 
-  {% resource 'odm_theme/moment.js' %}
-  {% resource 'odm_theme/daterangepicker.js' %}
-  {% resource 'odm_theme/daterangepicker-bs3.css' %}
-  {% resource 'odm_theme/daterangepicker-module.js' %}
-  {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
-  {% resource 'odm_theme/multiselect-module.js' %}
+  {% resource 'odm_nav/moment.js' %}
+  {% resource 'odm_nav/daterangepicker.js' %}
+  {% resource 'odm_nav/daterangepicker-bs3.css' %}
+  {% resource 'odm_nav/daterangepicker-module.js' %}
+  {% resource 'odm_nav/odm_nav_review_system_logic.js' %}
+  {% resource 'odm_nav/multiselect-module.js' %}
 
   {# if we have a default group then this wants remembering #}
   {% if data.group_id %}
@@ -109,7 +109,7 @@
   {% set show_organizations_selector = organizations_available and (user_is_sysadmin or dataset_is_draft) %}
   {% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or dataset_is_draft)) %}
 
-  <div data-module="odm_theme_review_system_logic" data-module-owner_org="{{data.owner_org}}">
+  <div data-module="odm_nav_review_system_logic" data-module-owner_org="{{data.owner_org}}">
 
   {% if show_organizations_selector %}
     {% set existing_org = data.owner_org or data.group_id %}

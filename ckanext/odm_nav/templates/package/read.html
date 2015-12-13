@@ -32,7 +32,7 @@
   <div class="clear">
    {% set resource = image_resources|last %}
    {% if resource %}
-      <img class="dataset_thumb_m" src="{{ h.odm_theme_localize_resource_url(resource.url) }}"></img>
+      <img class="dataset_thumb_m" src="{{ h.odm_nav_localize_resource_url(resource.url) }}"></img>
      {% endif %}
       {% if c.pkg_notes_formatted %}
         <div class="notes embedded-content">

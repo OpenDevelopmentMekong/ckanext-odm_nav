@@ -1,5 +1,13 @@
 /* boilerplate code */
+
+/* Hide browse by topic */
+.sec_header{
+  display: none !important;
+}
+
 /*screen.css */
+
+
 #cNavNew li {
   list-style: none;
   float: left;
