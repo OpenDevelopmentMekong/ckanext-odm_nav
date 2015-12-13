@@ -206,6 +206,26 @@ li.top-topic {
   left: 170px;
 }
 
+li.icon_menu{
+  width: 45px;
+  height: auto;
+  margin-top: 5px;
+}
+li.menu_environment img{
+  width: 45px;
+  height: auto;
+  margin-top: 5px;
+}
+
+li.menu_economy img{
+  width: 45px;
+  margin-top: -1px;
+}
+
+li.menu_people>a>img{
+  height: 34px;
+    padding-top: 8px;
+}
 #cNavNew li:hover .level2 a {
   background: #4c4c4c;
   color: white;
@@ -403,6 +423,10 @@ ul.level1 {
 .white #cNavNew.level1 li.icon_menu {
   height: 45px;
   padding-top: 3px;
+}
+
+.icon_menu img{
+  width:45px;height:auto;margin-top:5px;
 }
 
 /*header */

@@ -1,3 +1,5 @@
+# CLEAN UP HELPERS
+
 '''plugin.py
 
 '''
@@ -11,6 +13,7 @@ from pylons import config
 from beaker.middleware import SessionMiddleware
 import sys
 import os
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_nav_helper
 import datetime
@@ -26,52 +29,8 @@ log = logging.getLogger(__name__)
 print (sys.version)
 from pprint import pprint
 
-jsonPath=os.path.join(os.path.dirname(__file__), "lib/top_topics_multilingual.json")
 
 
-# tmp build menu
-
-with open(jsonPath) as data_file:
-   data = json.load(data_file)
-
-strs ={}
-strs['children']={}
-# strs['titles']= dict([ (top_topic["titles"]["en"],top_topic["titles"]["th"]) for top_topic in data ])
-# titles = dict([ (top_topic["titles"]["en"],top_topic["titles"]["th"]) for top_topic in data ])
-i=0
-for top_topic in data:
-#     # print titles
-#     strs.append(top_topic["titles"]["en"])
-#     strs[top_topic["titles"]["en"]]=
-
-    strs['titles']={i,top_topic["titles"]["en"]}
-    # for child in top_topic['children']:
-    i+=1
-#         # print names
-#         print(child['name'])
-#         # strs['children'].update({'d': child['name']})
-#
-
-# for top_topic in data:
-#     # print titles
-#     strs.append(top_topic["titles"]["en"])
-print("xyz")
-
-pprint(strs)
-
-#
-
-
-def json_load_top_topics():
-    with open(jsonPath) as data_file:
-       return json.load(data_file)
-
-def last_dataset():
-  ''' Returns the last dataset info stored in session'''
-  if 'last_dataset' in odm_nav_helper.session:
-    return odm_nav_helper.session['last_dataset']
-
-  return None
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -156,15 +115,7 @@ def popular_groups():
 
   return groups
 
-def recent_datasets():
-  '''Return a sorted list of the datasets updated recently.'''
 
-  # Get a list of all the site's groups from CKAN, sorted by number of
-  # datasets.
-  dataset = toolkit.get_action('current_package_list_with_resources')(
-      data_dict={'limit': 10})
-
-  return dataset
 
 def popular_datasets(limit):
   '''Return a sorted list of the most popular datasets.'''
@@ -266,92 +217,11 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
-      'odm_nav_last_dataset': last_dataset,
-      'odm_nav_json_load_top_topics':json_load_top_topics
+      'odm_nav_last_dataset': odm_nav_helper.last_dataset,
+      'odm_nav_json_load_top_topics':odm_nav_helper.json_load_top_topics,
+      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
 	}
 
-  # IDatasetForm
-
-  def _modify_package_schema_write(self, schema):
-
-    for metadata_field in odm_nav_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if metadata_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({metadata_field[0]: validators_and_converters})
-
-    for odc_field in odm_nav_helper.odc_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if odc_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({odc_field[0]: validators_and_converters})
-
-    for ckan_field in odm_nav_helper.ckan_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if ckan_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({ckan_field[0]: validators_and_converters})
-
-    for internal_field in odm_nav_helper.internal_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if internal_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({internal_field[0]: validators_and_converters})
-
-    schema.update({odm_nav_helper.taxonomy_dictionary: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(odm_nav_helper.taxonomy_dictionary)]})
-
-    return schema
-
-  def _modify_package_schema_read(self, schema):
-
-    for metadata_field in odm_nav_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if metadata_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({metadata_field[0]: validators_and_converters})
-
-    for odc_field in odm_nav_helper.odc_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if odc_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({odc_field[0]: validators_and_converters})
-
-    for ckan_field in odm_nav_helper.ckan_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if ckan_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({ckan_field[0]: validators_and_converters})
-
-    for internal_field in odm_nav_helper.internal_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if internal_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({internal_field[0]: validators_and_converters})
-
-    schema.update({odm_nav_helper.taxonomy_dictionary: [toolkit.get_converter('convert_from_tags')(odm_nav_helper.taxonomy_dictionary),toolkit.get_validator('ignore_missing')]})
-
-    return schema
-
-  def create_package_schema(self):
-    schema = super(OdmThemePlugin, self).create_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def update_package_schema(self):
-    schema = super(OdmThemePlugin, self).update_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def show_package_schema(self):
-    schema = super(OdmThemePlugin, self).show_package_schema()
-    schema = self._modify_package_schema_read(schema)
-    return schema
-
-  def is_fallback(self):
-    return True
-
-  def package_types(self):
-    return []
 
   # IPackageController
 
@@ -384,30 +254,3 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     odm_nav_helper.session['last_dataset'] = pkg_dict
     odm_nav_helper.session.save()
-
-def build_top_topic_nav_menu(lang):
-    ####################
-    # Json menu logic
-    ###################
-    # read json file
-    #
-
-    with open(jsonPath) as data_file:
-       data = json.load(data_file)
-
-    strs=[]
-
-    for top_topic in data:
-        # print titles
-        strs.append(top_topic["titles"][lang])
-
-    return strs
-    #
-    # for top_topic in data:
-    #     # print titles
-    #     print(top_topic["titles"]["en"])
-    #     for child in top_topic['children']:
-    #         # print names
-    #         print(child['name'])
-    # return literal('<div><h1>test</h1></div>')
-    # return literal('<li>')
