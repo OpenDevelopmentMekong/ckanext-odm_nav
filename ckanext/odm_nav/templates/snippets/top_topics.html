@@ -1,3 +1,4 @@
+{% set wp_url='http://192.168.33.10' %}
 {% resource 'odm_nav/aeviator_nav_concept.css' %}
 
 <div class="contentNavigation">
@@ -23,29 +24,29 @@
     			<ul class="level2 {{menu}}">
     				<li class="top-topic">{{item.titles.en}}</li>
     				{%for child in item.children %}
-    				    <li class="first"><a href="{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
+    				    <li class="first"><a href="{{wp_url}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
     				{% endfor %}
     				<span class="border"></span>
     			</ul>
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="#" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
 
-		<li class="one-line"><a class="library" href="#" target="_self">Publications Library<span class="cNavState"></span></a>
+		<li class="one-line"><a class="library" href="/library" target="_self">Publications Library<span class="cNavState"></span></a>
 
 
 		</li>
 
 		<li class="one-line">
-			<a class="/datahub" href="#" target="_self">Data<span class="cNavState"></span></a>
+			<a class="/" href="/" target="_self">Data<span class="cNavState"></span></a>
 			<ul class="level2">
-				<li class="first"><a href="dataset" target="_self">All records<span class="cNavState"></span></a></li>
+				<li class="first"><a href="/dataset" target="_self">All records<span class="cNavState"></span></a></li>
 
-				<li><a href="group" target="_self">Records by type<span class="cNavState"></span></a></li>
+				<li><a href="/group" target="_self">Records by type<span class="cNavState"></span></a></li>
 				<li><a href="#" target="_self">Records by country<span class="cNavState"></span></a></li>
 				<li class="last"><a href="#" target="_self">Records by language<span class="cNavState"></span></a></li>
 
@@ -60,7 +61,7 @@
     </li> -->
 
 		<li class="one-line">
-			<a href="#" target="_self">Map Explorer<span class="cNavState"></span></a>
+			<a href="{{wp_url}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
 		</li>
 
 	</ul>
@@ -68,13 +69,13 @@
 
 <div id="mainNav" class="mainNavOdc">
 	<div class="mainNav-logo">
-		<a href="/" target="_self">
+		<a href="{{wp_url}}" target="_self">
 			<img src="/odm_data_logo.png" </a>
 	</div>
 
 	<div class="mainNav-inner">
 		<ul id="mainNavElement" class="level1 clearfix">
-			<li class="first jtop act"><a href="index.html" target="_self" id="uid-2">MEKONG</a></li>
+			<li class="first jtop act"><a href="{{wp_url}}" target="_self" id="uid-2">MEKONG</a></li>
 
 			<li class="second"><a href="odc.html" id="uid-3">CAMBODIA</a></li>
 
