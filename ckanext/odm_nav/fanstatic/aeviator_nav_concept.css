@@ -214,22 +214,27 @@ li.top-topic {
   left: 170px;
 }
 
+/*li.icon_menu a{padding: 0!important;}*/
+
 li.icon_menu{
-  width: 45px;
+  /*width: 45px;*/
   height: auto;
-  margin-top: 5px;
+  /*margin-top: 5px;*/
 }
 li.menu_environment img{
-  width: 45px;
-  height: auto;
+  /*width: 65px;*/
+  height: 42px;
   margin-top: 5px;
 }
+
 
 li.menu_economy img{
   width: 45px;
+  /*height: 49px;*/
   margin-top: -1px;
 }
 
+li.menu_people a{width: 21px;}
 li.menu_people>a>img{
   height: 34px;
     padding-top: 8px;
