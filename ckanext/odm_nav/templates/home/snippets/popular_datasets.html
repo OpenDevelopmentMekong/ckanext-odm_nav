@@ -3,7 +3,7 @@
   <h3>{{_('Popular datasets')}}</h3>
   <ul>
     {% for dataset in h.odm_nav_popular_datasets(10) %}
-      <li><a href="{% url_for controller='package', action='read', id=dataset.id %}">{{ dataset.title }}</a></li>
+      <li><a href="{% url_for controller='package', type=dataset.type, action='read', id=dataset.id %}">{{ dataset.title }}</a></li>
     {% endfor %}
   </ul>
  </div>

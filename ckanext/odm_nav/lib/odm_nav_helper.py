@@ -19,6 +19,19 @@ log = logging.getLogger(__name__)
 taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
 
+def localize_resource_url(url):
+  '''Converts a absolute URL in a relative, chopping out the domain'''
+
+  try:
+    parsed = urlparse(url)
+    str_index = url.index(parsed.netloc)
+    str_length = len(parsed.netloc)
+    localized = url[str_index+str_length:]
+    return localized
+
+  except:
+    return url
+
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
 

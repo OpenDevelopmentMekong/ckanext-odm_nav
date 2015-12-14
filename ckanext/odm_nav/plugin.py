@@ -99,6 +99,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
       'odm_nav_last_dataset': odm_nav_helper.last_dataset,
       'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
+      'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
       'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
       'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
       'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
