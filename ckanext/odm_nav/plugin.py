@@ -24,7 +24,7 @@ from ckan.lib.base import render
 log = logging.getLogger(__name__)
 
 class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-  '''OD Mekong theme plugin.'''
+  '''OD Mekong Nav plugin.'''
 
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
