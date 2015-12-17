@@ -44,10 +44,10 @@ Example:
             {% block heading_title %}
              {% if package.type == h.odm_library_get_dataset_type() %}
               <i class="fa fa-book icon icon-book glyphicon glyphicon-book"></i>
-              {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', type='library_record', action='read', id=package.name)) }}
+              {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}
              {% else %}
               <i class="fa fa-sitemap icon icon-sitemap glyphicon glyphicon-sitemap"></i>
-              {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
+              {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}
              {% endif %}
             {% endblock %}
             {% block heading_meta %}
@@ -87,9 +87,9 @@ Example:
                 {% for resource in h.dict_list_reduce(package.resources, 'format') %}
                 <li>
                  {% if package.type == h.odm_library_get_dataset_type() %}
-                  <a href="{{ h.url_for(controller='package', type='library_record', action='read', id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                  <a href="{{ h.url_for(controller='package', type=package.type, action='read', id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
                  {% else %}
-                  <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                  <a href="{{ h.url_for(controller='package', type=package.type, action='read', id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
                  {% endif %}
                 </li>
                 {% endfor %}
