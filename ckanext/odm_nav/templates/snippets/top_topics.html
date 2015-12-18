@@ -71,9 +71,9 @@
 
 		<li class="one-line">
 			{% if country_code==''%}
-				<a href="pp.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+				<a href="http://pp.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
 			{% else %}
-				<a href="pp-{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+				<a href="http://pp-{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
 			{% endif %}
 
 		</li>
@@ -91,26 +91,26 @@
 <div id="mainNav" class="mainNavOdc">
 	<div class="mainNav-logo">
 		{% if country_code==''%}
-			<a href="pp.{{wp_domain}}" target="_self">
+			<a href="http://pp.{{wp_domain}}" target="_self">
 		{% else %}
-			<a href="pp-{{country_code}}.{{wp_domain}}" target="_self">
+			<a href="http://pp-{{country_code}}.{{wp_domain}}" target="_self">
 		{% endif %}
 			<img src="/odm_data_logo.png"> </a>
 	</div>
 
 	<div class="mainNav-inner">
 		<ul id="mainNavElement" class="level1 clearfix">
-			<li class="first jtop {% if country_code == ''%}act{% endif %}"><a class="toWp" data-country="mekong" href="pp.{{wp_domain}}/" target="_self" id="uid-2">MEKONG</a></li>
+			<li class="first jtop {% if country_code == ''%}act{% endif %}"><a class="toWp" data-country="mekong" href="http://pp.{{wp_domain}}/" target="_self" id="uid-2">MEKONG</a></li>
 
-			<li class="second {% if country_code == 'cambodia' %}act{% endif %}"><a class="toWp" data-country="cambodia"  href="pp-cambodia.{{wp_domain}}" id="uid-3">CAMBODIA</a></li>
+			<li class="second {% if country_code == 'cambodia' %}act{% endif %}"><a class="toWp" data-country="cambodia"  href="http://pp-cambodia.{{wp_domain}}" id="uid-3">CAMBODIA</a></li>
 
-			<li class="third {% if country_code == 'laos' %}act{% endif %}"><a class="toWp" data-country="laos" href="pp-laos.{{wp_domain}}" target="_self" id="uid-4">LAOS</a></li>
+			<li class="third {% if country_code == 'laos' %}act{% endif %}"><a class="toWp" data-country="laos" href="http://pp-laos.{{wp_domain}}" target="_self" id="uid-4">LAOS</a></li>
 
-			<li class="fourth {% if country_code == 'myanmar' %}act{% endif %}"><a class="toWp" data-country="myanmar" href="pp-myanmar.{{wp_domain}}" target="_self" id="uid-42">MYANMAR</a></li>
+			<li class="fourth {% if country_code == 'myanmar' %}act{% endif %}"><a class="toWp" data-country="myanmar" href="http://pp-myanmar.{{wp_domain}}" target="_self" id="uid-42">MYANMAR</a></li>
 
-			<li class="last jbottom {% if country_code == 'thailand' %}act{% endif %}"><a class="toWp" data-country="thailand" href="pp-thailand.{{wp_domain}}" target="_self" id="uid-5">THAILAND</a></li>
+			<li class="last jbottom {% if country_code == 'thailand' %}act{% endif %}"><a class="toWp" data-country="thailand" href="http://pp-thailand.{{wp_domain}}" target="_self" id="uid-5">THAILAND</a></li>
 
-			<li class="last jbottom {% if country_code == 'vietnam' %}act{% endif %}"><a class="toWp" data-country="vietnam" href="pp-vietnam.{{wp_domain}}" target="_self" id="uid-5142">VIETNAM</a></li>
+			<li class="last jbottom {% if country_code == 'vietnam' %}act{% endif %}"><a class="toWp" data-country="vietnam" href="http://pp-vietnam.{{wp_domain}}" target="_self" id="uid-5142">VIETNAM</a></li>
 
 		</ul>
 
