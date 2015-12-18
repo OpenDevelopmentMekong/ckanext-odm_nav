@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 
 import pylons
 import json
