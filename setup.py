@@ -6,7 +6,7 @@ version = '1.0'
 setup(
     name='ckanext-odm_nav',
     version=version,
-    description="OD Mekong CKAN's theme extension containing new nav concept",
+    description="OD Mekong CKAN's extension containing new nav concept",
     long_description='''
     ''',
     classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -16,7 +16,7 @@ setup(
     url='http://www.aeviator.cc',
     license='AGPL3',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    namespace_packages=['ckanext', 'ckanext.odm_nav'],
+    namespace_packages=['ckanext'],
     include_package_data=True,
     zip_safe=False,
     package_dir={'odm_nav': 'ckanext/odm_nav'},

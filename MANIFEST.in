@@ -3,3 +3,4 @@ recursive-include ckanext/odm_nav/lib *
 recursive-include ckanext/odm_nav/public *
 recursive-include ckanext/odm_nav/odm-taxonomy *
 recursive-include ckanext/odm_nav/templates *
+recursive-include ckanext *.html *.json

@@ -39,12 +39,12 @@
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="/laws{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws_record{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
 
-		<li class="one-line"><a class="library" href="/library{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
+		<li class="one-line"><a class="library" href="/library_record{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
 
 
 		</li>

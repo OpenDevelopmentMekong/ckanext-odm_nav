@@ -64,6 +64,19 @@ def get_cookie():
   except (Cookie.CookieError, KeyError):
     return ''
 
+def localize_resource_url(url):
+  '''Converts a absolute URL in a relative, chopping out the domain'''
+
+  try:
+    parsed = urlparse(url)
+    str_index = url.index(parsed.netloc)
+    str_length = len(parsed.netloc)
+    localized = url[str_index+str_length:]
+    return localized
+
+  except:
+    return url
+
 
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
@@ -157,29 +170,6 @@ def tag_for_topic(topic):
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
-
-def top_topics():
-  '''Return a list of top_topics'''
-
-  return list([
-    ('Agriculture and fishing'),
-    ('Aid and development'),
-    ('Disasters and emergency response'),
-    ('Economy and commerce'),
-    ('Energy'),
-    ('Environment and natural resources'),
-    ('Extractive industries'),
-    ('Government'),
-    ('Industries'),
-    ('Infrastructure'),
-    ('Labor'),
-    ('Land'),
-    ('Law and judiciary'),
-    ('Population and censuses'),
-    ('Social development'),
-    ('Urban administration and development'),
-    ('Science and technology')
-  ])
 
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''
