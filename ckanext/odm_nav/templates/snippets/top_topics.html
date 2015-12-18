@@ -39,20 +39,20 @@
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="/laws?odm_spatial_range={{country_code | capitalize}}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
 
-		<li class="one-line"><a class="library" href="/library" target="_self">Publications Library<span class="cNavState"></span></a>
+		<li class="one-line"><a class="library" href="/library{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
 
 
 		</li>
 
 		<li class="one-line">
-			<a class="/" href="/" target="_self">Data<span class="cNavState"></span></a>
+			<a class="" href="/{% if country_code != ''%}dataset?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
 			<ul class="level2">
-				<li class="first"><a href="/dataset" target="_self">All records<span class="cNavState"></span></a></li>
+				<li class="first"><a href="{% if country_code != ''%}dataset?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
 
 				<li><a href="/group" target="_self">Records by type<span class="cNavState"></span></a></li>
 				<li><a href="#" target="_self">Records by country<span class="cNavState"></span></a></li>
@@ -72,6 +72,13 @@
 			<a href="{{wp_url}}/{{country_code}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
 		</li>
 
+		<!-- load country specific menu from wp -->
+		{% for item in h.odm_nav_load_country_specific_menu(country_code,wp_url) %}
+			<li class="one-line">
+				<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
+			</li>
+		{% endfor %}
+
 	</ul>
 </div>
 
@@ -83,17 +90,17 @@
 
 	<div class="mainNav-inner">
 		<ul id="mainNavElement" class="level1 clearfix">
-			<li class="first jtop act"><a class="toWp" data-country="mekong" href="{{wp_url}}/" target="_self" id="uid-2">MEKONG</a></li>
+			<li class="first jtop {% if country_code == ''%}act{% endif %}"><a class="toWp" data-country="mekong" href="{{wp_url}}/" target="_self" id="uid-2">MEKONG</a></li>
 
-			<li class="second"><a class="toWp" data-country="cambodia"  href="{{wp_url}}/cambodia" id="uid-3">CAMBODIA</a></li>
+			<li class="second {% if country_code == 'cambodia' %}act{% endif %}"><a class="toWp" data-country="cambodia"  href="{{wp_url}}/cambodia" id="uid-3">CAMBODIA</a></li>
 
-			<li class="third"><a class="toWp" data-country="laos" href="{{wp_url}}/" target="_self" id="uid-4">LAOS</a></li>
+			<li class="third {% if country_code == 'laos' %}act{% endif %}"><a class="toWp" data-country="laos" href="{{wp_url}}/" target="_self" id="uid-4">LAOS</a></li>
 
-			<li class="fourth"><a class="toWp" data-country="myanmar" href="{{wp_url}}" target="_self" id="uid-42">MYANMAR</a></li>
+			<li class="fourth {% if country_code == 'myanmar' %}act{% endif %}"><a class="toWp" data-country="myanmar" href="{{wp_url}}" target="_self" id="uid-42">MYANMAR</a></li>
 
-			<li class="last jbottom"><a class="toWp" data-country="thailand" href="{{wp_url}}/" target="_self" id="uid-5">THAILAND</a></li>
+			<li class="last jbottom {% if country_code == 'thailand' %}act{% endif %}"><a class="toWp" data-country="thailand" href="{{wp_url}}/" target="_self" id="uid-5">THAILAND</a></li>
 
-			<li class="last jbottom"><a class="toWp" data-country="vietnam" href="{{wp_url}}/" target="_self" id="uid-5142">VIETNAM</a></li>
+			<li class="last jbottom {% if country_code == 'vietnam' %}act{% endif %}"><a class="toWp" data-country="vietnam" href="{{wp_url}}/" target="_self" id="uid-5142">VIETNAM</a></li>
 
 		</ul>
 

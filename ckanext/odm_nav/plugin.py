@@ -111,7 +111,8 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
       'odm_nav_json_load_top_topics':odm_nav_helper.json_load_top_topics,
       'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
-      'odm_nav_get_cookie': odm_nav_helper.get_cookie
+      'odm_nav_get_cookie': odm_nav_helper.get_cookie,
+      'odm_nav_load_country_specific_menu': odm_nav_helper.load_country_specific_menu
 	}
 
   # IPackageController

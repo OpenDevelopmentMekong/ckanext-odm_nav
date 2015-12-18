@@ -15,6 +15,8 @@ import socket
 import Cookie
 from pprint import pprint
 import string
+import requests
+import simplejson as json
 
 
 
@@ -35,6 +37,23 @@ log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
+
+def load_country_specific_menu(country, wpUrl):
+  log.info('getting menu for %s',country)
+
+  # list of menu endpoints
+  if country=='':
+    menu_endpoint=wpUrl + '/wp-json/menus/824'
+  elif country=='cambodia':
+    menu_endpoint=wpUrl + '/cambodia/wp-json/menus/2'
+  else:
+    log.debug("Cannot get WP menu")
+    return ''
+  # get json representation of menu
+  r = requests.get(menu_endpoint)
+  jsonData = r.json()
+  return jsonData['items']
+
 
 def get_cookie():
   request=toolkit.request
