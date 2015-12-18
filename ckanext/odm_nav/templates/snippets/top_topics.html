@@ -1,6 +1,14 @@
 {% set wp_url='http://192.168.33.10' %}
+{% set country_code = h.odm_nav_get_cookie()%}
+{% if h.odm_nav_get_cookie() == 'mekong'%}
+	{% set country_code = '' %}
+{% endif %}
 {% resource 'odm_nav/aeviator_nav_concept.css' %}
 
+
+<!-- {% for item in country_code %}
+	{{item}}
+{% endfor %} -->
 <div class="contentNavigation">
 
 	<ul id="cNavNew" class="level1 clearfix current-site-mekong">
@@ -17,21 +25,21 @@
       {%endif%}
 
       	<li class="first icon_menu {{menu}}">
-    			<a href="#" target="_self">
+    			<a class="top_topic" href="#" target="_self">
     				<img src="/icons/{{icon}}" alt="">
     				<span class="cNavState"></span>
     			</a>
     			<ul class="level2 {{menu}}">
     				<li class="top-topic">{{item.titles.en}}</li>
     				{%for child in item.children %}
-    				    <li class="first"><a href="{{wp_url}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
+    				    <li class="first"><a href="{{wp_url}}/{{country_code}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
     				{% endfor %}
     				<span class="border"></span>
     			</ul>
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="/laws" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws?odm_spatial_range={{country_code | capitalize}}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
@@ -61,7 +69,7 @@
     </li> -->
 
 		<li class="one-line">
-			<a href="{{wp_url}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			<a href="{{wp_url}}/{{country_code}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
 		</li>
 
 	</ul>
@@ -69,23 +77,23 @@
 
 <div id="mainNav" class="mainNavOdc">
 	<div class="mainNav-logo">
-		<a href="{{wp_url}}" target="_self">
+		<a href="{{wp_url}}/{{h.odm_nav_get_cookie()}}" target="_self">
 			<img src="/odm_data_logo.png" </a>
 	</div>
 
 	<div class="mainNav-inner">
 		<ul id="mainNavElement" class="level1 clearfix">
-			<li class="first jtop act"><a href="{{wp_url}}" target="_self" id="uid-2">MEKONG</a></li>
+			<li class="first jtop act"><a class="toWp" data-country="mekong" href="{{wp_url}}/" target="_self" id="uid-2">MEKONG</a></li>
 
-			<li class="second"><a href="odc.html" id="uid-3">CAMBODIA</a></li>
+			<li class="second"><a class="toWp" data-country="cambodia"  href="{{wp_url}}/cambodia" id="uid-3">CAMBODIA</a></li>
 
-			<li class="third"><a href="odl.html" target="_self" id="uid-4">LAOS</a></li>
+			<li class="third"><a class="toWp" data-country="laos" href="{{wp_url}}/" target="_self" id="uid-4">LAOS</a></li>
 
-			<li class="fourth"><a href="odmy.html" target="_self" id="uid-42">MYANMAR</a></li>
+			<li class="fourth"><a class="toWp" data-country="myanmar" href="{{wp_url}}" target="_self" id="uid-42">MYANMAR</a></li>
 
-			<li class="last jbottom"><a href="odt.html" target="_self" id="uid-5">THAILAND</a></li>
+			<li class="last jbottom"><a class="toWp" data-country="thailand" href="{{wp_url}}/" target="_self" id="uid-5">THAILAND</a></li>
 
-			<li class="last jbottom"><a href="odv.html" target="_self" id="uid-5142">VIETNAM</a></li>
+			<li class="last jbottom"><a class="toWp" data-country="vietnam" href="{{wp_url}}/" target="_self" id="uid-5142">VIETNAM</a></li>
 
 		</ul>
 

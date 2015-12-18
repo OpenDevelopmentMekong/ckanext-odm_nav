@@ -14,15 +14,19 @@ import os
 import socket
 import Cookie
 from pprint import pprint
+import string
+
 
 
 ## DEV
+
 # cookie = Cookie.SimpleCookie()
 # cookie_string = os.environ.get('HTTP_COOKIE')
 # cookie.load(cookie_string)
 # # Use the value attribute of the cookie to get it
 # data = cookie['odm_transition_data'].value
 # pprint(data)
+
 
 
 
@@ -33,44 +37,13 @@ taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
 
 def get_cookie():
-  '''adf'''
-
-  import cgitb, cgi, os
-  cgitb.enable()
-
-  if "HTTP_COOKIE" in os.environ :
-     cookie_info = os.environ.get("HTTP_COOKIE")
-     pprint(cookie_info)
-     #processing the cookie
-     cookies = cookie_info.split(';')
-     cookie_dict = dict();
-     for cookie in cookies :
-        cookie_split = cookie.split('=')
-        cookie_dict[cookie_split[0].strip()] = cookie_split[1].strip()
-     try :
-        username = cookie_dict["odm_transition_data"]
-     except KeyError:
-        username = "undefined"
-     try:
-        password = cookie_dict["password"]
-     except KeyError :
-        password = "undefined"
-  else :
-     cookie_info = "cookie not defined"
-     username = "undefined"
-     password = "undefined"
-
-  # cookie_string = os.environ.get('HTTP_COOKIE')
-  # cookie = Cookie.SimpleCookie(os.environ["HTTP_COOKIE"])
-  # return cookie['odm_transition_data'].value
-  # try:
-  #   cookie = Cookie.SimpleCookie(os.environ["HTTP_COOKIE"])
-  #   return cookie['odm_transition_data'].value
-  # except (KeyError):
-  #   return "Key Error!!!"
-  # except (Cookie.CookieError, KeyError):
-  #   return "Error!!!"
-
+  request=toolkit.request
+  try:
+    cookie=request.cookies['odm_transition_country']
+    # cookie=json.loads(request.cookies['odm_transition_data'])
+    return cookie
+  except (Cookie.CookieError, KeyError):
+    return ''
 
 
 def get_tag_dictionaries(vocab_id):

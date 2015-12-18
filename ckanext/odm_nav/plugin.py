@@ -42,17 +42,6 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     odm_nav_helper.session = wsgi_app.session
 
 
-    # temp cookie
-
-
-    # cookie = cookies.SimpleCookie(os.environ.get["HTTP_COOKIE"])
-    pprint(os.environ)
-    thiscookie = Cookie.SimpleCookie()
-    if os.environ.has_key('HTTP_COOKIE'):
-        thiscookie.load(os.environ['HTTP_COOKIE'])
-        print thiscookie['odm_transition_data'].value
-    #
-
 
   # IFacets
   def dataset_facets(self, facets_dict, package_type):
@@ -95,6 +84,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   # IRoutes
   def before_map(self, m):
     #m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
+
     return m
 
   # IConfigurer

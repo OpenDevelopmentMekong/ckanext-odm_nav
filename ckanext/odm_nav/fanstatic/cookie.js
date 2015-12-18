@@ -147,11 +147,27 @@
 
 // Custom cookie Handler
 jQuery(document).ready(function() {
-  // jQuery()
-  // $("a.toCkan").on("click", function() {
-  //   Cookies.set('country', 'cambodia', { expires: 7, path: '/' });
-	//
-  // });
+
 	cookie=Cookies.get('country');
-	console.log(cookie);
+	console.log("Viewing Ckan for " + cookie);
+	$('html').data('country', cookie);
+
+
+	// # each link manipulation
+	// if (cookie == "mekong") NewLink=LinkData;
+  // else if (cookie == "cambodia") NewLink=LinkData.concat("/dataset?odm_spatial_range=Cambodia");
+  // else if (cookie == "laos") NewLink=LinkData.concat("/dataset?odm_spatial_range=Laos");
+  // else if (cookie == "myanmar") NewLink=LinkData.concat("/dataset?odm_spatial_range=Myanmar");
+  // else if (cookie == "thailand") NewLink=LinkData.concat("/dataset?odm_spatial_range=Thailand");
+  // else if (cookie == "vietnam") NewLink=LinkData.concat("/dataset?odm_spatial_range=Cambodia");
+  // else  NewLink=LinkData;
+  // $('a.datahub').attr("href", NewLink);
+
+
+	$("a.toWp").on("click", function() {
+    console.log("Switching to WP for " + $(this).data("country"));
+    Cookies.set('odm_transition_country', $(this).data("country"), { expires: 7, path: '/' });
+
+  });
+
 });
