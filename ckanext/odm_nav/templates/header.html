@@ -124,41 +124,7 @@
   </div>
  </header>
 
- <header class="sec_header">
-    <div class="container">
-      <hgroup>
-       <div class="row">
-         <div class="span9 col1">
-          <h4>{{ _('Browse by topic') }}</h4>
-          {% for top_topic in h.odm_nav_top_topics() %}
-            {% set tag_name = h.odm_nav_tag_for_topic(top_topic) %}
-            <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag_name %}">{{ h.odm_nav_get_localized_tag(top_topic) }}</a>
-          {% endfor %}
-         </div>
-         <div class="span3 col2 header-selection">
-          <h4>{{ _('Browse by country') }}</h4>
-          <ul>
-           <li><a href="/dataset?odm_spatial_range=Cambodia"><img src="/flags/cambodia.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Laos"><img src="/flags/laos.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Myanmar"><img src="/flags/myanmar.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Thailand"><img src="/flags/thailand.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Vietnam"><img src="/flags/vietnam.png"/></a></li>
-          </ul>
-         </div>
-         <div class="span3 col2 header-selection">
-          <h4>{{ _('Browse by language') }}</h4>
-          <ul>
-           <li><a href="/dataset?odm_language=en"><img src="/langs/en.png"/></a></li>
-           <li><a href="/dataset?odm_language=kh"><img src="/langs/cambodia.png"/></a></li>
-           <!-- <li><a href="/dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
-           <li><a href="/dataset?odm_language=my"><img src="/langs/myanmar.png"/></a></li>
-           <li><a href="/dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li> -->
-           <li><a href="/dataset?odm_language=vi"><img src="/langs/vietnam.png"/></a></li>
-          </ul>
-         </div>
-      </hgroup>
-    </div>
-  </header>
+ 
 
  {% snippet 'snippets/top_topics.html'%}
 
