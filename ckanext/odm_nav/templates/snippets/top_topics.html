@@ -1,4 +1,4 @@
-{% set wp_url='http://192.16833.10' %}
+{% set wp_url='http://pp.opendevelopmentmekong.net' %}
 {% set country_code = h.odm_nav_get_cookie()%}
 {% if h.odm_nav_get_cookie() == 'mekong'%}
 	{% set country_code = '' %}
@@ -32,7 +32,7 @@
     			<ul class="level2 {{menu}}">
     				<li class="top-topic">{{item.titles.en}}</li>
     				{%for child in item.children %}
-    				    <li class="first"><a href="{{wp_url}}/{{country_code}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
+    				    <li class="first"><a href="{{country_code}}.{{wp_url}}//topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
     				{% endfor %}
     				<span class="border"></span>
     			</ul>
