@@ -50,9 +50,13 @@ def load_country_specific_menu(country, wpUrl):
     log.debug("Cannot get WP menu")
     return ''
   # get json representation of menu
-  r = requests.get(menu_endpoint)
-  jsonData = r.json()
-  return jsonData['items']
+  try:
+    r = requests.get(menu_endpoint)
+    jsonData = r.json()
+    return jsonData['items']
+  except(requests.exceptions.ConnectionError):
+    print("cannot connect to Wordpress Instance on " +wpUrl)
+    return []
 
 
 def get_cookie():
