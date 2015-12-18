@@ -33,7 +33,13 @@
     			<ul class="level2 {{menu}}">
     				<li class="top-topic">{{item.titles.en}}</li>
     				{%for child in item.children %}
-    				    <li class="first"><a href="pp-{{country_code}}.{{wp_domain}}//topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
+    				    <li class="first">
+									{% if country_code==''%}
+										<a href="http://pp.{{wp_domain}}//topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
+									{% else %}
+										<a href="http://pp-{{country_code}}.{{wp_domain}}//topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
+									{% endif %}
+								</li>
     				{% endfor %}
     				<span class="border"></span>
     			</ul>
