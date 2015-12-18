@@ -70,7 +70,12 @@
     </li> -->
 
 		<li class="one-line">
-			<a href="pp-{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% if country_code==''%}
+				<a href="pp.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% else %}
+				<a href="pp-{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% endif %}
+
 		</li>
 
 		<!-- load country specific menu from wp -->
@@ -89,6 +94,7 @@
 			<a href="pp.{{wp_domain}}" target="_self">
 		{% else %}
 			<a href="pp-{{country_code}}.{{wp_domain}}" target="_self">
+		{% endif %}
 			<img src="/odm_data_logo.png"> </a>
 	</div>
 
