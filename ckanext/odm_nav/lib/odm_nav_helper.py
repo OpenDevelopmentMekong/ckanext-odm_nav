@@ -43,9 +43,9 @@ def load_country_specific_menu(country, wpUrl):
 
   # list of menu endpoints
   if country=='':
-    menu_endpoint=wpUrl + '/wp-json/menus/824'
+    menu_endpoint= 'pp.' + wpUrl + '/wp-json/menus/824'
   elif country=='cambodia':
-    menu_endpoint=wpUrl + '/cambodia/wp-json/menus/2'
+    menu_endpoint= 'pp-cambodia.'+ wpUrl + '/wp-json/menus/2'
   else:
     log.debug("Cannot get WP menu")
     return ''
