@@ -166,7 +166,7 @@ jQuery(document).ready(function() {
 
 	$("a.toWp").on("click", function() {
     console.log("Switching to WP for " + $(this).data("country"));
-    Cookies.set('odm_transition_country', $(this).data("country"), { expires: 7, path: '/' });
+    Cookies.set('odm_transition_country', $(this).data("country"), { expires: 7, path: '/', domain: '.opendevelopmentmekong.net' });
 
   });
 
