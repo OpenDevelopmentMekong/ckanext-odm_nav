@@ -43,18 +43,18 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     return {
             'license_id': toolkit._('License'),
-            'tags': toolkit._('Topics'),
             'organization': toolkit._('Organizations'),
             'res_format': toolkit._('Formats'),
             'extras_odm_language': toolkit._('Language'),
             'extras_odm_spatial_range': toolkit._('Country')
             }
 
+    # NOTE: Add support for tags -> 'tags': toolkit._('Topics'),
+
   def group_facets(self, facets_dict, group_type, package_type):
 
     return {
             'license_id': toolkit._('License'),
-            'tags': toolkit._('Topics'),
             'organization': toolkit._('Organizations'),
             'res_format': toolkit._('Formats'),
             'extras_odm_language': toolkit._('Language'),
@@ -65,7 +65,6 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     return {
             'license_id': toolkit._('License'),
-            'tags': toolkit._('Topics'),
             'res_format': toolkit._('Formats'),
             'extras_odm_language': toolkit._('Language'),
             'extras_odm_spatial_range': toolkit._('Country')
