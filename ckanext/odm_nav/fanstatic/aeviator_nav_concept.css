@@ -1,13 +1,13 @@
-/* boilerplate code */
+/*GENERAL & SETUP*/
 
 /* Hide browse by topic */
 .sec_header{
   display: none !important;
 }
 
+/* boilerplate code */
+
 /*screen.css */
-
-
 #cNavNew li {
   list-style: none;
   float: left;
@@ -143,7 +143,8 @@
   padding-top: 0px;
 }
 
-/*header text */
+
+
 /*level 1 */
 #cNavNew .one-line {
   padding-top: 15px;
@@ -310,7 +311,7 @@ li.menu_people>a>img{
   top: 0;
   left: 0;
   z-index: 9999;
-  background: #333333;
+  background: #4c4c4c;
 }
 
 .headerODM {
@@ -360,7 +361,7 @@ ul.level1 {
 
 .mainNav-inner ul.level1 > li.act > a {
   padding-right: 12px;
-  background: #4c4c4c;
+  background: #333333;
   color: white;
 }
   border-right: 1px solid #dddddd;
@@ -375,8 +376,8 @@ ul.level1 {
  *############################################################################################ */
 /*top nav */
 .contentNavigation {
-  height: 70px;
-  top: 30px;
+  height: 60px;
+  /*top: 30px;*/
   position: relative;
   padding-left: 140px;
   /*z-index: 100; */
@@ -446,7 +447,38 @@ ul.level1 {
 header#od-head .icon-od-logo {
   display: none;
 }
+/*tmp hiding account*/
+.account-masthead{display: none;}
+.masthead .debug{left: 710px;}
+/**/
+.masthead{
+  height: 70px;
+  padding:10px 0 0 0;
+}
+  .masthead hgroup h1.header-text{
+    font-family: 'Droid Serif', serif;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    padding-left: 35px;
+  }
 
+    .header-text a{text-decoration: none;}
+    .header-text sup{
+      font-size: 55%;
+      position: relative;
+      vertical-align: baseline;
+      top: -10px;
+    }
+    .header-text span{
+      line-height: 51px;
+      font-size: 24px;
+      font-family: TheSerifBold;
+      padding-left: 10px;
+      letter-spacing: normal;
+
+    }
 #od-head {
   padding: 30px 0 0;
   background: #292d56;

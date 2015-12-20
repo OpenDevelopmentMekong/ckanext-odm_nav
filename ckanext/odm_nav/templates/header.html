@@ -1,8 +1,10 @@
 {% resource 'odm_nav/cookie.js' %}
 
+
 {% block header_wrapper %}
 {% block header_account %}
 <header class="account-masthead">
+
  <div class="container">
   {% block header_account_container_content %}
   {% if c.userobj %}
@@ -79,9 +81,7 @@
   {# The .header-image class hides the main text and uses image replacement for the title #}
   <hgroup class="{{ g.header_class }}">
 
-   {% block header_logo %}
-   <a class="logo" href="{{ h.url('home') }}"><img width="380px" src="/odm_logo_header.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
-   {% endblock %}
+   <h1 class="header-text"><a href="#" target="_self">Op<sup>e</sup>nDevelopment</a><span>Datahub</span></h1>
 
   </hgroup>
 
@@ -124,7 +124,7 @@
   </div>
  </header>
 
- 
+
 
  {% snippet 'snippets/top_topics.html'%}
 
