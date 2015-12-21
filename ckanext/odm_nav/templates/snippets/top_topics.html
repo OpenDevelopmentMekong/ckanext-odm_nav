@@ -6,7 +6,20 @@
 {% endif %}
 {% resource 'odm_nav/aeviator_nav_concept.css' %}
 
+<!-- country codes from scheme -->
+{% if country_code == 'cambodia'%}
+	{% set country_code_short ='kh'%}
+{% elif country_code == 'laos'%}
+	{% set country_code_short ='la'%}
+{% elif country_code == 'myanmar'%}
+	{% set country_code_short ='mm'%}
+{% elif country_code == 'thailand'%}
+	{% set country_code_short ='th'%}
+{% elif country_code == 'vietnam'%}
+	{% set country_code_short ='vn'%}
+{% else%}
 
+{%endif%}
 <!-- {% for item in country_code %}
 	{{item}}
 {% endfor %} -->
@@ -46,20 +59,20 @@
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="/laws_record{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws_record{% if country_code != ''%}?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
 
-		<li class="one-line"><a class="library" href="/library_record{% if country_code != ''%}?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
+		<li class="one-line"><a class="library" href="/library_record{% if country_code != ''%}?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
 
 
 		</li>
 
 		<li class="one-line">
-			<a class="" href="/{% if country_code != ''%}dataset?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
+			<a class="" href="/{% if country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
 			<ul class="level2">
-				<li class="first"><a href="{% if country_code != ''%}dataset?odm_spatial_range={{country_code | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
+				<li class="first"><a href="{% if country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
 
 				<li><a href="/group" target="_self">Records by type<span class="cNavState"></span></a></li>
 				<li><a href="#" target="_self">Records by country<span class="cNavState"></span></a></li>
