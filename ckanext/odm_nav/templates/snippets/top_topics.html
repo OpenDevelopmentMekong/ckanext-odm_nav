@@ -70,9 +70,9 @@
 		</li>
 
 		<li class="one-line">
-			<a class="" href="/{% if country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
+			<a class="" href="/{%if country_code==''%}dataset{% elif country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
 			<ul class="level2">
-				<li class="first"><a href="{% if country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
+				<li class="first"><a href="/{%if country_code==''%}dataset{% elif country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
 
 				<li><a href="/group" target="_self">Records by type<span class="cNavState"></span></a></li>
 				<li><a href="#" target="_self">Records by country<span class="cNavState"></span></a></li>
