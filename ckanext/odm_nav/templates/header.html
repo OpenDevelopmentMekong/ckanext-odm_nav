@@ -130,7 +130,7 @@
           <h4>{{ _('Browse by topic') }}</h4>
           {% for top_topic in h.odm_nav_top_topics() %}
             {% set tag_name = h.odm_nav_tag_for_topic(top_topic) %}
-            <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag_name %}">{{ h.odm_nav_get_localized_tag(top_topic) }}</a>
+            <a class="header_tag" href="{% url_for controller='package', action='search', extras_taxonomy=tag_name %}">{{ h.odm_nav_get_localized_tag(top_topic) }}</a>
           {% endfor %}
          </div>
          <div class="span3 col2 header-selection">

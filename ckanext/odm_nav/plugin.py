@@ -40,41 +40,35 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   # IFacets
   def dataset_facets(self, facets_dict, package_type):
-    facets_dict = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'organization': toolkit._('Organizations'),
-              'groups': toolkit._('Groups'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
 
-    return facets_dict
+    return {
+            'license_id': toolkit._('License'),
+            'organization': toolkit._('Organizations'),
+            'res_format': toolkit._('Formats'),
+            'extras_odm_language': toolkit._('Language'),
+            'extras_odm_spatial_range': toolkit._('Country')
+            }
+
+    # NOTE: Add support for tags -> 'tags': toolkit._('Topics'),
 
   def group_facets(self, facets_dict, group_type, package_type):
-    group_facets = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'organization': toolkit._('Organizations'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
 
-    return group_facets
+    return {
+            'license_id': toolkit._('License'),
+            'organization': toolkit._('Organizations'),
+            'res_format': toolkit._('Formats'),
+            'extras_odm_language': toolkit._('Language'),
+            'extras_odm_spatial_range': toolkit._('Country')
+            }
 
   def organization_facets(self, facets_dict, organization_type, package_type):
-    organization_facets = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'groups': toolkit._('Groups'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
 
-    return organization_facets
+    return {
+            'license_id': toolkit._('License'),
+            'res_format': toolkit._('Formats'),
+            'extras_odm_language': toolkit._('Language'),
+            'extras_odm_spatial_range': toolkit._('Country')
+            }
 
   # IRoutes
   def before_map(self, m):
