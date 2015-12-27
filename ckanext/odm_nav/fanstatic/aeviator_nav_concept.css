@@ -256,7 +256,7 @@ li.menu_people>a>img{
   background: #333333;
   color: white;
   width: 200px;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
 }
 
 #cNavNew li .level3 {
@@ -491,6 +491,22 @@ header#od-head .icon-od-logo {
 #site-intro {
   margin-top: 165px;
 }
+  /*level 3*/
+  .white #cNavNew.level1 li.icon_menu {
+  height: 45px;
+  padding-top: 3px;
+}
+#cNavNew .level2 li.by_country:hover{
+  height: 174px;
+}
+#cNavNew .level2 li.by_type:hover{height: 100%;}
+  #cNavNew .level2>li.by_country:hover .level3{
+  position: static;
+  display: table-cell;
+  padding-left: 0!important;
+  width: 220px;
+}
+
 
 /*temp */
 div#wrap-feedback {
