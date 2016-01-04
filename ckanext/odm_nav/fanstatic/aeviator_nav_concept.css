@@ -1,13 +1,13 @@
-/* boilerplate code */
+/*GENERAL & SETUP*/
 
 /* Hide browse by topic */
 .sec_header{
   display: none !important;
 }
 
+/* boilerplate code */
+
 /*screen.css */
-
-
 #cNavNew li {
   list-style: none;
   float: left;
@@ -143,7 +143,8 @@
   padding-top: 0px;
 }
 
-/*header text */
+
+
 /*level 1 */
 #cNavNew .one-line {
   padding-top: 15px;
@@ -214,22 +215,27 @@ li.top-topic {
   left: 170px;
 }
 
+/*li.icon_menu a{padding: 0!important;}*/
+
 li.icon_menu{
-  width: 45px;
+  /*width: 45px;*/
   height: auto;
-  margin-top: 5px;
+  /*margin-top: 5px;*/
 }
 li.menu_environment img{
-  width: 45px;
-  height: auto;
-  margin-top: 5px;
+  /*width: 65px;*/
+  height: 42px;
+  margin-top: 10px;
 }
+
 
 li.menu_economy img{
   width: 45px;
-  margin-top: -1px;
+  /*height: 49px;*/
+  margin-top: 4px;
 }
 
+li.menu_people a{width: 21px;}
 li.menu_people>a>img{
   height: 34px;
     padding-top: 8px;
@@ -250,7 +256,7 @@ li.menu_people>a>img{
   background: #333333;
   color: white;
   width: 200px;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
 }
 
 #cNavNew li .level3 {
@@ -278,7 +284,8 @@ li.menu_people>a>img{
 }
 
 .container {
-  margin-left: 140px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .clearfix:after {
@@ -305,7 +312,7 @@ li.menu_people>a>img{
   top: 0;
   left: 0;
   z-index: 9999;
-  background: #333333;
+  background: #4c4c4c;
 }
 
 .headerODM {
@@ -355,7 +362,7 @@ ul.level1 {
 
 .mainNav-inner ul.level1 > li.act > a {
   padding-right: 12px;
-  background: #4c4c4c;
+  background: #333333;
   color: white;
 }
   border-right: 1px solid #dddddd;
@@ -369,11 +376,16 @@ ul.level1 {
 /*#############################################################################################
  *############################################################################################ */
 /*top nav */
-.contentNavigation {
-  height: 70px;
-  top: 30px;
-  position: relative;
+
+.content_wrapper {
   padding-left: 140px;
+}
+
+.contentNavigation {
+  height: 60px;
+  /*top: 30px;*/
+  position: relative;
+  /*padding-left: 140px;*/
   /*z-index: 100; */
   /*margin-left: -30px; */
 }
@@ -381,8 +393,6 @@ ul.level1 {
 #cNavNew {
   display: inline-block;
   position: relative;
-  width: 100%;
-  width: 100vw;
   padding-left: 40px;
   z-index: 8888;
   /*-moz-box-shadow: 0px 2px 3px 0px #ddd;
@@ -441,7 +451,38 @@ ul.level1 {
 header#od-head .icon-od-logo {
   display: none;
 }
+/*tmp hiding account*/
+.account-masthead{display: none;}
+.masthead .debug{left: 710px;}
+/**/
+.masthead{
+  height: 70px;
+  padding:10px 0 0 0;
+}
+  .masthead hgroup h1.header-text{
+    font-family: 'Droid Serif', serif;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    padding-left: 35px;
+  }
 
+    .header-text a{text-decoration: none;}
+    .header-text sup{
+      font-size: 55%;
+      position: relative;
+      vertical-align: baseline;
+      top: -10px;
+    }
+    .header-text span{
+      line-height: 51px;
+      font-size: 24px;
+      font-family: TheSerifBold;
+      padding-left: 10px;
+      letter-spacing: normal;
+
+    }
 #od-head {
   padding: 30px 0 0;
   background: #292d56;
@@ -454,6 +495,22 @@ header#od-head .icon-od-logo {
 #site-intro {
   margin-top: 165px;
 }
+  /*level 3*/
+  .white #cNavNew.level1 li.icon_menu {
+  height: 45px;
+  padding-top: 3px;
+}
+#cNavNew .level2 li.by_country:hover{
+  height: 174px;
+}
+#cNavNew .level2 li.by_type:hover{height: 100%;}
+  #cNavNew .level2>li.by_country:hover .level3{
+  position: static;
+  display: table-cell;
+  padding-left: 0!important;
+  width: 220px;
+}
+
 
 /*temp */
 div#wrap-feedback {

@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 
 import pylons
 import json
@@ -12,12 +12,61 @@ import urlparse
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
-print(socket.gethostname())
+import Cookie
+from pprint import pprint
+import string
+import requests
+import simplejson as json
 
+
+
+## DEV
+
+# cookie = Cookie.SimpleCookie()
+# cookie_string = os.environ.get('HTTP_COOKIE')
+# cookie.load(cookie_string)
+# # Use the value attribute of the cookie to get it
+# data = cookie['odm_transition_data'].value
+# pprint(data)
+
+
+
+
+##
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
+
+def load_country_specific_menu(country, wpUrl):
+  log.info('getting menu for %s',country)
+
+  # list of menu endpoints
+  if country=='':
+    menu_endpoint= 'http://pp.' + wpUrl + '/wp-json/menus/824'
+  elif country=='cambodia':
+    menu_endpoint= 'http://pp-cambodia.'+ wpUrl + '/wp-json/menus/2'
+  else:
+    log.debug("Cannot get WP menu")
+    return ''
+  # get json representation of menu
+  try:
+    r = requests.get(menu_endpoint)
+    jsonData = r.json()
+    return jsonData['items']
+  except(requests.exceptions.ConnectionError):
+    print("cannot connect to Wordpress Instance on " +wpUrl)
+    return []
+
+
+def get_cookie():
+  request=toolkit.request
+  try:
+    cookie=request.cookies['odm_transition_country']
+    # cookie=json.loads(request.cookies['odm_transition_data'])
+    return cookie
+  except (Cookie.CookieError, KeyError):
+    return ''
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -31,6 +80,7 @@ def localize_resource_url(url):
 
   except:
     return url
+
 
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
@@ -124,29 +174,6 @@ def tag_for_topic(topic):
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
-
-def top_topics():
-  '''Return a list of top_topics'''
-
-  return list([
-    ('Agriculture and fishing'),
-    ('Aid and development'),
-    ('Disasters and emergency response'),
-    ('Economy and commerce'),
-    ('Energy'),
-    ('Environment and natural resources'),
-    ('Extractive industries'),
-    ('Government'),
-    ('Industries'),
-    ('Infrastructure'),
-    ('Labor'),
-    ('Land'),
-    ('Law and judiciary'),
-    ('Population and censuses'),
-    ('Social development'),
-    ('Urban administration and development'),
-    ('Science and technology')
-  ])
 
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''
