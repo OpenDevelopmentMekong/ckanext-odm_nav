@@ -300,7 +300,7 @@ li.menu_people>a>img{
 }
 
 .container {
-  margin-left: 0px;
+  margin-left: 40px;
   margin-right: 0px;
 }
 
@@ -481,7 +481,7 @@ header#od-head .icon-od-logo {
     line-height: 48px;
     font-weight: 700;
     letter-spacing: -4px;
-    padding-left: 35px;
+
   }
 
   .header-image span{
