@@ -40,12 +40,11 @@ jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_top
 
 def load_country_specific_menu(country, wpUrl):
   log.info('getting menu for %s',country)
-
   # list of menu endpoints
   if country=='':
-    menu_endpoint= 'http://pp.' + wpUrl + '/wp-json/menus/824'
+    menu_endpoint= 'http://' + wpUrl + '/wp-json/menus/824'
   elif country=='cambodia':
-    menu_endpoint= 'http://pp-cambodia.'+ wpUrl + '/wp-json/menus/2'
+    menu_endpoint= 'http://' + wpUrl + '/wp-json/menus/2'
   else:
     log.debug("Cannot get WP menu")
     return ''
@@ -54,7 +53,8 @@ def load_country_specific_menu(country, wpUrl):
     r = requests.get(menu_endpoint)
     jsonData = r.json()
     return jsonData['items']
-  except(requests.exceptions.ConnectionError):
+  # except(requests.exceptions.RequestException):
+  except(Exception):
     print("cannot connect to Wordpress Instance on " +wpUrl)
     return []
 
