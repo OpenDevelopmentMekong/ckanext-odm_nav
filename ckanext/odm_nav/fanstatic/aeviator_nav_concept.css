@@ -484,6 +484,10 @@ header#od-head .icon-od-logo {
     padding-left: 35px;
   }
 
+  .header-image span{
+    font-family: 'Droid Serif', serif;
+  }
+
     .header-text a{text-decoration: none;}
     .header-text sup{
       font-size: 55%;
