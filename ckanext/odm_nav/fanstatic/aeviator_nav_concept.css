@@ -531,7 +531,9 @@ header#od-head .icon-od-logo {
   width: 220px;
 }
 
-
+.container .row{
+  width: 1170px;
+}
 /*temp */
 div#wrap-feedback {
   right: -40px;
