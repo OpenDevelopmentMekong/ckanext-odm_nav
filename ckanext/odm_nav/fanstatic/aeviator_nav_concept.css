@@ -511,9 +511,40 @@ header#od-head .icon-od-logo {
   width: 220px;
 }
 
-
 /*temp */
 div#wrap-feedback {
   right: -40px;
   left: initial;
+}
+
+.record_resources{
+	/*float: right;
+  width: 500px;*/
+  margin-top: 20px;
+}
+
+.record_resources .resource_item_explore_links{
+	float: right;
+	margin-right:35px;
+}
+
+.record_resources .resource_item_explore_links a{
+	padding-right: 5px;
+	text-decoration: none!important;
+}
+
+.record_resources .description{
+	display: none;
+}
+
+.resource_explore_icon{
+	width:20px;
+}
+
+.resource_explore_icon-eye{
+	width: 24px;
+}
+
+.record_resources .resource-item{
+	min-height: 30px;
 }
