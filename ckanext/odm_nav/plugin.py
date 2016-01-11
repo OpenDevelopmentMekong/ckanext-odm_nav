@@ -41,8 +41,6 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     wsgi_app = SessionMiddleware(None, None)
     odm_nav_helper.session = wsgi_app.session
 
-
-
   # IFacets
   def dataset_facets(self, facets_dict, package_type):
 
@@ -95,6 +93,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
+      'odm_nav_get_wp_domain': odm_nav_helper.get_wp_domain,
       'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
       'odm_nav_last_dataset': odm_nav_helper.last_dataset,
       'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,

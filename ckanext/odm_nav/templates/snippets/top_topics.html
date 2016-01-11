@@ -1,5 +1,4 @@
-{% set wp_url='http://pp.opendevelopmentmekong.net' %}
-{% set wp_domain='opendevelopmentmekong.net' %}
+{% set wp_domain=h.odm_nav_get_wp_domain() %}
 {% set country_code = h.odm_nav_get_cookie()%}
 {% if h.odm_nav_get_cookie() == 'mekong'%}
 	{% set country_code = '' %}
@@ -106,10 +105,6 @@
 
 		</li>
 
-		<!-- <li>
-      <a href="#" target="_self">Toolkits<span class="cNavState"></span></a>
-    </li> -->
-
 		<li class="one-line">
 			{% if country_code==''%}
 				<a href="http://pp.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
@@ -120,7 +115,7 @@
 		</li>
 
 		<!-- load country specific menu from wp -->
-		{% for item in h.odm_nav_load_country_specific_menu(country_code,wp_domain) %}
+		{% for item in h.odm_nav_load_country_specific_menu(country_code) %}
 			<li class="one-line">
 				<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
 			</li>

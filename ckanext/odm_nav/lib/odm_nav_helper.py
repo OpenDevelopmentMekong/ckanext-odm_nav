@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -17,55 +16,51 @@ from pprint import pprint
 import string
 import requests
 import simplejson as json
+from pylons import config
+import traceback
 
-
-
-## DEV
-
-# cookie = Cookie.SimpleCookie()
-# cookie_string = os.environ.get('HTTP_COOKIE')
-# cookie.load(cookie_string)
-# # Use the value attribute of the cookie to get it
-# data = cookie['odm_transition_data'].value
-# pprint(data)
-
-
-
-
-##
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
 
-def load_country_specific_menu(country, wpUrl):
-  log.info('getting menu for %s',country)
+country_menus = dict({
+  "cambodia": config.get("ckan.odm_nav_concept.cambodia_menu_endpoint"),
+  "thailand": config.get("ckan.odm_nav_concept.thailand_menu_endpoint"),
+  "laos": config.get("ckan.odm_nav_concept.laos_menu_endpoint"),
+  "vietnam": config.get("ckan.odm_nav_concept.vietnam_menu_endpoint"),
+  "myanmar": config.get("ckan.odm_nav_concept.myanmar_menu_endpoint")
+})
 
-  # list of menu endpoints
-  if country=='':
-    menu_endpoint= 'http://pp.' + wpUrl + '/wp-json/menus/824'
-  elif country=='cambodia':
-    menu_endpoint= 'http://pp-cambodia.'+ wpUrl + '/wp-json/menus/2'
-  else:
-    log.debug("Cannot get WP menu")
-    return ''
+def get_wp_domain():
+  log.info('get_wp_domain')
+  return config.get("ckan.odm_nav_concept.wp_domain")
+
+def load_country_specific_menu(country):
+  log.info('getting menu for %s',country)
+  if not country:
+    return []
+
+  menu_endpoint = country_menus[country]
+  if not menu_endpoint:
+    raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
+
   # get json representation of menu
   try:
     r = requests.get(menu_endpoint)
     jsonData = r.json()
     return jsonData['items']
   except(requests.exceptions.ConnectionError):
-    print("cannot connect to Wordpress Instance on " +wpUrl)
+    log.error("cannot create menu for endpoint" + menu_endpoint)
     return []
-
 
 def get_cookie():
   request=toolkit.request
   try:
     cookie=request.cookies['odm_transition_country']
-    # cookie=json.loads(request.cookies['odm_transition_data'])
     return cookie
   except (Cookie.CookieError, KeyError):
+    log.error("cannot get cookie for odm_transition_country")
     return ''
 
 def localize_resource_url(url):
