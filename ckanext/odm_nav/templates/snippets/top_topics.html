@@ -1,5 +1,27 @@
-{% resource 'odm_nav/aeviator_nav_concept.css' %}
+{% set wp_domain=h.odm_nav_get_wp_domain() %}
+{% set country_code = h.odm_nav_get_cookie()%}
+{% if h.odm_nav_get_cookie() == 'mekong'%}
+	{% set country_code = '' %}
+{% endif %}
+{% resource 'odm_nav/nav_concept.css' %}
 
+<!-- country codes from scheme -->
+{% if country_code == 'cambodia'%}
+	{% set country_code_short ='kh'%}
+{% elif country_code == 'laos'%}
+	{% set country_code_short ='la'%}
+{% elif country_code == 'myanmar'%}
+	{% set country_code_short ='mm'%}
+{% elif country_code == 'thailand'%}
+	{% set country_code_short ='th'%}
+{% elif country_code == 'vietnam'%}
+	{% set country_code_short ='vn'%}
+{% else%}
+
+{%endif%}
+<!-- {% for item in country_code %}
+	{{item}}
+{% endfor %} -->
 <div class="contentNavigation">
 
 	<ul id="cNavNew" class="level1 clearfix current-site-mekong">
@@ -16,38 +38,66 @@
       {%endif%}
 
       	<li class="first icon_menu {{menu}}">
-    			<a href="#" target="_self">
+    			<a class="top_topic" href="#" target="_self">
     				<img src="/icons/{{icon}}" alt="">
     				<span class="cNavState"></span>
     			</a>
     			<ul class="level2 {{menu}}">
     				<li class="top-topic">{{item.titles.en}}</li>
     				{%for child in item.children %}
-    				    <li class="first"><a href="{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a></li>
+    				    <li class="first">
+									{% if country_code==''%}
+										<a href="http://pp.{{wp_domain}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
+									{% else %}
+										<a href="http://pp-{{country_code}}.{{wp_domain}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
+									{% endif %}
+								</li>
     				{% endfor %}
     				<span class="border"></span>
     			</ul>
     		</li>
 		{% endfor %}
 
-		<li class="one-line"><a href="#" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
+		<li class="one-line"><a href="/laws_record{% if country_code != ''%}?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">LAWS AND AGREEMENTS<span class="cNavState"></span></a>
 
 
 		</li>
 
-		<li class="one-line"><a class="library" href="#" target="_self">Publications Library<span class="cNavState"></span></a>
+		<li class="one-line"><a class="library" href="/library_record{% if country_code != ''%}?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Publications Library<span class="cNavState"></span></a>
 
 
 		</li>
 
 		<li class="one-line">
-			<a class="/datahub" href="#" target="_self">Data<span class="cNavState"></span></a>
+			<a class="" href="/{%if country_code==''%}dataset{% elif country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">Data<span class="cNavState"></span></a>
 			<ul class="level2">
-				<li class="first"><a href="dataset" target="_self">All records<span class="cNavState"></span></a></li>
+				<li class="first"><a href="/{%if country_code==''%}dataset{% elif country_code != ''%}dataset?extras_odm_spatial_range={{country_code_short | capitalize}}{% endif %}" target="_self">All records<span class="cNavState"></span></a></li>
 
-				<li><a href="group" target="_self">Records by type<span class="cNavState"></span></a></li>
-				<li><a href="#" target="_self">Records by country<span class="cNavState"></span></a></li>
-				<li class="last"><a href="#" target="_self">Records by language<span class="cNavState"></span></a></li>
+				<li class="by_country by_type"><a href="#" target="_self">Records by type<span class="cNavState"></span></a>
+              <ul class="level3">
+                <li class="first"><a href="/group/laws-group{%if country_code !='' %}?extras_odm_spatial_range={{country_code}}{% endif %}" target="_self">Laws<span class="cNavState"></span></a></li>
+                <li class="first"><a href="/group/maps-group{%if country_code !='' %}?extras_odm_spatial_range={{country_code}}{% endif %}" target="_self">Maps<span class="cNavState"></span></a></li>
+                <li class="first"><a href="/group/news-group{%if country_code !='' %}?extras_odm_spatial_range={{country_code}}{% endif %}" target="_self">News<span class="cNavState"></span></a></li>
+                <span class="border"></span>
+              </ul></li>
+				<li class="by_country"><a href="#" target="_self">Records by country<span class="cNavState"></span></a>
+            <ul class="level3">
+              <li class="first"><a href="/dataset?extras_odm_spatial_range=cambodia" target="_self">Cambodia<span class="cNavState"></span></a></li>
+              <li class="first"><a href="/dataset?extras_odm_spatial_range=laos" target="_self">Laos<span class="cNavState"></span></a></li>
+              <li class="first"><a href="/dataset?extras_odm_spatial_range=myanmar" target="_self">Myanmar<span class="cNavState"></span></a></li>
+              <li class="first"><a href="/dataset?extras_odm_spatial_range=thailand" target="_self">Thailand<span class="cNavState"></span></a></li>
+              <li class="first"><a href="/dataset?extras_odm_spatial_range=vietnam" target="_self">Vietnam<span class="cNavState"></span></a></li>
+              <span class="border"></span>
+            </ul>
+          </li>
+					<li class="last by_country"><a href="#" target="_self">Records by language<span class="cNavState"></span></a>
+              <ul class="level3">
+                <li class="first"><a href="/dataset?extras_odm_language=en" target="_self">EN<span class="cNavState"></span></a></li>
+                <li class="first"><a href="/dataset?extras_odm_language=km" target="_self">KH<span class="cNavState"></span></a></li>
+                <li class="first"><a href="/dataset?extras_odm_language=vi" target="_self">VI<span class="cNavState"></span></a></li>
+                <span class="border"></span>
+              </ul>
+            </li>
 
 
 				<span class="border"></span>
@@ -55,36 +105,48 @@
 
 		</li>
 
-		<!-- <li>
-      <a href="#" target="_self">Toolkits<span class="cNavState"></span></a>
-    </li> -->
-
 		<li class="one-line">
-			<a href="#" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% if country_code==''%}
+				<a href="http://pp.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% else %}
+				<a href="http://pp-{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Map Explorer<span class="cNavState"></span></a>
+			{% endif %}
+
 		</li>
+
+		<!-- load country specific menu from wp -->
+		{% for item in h.odm_nav_load_country_specific_menu(country_code) %}
+			<li class="one-line">
+				<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
+			</li>
+		{% endfor %}
 
 	</ul>
 </div>
 
 <div id="mainNav" class="mainNavOdc">
 	<div class="mainNav-logo">
-		<a href="/" target="_self">
-			<img src="/odm_data_logo.png" </a>
+		{% if country_code==''%}
+			<a href="http://pp.{{wp_domain}}" target="_self">
+		{% else %}
+			<a href="http://pp-{{country_code}}.{{wp_domain}}" target="_self">
+		{% endif %}
+			<img src="/odm_data_logo.png"> </a>
 	</div>
 
 	<div class="mainNav-inner">
 		<ul id="mainNavElement" class="level1 clearfix">
-			<li class="first jtop act"><a href="index.html" target="_self" id="uid-2">MEKONG</a></li>
+			<li class="first jtop {% if country_code == ''%}act{% endif %}"><a class="toWp" data-country="mekong" href="http://pp.{{wp_domain}}/" target="_self" id="uid-2">MEKONG</a></li>
 
-			<li class="second"><a href="odc.html" id="uid-3">CAMBODIA</a></li>
+			<li class="second {% if country_code == 'cambodia' %}act{% endif %}"><a class="toWp" data-country="cambodia"  href="http://pp-cambodia.{{wp_domain}}" id="uid-3">CAMBODIA</a></li>
 
-			<li class="third"><a href="odl.html" target="_self" id="uid-4">LAOS</a></li>
+			<li class="third {% if country_code == 'laos' %}act{% endif %}"><a class="toWp" data-country="laos" href="http://pp-laos.{{wp_domain}}" target="_self" id="uid-4">LAOS</a></li>
 
-			<li class="fourth"><a href="odmy.html" target="_self" id="uid-42">MYANMAR</a></li>
+			<li class="fourth {% if country_code == 'myanmar' %}act{% endif %}"><a class="toWp" data-country="myanmar" href="http://pp-myanmar.{{wp_domain}}" target="_self" id="uid-42">MYANMAR</a></li>
 
-			<li class="last jbottom"><a href="odt.html" target="_self" id="uid-5">THAILAND</a></li>
+			<li class="last jbottom {% if country_code == 'thailand' %}act{% endif %}"><a class="toWp" data-country="thailand" href="http://pp-thailand.{{wp_domain}}" target="_self" id="uid-5">THAILAND</a></li>
 
-			<li class="last jbottom"><a href="odv.html" target="_self" id="uid-5142">VIETNAM</a></li>
+			<li class="last jbottom {% if country_code == 'vietnam' %}act{% endif %}"><a class="toWp" data-country="vietnam" href="http://pp-vietnam.{{wp_domain}}" target="_self" id="uid-5142">VIETNAM</a></li>
 
 		</ul>
 

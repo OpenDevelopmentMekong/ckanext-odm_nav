@@ -1,8 +1,7 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DEBUG = True
+DEBUG = False
 
 import pylons
 import json
@@ -12,12 +11,57 @@ import urlparse
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
-print(socket.gethostname())
+import Cookie
+from pprint import pprint
+import string
+import requests
+import simplejson as json
+from pylons import config
+import traceback
 
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
+
+country_menus = dict({
+  "cambodia": config.get("ckan.odm_nav_concept.cambodia_menu_endpoint"),
+  "thailand": config.get("ckan.odm_nav_concept.thailand_menu_endpoint"),
+  "laos": config.get("ckan.odm_nav_concept.laos_menu_endpoint"),
+  "vietnam": config.get("ckan.odm_nav_concept.vietnam_menu_endpoint"),
+  "myanmar": config.get("ckan.odm_nav_concept.myanmar_menu_endpoint")
+})
+
+def get_wp_domain():
+  log.info('get_wp_domain')
+  return config.get("ckan.odm_nav_concept.wp_domain")
+
+def load_country_specific_menu(country):
+  log.info('getting menu for %s',country)
+  if not country:
+    return []
+
+  menu_endpoint = country_menus[country]
+  if not menu_endpoint:
+    raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
+
+  # get json representation of menu
+  try:
+    r = requests.get(menu_endpoint)
+    jsonData = r.json()
+    return jsonData['items']
+  except(requests.exceptions.ConnectionError):
+    log.error("cannot create menu for endpoint" + menu_endpoint)
+    return []
+
+def get_cookie():
+  request=toolkit.request
+  try:
+    cookie=request.cookies['odm_transition_country']
+    return cookie
+  except (Cookie.CookieError, KeyError):
+    log.error("cannot get cookie for odm_transition_country")
+    return ''
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -31,6 +75,7 @@ def localize_resource_url(url):
 
   except:
     return url
+
 
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
@@ -124,29 +169,6 @@ def tag_for_topic(topic):
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
-
-def top_topics():
-  '''Return a list of top_topics'''
-
-  return list([
-    ('Agriculture and fishing'),
-    ('Aid and development'),
-    ('Disasters and emergency response'),
-    ('Economy and commerce'),
-    ('Energy'),
-    ('Environment and natural resources'),
-    ('Extractive industries'),
-    ('Government'),
-    ('Industries'),
-    ('Infrastructure'),
-    ('Labor'),
-    ('Land'),
-    ('Law and judiciary'),
-    ('Population and censuses'),
-    ('Social development'),
-    ('Urban administration and development'),
-    ('Science and technology')
-  ])
 
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''

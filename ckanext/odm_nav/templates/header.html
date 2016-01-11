@@ -1,163 +1,103 @@
+{% resource 'odm_nav/cookie.js' %}
+
 {% block header_wrapper %}
-{% block header_account %}
-<header class="account-masthead">
- <div class="container">
-  {% block header_account_container_content %}
-  {% if c.userobj %}
-  <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
-   <ul class="unstyled">
-    {% block header_account_logged %}
-    {% if c.userobj.sysadmin %}
-    <li class="back-to-odm">
-     <a href="https://www.opendevelopmentmekong.net" title="{{ _('Back to OD Mekong') }}">
-      <i class="icon-home"></i> {{ _('Back to OD Mekong') }}
-     </a>
-    </li>
-    <li>
-     <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
-      <i class="icon-legal"></i>
-     </a>
-    </li>
-    {% endif %}
-    <li>
-     <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+<div class="content_wrapper">
+
+	{% block header_account %}
+	<header class="account-masthead">
+
+		<div class="container">
+			{% block header_account_container_content %} {% if c.userobj %}
+			<div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
+				<ul class="unstyled">
+					{% block header_account_logged %} {% if c.userobj.sysadmin %}
+					<li class="back-to-odm">
+						<a href="https://www.opendevelopmentmekong.net" title="{{ _('Back to OD Mekong') }}">
+							<i class="icon-home"></i> {{ _('Back to OD Mekong') }}
+						</a>
+					</li>
+					<li>
+						<a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
+							<i class="icon-legal"></i>
+						</a>
+					</li>
+					{% endif %}
+					<li>
+						<a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
       {{ h.gravatar((c.userobj.email_hash if c and c.userobj else ''), size=22) }}
       <span class="username">{{ c.userobj.display_name }}</span>
      </a>
-    </li>
-    {% set new_activities = h.new_activities() %}
-    <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
-     {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities) %}
-     <a href="{{ h.url_for(controller='user', action='dashboard') }}" title="{{ notifications_tooltip }}">
-      <i class="icon-dashboard"></i>
-      <span>{{ new_activities }}</span>
-     </a>
-    </li>
-    {% block header_account_settings_link %}
-    <li>
-     <a href="{{ h.url_for(controller='user', action='edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
-      <i class="icon-cog"></i>
-     </a>
-    </li>
-    {% endblock %}
-    {% block header_account_log_out_link %}
-    <li>
-     <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
-      <i class="icon-signout"></i>
-     </a>
-    </li>
-    {% endblock %}
-    {% endblock %}
-   </ul>
-  </div>
-  {% else %}
-  <nav class="account not-authed">
-   <ul class="unstyled">
-    {% block header_account_notlogged %}
-    <li>{% link_for _('Log in'), controller='user', action='login' %}</li>
-    {% if h.check_access('user_create') %}
-    <li>{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
-    {% endif %}
-    {% endblock %}
-   </ul>
-  </nav>
-  {% endif %}
-  {% endblock %}
- </div>
-</header>
+					</li>
+					{% set new_activities = h.new_activities() %}
+					<li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
+						{% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities) %}
+						<a href="{{ h.url_for(controller='user', action='dashboard') }}" title="{{ notifications_tooltip }}">
+							<i class="icon-dashboard"></i>
+							<span>{{ new_activities }}</span>
+						</a>
+					</li>
+					{% block header_account_settings_link %}
+					<li>
+						<a href="{{ h.url_for(controller='user', action='edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
+							<i class="icon-cog"></i>
+						</a>
+					</li>
+					{% endblock %} {% block header_account_log_out_link %}
+					<li>
+						<a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+							<i class="icon-signout"></i>
+						</a>
+					</li>
+					{% endblock %} {% endblock %}
+				</ul>
+			</div>
+			{% else %}
+			<nav class="account not-authed">
+				<ul class="unstyled">
+					{% block header_account_notlogged %}
+					<li>{% link_for _('Log in'), controller='user', action='login' %}</li>
+					{% if h.check_access('user_create') %}
+					<li>{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
+					{% endif %} {% endblock %}
+				</ul>
+			</nav>
+			{% endif %} {% endblock %}
+		</div>
+	</header>
+	{% endblock %}
+	<header class="masthead">
+		{% block header_debug %} {% if g.debug and not g.debug_supress_header %}
+		<div class="debug">Controller : {{ c.controller }}
+			<br/>Action : {{ c.action }}</div>
+		{% endif %} {% endblock %}
+		<div class="container">
+
+			{# The .header-image class hides the main text and uses image replacement for the title #}
+			<hgroup class="{{ g.header_class }}">
+
+				<h1 class="header-text"><a href="#" target="_self">Op<sup>e</sup>nDevelopment</a>
+					<span>Datahub</span>
+				</h1>
+
+			</hgroup>
+
+			<div class="content">
+
+				{% block header_site_search %}
+				<form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
+					<div class="field">
+						<label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+						<input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search datasets...') }}" />
+						<button class="btn-search" type="submit"><i class="icon-search"></i></button>
+					</div>
+				</form>
+				{% endblock %}
+
+			</div>
+
+		</div>
+	</header>
+
+	{% snippet 'snippets/top_topics.html'%}
+
 {% endblock %}
-<header class="masthead">
- {% block header_debug %}
- {% if g.debug and not g.debug_supress_header %}
- <div class="debug">Controller : {{ c.controller }}<br/>Action : {{ c.action }}</div>
- {% endif %}
- {% endblock %}
- <div class="container">
-
-  {# The .header-image class hides the main text and uses image replacement for the title #}
-  <hgroup class="{{ g.header_class }}">
-
-   {% block header_logo %}
-   <a class="logo" href="{{ h.url('home') }}"><img width="380px" src="/odm_logo_header.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
-   {% endblock %}
-
-  </hgroup>
-
-  <div class="content">
-
-   {% block header_site_navigation %}
-   <nav class="section navigation">
-    <ul class="nav nav-pills">
-
-     {% block header_site_navigation_tabs %}
-      {% if c.userobj %}
-       {{ h.build_nav_main(
-        ('search', _('All records')),
-        ('organizations_index', _('Organizations')),
-        ('group_index', _('Records by type'))
-        ) }}
-      {% else %}
-       {{ h.build_nav_main(
-        ('search', _('Datasets')),
-        ('group_index', _('Records by type'))
-        ) }}
-      {% endif %}
-     {% endblock %}
-
-     </ul>
-    </nav>
-    {% endblock %}
-
-    {% block header_site_search %}
-    <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
-     <div class="field">
-      <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
-      <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search datasets...') }}" />
-      <button class="btn-search" type="submit"><i class="icon-search"></i></button>
-     </div>
-    </form>
-    {% endblock %}
-
-   </div>
-  </div>
- </header>
-
- <header class="sec_header">
-    <div class="container">
-      <hgroup>
-       <div class="row">
-         <div class="span9 col1">
-          <h4>{{ _('Browse by topic') }}</h4>
-          {% for top_topic in h.odm_nav_top_topics() %}
-            {% set tag_name = h.odm_nav_tag_for_topic(top_topic) %}
-            <a class="header_tag" href="{% url_for controller='package', action='search', extras_taxonomy=tag_name %}">{{ h.odm_nav_get_localized_tag(top_topic) }}</a>
-          {% endfor %}
-         </div>
-         <div class="span3 col2 header-selection">
-          <h4>{{ _('Browse by country') }}</h4>
-          <ul>
-           <li><a href="/dataset?odm_spatial_range=Cambodia"><img src="/flags/cambodia.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Laos"><img src="/flags/laos.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Myanmar"><img src="/flags/myanmar.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Thailand"><img src="/flags/thailand.png"/></a></li>
-           <li><a href="/dataset?odm_spatial_range=Vietnam"><img src="/flags/vietnam.png"/></a></li>
-          </ul>
-         </div>
-         <div class="span3 col2 header-selection">
-          <h4>{{ _('Browse by language') }}</h4>
-          <ul>
-           <li><a href="/dataset?odm_language=en"><img src="/langs/en.png"/></a></li>
-           <li><a href="/dataset?odm_language=kh"><img src="/langs/cambodia.png"/></a></li>
-           <!-- <li><a href="/dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
-           <li><a href="/dataset?odm_language=my"><img src="/langs/myanmar.png"/></a></li>
-           <li><a href="/dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li> -->
-           <li><a href="/dataset?odm_language=vi"><img src="/langs/vietnam.png"/></a></li>
-          </ul>
-         </div>
-      </hgroup>
-    </div>
-  </header>
-
- {#% snippet 'snippets/top_topics.html'%#}
-
- {% endblock %}
