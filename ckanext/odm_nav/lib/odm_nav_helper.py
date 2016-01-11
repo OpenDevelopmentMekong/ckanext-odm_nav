@@ -38,6 +38,7 @@ def get_wp_domain():
 
 def load_country_specific_menu(country):
   log.info('getting menu for %s',country)
+
   if not country:
     return []
 
@@ -50,8 +51,10 @@ def load_country_specific_menu(country):
     r = requests.get(menu_endpoint)
     jsonData = r.json()
     return jsonData['items']
+
   except(requests.exceptions.ConnectionError):
     log.error("cannot create menu for endpoint" + menu_endpoint)
+
     return []
 
 def get_cookie():
@@ -105,7 +108,6 @@ def get_localized_tag(tag):
           {'model': ckan.model},
           {'terms': (tag)})
 
-  # Transform the translations into a more convenient structure.
   for translation in translations:
     if translation['lang_code'] == desired_lang_code:
       return translation['term_translation']
@@ -137,12 +139,9 @@ def tag_for_topic(topic):
 def popular_groups():
   '''Return a sorted list of the groups with the most datasets.'''
 
-  # Get a list of all the site's groups from CKAN, sorted by number of
-  # datasets.
   groups = toolkit.get_action('group_list')(
       data_dict={'sort': 'packages desc', 'all_fields': True})
 
-  # Truncate the list to the 10 most popular groups only.
   groups = groups[:10]
 
   return groups
@@ -150,8 +149,6 @@ def popular_groups():
 def popular_datasets(limit):
   '''Return a sorted list of the most popular datasets.'''
 
-  # Get a list of all the site's groups from CKAN, sorted by number of
-  # datasets.
   result_dict = toolkit.get_action('package_search')(
       data_dict={'sort': 'views_recent desc', 'rows': limit})
 
@@ -173,8 +170,6 @@ def tag_for_topic(topic):
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''
 
-  # Get a list of all the site's groups from CKAN, sorted by number of
-  # datasets.
   dataset = toolkit.get_action('current_package_list_with_resources')(
       data_dict={'limit': 10})
 

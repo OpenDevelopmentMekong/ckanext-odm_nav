@@ -5,6 +5,22 @@
   display: none !important;
 }
 
+
+
+/*fonts*/
+
+@font-face {
+    font-family: 'Droid Serif';
+    src: url('fonts/droidserif_regular/DroidSerif-Regular-webfont.eot');
+    src: url('fonts/droidserif_regular/DroidSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.woff') format('woff'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.ttf') format('truetype'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.svg#droid_serifregular') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* boilerplate code */
 
 /*screen.css */
@@ -464,8 +480,12 @@ header#od-head .icon-od-logo {
     font-size: 48px;
     line-height: 48px;
     font-weight: 700;
-    letter-spacing: -2px;
+    letter-spacing: -4px;
     padding-left: 35px;
+  }
+
+  .header-image span{
+    font-family: 'Droid Serif', serif;
   }
 
     .header-text a{text-decoration: none;}
