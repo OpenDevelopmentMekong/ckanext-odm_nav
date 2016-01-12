@@ -499,7 +499,12 @@ header#od-head .icon-od-logo {
   font-family: TheSerifBold;
   padding-left: 10px;
   letter-spacing: normal;
+}
 
+.odm_language_selector li{
+  list-style: none;
+  float: left;
+  padding-right: 4px;
 }
 
 #od-head {
