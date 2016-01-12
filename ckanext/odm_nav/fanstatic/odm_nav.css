@@ -401,7 +401,7 @@ a.tag:hover {
 @media (min-width: 768px) {
   [role=main],
   .main {
-    padding-top: 10px;
+    width: 100%;
   }
 }
 [role=main] {
@@ -445,8 +445,9 @@ a.tag:hover {
   background: #fff;
 }
 .hero .intro{
-  padding: 10px;
+
 }
+
 .intro-buttons ul, ol{
   margin: 0px;
 }
@@ -613,6 +614,7 @@ a.tag:hover {
   line-height: 1.2;
   white-space: nowrap;
 }
+
 .masthead .content {
   position: absolute;
   top: 10px;
