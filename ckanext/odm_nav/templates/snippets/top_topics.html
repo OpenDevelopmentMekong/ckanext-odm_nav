@@ -1,7 +1,7 @@
 {% set wp_domain=h.odm_nav_get_wp_domain() %}
 {% set country_code = h.odm_nav_get_cookie()%}
 {% if h.odm_nav_get_cookie() == 'mekong'%}
-	{% set country_code = '' %}
+	{% set country_code = 'mekong' %}
 {% endif %}
 {% resource 'odm_nav/nav_concept.css' %}
 {% if country_code == 'cambodia'%}
@@ -15,7 +15,7 @@
 {% elif country_code == 'vietnam'%}
 	{% set country_code_short ='vn'%}
 {% else%}
-
+	{% set country_code = 'mekong' %}
 {%endif%}
 
 <div class="contentNavigation">
