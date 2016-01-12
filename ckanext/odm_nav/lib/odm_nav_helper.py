@@ -25,6 +25,7 @@ taxonomy_dictionary = 'taxonomy'
 jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
 
 country_menus = dict({
+  "mekong": config.get("ckan.odm_nav_concept.mekong_menu_endpoint"),
   "cambodia": config.get("ckan.odm_nav_concept.cambodia_menu_endpoint"),
   "thailand": config.get("ckan.odm_nav_concept.thailand_menu_endpoint"),
   "laos": config.get("ckan.odm_nav_concept.laos_menu_endpoint"),
@@ -48,12 +49,12 @@ def load_country_specific_menu(country):
 
   # get json representation of menu
   try:
-    r = requests.get(menu_endpoint)
+    r = requests.get(menu_endpoint,verify=False)
     jsonData = r.json()
     return jsonData['items']
 
   except(requests.exceptions.ConnectionError):
-    log.error("cannot create menu for endpoint" + menu_endpoint)
+    log.error("cannot create menu for endpoint: " + menu_endpoint)
 
     return []
 
