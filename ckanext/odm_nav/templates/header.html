@@ -72,25 +72,24 @@
 		{% endif %} {% endblock %}
 		<div class="container">
 
-			{# The .header-image class hides the main text and uses image replacement for the title #}
 			<hgroup class="{{ g.header_class }}">
-
 				<h1 class="header-text"><a href="#" target="_self">Op<sup>e</sup>nDevelopment</a>
 					<span>Datahub</span>
 				</h1>
-
 			</hgroup>
 
 			<div class="content">
-
 				{% block header_site_search %}
 				<form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
 					<div class="field">
-						<label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
 						<input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search datasets...') }}" />
 						<button class="btn-search" type="submit"><i class="icon-search"></i></button>
 					</div>
 				</form>
+				{% endblock %}
+
+				{% block language_selector_custom %}
+					{% snippet "snippets/language_selector_custom.html" %}
 				{% endblock %}
 
 			</div>
