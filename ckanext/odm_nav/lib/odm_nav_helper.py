@@ -43,6 +43,9 @@ def load_country_specific_menu(country):
   if not country:
     return []
 
+  if country == '':
+    country = 'mekong'
+    
   menu_endpoint = country_menus[country]
   if not menu_endpoint:
     raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
