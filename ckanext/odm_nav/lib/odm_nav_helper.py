@@ -45,13 +45,13 @@ def load_country_specific_menu(country):
 
   if country == '':
     country = 'mekong'
-    
-  menu_endpoint = country_menus[country]
-  if not menu_endpoint:
-    raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
 
-  # get json representation of menu
   try:
+
+    menu_endpoint = country_menus[country]
+    if not menu_endpoint:
+      raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
+
     r = requests.get(menu_endpoint,verify=False)
     jsonData = r.json()
     return jsonData['items']
