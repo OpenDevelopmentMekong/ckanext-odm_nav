@@ -61,6 +61,9 @@ within_tertiary
               <nav>
                 <ul class="{{ nav_class or 'unstyled nav nav-simple nav-facet' }}">
                   {% for item in items %}
+                    {% if c.type %}
+										  {% set alternative_url = h.url_for(controller='package', action='search', type=c.type) %}
+                    {% endif %}
                     {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
                     {% set label = label_function(item) if label_function else item.display_name %}
                     {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
