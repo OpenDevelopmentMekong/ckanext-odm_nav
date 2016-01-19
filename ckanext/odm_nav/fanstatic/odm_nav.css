@@ -401,7 +401,7 @@ a.tag:hover {
 @media (min-width: 768px) {
   [role=main],
   .main {
-    padding-top: 10px;
+    width: 100%;
   }
 }
 [role=main] {
@@ -445,8 +445,9 @@ a.tag:hover {
   background: #fff;
 }
 .hero .intro{
-  padding: 10px;
+
 }
+
 .intro-buttons ul, ol{
   margin: 0px;
 }
@@ -576,7 +577,6 @@ a.tag:hover {
   min-height: 55px;
   color: #ffffff;
   background: #4c4c4c;
-  padding: 10px;
 }
 .masthead:before,
 .masthead:after {
@@ -614,6 +614,7 @@ a.tag:hover {
   line-height: 1.2;
   white-space: nowrap;
 }
+
 .masthead .content {
   position: absolute;
   top: 10px;
@@ -653,7 +654,7 @@ a.tag:hover {
   *zoom: 1;
   min-height: 55px;
   color: #ffffff;
-  background: #4c4c4c;
+  background: #444444;
   padding: 20px 0px;
 }
 .site-footer:before,

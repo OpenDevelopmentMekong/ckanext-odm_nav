@@ -5,6 +5,20 @@
   display: none !important;
 }
 
+/*fonts*/
+
+@font-face {
+    font-family: 'Droid Serif';
+    src: url('fonts/droidserif_regular/DroidSerif-Regular-webfont.eot');
+    src: url('fonts/droidserif_regular/DroidSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.woff') format('woff'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.ttf') format('truetype'),
+         url('fonts/droidserif_regular/DroidSerif-Regular-webfont.svg#droid_serifregular') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* boilerplate code */
 
 /*screen.css */
@@ -284,8 +298,7 @@ li.menu_people>a>img{
 }
 
 .container {
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0px 50px;
 }
 
 .clearfix:after {
@@ -307,7 +320,6 @@ li.menu_people>a>img{
 .mainNavOdc {
   height: 100%;
   width: 140px;
-  float: left;
   position: fixed;
   top: 0;
   left: 0;
@@ -378,7 +390,7 @@ ul.level1 {
 /*top nav */
 
 .content_wrapper {
-  padding-left: 140px;
+  margin-left: 140px;
 }
 
 .contentNavigation {
@@ -455,34 +467,46 @@ header#od-head .icon-od-logo {
 .account-masthead{display: none;}
 .masthead .debug{left: 710px;}
 /**/
+
 .masthead{
   height: 70px;
   padding:10px 0 0 0;
 }
-  .masthead hgroup h1.header-text{
-    font-family: 'Droid Serif', serif;
-    font-size: 48px;
-    line-height: 48px;
-    font-weight: 700;
-    letter-spacing: -2px;
-    padding-left: 35px;
-  }
 
-    .header-text a{text-decoration: none;}
-    .header-text sup{
-      font-size: 55%;
-      position: relative;
-      vertical-align: baseline;
-      top: -10px;
-    }
-    .header-text span{
-      line-height: 51px;
-      font-size: 24px;
-      font-family: TheSerifBold;
-      padding-left: 10px;
-      letter-spacing: normal;
+.masthead hgroup h1.header-text{
+  font-family: 'Droid Serif', serif;
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -4px;
+}
 
-    }
+.header-image span{
+  font-family: 'Droid Serif', serif;
+}
+
+.header-text a{text-decoration: none;}
+.header-text sup{
+  font-size: 55%;
+  position: relative;
+  vertical-align: baseline;
+  top: -10px;
+}
+
+.header-text span{
+  line-height: 51px;
+  font-size: 24px;
+  font-family: TheSerifBold;
+  padding-left: 10px;
+  letter-spacing: normal;
+}
+
+.odm_language_selector li{
+  list-style: none;
+  float: left;
+  padding-right: 4px;
+}
+
 #od-head {
   padding: 30px 0 0;
   background: #292d56;
@@ -511,9 +535,40 @@ header#od-head .icon-od-logo {
   width: 220px;
 }
 
-
 /*temp */
 div#wrap-feedback {
   right: -40px;
   left: initial;
+}
+
+.record_resources{
+	/*float: right;
+  width: 500px;*/
+  margin-top: 20px;
+}
+
+.record_resources .resource_item_explore_links{
+	float: right;
+	margin-right:35px;
+}
+
+.record_resources .resource_item_explore_links a{
+	padding-right: 5px;
+	text-decoration: none!important;
+}
+
+.record_resources .description{
+	display: none;
+}
+
+.resource_explore_icon{
+	width:20px;
+}
+
+.resource_explore_icon-eye{
+	width: 24px;
+}
+
+.record_resources .resource-item{
+	min-height: 30px;
 }

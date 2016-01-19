@@ -19,9 +19,10 @@ Example:
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 
 {% set image_resources = [] %}
+{% set image_formats = ['jpg','png','jpeg'] %}
 {% if package.resources and not hide_resources %}
  {% for resource in package.resources %}
-  {% if (resource.format.lower() == 'jpg') or (resource.format.lower() == 'png') %}
+  {% if (resource.format.lower() in image_formats) %}
    {% do image_resources.append(resource) %}
   {% endif %}
  {% endfor %}
