@@ -313,13 +313,13 @@ li.menu_people>a>img{
 /*main menu */
 .mainNav-inner {
   position: absolute;
-  width: 140px;
+  width: 110px;
   top: 340px;
 }
 
 .mainNavOdc {
   height: 100%;
-  width: 140px;
+  width: 110px;
   position: fixed;
   top: 0;
   left: 0;
@@ -335,6 +335,11 @@ li.menu_people>a>img{
   margin: 35px 20px;
   float: none;
   font-size: 100px;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  bottom: 25px;
+  left:31px;
 }
 
 .icon-od-logo {
@@ -355,7 +360,7 @@ ul.level1 {
   padding: 0;
   list-style-type: none;
   display: block;
-  width: 140px;
+  width: 110px;
   text-align: right;
   border-top: 1px solid white;
   float: left;
@@ -390,7 +395,7 @@ ul.level1 {
 /*top nav */
 
 .content_wrapper {
-  margin-left: 140px;
+  margin-left: 110px;
 }
 
 .contentNavigation {
