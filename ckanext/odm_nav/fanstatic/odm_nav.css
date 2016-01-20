@@ -18,6 +18,10 @@ a {
   color: #333333;
   text-decoration: none;
 }
+
+.context-info h1.heading {
+  word-break: normal;
+}
 .row {
   /*margin-left: -20px;*/
   *zoom: 1;
