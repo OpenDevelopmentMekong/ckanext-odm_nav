@@ -56,10 +56,10 @@ def load_country_specific_menu(country):
     jsonData = r.json()
     return jsonData['items']
 
-  except(requests.exceptions.ConnectionError):
+  except:
     log.error("cannot create menu for endpoint: " + menu_endpoint)
-
-    return []
+    
+  return []
 
 def get_cookie():
   request=toolkit.request
