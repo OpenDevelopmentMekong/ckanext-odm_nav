@@ -33,6 +33,9 @@ country_menus = dict({
   "myanmar": config.get("ckan.odm_nav_concept.myanmar_menu_endpoint")
 })
 
+
+disabled_top_topic_links=toolkit.aslist(config.get('ckan.odm_nav_concept.disable_top_topic_links_for_countries', []))
+
 def get_wp_domain():
   log.info('get_wp_domain')
   return config.get("ckan.odm_nav_concept.wp_domain")
@@ -58,7 +61,7 @@ def load_country_specific_menu(country):
 
   except:
     log.error("cannot create menu for endpoint: " + menu_endpoint)
-    
+
   return []
 
 def get_cookie():
