@@ -36,6 +36,10 @@ country_menus = dict({
 
 disabled_top_topic_links=toolkit.aslist(config.get('ckan.odm_nav_concept.disable_top_topic_links_for_countries', []))
 
+
+
+
+
 def get_wp_domain():
   log.info('get_wp_domain')
   return config.get("ckan.odm_nav_concept.wp_domain")
@@ -174,6 +178,11 @@ def tag_for_topic(topic):
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
 
+def check_top_topics_disabled(country_code):
+  for item in disabled_top_topic_links:
+    if item == country_code:
+      return True
+      
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''
 
