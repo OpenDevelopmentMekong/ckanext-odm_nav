@@ -22,6 +22,40 @@ In order to install this CKAN Extension:
  * Setup plugin
  <code>python setup.py develop</code>
 
+# Configuration
+
+## Wordpress domain
+
+Please set wordpress main domain
+```
+ckan.odm_nav_concept.wp_domain = opendevelopmentmekong.net
+```
+
+## Wordpress Menu Endpoints
+
+In order to have the WP menu loaded into CKAN you need to provide the json api menu endpoints in the ckan config file.
+
+```
+ckan.odm_nav_concept.mekong_menu_endpoint = https://pp.opendevelopmentmekong.net/wp-json/menus/847
+ckan.odm_nav_concept.cambodia_menu_endpoint = https://pp-cambodia.opendevelopmentmekong.net/wp-json/menus/43025
+ckan.odm_nav_concept.thailand_menu_endpoint = https://pp-thailand.opendevelopmentmekong.net/wp-json/menus/10
+ckan.odm_nav_concept.laos_menu_endpoint = https://pp-laos.opendevelopmentmekong.net/wp-json/menus/9
+ckan.odm_nav_concept.vietnam_menu_endpoint = https://pp-vietnam.opendevelopmentmekong.net/wp-json/menus/572
+ckan.odm_nav_concept.myanmar_menu_endpoint = https://pp-myanmar.opendevelopmentmekong.net/wp-json/menus/9
+```
+
+## Disable Top Topics Menu Links
+
+If a certain WP country-sub-site does not have top topic content enabled, you should disable the links to the topic pages. By setting
+
+```
+ckan.odm_nav_concept.disable_top_topic_links_for_countries = laos myanmar vietnam thailand
+```
+
+The top topic links on ckan site for laos, myanmar, vietnam & thailand are set to the corresponding landing pages (COUNTRY at a glance).
+
+When ```ckan.odm_nav_concept.disable_top_topic_links_for_countries```is not set, all top topic links are enabled by default!
+
 # Testing
 
   Run ```nosetest```
