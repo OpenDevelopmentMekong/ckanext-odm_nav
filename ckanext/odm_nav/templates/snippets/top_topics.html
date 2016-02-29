@@ -44,6 +44,8 @@
     				    <li class="first">
 									{% if country_code==''%}
 										<a href="https://{{wp_domain}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
+									{% elif h.odm_nav_check_top_topics_disabled(country_code) == True %}
+										<a href="https://{{country_code}}.{{wp_domain}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
 									{% else %}
 										<a href="https://{{country_code}}.{{wp_domain}}/topics/{{h.odm_nav_sanitize_html(child.titles.en)}}" target="_self">{{child.titles.en}}<span class="cNavState"></span></a>
 									{% endif %}
