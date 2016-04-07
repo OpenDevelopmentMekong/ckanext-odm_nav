@@ -100,22 +100,51 @@
 
 		</li>
 
-		<li class="one-line">
+		<!--<li class="one-line">
 			{% if country_code==''%}
 				<a href="https://{{wp_domain}}/map-explorer" target="_self">Maps<span class="cNavState"></span></a>
 			{% else %}
 				<a href="https://{{country_code}}.{{wp_domain}}/map-explorer" target="_self">Maps<span class="cNavState"></span></a>
 			{% endif %}
 
-		</li>
+		</li>-->
 
 		<!-- load country specific menu from wp -->
+		count_sub = 0;
+		sub_menu_parent = 0;
+		no_sub = 0;
 		{% for item in h.odm_nav_load_country_specific_menu(country_code) %}
-			<li class="one-line">
-				<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
-			</li>
-		{% endfor %}
 
+			  {% if item.parent != 0 && count_sub == 0 %}
+					 <ul class="level2">
+				{% else if item.parent == 0 && count_sub > 0  %}
+						 </ul>
+					 </li>
+					 count_sub = 0;
+				{% else if item.parent == 0 && no_sub == 1  %}
+					</li>
+					no_sub = 0;
+			  {% endif %}
+
+			  {% if item.parent == 0 %}
+					<li class="one-line">
+						<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
+						no_sub = 1;
+				{% else %}
+					<li class="menu-item">
+						<a href="{{item.url}}" target="_self">{{item.title}}<span class="cNavState"></span></a>
+				 </li>
+				 count_sub++;
+			 {% endif %}
+
+		{% endfor %}
+		<!-- check if ul close tag has close yet -->
+		{% if count_sub > 0 %}
+			</ul>
+			count_sub = 0;
+		{% endif %}
+
+		</li>
 	</ul>
 
 </div>
