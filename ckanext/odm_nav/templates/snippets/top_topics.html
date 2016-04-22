@@ -1,6 +1,21 @@
-{% set wp_domain=h.odm_nav_get_wp_domain() %} {% set country_code = h.odm_nav_get_cookie()%} {% if h.odm_nav_get_cookie() == 'mekong'%} {% set country_code = '' %} {% endif %} {% resource 'odm_nav/nav_concept.css' %} {% if country_code == 'cambodia'%}
-{% set country_code_short ='kh'%} {% elif country_code == 'laos'%} {% set country_code_short ='la'%} {% elif country_code == 'myanmar'%} {% set country_code_short ='mm'%} {% elif country_code == 'thailand'%} {% set country_code_short ='th'%} {% elif country_code
-== 'vietnam'%} {% set country_code_short ='vn'%} {% else%} {% set country_code = '' %} {%endif%}
+{% set wp_domain=h.odm_nav_get_wp_domain() %}
+{% set country_code = h.odm_nav_get_cookie()%}
+{% if h.odm_nav_get_cookie() == 'mekong'%}
+  {% set country_code = '' %} {% endif %}
+  {% resource 'odm_nav/nav_concept.css' %}
+{% if country_code == 'cambodia'%}
+  {% set country_code_short ='kh'%}
+{% elif country_code == 'laos'%}
+  {% set country_code_short ='la'%}
+{% elif country_code == 'myanmar'%}
+  {% set country_code_short ='mm'%}
+{% elif country_code == 'thailand'%}
+  {% set country_code_short ='th'%}
+{% elif country_code == 'vietnam'%}
+  {% set country_code_short ='vn'%}
+{% else%}
+  {% set country_code = '' %}
+{%endif%}
 
 <div class="contentNavigation">
 
