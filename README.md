@@ -26,7 +26,8 @@ In order to install this CKAN Extension:
 
 ## Wordpress domain
 
-Please set wordpress main domain
+Please set wordpress main domain:
+
 ```
 ckan.odm_nav_concept.wp_domain = opendevelopmentmekong.net
 ```
