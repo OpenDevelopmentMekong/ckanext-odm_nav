@@ -13,7 +13,11 @@
     {% endif %}
     <h1>
       {% block page_heading %}
-        {{ pkg.title or pkg.name }}
+        {% if pkg.title_translated[h.odm_dataset_get_current_language()] %}
+          {{ pkg.title_translated[h.odm_dataset_get_current_language()] }}
+        {% else %}
+          {{ pkg.title or pkg.name }}
+        {% endif %}
         {% if pkg.state.startswith('draft') %}
           [{{ _('Draft') }}]
         {% endif %}
