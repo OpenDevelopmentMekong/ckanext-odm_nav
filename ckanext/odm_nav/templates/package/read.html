@@ -26,15 +26,17 @@
         {% endif %}
       {% endblock %}
     </h1>
-    {% block package_notes %}
+
+    {% if "notes_translated" in pkg and pkg.notes_translated[h.odm_dataset_get_current_language()] %}
+      {{ pkg.notes_translated[h.odm_dataset_get_current_language()] }}
+    {% else %}
       {% if c.pkg_notes_formatted %}
         <div class="notes embedded-content">
           {{ c.pkg_notes_formatted }}
         </div>
       {% endif %}
-    {% endblock %}
-    {# FIXME why is this here? seems wrong #}
-    <span class="insert-comment-thread"></span>
+    {% endif %}
+
   {% endblock %}
 
   {% block package_resources %}
