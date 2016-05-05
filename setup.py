@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.8.3'
+version = '1.8.4'
 
 setup(
     name='ckanext-odm_nav',
