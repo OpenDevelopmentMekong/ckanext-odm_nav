@@ -16,7 +16,7 @@ Example:
 {% set truncate = truncate or 180 %}
 {% set truncate_title = truncate_title or 80 %}
 {% set title = package.title or package.name %}
-{% if title_translated in package and package.title_translated[h.odm_dataset_get_current_language()] %}
+{% if "title_translated" in package and package.title_translated[h.odm_dataset_get_current_language()] %}
   {% set title = package.title_translated[h.odm_dataset_get_current_language()] %}
 {% endif %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
