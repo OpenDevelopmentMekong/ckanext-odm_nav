@@ -13,13 +13,16 @@ Example:
   {% snippet 'snippets/package_item.html', package=c.datasets[0] %}
 
 #}
-{% set truncate = truncate or 180 %}
+{% set truncate_desc = truncate_desc or 180 %}
 {% set truncate_title = truncate_title or 80 %}
 {% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate_desc) %}
 {% if "title_translated" in package and package.title_translated[h.odm_dataset_get_current_language()] %}
   {% set title = package.title_translated[h.odm_dataset_get_current_language()] %}
 {% endif %}
-{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+{% if "notes_translated" in package and package.notes_translated[h.odm_dataset_get_current_language()] %}
+  {% set notes = h.truncate(package.notes_translated[h.odm_dataset_get_current_language()], truncate_desc) %}
+{% endif %}
 
 {% set image_resources = [] %}
 {% set image_formats = ['jpg','png','jpeg'] %}
@@ -70,7 +73,7 @@ Example:
          {% endif %}
          {% if notes %}
            <div>
-            {{ notes|urlize }}
+            {{ notes |urlize }}
            </div>
           {% else %}
             <p class="empty">{{ _("This dataset has no description") }}</p>
