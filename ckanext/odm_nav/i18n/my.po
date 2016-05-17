@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-16 20:41+0000\n"
+"PO-Revision-Date: 2016-05-17 12:03+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
-"X-Poedit-Basepath: ../ckanext\n"
+"X-Poedit-Basepath: ../../../ckanext\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -25,11 +25,11 @@ msgstr "လိုင်စင်"
 
 #: odm_nav/plugin.py:49 odm_nav/plugin.py:61
 msgid "Organizations"
-msgstr ""
+msgstr "အဖွဲ့အစည်းများ"
 
 #: odm_nav/plugin.py:50 odm_nav/plugin.py:62 odm_nav/plugin.py:71
 msgid "Formats"
-msgstr ""
+msgstr "ပုံစံများ"
 
 #: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
 msgid "Language"
@@ -37,7 +37,7 @@ msgstr "ဘာသာစကား"
 
 #: odm_nav/plugin.py:52 odm_nav/plugin.py:64 odm_nav/plugin.py:73
 msgid "Country"
-msgstr ""
+msgstr "နိုင်ငံ"
 
 #: odm_nav/templates/footer.html:5
 msgid ""
@@ -64,7 +64,7 @@ msgid ""
 "Site users are encouraged to do additional research in support of their "
 "activities and to share the results of that research with our team, contact "
 "info@opendevcam.net, to further improve the site accuracy."
-msgstr "ဤ website အသုံးပြုသူများ၏ လှုပ်ရှားမှုကို ပိုမိုအထောက်အပံ့ပြုရန်အတွက် သုတေသနထပ်မံ၍ပြုလုပ်ရန် တိုက်တွန်းအားပေးအပ်ပါသည်။ Website၏ တိကျသေချာမှုကိုတိုးတက်စေရန်အတွက် ကျွနု်ပ်တို ့၏အဖွဲ ့နှင့် သင်၏သုတေသနကို ဝေမျှလိုပါက info@opendevcam.net ကိုဆက်သွယ်နိုင်ပါသည်။ "
+msgstr "ဤ website အသုံးပြုသူများ၏ လှုပ်ရှားမှုကို ပိုမိုအထောက်အပံ့ပြုရန်အတွက် သုတေသနထပ်မံ၍ပြုလုပ်ရန် တိုက်တွန်းအားပေးအပ်ပါသည်။ Website ၏ တိကျသေချာမှုကိုတိုးတက်စေရန်အတွက် ကျွန်ုပ်တို့ ၏အဖွဲ့နှင့် သင်၏သုတေသနကို ဝေမျှလိုပါက info@opendevcam.net ကိုဆက်သွယ်နိုင်ပါသည်။ "
 
 #: odm_nav/templates/footer.html:7
 msgid ""
@@ -73,11 +73,11 @@ msgid ""
 "hold harmless and waive any and all liability against individuals or "
 "entities associated with its development, form and content for any loss, "
 "harm or damage suffered as a result of its use."
-msgstr "OD မဲခေါင် website နှင့် database ကိုအသုံးပြုသူများသည် ဤတွင်ရှိသော မည်သည့်သတင်းအချက်အလက်မဆိုအပေါ်ယုံကြည်မှုအတွက် တာဝန်ယူရမည်ဖြစ်ပြီး ထိခိုက်နစ်နာမှုမရှိအောင်အသုံးပြုရမည်။ တစ်သီးပုဂ္ဂလ သို ့မဟုတ် သီးခြားဖြစ်တည်မှုများ၏ ဖွံ ့ဖြိုးမှု၊ ပုံစံ နှင့် အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်သည့် မည်သည့် ဆုံးရှံုးမှု၊ ထိခိုက်နစ်နာမှု သို ့မဟုတ် ပျက်ဆီးမှုတို ့အတွက် တာဝန်ယူရမည်။"
+msgstr "OD မဲခေါင် website နှင့် database ကိုအသုံးပြုသူများသည် ဤတွင်ရှိသော မည်သည့်သတင်းအချက်အလက်မဆိုအပေါ်ယုံကြည်မှုအတွက် တာဝန်ယူရမည်ဖြစ်ပြီး ထိခိုက်နစ်နာမှုမရှိအောင်အသုံးပြုရမည်။ တစ်သီးပုဂ္ဂလ သို့မဟုတ် သီးခြားဖြစ်တည်မှုများ၏ ဖွံ့ဖြိုးမှု၊ ပုံစံ နှင့် အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်သည့် မည်သည့် ဆုံးရှုံးမှု၊ ထိခိုက်နစ်နာမှု သို့မဟုတ် ပျက်ဆီးမှုတို့အတွက် တာဝန်ယူရမည်။"
 
 #: odm_nav/templates/footer.html:14
 msgid "About us"
-msgstr "ကိန်းကဏန်း ၈ လုံးပါသည့် အမှတ်စဉ်လိုက်ထုတ်ဝေသော စာစောင်ကို ဖော်ပြပေးသည့် အထူးနံပါတ်"
+msgstr "ကျွန်ုပ်တို့အကြောင်း"
 
 #: odm_nav/templates/footer.html:18
 msgid "Contact"
@@ -95,23 +95,23 @@ msgstr "OD Mekong ကိုပြန်သွားရန်"
 #, python-format
 msgid "Dashboard (%(num)d new item)"
 msgid_plural "Dashboard (%(num)d new items)"
-msgstr[0] ""
+msgstr[0] "Dashboard (%(num)d အမျိုးအစားသစ်များ)"
 
 #: odm_nav/templates/header.html:58
 msgid "Log in"
-msgstr ""
+msgstr "ဝင်မည်။"
 
 #: odm_nav/templates/header.html:60
 msgid "Register"
-msgstr ""
+msgstr "မှတ်ပုံတင်မည်။"
 
 #: odm_nav/templates/home/index.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "ကြိုဆိုပါတယ်။"
 
 #: odm_nav/templates/home/layout1.html:5
 msgid "Welcome to Open Development Datahub"
-msgstr ""
+msgstr "Open Development Datahub မှကြိုဆိုပါတယ်။"
 
 #: odm_nav/templates/home/layout1.html:6
 msgid ""
@@ -120,15 +120,15 @@ msgid ""
 "analysis, improve information sharing, and inform debate - all contributing "
 "to sustainable development from a social, economic and environmental "
 "perspective."
-msgstr "ပွင့်လင်းဖွံ ့ဖြိုးတိုးတက်မှု မဲခေါင်ဒေသ (OD မဲခေါင်)သည် မဲခေါင်ဒေသ၏ လူမှု စီးပွါး နှင့် သဘာဝပါတ်ဝန်းကျင် ရေရှည်ဖွံ ့ဖြိုးတိုးတက်မှုအပေါ် လူထုစိတ်ဝင်စားမှုမြင့်တက်စေရန်၊ တစ်သီးပုဂ္ဂလ လေ့လာစမ်းစစ်မှုများပြုလုပ်နိုင်ရန်၊ သတင်းအချက်အလက်မျှဝေမှုတိုးတက်စေရန်၊ နှင့် လူထုအကြားဆွေးနွေးမှုများရှိလာစေရန်အတွက် သတင်းအချက်အလက်များထောက်ပံ့ပေးပါသည်။"
+msgstr "Open Development Mekong (OD မဲခေါင်) သည် မဲခေါင်ဒေသ၏ လူမှု စီးပွါး နှင့် သဘာဝပါတ်ဝန်းကျင် ရေရှည်ဖွံ့ဖြိုးတိုးတက်မှုအပေါ် လူထုစိတ်ဝင်စားမှုမြင့်တက်စေရန်၊ တစ်သီးပုဂ္ဂလ လေ့လာစမ်းစစ်မှုများပြုလုပ်နိုင်ရန်၊ သတင်းအချက်အလက်မျှဝေမှုတိုးတက်စေရန်နှင့် လူထုအကြားဆွေးနွေးမှုများရှိလာစေရန်အတွက် သတင်းအချက်အလက်များထောက်ပံ့ပေးပါသည်။"
 
 #: odm_nav/templates/home/layout1.html:10
 msgid "Contribute"
-msgstr "ပါ၀င်မည်။"
+msgstr "ပါဝင်မည်။"
 
 #: odm_nav/templates/home/layout1.html:11
 msgid "Add Dataset"
-msgstr ""
+msgstr "Dataset ထည့်သွင်းမည်။"
 
 #: odm_nav/templates/home/layout1.html:14
 msgid "Need Help?"
@@ -136,7 +136,7 @@ msgstr "အကူအညီလိုအပ်ပါသလား။"
 
 #: odm_nav/templates/home/layout1.html:15
 msgid "Documentation"
-msgstr ""
+msgstr "မှတ်တမ်းပြုစုခြင်း။"
 
 #: odm_nav/templates/home/layout1.html:18
 msgid "Discover more"
@@ -148,7 +148,7 @@ msgstr "OD မဲခေါင်၏ Website ကိုသွားမည်။"
 
 #: odm_nav/templates/home/layout1.html:25
 msgid "Statistics"
-msgstr ""
+msgstr "ကိန်းကဏန်းအချက်အလက်များ။"
 
 #: odm_nav/templates/home/snippets/popular_datasets.html:3
 msgid "Popular datasets"
@@ -160,7 +160,7 @@ msgstr "မကြာသေးမီကတင်ခဲ့သော Dataset မျ
 
 #: odm_nav/templates/home/snippets/search.html:2
 msgid "E.g. environment"
-msgstr ""
+msgstr "ဥပမာ-သဘာဝပါတ်ဝန်းကျင်"
 
 #: odm_nav/templates/home/snippets/search.html:6
 msgid "Search data"
@@ -168,40 +168,40 @@ msgstr "Data ရှာရန်"
 
 #: odm_nav/templates/home/snippets/search.html:11
 msgid "Search"
-msgstr ""
+msgstr "ရှာရန်"
 
 #: odm_nav/templates/home/snippets/search.html:16
 msgid "Popular tags"
-msgstr ""
+msgstr "လူကြိုက်များသောချိတ်ဆက်မှုများ။"
 
 #: odm_nav/templates/home/snippets/stats.html:4
 #, python-brace-format
 msgid "{0} statistics"
-msgstr ""
+msgstr "{0} ကိန်းကဏန်းအချက်အလက်များ။"
 
 #: odm_nav/templates/home/snippets/stats.html:9
 msgid "dataset"
-msgstr ""
+msgstr "dataset"
 
 #: odm_nav/templates/home/snippets/stats.html:9
 msgid "datasets"
-msgstr ""
+msgstr "dataset များ"
 
 #: odm_nav/templates/home/snippets/stats.html:15
 msgid "organization"
-msgstr ""
+msgstr "အဖွဲ့အစည်း"
 
 #: odm_nav/templates/home/snippets/stats.html:15
 msgid "organizations"
-msgstr ""
+msgstr "အဖွဲ့အစည်းများ"
 
 #: odm_nav/templates/home/snippets/stats.html:21
 msgid "group"
-msgstr ""
+msgstr "အုပ်စု"
 
 #: odm_nav/templates/home/snippets/stats.html:21
 msgid "groups"
-msgstr ""
+msgstr "အုပ်စုများ"
 
 #: odm_nav/templates/home/snippets/stats.html:27
 msgid "related item"
@@ -213,7 +213,7 @@ msgstr ""
 
 #: odm_nav/templates/macros/form.html:22
 msgid "Title"
-msgstr "Dataset အတွင်းရှိ အရင်းမြစ်များကို လေ့လာခြင်း၊ စုပေါင်းခြင်း သို ့မဟုတ် ပြောင်းလဲခြင်း တို ့အတွက် အဆင့်များ။"
+msgstr "ခေါင်းစဥ်"
 
 #: odm_nav/templates/package/read.html:11
 #: odm_nav/templates/snippets/package_item.html:47

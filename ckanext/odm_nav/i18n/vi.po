@@ -1,15 +1,16 @@
-#
+# 
 # Translators:
+# Linh Do <linh@nature.org.vn>, 2016
 # ODM Vietnam <vietnam@opendevmekong.net>, 2015
 # PanNature Vietnam <contact@nature.org.vn>, 2015
+# trang3019 <ng.thutrang.11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-16 13:01+0200\n"
+"PO-Revision-Date: 2016-05-17 12:03+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/"
-"odm-ckanext-odm_nav/language/vi/)\n"
+"Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_nav/plugin.py:48 odm_nav/plugin.py:60 odm_nav/plugin.py:70
 msgid "License"
@@ -50,15 +51,14 @@ msgid ""
 "Mekong (OD Mekong) website and its accompanying database are compiled from "
 "publicly available documentation and provided without fee for general "
 "informational purposes only. This is neither a commercial research service "
-"nor a domain managed by any governmental or inter-governmental agency; it "
-"is managed as a private non-profit open data/open knowledge media group. "
-"Information is publicly posted only after a careful vetting and "
-"verification process. However, OD Mekong cannot guarantee accuracy, "
-"completeness or reliability from third party sources in every instance.  OD "
-"Mekong makes no representation or warranty, either expressed or implied, in "
-"fact or in law, with respect to the accuracy, completeness or "
-"appropriateness of the data, materials or documents contained or referenced "
-"herein or provided."
+"nor a domain managed by any governmental or inter-governmental agency; it is"
+" managed as a private non-profit open data/open knowledge media group. "
+"Information is publicly posted only after a careful vetting and verification"
+" process. However, OD Mekong cannot guarantee accuracy, completeness or "
+"reliability from third party sources in every instance.  OD Mekong makes no "
+"representation or warranty, either expressed or implied, in fact or in law, "
+"with respect to the accuracy, completeness or appropriateness of the data, "
+"materials or documents contained or referenced herein or provided."
 msgstr ""
 
 #: odm_nav/templates/footer.html:6
@@ -66,20 +66,20 @@ msgid ""
 "Site users are encouraged to do additional research in support of their "
 "activities and to share the results of that research with our team, contact "
 "info@opendevcam.net, to further improve the site accuracy."
-msgstr ""
+msgstr "Nhằm nâng cao độ chính xác của dữ liệu, chúng tôi khuyến khích người dùng thực hiện các hoạt động nghiên cứu bổ sung và chia sẻ các kết quả nghiên cứu với nhóm phát triển trang web, liên hệ: info@opendevcam.net"
 
 #: odm_nav/templates/footer.html:7
 msgid ""
-"By accessing this website OD Mekong website and database users agree to "
-"take full responsibility for reliance on any site information provided and "
-"to hold harmless and waive any and all liability against individuals or "
+"By accessing this website OD Mekong website and database users agree to take"
+" full responsibility for reliance on any site information provided and to "
+"hold harmless and waive any and all liability against individuals or "
 "entities associated with its development, form and content for any loss, "
 "harm or damage suffered as a result of its use."
-msgstr ""
+msgstr "Bằng cách truy cập vào website và cơ sở dữ liệu OD Mekong, người dùng chấp thuận với điều kiện chịu toàn bộ trách nhiệm về việc sử dụng thông tin được cung cấp trên website và không làm tổn hại đến các cá nhân, tổ chức tham gia phát triển dữ liệu."
 
 #: odm_nav/templates/footer.html:14
 msgid "About us"
-msgstr ""
+msgstr "Về chúng tôi"
 
 #: odm_nav/templates/footer.html:18
 msgid "Contact"
@@ -87,11 +87,11 @@ msgstr "Liên hệ"
 
 #: odm_nav/templates/footer.html:21
 msgid "Disclaimer"
-msgstr ""
+msgstr "Từ chối "
 
 #: odm_nav/templates/header.html:16
 msgid "Back to OD Mekong"
-msgstr ""
+msgstr "Trở lại trang OD Mekong"
 
 #: odm_nav/templates/header.html:33
 #, python-format
@@ -122,11 +122,11 @@ msgid ""
 "analysis, improve information sharing, and inform debate - all contributing "
 "to sustainable development from a social, economic and environmental "
 "perspective."
-msgstr ""
+msgstr "Trang dữ liệu mở Mê Kông (ODM) cung cấp thông tin về xu hướng phát triển trong khu vực Mê Kông nhằm nâng cao nhận thức, hỗ trợ các phân tích, thúc đẩy chia sẻ thông tin và thảo luận - hướng tới phát triển bền vững trên cách khía cạnh xã hội, kinh tế, môi trường."
 
 #: odm_nav/templates/home/layout1.html:10
 msgid "Contribute"
-msgstr ""
+msgstr "Đóng góp"
 
 #: odm_nav/templates/home/layout1.html:11
 msgid "Add Dataset"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: odm_nav/templates/home/layout1.html:14
 msgid "Need Help?"
-msgstr ""
+msgstr "Cần hỗ trợ?"
 
 #: odm_nav/templates/home/layout1.html:15
 msgid "Documentation"
@@ -142,11 +142,11 @@ msgstr ""
 
 #: odm_nav/templates/home/layout1.html:18
 msgid "Discover more"
-msgstr ""
+msgstr "Tham khảo thêm"
 
 #: odm_nav/templates/home/layout1.html:19
 msgid "Visit OD Mekong's website"
-msgstr ""
+msgstr "Đến trang ODM"
 
 #: odm_nav/templates/home/layout1.html:25
 msgid "Statistics"
@@ -154,11 +154,11 @@ msgstr ""
 
 #: odm_nav/templates/home/snippets/popular_datasets.html:3
 msgid "Popular datasets"
-msgstr ""
+msgstr "Các bộ dữ liệu thông dụng"
 
 #: odm_nav/templates/home/snippets/recent_datasets.html:3
 msgid "Recent datasets"
-msgstr ""
+msgstr "Dữ liệu mới cập nhật"
 
 #: odm_nav/templates/home/snippets/search.html:2
 msgid "E.g. environment"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: odm_nav/templates/home/snippets/search.html:6
 msgid "Search data"
-msgstr ""
+msgstr "Tìm kiếm dữ liệu"
 
 #: odm_nav/templates/home/snippets/search.html:11
 msgid "Search"
@@ -268,7 +268,7 @@ msgstr[0] ""
 #: odm_nav/templates/snippets/search_result_text.html:17
 #, python-brace-format
 msgid "No library records found for \"{query}\""
-msgstr ""
+msgstr "Không tìm thấy kết quả {theo yêu cầu} "
 
 #: odm_nav/templates/snippets/search_result_text.html:18
 #, python-brace-format
@@ -278,7 +278,7 @@ msgstr[0] ""
 
 #: odm_nav/templates/snippets/search_result_text.html:19
 msgid "No library records found"
-msgstr ""
+msgstr "Không tìm thấy kết quả"
 
 #: odm_nav/templates/snippets/search_result_text.html:22
 #, python-brace-format
