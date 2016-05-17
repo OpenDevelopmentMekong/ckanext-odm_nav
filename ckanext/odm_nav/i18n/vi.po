@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-17 12:03+0000\n"
+"PO-Revision-Date: 2016-05-17 14:23+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Tìm kiếm dữ liệu"
 
 #: odm_nav/templates/home/snippets/search.html:11
 msgid "Search"
-msgstr ""
+msgstr "Tìm kiếm"
 
 #: odm_nav/templates/home/snippets/search.html:16
 msgid "Popular tags"
