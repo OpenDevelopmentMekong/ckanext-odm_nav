@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-17 14:23+0000\n"
-"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
+"PO-Revision-Date: 2016-05-20 08:08+0000\n"
+"Last-Translator: Linh Do <linh@nature.org.vn>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +27,11 @@ msgstr "Giấy phép"
 
 #: odm_nav/plugin.py:49 odm_nav/plugin.py:61
 msgid "Organizations"
-msgstr ""
+msgstr "Tổ chức"
 
 #: odm_nav/plugin.py:50 odm_nav/plugin.py:62 odm_nav/plugin.py:71
 msgid "Formats"
-msgstr ""
+msgstr "Định dạng"
 
 #: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
 msgid "Language"
@@ -39,7 +39,7 @@ msgstr "Ngôn ngữ"
 
 #: odm_nav/plugin.py:52 odm_nav/plugin.py:64 odm_nav/plugin.py:73
 msgid "Country"
-msgstr ""
+msgstr "Quốc gia"
 
 #: odm_nav/templates/footer.html:5
 msgid ""
@@ -59,7 +59,7 @@ msgid ""
 "representation or warranty, either expressed or implied, in fact or in law, "
 "with respect to the accuracy, completeness or appropriateness of the data, "
 "materials or documents contained or referenced herein or provided."
-msgstr ""
+msgstr "Trang web này (www.opendevelopmentmekong.net) và toàn bộ dữ liệu được xây dựng và công bố bởi nhóm OD Mekong đều áp dụng giấy phép bản quyền mở phiên bản 3.0 Ghi công – Chia sẻ tương tự. Các nội dung tóm lược đều được trích dẫn từ bài gốc, áp dụng nguyên tắc sử dụng công bằng và tôn trọng quyền tác giả. Tài nguyên và các dữ liệu trên trang web Dữ liệu mở Mê Kông (OD Mekong) đều được thu thập từ các tài liệu đã được công bố và được chia sẻ miễn phí với mục tiêu cung cấp thông tin rộng rãi cho công chúng. Trang web OD Mekong không phải là dịch vụ mang tính thương mại và không trực thuộc cơ quan nhà nước hay một cơ chế liên chính phủ nào. OD Mekong được quản lý bởi một nhóm phi lợi nhuận trong lĩnh vực dữ liệu mở và tri thức mở. Thông tin công bố trên trang web đã được kiểm tra và xác minh. Mặc dù vậy, OD Mekong miễn trừ trách nhiệm đối với thông tin do bên thứ ba cung cấp. OD Mekong không đại diện hay chịu trách nhiệm, cả về khía cạnh thực tế và luật pháp, về tính chính xác, toàn vẹn và tương thích của dữ liệu và tài liệu được công bố hoặc tham chiếu.  "
 
 #: odm_nav/templates/footer.html:6
 msgid ""
@@ -97,23 +97,23 @@ msgstr "Trở lại trang OD Mekong"
 #, python-format
 msgid "Dashboard (%(num)d new item)"
 msgid_plural "Dashboard (%(num)d new items)"
-msgstr[0] ""
+msgstr[0] "Bảng điều khiển (%(num)d nội dung mới)"
 
 #: odm_nav/templates/header.html:58
 msgid "Log in"
-msgstr ""
+msgstr "Đăng nhập"
 
 #: odm_nav/templates/header.html:60
 msgid "Register"
-msgstr ""
+msgstr "Đăng ký"
 
 #: odm_nav/templates/home/index.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Xin chào,"
 
 #: odm_nav/templates/home/layout1.html:5
 msgid "Welcome to Open Development Datahub"
-msgstr ""
+msgstr "Chào mừng bạn đến với Kho dữ liệu mở về phát triển"
 
 #: odm_nav/templates/home/layout1.html:6
 msgid ""
@@ -130,7 +130,7 @@ msgstr "Đóng góp"
 
 #: odm_nav/templates/home/layout1.html:11
 msgid "Add Dataset"
-msgstr ""
+msgstr "Thêm dữ liệu"
 
 #: odm_nav/templates/home/layout1.html:14
 msgid "Need Help?"
@@ -138,7 +138,7 @@ msgstr "Cần hỗ trợ?"
 
 #: odm_nav/templates/home/layout1.html:15
 msgid "Documentation"
-msgstr ""
+msgstr "Tài liệu hóa"
 
 #: odm_nav/templates/home/layout1.html:18
 msgid "Discover more"
@@ -146,11 +146,11 @@ msgstr "Tham khảo thêm"
 
 #: odm_nav/templates/home/layout1.html:19
 msgid "Visit OD Mekong's website"
-msgstr "Đến trang ODM"
+msgstr "Trang OD Mê Kông"
 
 #: odm_nav/templates/home/layout1.html:25
 msgid "Statistics"
-msgstr ""
+msgstr "Thống kê"
 
 #: odm_nav/templates/home/snippets/popular_datasets.html:3
 msgid "Popular datasets"
@@ -162,7 +162,7 @@ msgstr "Dữ liệu mới cập nhật"
 
 #: odm_nav/templates/home/snippets/search.html:2
 msgid "E.g. environment"
-msgstr ""
+msgstr "Chẳng hạn: môi trường"
 
 #: odm_nav/templates/home/snippets/search.html:6
 msgid "Search data"
@@ -174,44 +174,44 @@ msgstr "Tìm kiếm"
 
 #: odm_nav/templates/home/snippets/search.html:16
 msgid "Popular tags"
-msgstr ""
+msgstr "Từ khóa phổ biến"
 
 #: odm_nav/templates/home/snippets/stats.html:4
 #, python-brace-format
 msgid "{0} statistics"
-msgstr ""
+msgstr "{0} số liệu thống kê"
 
 #: odm_nav/templates/home/snippets/stats.html:9
 msgid "dataset"
-msgstr ""
+msgstr "bộ dữ liệu"
 
 #: odm_nav/templates/home/snippets/stats.html:9
 msgid "datasets"
-msgstr ""
+msgstr "các bộ dữ liệu"
 
 #: odm_nav/templates/home/snippets/stats.html:15
 msgid "organization"
-msgstr ""
+msgstr "tổ chức"
 
 #: odm_nav/templates/home/snippets/stats.html:15
 msgid "organizations"
-msgstr ""
+msgstr "các tổ chức"
 
 #: odm_nav/templates/home/snippets/stats.html:21
 msgid "group"
-msgstr ""
+msgstr "nhóm"
 
 #: odm_nav/templates/home/snippets/stats.html:21
 msgid "groups"
-msgstr ""
+msgstr "các nhóm"
 
 #: odm_nav/templates/home/snippets/stats.html:27
 msgid "related item"
-msgstr ""
+msgstr "hạng mục liên quan"
 
 #: odm_nav/templates/home/snippets/stats.html:27
 msgid "related items"
-msgstr ""
+msgstr "các hạng mục liên quan"
 
 #: odm_nav/templates/macros/form.html:22
 msgid "Title"
@@ -220,50 +220,50 @@ msgstr "Tiêu đề"
 #: odm_nav/templates/package/read.html:11
 #: odm_nav/templates/snippets/package_item.html:47
 msgid "Private"
-msgstr ""
+msgstr "Cá nhân"
 
 #: odm_nav/templates/package/read.html:22
 #: odm_nav/templates/snippets/package_item.html:56
 msgid "Draft"
-msgstr ""
+msgstr "Dự thảo"
 
 #: odm_nav/templates/package/read.html:25
 #: odm_nav/templates/snippets/package_item.html:58
 msgid "Deleted"
-msgstr ""
+msgstr "Đã xóa`"
 
 #: odm_nav/templates/package/snippets/resources_list.html:17
 msgid "This dataset has no data"
-msgstr ""
+msgstr "Bộ dữ liệu này không có số liệu"
 
 #: odm_nav/templates/snippets/facet_list.html:84
 #, python-brace-format
 msgid "Show More {facet_type}"
-msgstr ""
+msgstr "Xem thêm  {lĩnh vực_loại}"
 
 #: odm_nav/templates/snippets/facet_list.html:87
 #, python-brace-format
 msgid "Show Only Popular {facet_type}"
-msgstr ""
+msgstr "Chỉ hiển thị dạng phổ biến {lĩnh vực_loại}"
 
 #: odm_nav/templates/snippets/facet_list.html:91
 #, python-brace-format
 msgid "There are no {facet_type} that match this search"
-msgstr ""
+msgstr "Không có  {lĩnh vực_loại} theo yêu cầu tìm kiếm"
 
 #: odm_nav/templates/snippets/package_item.html:66
 msgid "Popular"
-msgstr ""
+msgstr "Phổ biến"
 
 #: odm_nav/templates/snippets/package_item.html:79
 msgid "This dataset has no description"
-msgstr ""
+msgstr "Dữ liệu này không có mô tả"
 
 #: odm_nav/templates/snippets/search_result_text.html:16
 #, python-brace-format
 msgid "{number} library record found for \"{query}\""
 msgid_plural "{number} library records found for \"{query}\""
-msgstr[0] ""
+msgstr[0] "{số lượng} tài liệu thư viện được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:17
 #, python-brace-format
@@ -274,7 +274,7 @@ msgstr "Không tìm thấy kết quả {theo yêu cầu} "
 #, python-brace-format
 msgid "{number} library record found"
 msgid_plural "{number} library records found"
-msgstr[0] ""
+msgstr[0] "{số lượng} tài liệu thư viện được tìm thấy "
 
 #: odm_nav/templates/snippets/search_result_text.html:19
 msgid "No library records found"
@@ -284,82 +284,82 @@ msgstr "Không tìm thấy kết quả"
 #, python-brace-format
 msgid "{number} laws found for \"{query}\""
 msgid_plural "{number} laws found for \"{query}\""
-msgstr[0] ""
+msgstr[0] "{số lượng} văn bản luật được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:23
 #, python-brace-format
 msgid "No laws found for \"{query}\""
-msgstr ""
+msgstr "Không có văn bản luật nào được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:24
 #, python-brace-format
 msgid "{number} law found"
 msgid_plural "{number} laws found"
-msgstr[0] ""
+msgstr[0] "{số lượng} văn bản luật được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:25
 msgid "No laws found"
-msgstr ""
+msgstr "Không văn bản luật nào được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:28
 #, python-brace-format
 msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
-msgstr[0] ""
+msgstr[0] "{số lượng} bộ dữ liệu được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:29
 #, python-brace-format
 msgid "No datasets found for \"{query}\""
-msgstr ""
+msgstr "Không có bộ dữ liệu nào được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:30
 #, python-brace-format
 msgid "{number} dataset found"
 msgid_plural "{number} datasets found"
-msgstr[0] ""
+msgstr[0] "{số lượng} bộ dữ liệu được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:31
 msgid "No datasets found"
-msgstr ""
+msgstr "Không có bộ dữ liệu nào được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:34
 #, python-brace-format
 msgid "{number} group found for \"{query}\""
 msgid_plural "{number} groups found for \"{query}\""
-msgstr[0] ""
+msgstr[0] "{số lượng} nhóm được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:35
 #, python-brace-format
 msgid "No groups found for \"{query}\""
-msgstr ""
+msgstr "Không có nhóm nào được tìm thấy theo \"{yêu cầu}\""
 
 #: odm_nav/templates/snippets/search_result_text.html:36
 #, python-brace-format
 msgid "{number} group found"
 msgid_plural "{number} groups found"
-msgstr[0] ""
+msgstr[0] "{số lượng} nhóm được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:37
 msgid "No groups found"
-msgstr ""
+msgstr "Không có nhóm nào được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:40
 #, python-brace-format
 msgid "{number} organization found for \"{query}\""
 msgid_plural "{number} organizations found for \"{query}\""
-msgstr[0] ""
+msgstr[0] "{số lượng} tổ chức được tìm thấy theo \"{yêu cầu}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:41
 #, python-brace-format
 msgid "No organizations found for \"{query}\""
-msgstr ""
+msgstr "Không có tổ chức nào được tìm thấy theo \"{yêu cầu}\""
 
 #: odm_nav/templates/snippets/search_result_text.html:42
 #, python-brace-format
 msgid "{number} organization found"
 msgid_plural "{number} organizations found"
-msgstr[0] ""
+msgstr[0] "{số lượng} tổ chức được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:43
 msgid "No organizations found"
-msgstr ""
+msgstr "Không có tổ chức nào được tìm thấy"
