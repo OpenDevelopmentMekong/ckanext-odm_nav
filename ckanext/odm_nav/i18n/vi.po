@@ -1,6 +1,7 @@
-# 
+#
 # Translators:
-# Linh Do <linh@nature.org.vn>, 2016
+# Alex Corbi <a.corbi@gmail.com>, 2016
+# DoLinh <linh@nature.org.vn>, 2016
 # ODM Vietnam <vietnam@opendevmekong.net>, 2015
 # PanNature Vietnam <contact@nature.org.vn>, 2015
 # trang3019 <ng.thutrang.11@gmail.com>, 2016
@@ -8,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-20 08:08+0000\n"
-"Last-Translator: Linh Do <linh@nature.org.vn>\n"
+"PO-Revision-Date: 2016-05-26 13:06+0000\n"
+"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgid ""
 "representation or warranty, either expressed or implied, in fact or in law, "
 "with respect to the accuracy, completeness or appropriateness of the data, "
 "materials or documents contained or referenced herein or provided."
-msgstr "Trang web này (www.opendevelopmentmekong.net) và toàn bộ dữ liệu được xây dựng và công bố bởi nhóm OD Mekong đều áp dụng giấy phép bản quyền mở phiên bản 3.0 Ghi công – Chia sẻ tương tự. Các nội dung tóm lược đều được trích dẫn từ bài gốc, áp dụng nguyên tắc sử dụng công bằng và tôn trọng quyền tác giả. Tài nguyên và các dữ liệu trên trang web Dữ liệu mở Mê Kông (OD Mekong) đều được thu thập từ các tài liệu đã được công bố và được chia sẻ miễn phí với mục tiêu cung cấp thông tin rộng rãi cho công chúng. Trang web OD Mekong không phải là dịch vụ mang tính thương mại và không trực thuộc cơ quan nhà nước hay một cơ chế liên chính phủ nào. OD Mekong được quản lý bởi một nhóm phi lợi nhuận trong lĩnh vực dữ liệu mở và tri thức mở. Thông tin công bố trên trang web đã được kiểm tra và xác minh. Mặc dù vậy, OD Mekong miễn trừ trách nhiệm đối với thông tin do bên thứ ba cung cấp. OD Mekong không đại diện hay chịu trách nhiệm, cả về khía cạnh thực tế và luật pháp, về tính chính xác, toàn vẹn và tương thích của dữ liệu và tài liệu được công bố hoặc tham chiếu.  "
+msgstr "Trang web này (www.opendevelopmentmekong.net) và toàn bộ dữ liệu được xây dựng và công bố bởi nhóm Dữ liệu mở về phát triển Mê Kông (OD Mekong) đều áp dụng giấy phép bản quyền mở phiên bản 3.0 Ghi công – Chia sẻ tương tự. Các nội dung tóm lược đều được trích dẫn từ bài gốc, áp dụng nguyên tắc sử dụng công bằng và tôn trọng quyền tác giả. Tài nguyên và các dữ liệu trên trang web OD Mekong đều được thu thập từ các tài liệu đã được công bố và được chia sẻ miễn phí với mục tiêu cung cấp thông tin rộng rãi cho công chúng. Trang web OD Mekong không phải là dịch vụ mang tính thương mại và  và không do cơ quan nhà nước hay một cơ chế liên chính phủ nào vận hành. OD Mekong được quản lý bởi một nhóm phi lợi nhuận trong lĩnh vực dữ liệu mở và tri thức mở. Thông tin công bố trên trang web đã được kiểm tra và xác minh. Mặc dù vậy, OD Mekong miễn trừ trách nhiệm đối với thông tin do bên thứ ba cung cấp. OD Mekong không đại diện hay chịu trách nhiệm, cả về khía cạnh thực tế và luật pháp, về tính chính xác, toàn vẹn và tương thích của dữ liệu và tài liệu được công bố hoặc tham chiếu.  "
 
 #: odm_nav/templates/footer.html:6
 msgid ""
@@ -263,18 +264,18 @@ msgstr "Dữ liệu này không có mô tả"
 #, python-brace-format
 msgid "{number} library record found for \"{query}\""
 msgid_plural "{number} library records found for \"{query}\""
-msgstr[0] "{số lượng} tài liệu thư viện được tìm thấy theo \"{yêu cầu}\" "
+msgstr[0] "{number} tài liệu thư viện được tìm thấy theo \"{query}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:17
 #, python-brace-format
 msgid "No library records found for \"{query}\""
-msgstr "Không tìm thấy kết quả {theo yêu cầu} "
+msgstr "Không tìm thấy kết quả \"{query}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:18
 #, python-brace-format
 msgid "{number} library record found"
 msgid_plural "{number} library records found"
-msgstr[0] "{số lượng} tài liệu thư viện được tìm thấy "
+msgstr[0] "{number} tài liệu thư viện được tìm thấy "
 
 #: odm_nav/templates/snippets/search_result_text.html:19
 msgid "No library records found"
@@ -284,18 +285,18 @@ msgstr "Không tìm thấy kết quả"
 #, python-brace-format
 msgid "{number} laws found for \"{query}\""
 msgid_plural "{number} laws found for \"{query}\""
-msgstr[0] "{số lượng} văn bản luật được tìm thấy theo \"{yêu cầu}\" "
+msgstr[0] "{number} văn bản luật được tìm thấy theo \"{query}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:23
 #, python-brace-format
 msgid "No laws found for \"{query}\""
-msgstr "Không có văn bản luật nào được tìm thấy theo \"{yêu cầu}\" "
+msgstr "Không có văn bản luật nào được tìm thấy theo \"{query}\" "
 
 #: odm_nav/templates/snippets/search_result_text.html:24
 #, python-brace-format
 msgid "{number} law found"
 msgid_plural "{number} laws found"
-msgstr[0] "{số lượng} văn bản luật được tìm thấy"
+msgstr[0] "{number} văn bản luật được tìm thấy"
 
 #: odm_nav/templates/snippets/search_result_text.html:25
 msgid "No laws found"
