@@ -1,21 +1,31 @@
 {% ckan_extends  %}
 
+{% set res = c.resource %}
+
+{% if res.name_translated %}
+  {% set ml_name = res.name_translated[h.odm_dataset_get_current_language()] %}
+{% endif %}
+
+{% if res.description_translated %}
+  {% set ml_description = h.markdown_extract(res.description_translated[h.odm_dataset_get_current_language()]) %}
+{% endif %}
+
 {% block head_extras -%}
   {{ super() }}
-  {% set description = h.markdown_extract(res.description_translated[h.odm_dataset_get_current_language()] or res.description, extract_length=200) if res.description else h.markdown_extract(c.package.notes, extract_length=200) %}
+  {% set description = h.markdown_extract(ml_description or res.description, extract_length=200) if res.description else h.markdown_extract(c.package.notes, extract_length=200) %}
   <meta property="og:title" content="{{ h.dataset_display_name(c.package) }} - {{ h.resource_display_name(res) }} - {{ g.site_title }}">
   <meta property="og:description" content="{{ description|forceescape }}">
 {% endblock -%}
 
-{% block subtitle %}{{ res.name_translated[h.odm_dataset_get_current_language()] or res.name }} - {{ h.resource_display_name(res) }}{% endblock %}
+{% block subtitle %}{{ ml_name or res.name }} - {{ h.resource_display_name(res) }}{% endblock %}
 
 {% block breadcrumb_content %}
   {{ super() }}
-  <li class="active"><a href="">{{ res.name_translated[h.odm_dataset_get_current_language()] or res.name|truncate(30) }}</a></li>
+  <li class="active"><a href="">{{ ml_name or res.name|truncate(30) }}</a></li>
 {% endblock %}
 
 {% block resource_content %}
-  {% block resource_read_title %}<h1 class="page-heading">{{ res.name_translated[h.odm_dataset_get_current_language()] or res.name | truncate(50) }}</h1>{% endblock %}
+  {% block resource_read_title %}<h1 class="page-heading">{{ ml_name or res.name | truncate(50) }}</h1>{% endblock %}
   {% block resource_read_url %}
     {% if res.url and h.is_url(res.url) %}
       <p class="muted ellipsis">{{ _('URL:') }} <a href="{{ res.url }}" title="{{ res.url }}">{{ res.url }}</a></p>
@@ -25,7 +35,7 @@
   {% endblock %}
   <div class="prose notes" property="rdfs:label">
     {% if res.description_translated or res.description%}
-      {{ h.render_markdown(res.description_translated[h.odm_dataset_get_current_language()] or res.description) }}
+      {{ h.render_markdown(ml_description or res.description) }}
     {% endif %}
     {% if not res.description and c.package.notes %}
       <h3>{{ _('From the dataset abstract') }}</h3>
