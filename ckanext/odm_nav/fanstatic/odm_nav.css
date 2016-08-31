@@ -1033,7 +1033,7 @@ a.header_tag:hover {
 }
 
 .resource_item{
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .record_resources{
