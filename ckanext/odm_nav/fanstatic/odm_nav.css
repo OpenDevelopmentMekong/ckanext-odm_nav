@@ -1031,3 +1031,11 @@ a.header_tag:hover {
 .back-to-odm{
   float:left;
 }
+
+.resource_explore_icon{
+	width:20px;
+}
+
+.resource_explore_icon-eye{
+	width: 24px;
+}
