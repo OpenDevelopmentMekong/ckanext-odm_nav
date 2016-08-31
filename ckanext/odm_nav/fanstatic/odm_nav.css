@@ -1032,6 +1032,22 @@ a.header_tag:hover {
   float:left;
 }
 
+.record_resources{
+	/*float: right;
+  width: 500px;*/
+  margin-top: 20px;
+}
+
+.record_resources .resource_item_explore_links{
+	float: right;
+	margin-right:35px;
+}
+
+.record_resources .resource_item_explore_links a{
+	padding-right: 5px;
+	text-decoration: none!important;
+}
+
 .resource_explore_icon{
 	width:20px;
 }
