@@ -20,7 +20,6 @@ import json
 import collections
 from genshi.template.text import NewTextTemplate
 from ckan.lib.base import render
-import Cookie
 from pprint import pprint
 log = logging.getLogger(__name__)
 
@@ -93,8 +92,8 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
-      'odm_nav_get_wp_domain': odm_nav_helper.get_wp_domain,
       'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
+      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
       'odm_nav_last_dataset': odm_nav_helper.last_dataset,
       'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
       'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
@@ -102,11 +101,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
       'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
       'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
-      'odm_nav_json_load_top_topics':odm_nav_helper.json_load_top_topics,
-      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
-      'odm_nav_get_cookie': odm_nav_helper.get_cookie,
-      'odm_nav_load_country_specific_menu': odm_nav_helper.load_country_specific_menu,
-      'odm_nav_check_top_topics_disabled' : odm_nav_helper.check_top_topics_disabled
+      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html
 	}
 
   # IPackageController

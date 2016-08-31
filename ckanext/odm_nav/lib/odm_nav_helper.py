@@ -11,7 +11,6 @@ import urlparse
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
-import Cookie
 from pprint import pprint
 import string
 import requests
@@ -22,57 +21,6 @@ import traceback
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
-jsonPath = os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy/top_topics/top_topics_multilingual.json'))
-
-country_menus = dict({
-  "mekong": config.get("ckan.odm_nav_concept.mekong_menu_endpoint"),
-  "cambodia": config.get("ckan.odm_nav_concept.cambodia_menu_endpoint"),
-  "thailand": config.get("ckan.odm_nav_concept.thailand_menu_endpoint"),
-  "laos": config.get("ckan.odm_nav_concept.laos_menu_endpoint"),
-  "vietnam": config.get("ckan.odm_nav_concept.vietnam_menu_endpoint"),
-  "myanmar": config.get("ckan.odm_nav_concept.myanmar_menu_endpoint")
-})
-
-
-disabled_top_topic_links=toolkit.aslist(config.get('ckan.odm_nav_concept.disable_top_topic_links_for_countries', []))
-
-
-def get_wp_domain():
-  log.info('get_wp_domain')
-  return config.get("ckan.odm_nav_concept.wp_domain")
-
-def load_country_specific_menu(country):
-  log.info('getting menu for %s',country)
-
-  if not country:
-    return []
-
-  if country == '':
-    country = 'mekong'
-
-  try:
-
-    menu_endpoint = country_menus[country]
-    if not menu_endpoint:
-      raise ValueError('menu_endpoint for specified country not found, check ckan.odm_nav_concept.COUNTRY_menu_endpoint')
-
-    r = requests.get(menu_endpoint,verify=False)
-    jsonData = r.json()
-    return jsonData['items']
-
-  except:
-    log.error("cannot create menu for endpoint: " + menu_endpoint)
-
-  return []
-
-def get_cookie():
-  request=toolkit.request
-  try:
-    cookie=request.cookies['odm_transition_country']
-    return cookie
-  except (Cookie.CookieError, KeyError):
-    log.error("cannot get cookie for odm_transition_country")
-    return ''
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -162,10 +110,6 @@ def popular_datasets(limit):
 
   return result_dict['results']
 
-def json_load_top_topics():
-    with open(jsonPath) as data_file:
-       return json.load(data_file)
-
 def tag_for_topic(topic):
   '''Return the name of the tag corresponding to a top topic'''
 
@@ -174,11 +118,6 @@ def tag_for_topic(topic):
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
-
-def check_top_topics_disabled(country_code):
-  for item in disabled_top_topic_links:
-    if item == country_code:
-      return True
 
 def recent_datasets():
   '''Return a sorted list of the datasets updated recently.'''
