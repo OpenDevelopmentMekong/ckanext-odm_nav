@@ -1032,6 +1032,10 @@ a.header_tag:hover {
   float:left;
 }
 
+.resource_item{
+  margin-bottom: 20px;
+}
+
 .record_resources{
 	/*float: right;
   width: 500px;*/
