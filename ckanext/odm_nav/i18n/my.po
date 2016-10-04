@@ -1,363 +1,187 @@
-# 
+#
 # Translators:
 # Alex Corbi <a.corbi@gmail.com>, 2016
 # Theint Naing Yoon <yoon@phandeeyar.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
-"POT-Creation-Date: 2016-05-16 12:58+0200\n"
-"PO-Revision-Date: 2016-05-17 14:22+0000\n"
+"POT-Creation-Date: 2016-10-04 19:08+0200\n"
+"PO-Revision-Date: 2016-10-04 19:08+0200\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/my/)\n"
+"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: odm_nav/plugin.py:48 odm_nav/plugin.py:60 odm_nav/plugin.py:70
+#: odm_nav/plugin.py:47 odm_nav/plugin.py:59 odm_nav/plugin.py:69
 msgid "License"
 msgstr "လိုင်စင်"
 
-#: odm_nav/plugin.py:49 odm_nav/plugin.py:61
+#: odm_nav/plugin.py:48 odm_nav/plugin.py:60
 msgid "Organizations"
 msgstr "အဖွဲ့အစည်းများ"
 
-#: odm_nav/plugin.py:50 odm_nav/plugin.py:62 odm_nav/plugin.py:71
+#: odm_nav/plugin.py:49 odm_nav/plugin.py:61 odm_nav/plugin.py:70
 msgid "Formats"
 msgstr "ပုံစံများ"
 
-#: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
+#: odm_nav/plugin.py:50 odm_nav/plugin.py:62 odm_nav/plugin.py:71
 msgid "Language"
 msgstr "ဘာသာစကား"
 
-#: odm_nav/plugin.py:52 odm_nav/plugin.py:64 odm_nav/plugin.py:73
+#: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
 msgid "Country"
 msgstr "နိုင်ငံ"
 
-#: odm_nav/templates/footer.html:5
-msgid ""
-"This work (www.opendevelopmentmekong.net) and any original materials "
-"produced and published by OD Mekong herein are licensed under a Creative "
-"Commons Attribution-ShareAlike 3.0 Unported License. News article summaries "
-"are extracted from their sources, as guided by fair-use principles and are "
-"copyrighted by their respective sources. Materials on the Open Development "
-"Mekong (OD Mekong) website and its accompanying database are compiled from "
-"publicly available documentation and provided without fee for general "
-"informational purposes only. This is neither a commercial research service "
-"nor a domain managed by any governmental or inter-governmental agency; it is"
-" managed as a private non-profit open data/open knowledge media group. "
-"Information is publicly posted only after a careful vetting and verification"
-" process. However, OD Mekong cannot guarantee accuracy, completeness or "
-"reliability from third party sources in every instance.  OD Mekong makes no "
-"representation or warranty, either expressed or implied, in fact or in law, "
-"with respect to the accuracy, completeness or appropriateness of the data, "
-"materials or documents contained or referenced herein or provided."
-msgstr "ဤ (www.opendevelopmentmekong.net) နှင့် OD မဲခေါင်မှထုတ်လုပ်ဖြန် ့ဝေသည့် မည်သည့် မူရင်းအကြောင်းအရာမဆိုသည် Creative Commons-ShareAlike 3.0 Unported ၏အောက်တွင်မှတ်ပုံတင်ထားသည်။ သတင်းဆောင်းပါးများကို မူလအရင်းအမြစ်မှ (မျှတစွာ အသုံးပြုခြင်း) fair-use စည်းမျဉ်းများအတိုင်း ထုတ်ယူထားပြီး မူပိုင်ခွင့်မှာသက်ဆိုင်ရာ အရင်းမြစ်များထံတွင်ရှိသည်။ ပွင့်လင်းဖွံ ့ဖြိုးတိုးတက်မှု မဲခေါင်ဒေသ (OD မဲခေါင်) website နှင့် ၄င်းနှင့်ဆက်နွှယ်နေသော database မှာ လူထုရယူနိုင်သော သတင်းအချက်အလက်မှတ်တမ်းများမှ  သတင်းအချက်အလက်ဆိုင်ရာ အထွေထွေ အသုံးပြုရန် ရည်ရွယ်ချက်ဖြင့် အခမဲ့ရယူထားခြင်းဖြစ်သည်။ ဤသည်မှာ စီးပွါးဖြစ်လုပ်ဆောင်နေသော သုသေသန ၀န်ဆောင်မှုမဟုတ်၊ မည်သည့်အစိုးရ သို ့မဟုတ် အစိုးရနှင့်ဆက်နွှယ်သော အဖွဲ ့အစည်းများမှ စီမံခန် ့ခွဲသည့် domain လည်းမဟုတ်ပါ။ ဤသည်မှာ ငွေကြေးအကျိုးအမြတ်အတွက်မဟုတ်သည့် ပွင့်လင်းအချက်အလက်/ ပွင့်လင်း ဗဟုသုတ မီဒီယာအဖွဲ ့ဖြစ်သည်။ သတင်းအချက်အလက်များကို စီစစ်ခြင်းနှင့် စစ်ဆေးအတည်ပြုခြင်းဖြစ်စဉ်ကို ဂရုတစိုက်ပြုလုပ်ပြီးနောက် လူထုရယူနိုင်ရန် တင်ပေးသည်။ မည်သို ့ပင်ဆိုစေ OD မဲခေါင် အနေဖြင့်မည်သည့်ဖြစ်ရပ်တွင်မဆို တတိယပါတီရင်းမြစ်များအနေဖြင့်  တိကျသေချာမှု၊ ပြီးပြည့်စုံမှု သို ့မဟုတ် ယုံကြည်စိတ်ချရနိုင်မှု တို ့ကိုအာမခံ မပေးနိုင်ပါ။ ဤတွင် ပါ၀င်သော သို ့မဟုတ် ရည်ညွှန်းထားသော သို ့မဟုတ် ရရှိနိုင်သော အချက်အလက်များ၊ ပုံပမာများ သို ့မဟုတ် စာရွက်စာတမ်းများ၏ တိကျမှန်ကန်မှု၊ ပြီးပြည့်စုံမှု၊ သို ့မဟုတ် သင့်လျော်မှု တို ့ကို OD မဲခေါင်အနေဖြင့် ကိုယ်စားမပြုပါ သို ့မဟုတ် အာမမခံပါ။ အချက်အလက် သို ့မဟုတ် ဥပဒေကြောင်းအရ မဖော်ပြပါ သို ့မဟုတ် အသုံးမပြုပါ။ "
-
-#: odm_nav/templates/footer.html:6
-msgid ""
-"Site users are encouraged to do additional research in support of their "
-"activities and to share the results of that research with our team, contact "
-"info@opendevcam.net, to further improve the site accuracy."
-msgstr "ဤ website အသုံးပြုသူများ၏ လှုပ်ရှားမှုကို ပိုမိုအထောက်အပံ့ပြုရန်အတွက် သုတေသနထပ်မံ၍ပြုလုပ်ရန် တိုက်တွန်းအားပေးအပ်ပါသည်။ Website ၏ တိကျသေချာမှုကိုတိုးတက်စေရန်အတွက် ကျွန်ုပ်တို့ ၏အဖွဲ့နှင့် သင်၏သုတေသနကို ဝေမျှလိုပါက info@opendevcam.net ကိုဆက်သွယ်နိုင်ပါသည်။ "
-
-#: odm_nav/templates/footer.html:7
-msgid ""
-"By accessing this website OD Mekong website and database users agree to take"
-" full responsibility for reliance on any site information provided and to "
-"hold harmless and waive any and all liability against individuals or "
-"entities associated with its development, form and content for any loss, "
-"harm or damage suffered as a result of its use."
-msgstr "OD မဲခေါင် website နှင့် database ကိုအသုံးပြုသူများသည် ဤတွင်ရှိသော မည်သည့်သတင်းအချက်အလက်မဆိုအပေါ်ယုံကြည်မှုအတွက် တာဝန်ယူရမည်ဖြစ်ပြီး ထိခိုက်နစ်နာမှုမရှိအောင်အသုံးပြုရမည်။ တစ်သီးပုဂ္ဂလ သို့မဟုတ် သီးခြားဖြစ်တည်မှုများ၏ ဖွံ့ဖြိုးမှု၊ ပုံစံ နှင့် အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်သည့် မည်သည့် ဆုံးရှုံးမှု၊ ထိခိုက်နစ်နာမှု သို့မဟုတ် ပျက်ဆီးမှုတို့အတွက် တာဝန်ယူရမည်။"
-
-#: odm_nav/templates/footer.html:14
-msgid "About us"
-msgstr "ကျွန်ုပ်တို့အကြောင်း"
-
-#: odm_nav/templates/footer.html:18
-msgid "Contact"
-msgstr "ဆက်သွယ်ရန်"
-
-#: odm_nav/templates/footer.html:21
-msgid "Disclaimer"
-msgstr "ငြင်းဆိုချက်"
-
-#: odm_nav/templates/header.html:16
-msgid "Back to OD Mekong"
-msgstr "OD Mekong ကိုပြန်သွားရန်"
-
-#: odm_nav/templates/header.html:33
-#, python-format
-msgid "Dashboard (%(num)d new item)"
-msgid_plural "Dashboard (%(num)d new items)"
-msgstr[0] "Dashboard (%(num)d အမျိုးအစားသစ်များ)"
-
-#: odm_nav/templates/header.html:58
-msgid "Log in"
-msgstr "ဝင်မည်။"
-
-#: odm_nav/templates/header.html:60
-msgid "Register"
-msgstr "မှတ်ပုံတင်မည်။"
-
-#: odm_nav/templates/home/index.html:4
-msgid "Welcome"
-msgstr "ကြိုဆိုပါတယ်။"
-
-#: odm_nav/templates/home/layout1.html:5
-msgid "Welcome to Open Development Datahub"
-msgstr "Open Development Datahub မှကြိုဆိုပါတယ်။"
-
-#: odm_nav/templates/home/layout1.html:6
-msgid ""
-"Open Development Mekong (OD Mekong) provides information on development "
-"trends in the Mekong Region to increase public awareness, enable individual "
-"analysis, improve information sharing, and inform debate - all contributing "
-"to sustainable development from a social, economic and environmental "
-"perspective."
-msgstr "Open Development Mekong (OD မဲခေါင်) သည် မဲခေါင်ဒေသ၏ လူမှု စီးပွါး နှင့် သဘာဝပါတ်ဝန်းကျင် ရေရှည်ဖွံ့ဖြိုးတိုးတက်မှုအပေါ် လူထုစိတ်ဝင်စားမှုမြင့်တက်စေရန်၊ တစ်သီးပုဂ္ဂလ လေ့လာစမ်းစစ်မှုများပြုလုပ်နိုင်ရန်၊ သတင်းအချက်အလက်မျှဝေမှုတိုးတက်စေရန်နှင့် လူထုအကြားဆွေးနွေးမှုများရှိလာစေရန်အတွက် သတင်းအချက်အလက်များထောက်ပံ့ပေးပါသည်။"
-
-#: odm_nav/templates/home/layout1.html:10
-msgid "Contribute"
-msgstr "ပါဝင်မည်။"
-
-#: odm_nav/templates/home/layout1.html:11
-msgid "Add Dataset"
-msgstr "Dataset ထည့်သွင်းမည်။"
-
-#: odm_nav/templates/home/layout1.html:14
-msgid "Need Help?"
-msgstr "အကူအညီလိုအပ်ပါသလား။"
-
-#: odm_nav/templates/home/layout1.html:15
-msgid "Documentation"
-msgstr "မှတ်တမ်းပြုစုခြင်း။"
-
-#: odm_nav/templates/home/layout1.html:18
-msgid "Discover more"
-msgstr "ထပ်မံရှာဖွေရန်။"
-
-#: odm_nav/templates/home/layout1.html:19
-msgid "Visit OD Mekong's website"
-msgstr "OD မဲခေါင်၏ Website ကိုသွားမည်။"
-
-#: odm_nav/templates/home/layout1.html:25
-msgid "Statistics"
-msgstr "ကိန်းကဏန်းအချက်အလက်များ။"
-
-#: odm_nav/templates/home/snippets/popular_datasets.html:3
-msgid "Popular datasets"
-msgstr "လူကြိုက်များသော Dataset များ"
-
-#: odm_nav/templates/home/snippets/recent_datasets.html:3
-msgid "Recent datasets"
-msgstr "မကြာသေးမီကတင်ခဲ့သော Dataset များ"
-
-#: odm_nav/templates/home/snippets/search.html:2
-msgid "E.g. environment"
-msgstr "ဥပမာ-သဘာဝပါတ်ဝန်းကျင်"
-
-#: odm_nav/templates/home/snippets/search.html:6
-msgid "Search data"
-msgstr "Data ရှာရန်"
-
-#: odm_nav/templates/home/snippets/search.html:11
-msgid "Search"
-msgstr "ရှာရန်"
-
-#: odm_nav/templates/home/snippets/search.html:16
-msgid "Popular tags"
-msgstr "လူကြိုက်များသောချိတ်ဆက်မှုများ။"
-
-#: odm_nav/templates/home/snippets/stats.html:4
-#, python-brace-format
-msgid "{0} statistics"
-msgstr "{0} ကိန်းကဏန်းအချက်အလက်များ။"
-
-#: odm_nav/templates/home/snippets/stats.html:9
-msgid "dataset"
-msgstr "dataset"
-
-#: odm_nav/templates/home/snippets/stats.html:9
-msgid "datasets"
-msgstr "dataset များ"
-
-#: odm_nav/templates/home/snippets/stats.html:15
-msgid "organization"
-msgstr "အဖွဲ့အစည်း"
-
-#: odm_nav/templates/home/snippets/stats.html:15
-msgid "organizations"
-msgstr "အဖွဲ့အစည်းများ"
-
-#: odm_nav/templates/home/snippets/stats.html:21
-msgid "group"
-msgstr "အုပ်စု"
-
-#: odm_nav/templates/home/snippets/stats.html:21
-msgid "groups"
-msgstr "အုပ်စုများ"
-
-#: odm_nav/templates/home/snippets/stats.html:27
-msgid "related item"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:27
-msgid "related items"
-msgstr ""
-
-#: odm_nav/templates/macros/form.html:22
-msgid "Title"
-msgstr "ခေါင်းစဥ်"
-
-#: odm_nav/templates/package/read.html:11
-#: odm_nav/templates/snippets/package_item.html:47
-msgid "Private"
-msgstr ""
-
-#: odm_nav/templates/package/read.html:22
-#: odm_nav/templates/snippets/package_item.html:56
-msgid "Draft"
-msgstr ""
-
-#: odm_nav/templates/package/read.html:25
-#: odm_nav/templates/snippets/package_item.html:58
-msgid "Deleted"
-msgstr ""
-
-#: odm_nav/templates/package/snippets/resources_list.html:17
-msgid "This dataset has no data"
-msgstr ""
-
-#: odm_nav/templates/snippets/facet_list.html:84
-#, python-brace-format
-msgid "Show More {facet_type}"
-msgstr ""
-
-#: odm_nav/templates/snippets/facet_list.html:87
-#, python-brace-format
-msgid "Show Only Popular {facet_type}"
-msgstr ""
-
-#: odm_nav/templates/snippets/facet_list.html:91
-#, python-brace-format
-msgid "There are no {facet_type} that match this search"
-msgstr ""
-
-#: odm_nav/templates/snippets/package_item.html:66
-msgid "Popular"
-msgstr ""
-
-#: odm_nav/templates/snippets/package_item.html:79
-msgid "This dataset has no description"
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:16
-#, python-brace-format
-msgid "{number} library record found for \"{query}\""
-msgid_plural "{number} library records found for \"{query}\""
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:17
-#, python-brace-format
-msgid "No library records found for \"{query}\""
-msgstr "စာကြည့်တိုက်မှတ်တမ်းထဲတွင် \"{query}\" မရှိပါ။"
-
-#: odm_nav/templates/snippets/search_result_text.html:18
-#, python-brace-format
-msgid "{number} library record found"
-msgid_plural "{number} library records found"
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:19
-msgid "No library records found"
-msgstr "စာကြည့်တိုက်မှတ်တမ်းထဲတွင် မရှိပါ။"
-
-#: odm_nav/templates/snippets/search_result_text.html:22
-#, python-brace-format
-msgid "{number} laws found for \"{query}\""
-msgid_plural "{number} laws found for \"{query}\""
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:23
-#, python-brace-format
-msgid "No laws found for \"{query}\""
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:24
-#, python-brace-format
-msgid "{number} law found"
-msgid_plural "{number} laws found"
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:25
-msgid "No laws found"
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:28
-#, python-brace-format
-msgid "{number} dataset found for \"{query}\""
-msgid_plural "{number} datasets found for \"{query}\""
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:29
-#, python-brace-format
-msgid "No datasets found for \"{query}\""
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:30
-#, python-brace-format
-msgid "{number} dataset found"
-msgid_plural "{number} datasets found"
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:31
-msgid "No datasets found"
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:34
-#, python-brace-format
-msgid "{number} group found for \"{query}\""
-msgid_plural "{number} groups found for \"{query}\""
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:35
-#, python-brace-format
-msgid "No groups found for \"{query}\""
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:36
-#, python-brace-format
-msgid "{number} group found"
-msgid_plural "{number} groups found"
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:37
-msgid "No groups found"
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:40
-#, python-brace-format
-msgid "{number} organization found for \"{query}\""
-msgid_plural "{number} organizations found for \"{query}\""
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:41
-#, python-brace-format
-msgid "No organizations found for \"{query}\""
-msgstr ""
-
-#: odm_nav/templates/snippets/search_result_text.html:42
-#, python-brace-format
-msgid "{number} organization found"
-msgid_plural "{number} organizations found"
-msgstr[0] ""
-
-#: odm_nav/templates/snippets/search_result_text.html:43
-msgid "No organizations found"
-msgstr ""
+#~ msgid ""
+#~ "This work (www.opendevelopmentmekong.net) and any original materials produced and published by OD Mekong herein "
+#~ "are licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. News article summaries are "
+#~ "extracted from their sources, as guided by fair-use principles and are copyrighted by their respective sources. "
+#~ "Materials on the Open Development Mekong (OD Mekong) website and its accompanying database are compiled from "
+#~ "publicly available documentation and provided without fee for general informational purposes only. This is "
+#~ "neither a commercial research service nor a domain managed by any governmental or inter-governmental agency; it "
+#~ "is managed as a private non-profit open data/open knowledge media group. Information is publicly posted only "
+#~ "after a careful vetting and verification process. However, OD Mekong cannot guarantee accuracy, completeness or "
+#~ "reliability from third party sources in every instance.  OD Mekong makes no representation or warranty, either "
+#~ "expressed or implied, in fact or in law, with respect to the accuracy, completeness or appropriateness of the "
+#~ "data, materials or documents contained or referenced herein or provided."
+#~ msgstr ""
+#~ "ဤ (www.opendevelopmentmekong.net) နှင့် OD မဲခေါင်မှထုတ်လုပ်ဖြန် ့ဝေသည့် မည်သည့် မူရင်းအကြောင်းအရာမဆိုသည် Creative Commons-ShareAlike "
+#~ "3.0 Unported ၏အောက်တွင်မှတ်ပုံတင်ထားသည်။ သတင်းဆောင်းပါးများကို မူလအရင်းအမြစ်မှ (မျှတစွာ အသုံးပြုခြင်း) fair-use စည်းမျဉ်းများအတိုင်း "
+#~ "ထုတ်ယူထားပြီး မူပိုင်ခွင့်မှာသက်ဆိုင်ရာ အရင်းမြစ်များထံတွင်ရှိသည်။ ပွင့်လင်းဖွံ ့ဖြိုးတိုးတက်မှု မဲခေါင်ဒေသ (OD မဲခေါင်) website နှင့် ၄င်းနှင့်ဆက်နွှယ်နေသော database "
+#~ "မှာ လူထုရယူနိုင်သော သတင်းအချက်အလက်မှတ်တမ်းများမှ  သတင်းအချက်အလက်ဆိုင်ရာ အထွေထွေ အသုံးပြုရန် ရည်ရွယ်ချက်ဖြင့် အခမဲ့ရယူထားခြင်းဖြစ်သည်။ ဤသည်မှာ "
+#~ "စီးပွါးဖြစ်လုပ်ဆောင်နေသော သုသေသန ၀န်ဆောင်မှုမဟုတ်၊ မည်သည့်အစိုးရ သို ့မဟုတ် အစိုးရနှင့်ဆက်နွှယ်သော အဖွဲ ့အစည်းများမှ စီမံခန် ့ခွဲသည့် domain လည်းမဟုတ်ပါ။ ဤသည်မှာ "
+#~ "ငွေကြေးအကျိုးအမြတ်အတွက်မဟုတ်သည့် ပွင့်လင်းအချက်အလက်/ ပွင့်လင်း ဗဟုသုတ မီဒီယာအဖွဲ ့ဖြစ်သည်။ သတင်းအချက်အလက်များကို စီစစ်ခြင်းနှင့် စစ်ဆေးအတည်ပြုခြင်းဖြစ်စဉ်ကို "
+#~ "ဂရုတစိုက်ပြုလုပ်ပြီးနောက် လူထုရယူနိုင်ရန် တင်ပေးသည်။ မည်သို ့ပင်ဆိုစေ OD မဲခေါင် အနေဖြင့်မည်သည့်ဖြစ်ရပ်တွင်မဆို တတိယပါတီရင်းမြစ်များအနေဖြင့်  တိကျသေချာမှု၊ "
+#~ "ပြီးပြည့်စုံမှု သို ့မဟုတ် ယုံကြည်စိတ်ချရနိုင်မှု တို ့ကိုအာမခံ မပေးနိုင်ပါ။ ဤတွင် ပါ၀င်သော သို ့မဟုတ် ရည်ညွှန်းထားသော သို ့မဟုတ် ရရှိနိုင်သော အချက်အလက်များ၊ ပုံပမာများ သို "
+#~ "့မဟုတ် စာရွက်စာတမ်းများ၏ တိကျမှန်ကန်မှု၊ ပြီးပြည့်စုံမှု၊ သို ့မဟုတ် သင့်လျော်မှု တို ့ကို OD မဲခေါင်အနေဖြင့် ကိုယ်စားမပြုပါ သို ့မဟုတ် အာမမခံပါ။ အချက်အလက် သို ့မဟုတ် "
+#~ "ဥပဒေကြောင်းအရ မဖော်ပြပါ သို ့မဟုတ် အသုံးမပြုပါ။ "
+
+#~ msgid ""
+#~ "Site users are encouraged to do additional research in support of their activities and to share the results of "
+#~ "that research with our team, contact info@opendevcam.net, to further improve the site accuracy."
+#~ msgstr ""
+#~ "ဤ website အသုံးပြုသူများ၏ လှုပ်ရှားမှုကို ပိုမိုအထောက်အပံ့ပြုရန်အတွက် သုတေသနထပ်မံ၍ပြုလုပ်ရန် တိုက်တွန်းအားပေးအပ်ပါသည်။ Website ၏ တိကျသေချာမှုကိုတိုးတက်စေရန်အတွက် "
+#~ "ကျွန်ုပ်တို့ ၏အဖွဲ့နှင့် သင်၏သုတေသနကို ဝေမျှလိုပါက info@opendevcam.net ကိုဆက်သွယ်နိုင်ပါသည်။ "
+
+#~ msgid ""
+#~ "By accessing this website OD Mekong website and database users agree to take full responsibility for reliance on "
+#~ "any site information provided and to hold harmless and waive any and all liability against individuals or "
+#~ "entities associated with its development, form and content for any loss, harm or damage suffered as a result of "
+#~ "its use."
+#~ msgstr ""
+#~ "OD မဲခေါင် website နှင့် database ကိုအသုံးပြုသူများသည် ဤတွင်ရှိသော မည်သည့်သတင်းအချက်အလက်မဆိုအပေါ်ယုံကြည်မှုအတွက် တာဝန်ယူရမည်ဖြစ်ပြီး "
+#~ "ထိခိုက်နစ်နာမှုမရှိအောင်အသုံးပြုရမည်။ တစ်သီးပုဂ္ဂလ သို့မဟုတ် သီးခြားဖြစ်တည်မှုများ၏ ဖွံ့ဖြိုးမှု၊ ပုံစံ နှင့် အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်သည့် မည်သည့် ဆုံးရှုံးမှု၊ ထိခိုက်နစ်နာမှု "
+#~ "သို့မဟုတ် ပျက်ဆီးမှုတို့အတွက် တာဝန်ယူရမည်။"
+
+#~ msgid "About us"
+#~ msgstr "ကျွန်ုပ်တို့အကြောင်း"
+
+#~ msgid "Contact"
+#~ msgstr "ဆက်သွယ်ရန်"
+
+#~ msgid "Disclaimer"
+#~ msgstr "ငြင်းဆိုချက်"
+
+#~ msgid "Back to OD Mekong"
+#~ msgstr "OD Mekong ကိုပြန်သွားရန်"
+
+#~ msgid "Dashboard (%(num)d new item)"
+#~ msgid_plural "Dashboard (%(num)d new items)"
+#~ msgstr[0] "Dashboard (%(num)d အမျိုးအစားသစ်များ)"
+
+#~ msgid "Log in"
+#~ msgstr "ဝင်မည်။"
+
+#~ msgid "Register"
+#~ msgstr "မှတ်ပုံတင်မည်။"
+
+#~ msgid "Welcome"
+#~ msgstr "ကြိုဆိုပါတယ်။"
+
+#~ msgid "Welcome to Open Development Datahub"
+#~ msgstr "Open Development Datahub မှကြိုဆိုပါတယ်။"
+
+#~ msgid ""
+#~ "Open Development Mekong (OD Mekong) provides information on development trends in the Mekong Region to increase "
+#~ "public awareness, enable individual analysis, improve information sharing, and inform debate - all contributing "
+#~ "to sustainable development from a social, economic and environmental perspective."
+#~ msgstr ""
+#~ "Open Development Mekong (OD မဲခေါင်) သည် မဲခေါင်ဒေသ၏ လူမှု စီးပွါး နှင့် သဘာဝပါတ်ဝန်းကျင် ရေရှည်ဖွံ့ဖြိုးတိုးတက်မှုအပေါ် လူထုစိတ်ဝင်စားမှုမြင့်တက်စေရန်၊ "
+#~ "တစ်သီးပုဂ္ဂလ လေ့လာစမ်းစစ်မှုများပြုလုပ်နိုင်ရန်၊ သတင်းအချက်အလက်မျှဝေမှုတိုးတက်စေရန်နှင့် လူထုအကြားဆွေးနွေးမှုများရှိလာစေရန်အတွက် "
+#~ "သတင်းအချက်အလက်များထောက်ပံ့ပေးပါသည်။"
+
+#~ msgid "Contribute"
+#~ msgstr "ပါဝင်မည်။"
+
+#~ msgid "Add Dataset"
+#~ msgstr "Dataset ထည့်သွင်းမည်။"
+
+#~ msgid "Need Help?"
+#~ msgstr "အကူအညီလိုအပ်ပါသလား။"
+
+#~ msgid "Documentation"
+#~ msgstr "မှတ်တမ်းပြုစုခြင်း။"
+
+#~ msgid "Discover more"
+#~ msgstr "ထပ်မံရှာဖွေရန်။"
+
+#~ msgid "Visit OD Mekong's website"
+#~ msgstr "OD မဲခေါင်၏ Website ကိုသွားမည်။"
+
+#~ msgid "Statistics"
+#~ msgstr "ကိန်းကဏန်းအချက်အလက်များ။"
+
+#~ msgid "Popular datasets"
+#~ msgstr "လူကြိုက်များသော Dataset များ"
+
+#~ msgid "Recent datasets"
+#~ msgstr "မကြာသေးမီကတင်ခဲ့သော Dataset များ"
+
+#~ msgid "E.g. environment"
+#~ msgstr "ဥပမာ-သဘာဝပါတ်ဝန်းကျင်"
+
+#~ msgid "Search data"
+#~ msgstr "Data ရှာရန်"
+
+#~ msgid "Search"
+#~ msgstr "ရှာရန်"
+
+#~ msgid "Popular tags"
+#~ msgstr "လူကြိုက်များသောချိတ်ဆက်မှုများ။"
+
+#~ msgid "{0} statistics"
+#~ msgstr "{0} ကိန်းကဏန်းအချက်အလက်များ။"
+
+#~ msgid "dataset"
+#~ msgstr "dataset"
+
+#~ msgid "datasets"
+#~ msgstr "dataset များ"
+
+#~ msgid "organization"
+#~ msgstr "အဖွဲ့အစည်း"
+
+#~ msgid "organizations"
+#~ msgstr "အဖွဲ့အစည်းများ"
+
+#~ msgid "group"
+#~ msgstr "အုပ်စု"
+
+#~ msgid "groups"
+#~ msgstr "အုပ်စုများ"
+
+#~ msgid "Title"
+#~ msgstr "ခေါင်းစဥ်"
+
+#~ msgid "No library records found for \"{query}\""
+#~ msgstr "စာကြည့်တိုက်မှတ်တမ်းထဲတွင် \"{query}\" မရှိပါ။"
+
+#~ msgid "No library records found"
+#~ msgstr "စာကြည့်တိုက်မှတ်တမ်းထဲတွင် မရှိပါ။"
