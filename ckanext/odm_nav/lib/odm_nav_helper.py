@@ -15,7 +15,6 @@ from pprint import pprint
 import string
 import requests
 import simplejson as json
-from pylons import config
 import traceback
 
 log = logging.getLogger(__name__)
