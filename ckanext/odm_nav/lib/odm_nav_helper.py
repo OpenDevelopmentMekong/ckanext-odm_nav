@@ -34,7 +34,6 @@ def localize_resource_url(url):
   except:
     return url
 
-
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
 
@@ -108,6 +107,18 @@ def popular_datasets(limit):
       data_dict={'sort': 'views_recent desc', 'rows': limit})
 
   return result_dict['results']
+
+def get_all_laws_records():
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record'})
+	return map(lambda x:x["name"], result['results'])
+
+def get_all_library_records():
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record'})
+	return map(lambda x:x["name"], result['results'])
+
+def get_all_datasets():
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset'})
+	return map(lambda x:x["name"], result['results'])
 
 def tag_for_topic(topic):
   '''Return the name of the tag corresponding to a top topic'''

@@ -101,7 +101,10 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
       'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
       'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
-      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html
+      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
+      'odm_nav_get_all_laws_records':odm_nav_helper.get_all_laws_records,
+      'odm_nav_get_all_library_records':odm_nav_helper.get_all_library_records,
+      'odm_nav_get_all_datasets':odm_nav_helper.get_all_datasets
 	}
 
   # IPackageController
