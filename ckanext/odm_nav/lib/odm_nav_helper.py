@@ -109,15 +109,15 @@ def popular_datasets(limit):
   return result_dict['results']
 
 def get_all_laws_records():
-	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record'})
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record','rows':1000})
 	return map(lambda x:x["name"], result['results'])
 
 def get_all_library_records():
-	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record'})
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record','rows':1000})
 	return map(lambda x:x["name"], result['results'])
 
 def get_all_datasets():
-	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset'})
+	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset','rows':1000})
 	return map(lambda x:x["name"], result['results'])
 
 def tag_for_topic(topic):
