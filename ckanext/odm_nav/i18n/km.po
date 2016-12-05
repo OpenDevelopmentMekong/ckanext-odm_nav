@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # ChandaraKhun <chandara@opendevcam.net>, 2016
 # ODM Cambodia <cambodia@opendevmekong.net>, 2015
@@ -8,19 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_nav\n"
 "POT-Creation-Date: 2016-10-04 19:08+0200\n"
-"PO-Revision-Date: 2016-10-04 19:08+0200\n"
+"PO-Revision-Date: 2016-10-04 17:12+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/"
-"language/km/)\n"
-"Language: km\n"
+"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_nav/language/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_nav/plugin.py:47 odm_nav/plugin.py:59 odm_nav/plugin.py:69
 msgid "License"
@@ -41,78 +40,3 @@ msgstr "ភាសា"
 #: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
 msgid "Country"
 msgstr ""
-
-#~ msgid ""
-#~ "Site users are encouraged to do additional research in support of their activities and to "
-#~ "share the results of that research with our team, contact info@opendevcam.net, to further "
-#~ "improve the site accuracy."
-#~ msgstr ""
-#~ "អ្នកប្រើប្រាស់គេហទំព័រត្រូវបានជំរុញអោយធ្វើការស្រាវជ្រាវបន្ថែមជាជំនួយនៃសកម្មភាពរបស់ពួកគេ "
-#~ "និងចែករំលែកលទ្ធផលទាំងនោះជាមួយនឹងក្រុមយើងខ្ញុំ។ ទំនាក់ទំនង info@opendevcam.net ដើម្បីជួយកែលំអរកំរិតជាក់លាក់នៃទំព័រ។"
-
-#~ msgid ""
-#~ "By accessing this website OD Mekong website and database users agree to take full "
-#~ "responsibility for reliance on any site information provided and to hold harmless and waive "
-#~ "any and all liability against individuals or entities associated with its development, form "
-#~ "and content for any loss, harm or damage suffered as a result of its use."
-#~ msgstr ""
-#~ "ការចូលមកកាន់គេហទំព័រ អូឌី មេគង្គ ឬប្រើប្រាស់មូលដ្ឋានទិន្នន័យនៅលើគេហទំព័រនេះ បានន័យថា អ្នកទទួលស្គាល់ថាអ្នកមានទំនួលខុសត្រូវ "
-#~ "ទាំងស្រុង លើការពឹងផ្អែក លើគ្រប់ព័ត៌មានផ្តល់ឱ្យនៅលើគេហទំព័រនេះ ហើយយល់ព្រមថាអ្នកនឹងមិនបង្ករអន្តរាយ ឬ ទាមទារ​"
-#~ "ឱ្យមានការទទួលខុស​ត្រូវពីបុគ្គល ឬអង្គភាពពាក់ព័ន្ធនឹងការអភិវឌ្ឍទម្រង់ និងខ្លឹមសាររបស់គេហទំព័រនេះ សម្រាប់រាល់ការបាត់បង់ "
-#~ "ការខូចប្រយោជន៍ ឬ អន្តរាយដែលកើតចេញពីការប្រើប្រាស់គេហទំព័រនេះ។"
-
-#~ msgid "About us"
-#~ msgstr "អំពីយើង"
-
-#~ msgid "Contact"
-#~ msgstr "ទំនាក់ទំនង"
-
-#~ msgid "Disclaimer"
-#~ msgstr "សេចក្តី​ថ្លែង​បដិសេធ"
-
-#~ msgid "Back to OD Mekong"
-#~ msgstr "ត្រឡប់ទៅគេហទំព័រ អូឌី មេគង្គ វិញ"
-
-#~ msgid ""
-#~ "Open Development Mekong (OD Mekong) provides information on development trends in the Mekong "
-#~ "Region to increase public awareness, enable individual analysis, improve information sharing, "
-#~ "and inform debate - all contributing to sustainable development from a social, economic and "
-#~ "environmental perspective."
-#~ msgstr ""
-#~ "Open Development Mekong (អូឌី មេគង្គ) "
-#~ "ផ្តល់ព័ត៌មានអំពីនិន្នាការនៃការអភិវឌ្ឍនៅតំបន់ទន្លេមេគង្គដើម្បីបង្កើនការយល់ដឹងជាសាធារណៈ លើកកំពស់ការវិភាគជាបុគ្គល "
-#~ "ធ្វើឱ្យប្រសើរឡើងនូវការចែករំលែកព័ត៌មាននិង សម្រួល​ដល់ការជជែក​ពិភាក្សាគ្នា - ទាំងអស់នេះ "
-#~ "នឹងចូលរួមចំណែកដល់ការអភិវឌ្ឍប្រកបដោយចីរភាព តាមទស្សនៈវិស័យសង្គមកិច្ច សេដ្ឋកិច្ច និងបរិស្ថាន។"
-
-#~ msgid "Contribute"
-#~ msgstr "ចូលរួម"
-
-#~ msgid "Need Help?"
-#~ msgstr "ត្រូវការជំនួយ?"
-
-#~ msgid "Discover more"
-#~ msgstr "រកមើលបន្ថែម"
-
-#~ msgid "Visit OD Mekong's website"
-#~ msgstr "ចូលមើលគេហទំព័រ អូឌី មេគង្គ"
-
-#~ msgid "Popular datasets"
-#~ msgstr "សំណុំទិន្នន័យពេញនិយម"
-
-#~ msgid "Recent datasets"
-#~ msgstr "សំណុំទិន្នន័យថ្មីៗ"
-
-#~ msgid "Search data"
-#~ msgstr "ស្វែងរកទិន្នន័យ"
-
-#~ msgid "Search"
-#~ msgstr "ស្វែងរក"
-
-#~ msgid "Title"
-#~ msgstr "ចំណងជើង"
-
-#~ msgid "No library records found for \"{query}\""
-#~ msgstr "ពុំមានកំណត់ត្រាបណ្ណាល័យសំរាប់ \"{សំណួរ}\""
-
-#~ msgid "No library records found"
-#~ msgstr "ពុំមានកំណត់ត្រាបណ្ណាល័យ"
