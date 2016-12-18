@@ -120,6 +120,18 @@ def get_all_datasets():
 	result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset','rows':1000})
 	return map(lambda x:x["name"], result['results'])
 
+def get_all_laws_records_complete():
+  result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record','rows':1000})
+  return result['results']
+
+def get_all_library_records_complete():
+  result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record','rows':1000})
+  return result['results']
+
+def get_all_datasets_complete():
+  result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset','rows':1000})
+  return result['results']
+
 def tag_for_topic(topic):
   '''Return the name of the tag corresponding to a top topic'''
 
