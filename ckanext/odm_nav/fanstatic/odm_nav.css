@@ -1059,3 +1059,7 @@ a.header_tag:hover {
 .resource_explore_icon-eye{
 	width: 24px;
 }
+
+.page-header .content_action{
+  width: 100%;
+}

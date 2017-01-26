@@ -1,5 +1,26 @@
 {% ckan_extends  %}
 
+<div class="row">
+	{% block content_action %}
+		<div class="span4 col1">
+			{% snippet "snippets/language_selector_custom.html" %}
+		</div>
+		{% if h.check_access('package_update', {'id':pkg.id }) %}
+		<div class="span4 col2">
+			{% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+		</div>
+	  {% endif %}
+	{% endblock %}
+</div>
+
+<div class="row">
+	{% block content_primary_nav %}
+	  {{ super() }}
+	{% endblock %}
+</div>
+
+
+
 {% block package_info %}
   {# NOTE: Hiding info snippet. See https://github.com/OpenDevelopmentMekong/ckanext-odm_nav/issues/32
     {% snippet 'package/snippets/info.html', pkg=pkg %}
