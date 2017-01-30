@@ -1,0 +1,11 @@
+{% set current_url = request.environ.CKAN_CURRENT_URL %}
+{% set current_lang = request.environ.CKAN_LANG %}
+<form class="form-inline form-select lang-select" action="{% url_for controller='util', action='redirect' %}" method="POST">
+  <ul class="odm_language_selector">
+    {% for locale in h.get_available_locales() %}
+      <li>
+        <a href="{% url_for current_url, locale=locale %}">{{ locale.display_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</form>
