@@ -581,6 +581,11 @@ a.tag:hover {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+
+.account-masthead .lang-select{
+	float:left;
+	margin: 2px 4px;
+}
 .masthead {
   *zoom: 1;
   min-height: 55px;
@@ -1058,8 +1063,4 @@ a.header_tag:hover {
 
 .resource_explore_icon-eye{
 	width: 24px;
-}
-
-.page-header .content_action{
-  width: 100%;
 }
