@@ -104,9 +104,11 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
       'odm_nav_get_all_laws_records':odm_nav_helper.get_all_laws_records,
       'odm_nav_get_all_library_records':odm_nav_helper.get_all_library_records,
+      'odm_nav_get_all_agreements':odm_nav_helper.get_all_agreements,
       'odm_nav_get_all_datasets':odm_nav_helper.get_all_datasets,
       'odm_nav_get_all_laws_records_complete':odm_nav_helper.get_all_laws_records_complete,
       'odm_nav_get_all_library_records_complete':odm_nav_helper.get_all_library_records_complete,
+      'odm_nav_get_all_agreements_complete':odm_nav_helper.get_all_agreements_complete,
       'odm_nav_get_all_datasets_complete':odm_nav_helper.get_all_datasets_complete
 	}
 
