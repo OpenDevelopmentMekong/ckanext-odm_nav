@@ -1,5 +1,7 @@
 {% ckan_extends  %}
 
+{{c.pkg_dict}}
+
 {% if c.pkg_dict %}
 	{% set package = c.pkg_dict %}
 	{% for country_code in package["odm_spatial_range"] %}
