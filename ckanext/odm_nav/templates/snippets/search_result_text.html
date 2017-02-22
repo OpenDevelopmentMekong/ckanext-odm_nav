@@ -18,6 +18,12 @@ Example:
   {% set text_no_query = ungettext('{number} library record found', '{number} library records found', count) %}
   {% set text_no_query_none = _('No library records found') %}
 
+{% elif type == 'agreement' %}
+  {% set text_query = ungettext('{number} agreement found for "{query}"', '{number} agreements found for "{query}"', count) %}
+  {% set text_query_none = _('No agreements found for "{query}"') %}
+  {% set text_no_query = ungettext('{number} agreement found', '{number} agreements found', count) %}
+  {% set text_no_query_none = _('No agreements found') %}
+
 {% elif type == 'laws_record' %}
   {% set text_query = ungettext('{number} laws found for "{query}"', '{number} laws found for "{query}"', count) %}
   {% set text_query_none = _('No laws found for "{query}"') %}
