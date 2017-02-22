@@ -33,6 +33,18 @@
       {% block meta_generator %}<meta name="generator" content="ckan {{ c.__version__ }}" />{% endblock %}
     {%- endblock -%}
 
+		{% if c.pkg_dict %}
+			{% set package = c.pkg_dict %}
+			{% for country_code in package["odm_spatial_range"] %}
+				<meta property="odm_spatial_range" content="{{country_code}}"/>
+			{% endfor %}
+			{% for language in package["odm_language"] %}
+				<meta property="odm_language" content="{{language}}"/>
+			{% endfor %}
+			<meta property="odm_type" content="{{package['type']}}"/>
+			<meta property="odm_license" content="{{package['license_id']}}"/>
+		{% endif %}
+
     {#
     Add a custom title to the page by extending the title block. Call super()
     to get the default page title.
