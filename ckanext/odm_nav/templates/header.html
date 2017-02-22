@@ -1,5 +1,17 @@
 {% ckan_extends  %}
 
+{% if c.pkg_dict %}
+	{% set package = c.pkg_dict %}
+	{% for country_code in package["odm_spatial_range"] %}
+		<meta property="odm_spatial_range" content="{{country_code}}"/>
+	{% endfor %}
+	{% for language in package["odm_language"] %}
+		<meta property="odm_language" content="{{language}}"/>
+	{% endfor %}
+	<meta property="odm_type" content="{{package['type']}}"/>
+	<meta property="odm_license" content="{{package['license_id']}}"/>
+{% endif %}
+
 {% block header_account_logged %}
 	{% snippet "snippets/language_selector_custom.html" %}
 	{{ super() }}
