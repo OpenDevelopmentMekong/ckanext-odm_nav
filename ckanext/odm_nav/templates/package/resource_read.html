@@ -2,11 +2,11 @@
 
 {% set res = c.resource %}
 
-{% if res.name_translated %}
+{% if res.name_translated and h.odm_dataset_get_current_language() in res.name_translated %}
   {% set ml_name = res.name_translated[h.odm_dataset_get_current_language()] %}
 {% endif %}
 
-{% if res.description_translated %}
+{% if res.description_translated and h.odm_dataset_get_current_language() in res.description_translated %}
   {% set ml_description = h.markdown_extract(res.description_translated[h.odm_dataset_get_current_language()]) %}
 {% endif %}
 
