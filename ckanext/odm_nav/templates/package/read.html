@@ -2,6 +2,16 @@
 
 {% set pkg = c.pkg_dict %}
 
+<script type="text/javascript">
+    console.log("blablabla")
+</script>
+{% if not c.userobj %}
+<h1>redirect</h1>
+<script type="text/javascript">
+    window.location.href = "http://example.com"
+</script>
+{% endif %}
+
 {% block primary_content_inner %}
   {{ super() }}
   {% block package_description %}

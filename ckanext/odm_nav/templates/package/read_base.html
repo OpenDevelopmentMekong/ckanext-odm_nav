@@ -1,15 +1,5 @@
 {% ckan_extends %}
 
-<script type="text/javascript">
-    console.log("blablabla")
-</script>
-{% if not c.userobj %}
-<h1>redirect</h1>
-<script type="text/javascript">
-    window.location.href = "http://example.com"
-</script>
-{% endif %}
-  
 {% block package_info %}
   {# NOTE: Hiding info snippet. See https://github.com/OpenDevelopmentMekong/ckanext-odm_nav/issues/32
     {% snippet 'package/snippets/info.html', pkg=pkg %}
