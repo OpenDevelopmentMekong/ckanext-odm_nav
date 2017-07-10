@@ -2,6 +2,7 @@
 
 {% block redirect_unlogged_users %}
   {% if not c.userobj %}
+  <h1>redirect</h1>
   <script type="text/javascript">
       window.location.href = "http://example.com"
   </script>
