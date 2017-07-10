@@ -1,6 +1,9 @@
 {% ckan_extends %}
 
 {% block redirect_unlogged_users %}
+  <script type="text/javascript">
+      console.log("blablabla")
+  </script>
   {% if not c.userobj %}
   <h1>redirect</h1>
   <script type="text/javascript">
