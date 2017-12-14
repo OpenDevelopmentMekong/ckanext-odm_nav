@@ -3,6 +3,7 @@ python:
   - 2.7
 install: _ci/install.sh
 script: nosetests
+sudo: required
 deploy:
 - provider: script
   script: _ci/deploy.sh
