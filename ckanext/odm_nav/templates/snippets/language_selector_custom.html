@@ -3,6 +3,7 @@
 {% set current_url_mod =  request.environ.CKAN_CURRENT_URL | replace(locale_path,"") %}
 {% set current_url =  request.environ.CKAN_CURRENT_URL %}
 
+{{locale_path}}
 {{current_url_mod}}
 
 <form class="form-inline form-select lang-select" action="{% url_for controller='util', action='redirect' %}" data-module="select-switch" method="POST">
