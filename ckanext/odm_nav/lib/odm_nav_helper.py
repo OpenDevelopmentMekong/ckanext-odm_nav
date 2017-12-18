@@ -8,7 +8,7 @@ import json
 import ckan
 import logging
 import urlparse
-from urllib import urlencode
+import urllib
 from ckan.common import request
 import ckan.plugins.toolkit as toolkit
 import os
