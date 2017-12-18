@@ -8,6 +8,8 @@ import json
 import ckan
 import logging
 import urlparse
+from urllib import urlencode
+from ckan.common import request
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
@@ -176,5 +178,10 @@ def sanitize_html(string):
   string = ''.join(ch for ch in string if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
   string = string.replace(' ','-').lower()
   return string
+
+def current_url_no_language():
+  current_url = urllib.unquote(request.environ['CKAN_CURRENT_URL'])
+  current_lang_path = "/" + request.environ.['CKAN_LANG']
+  return current_url.replace(current_lang_path,'')
 
 session = {}
