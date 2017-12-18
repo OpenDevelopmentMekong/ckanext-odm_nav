@@ -180,9 +180,8 @@ def sanitize_html(string):
   return string
 
 def current_url_no_language():
-  current_url = urllib.unquote(request.environ['CKAN_CURRENT_URL'])
+  current_url = request.environ['CKAN_CURRENT_URL']
   current_lang_path = "/" + request.environ['CKAN_LANG']
-  #return current_url.replace(current_lang_path,'')
-  return current_lang_path
+  return urllib.unquote(current_url.replace(current_lang_path,''))
 
 session = {}
