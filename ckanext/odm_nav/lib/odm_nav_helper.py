@@ -18,6 +18,7 @@ import string
 import requests
 import simplejson as json
 import traceback
+from pylons import config
 
 log = logging.getLogger(__name__)
 
@@ -180,10 +181,11 @@ def sanitize_html(string):
   return string
 
 def current_url_with_locale(new_lang):
+  site_url = config.get('ckan.site_url')
   current_url = request.environ['CKAN_CURRENT_URL']
   current_lang_path = "/" + request.environ['CKAN_LANG']
   new_lang_path = "/" + new_lang
-  new_path = new_lang_path + current_url
+  new_path = site_url + new_lang_path + current_url
   return urllib.unquote(new_path)
 
 session = {}
