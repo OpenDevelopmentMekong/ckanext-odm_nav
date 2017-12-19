@@ -183,7 +183,7 @@ def current_url_with_locale(new_lang):
   current_url = request.environ['CKAN_CURRENT_URL']
   current_lang_path = "/" + request.environ['CKAN_LANG']
   new_lang_path = "/" + new_lang
-  new_path = current_url.replace(current_lang_path,new_lang_path)
+  new_path = new_lang_path + current_url
   return urllib.unquote(new_path)
 
 session = {}
