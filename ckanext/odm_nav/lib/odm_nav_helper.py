@@ -8,6 +8,8 @@ import json
 import ckan
 import logging
 import urlparse
+import urllib
+from ckan.common import request
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
@@ -16,6 +18,7 @@ import string
 import requests
 import simplejson as json
 import traceback
+from pylons import config
 
 log = logging.getLogger(__name__)
 
@@ -176,5 +179,12 @@ def sanitize_html(string):
   string = ''.join(ch for ch in string if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
   string = string.replace(' ','-').lower()
   return string
+
+def current_url_with_locale(new_lang):
+  site_url = config.get('ckan.site_url')
+  current_url = request.environ['CKAN_CURRENT_URL']
+  new_lang_path = "/" + new_lang
+  new_path = site_url + new_lang_path + current_url
+  return urllib.unquote(new_path)
 
 session = {}
