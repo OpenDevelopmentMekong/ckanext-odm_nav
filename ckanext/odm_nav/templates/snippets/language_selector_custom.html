@@ -1,7 +1,7 @@
 {% set current_lang = request.environ.CKAN_LANG %}
 
-<form class="form-inline form-select lang-select" action="{% redirect_to %}" data-module="select-switch" method="POST">
-  <select id="field-lang-select" name="url" data-module="autocomplete" data-module-dropdown-class="lang-dropdown" data-module-container-class="lang-container">
+<form class="form-inline form-select lang-select">
+  <select id="field-lang-select" onchange="location = this.value;" name="url" data-module="autocomplete" data-module-dropdown-class="lang-dropdown" data-module-container-class="lang-container">
     {% for locale in h.get_available_locales() %}
       <option value="{{ h.odm_nav_current_url_with_locale(locale.short_name) }}" {% if locale.identifier == current_lang %}selected="selected"{% endif %}>
         {{ locale.display_name or locale.english_name }}
