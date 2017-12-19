@@ -112,7 +112,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_nav_get_all_library_records_complete':odm_nav_helper.get_all_library_records_complete,
       'odm_nav_get_all_agreements_complete':odm_nav_helper.get_all_agreements_complete,
       'odm_nav_get_all_datasets_complete':odm_nav_helper.get_all_datasets_complete,
-      'odm_nav_current_url_no_language':odm_nav_helper.current_url_no_language
+      'odm_nav_current_url_with_locale':odm_nav_helper.current_url_with_locale
 	}
 
   # IPackageController
