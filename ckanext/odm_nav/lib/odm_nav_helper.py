@@ -180,11 +180,4 @@ def sanitize_html(string):
   string = string.replace(' ','-').lower()
   return string
 
-def current_url_with_locale(new_lang):
-  site_url = config.get('ckan.site_url')
-  current_url = request.environ['CKAN_CURRENT_URL']
-  new_lang_path = "/" + new_lang
-  new_path = site_url + new_lang_path + current_url
-  return urllib.unquote(new_path)
-
 session = {}
