@@ -87,6 +87,36 @@
     "is_okd_compliant": false,
     "is_osi_compliant": false,
     "family": "",
+    "id": "CC-BY-NC-2.5",
+    "maintainer": "Creative Commons",
+    "od_conformance": "not reviewed",
+    "osd_conformance": "not reviewed",
+    "status": "active",
+    "title": "Creative Commons Attribution Noncommercial 2.5 (CC-BY-NC-2.5)",
+    "url": "https://creativecommons.org/licenses/by-nc/2.5/"
+  }, {
+
+    "domain_content": true,
+    "domain_data": true,
+    "domain_software": false,
+    "is_okd_compliant": false,
+    "is_osi_compliant": false,
+    "family": "",
+    "id": "CC-BY-NC-SA-3.0",
+    "maintainer": "Creative Commons",
+    "od_conformance": "not reviewed",
+    "osd_conformance": "not reviewed",
+    "status": "active",
+    "title": "Creative Commons Attribution Noncommercial Share-Alike 3.0 (CC-BY-NC-SA-3.0)",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
+  }, {
+
+    "domain_content": true,
+    "domain_data": true,
+    "domain_software": false,
+    "is_okd_compliant": false,
+    "is_osi_compliant": false,
+    "family": "",
     "id": "CC-BY-ND-4.0",
     "maintainer": "Creative Commons",
     "od_conformance": "not reviewed",
