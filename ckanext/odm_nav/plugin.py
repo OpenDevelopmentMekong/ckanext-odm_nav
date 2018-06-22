@@ -116,19 +116,32 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   # IPackageController
   def before_create(self, context, resource):
+	
     log.info('before_create')
 
-    odm_nav_helper.session['last_dataset'] = None
-    odm_nav_helper.session.save()
+    try:
+      odm_nav_helper.session['last_dataset'] = None
+      odm_nav_helper.session.save()
+    except TypeError:
+      # evaluating session in non-session context
+      log.debug("TypeError evaluating session in odm_nav.plugin.before_create, session not available")
 
   def after_create(self, context, pkg_dict):
     log.debug('after_create: %s', pkg_dict['name'])
 
-    odm_nav_helper.session['last_dataset'] = pkg_dict
-    odm_nav_helper.session.save()
+    try:
+      odm_nav_helper.session['last_dataset'] = pkg_dict
+      odm_nav_helper.session.save()
+    except TypeError:
+      # evaluating session in non-session context
+      log.debug("TypeError evaluating session in odm_nav.plugin.after_create, session not available")
 
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])
 
-    odm_nav_helper.session['last_dataset'] = pkg_dict
-    odm_nav_helper.session.save()
+    try:
+      odm_nav_helper.session['last_dataset'] = pkg_dict
+      odm_nav_helper.session.save()
+    except TypeError:
+      # evaluating session in non-session context
+      log.debug("TypeError evaluating session in odm_nav.plugin.after_update, session not available")
