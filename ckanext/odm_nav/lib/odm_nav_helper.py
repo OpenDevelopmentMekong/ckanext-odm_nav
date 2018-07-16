@@ -20,6 +20,10 @@ import simplejson as json
 import traceback
 from pylons import config
 
+import ckan.logic as logic
+
+get_action = logic.get_action
+
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
@@ -181,3 +185,112 @@ def sanitize_html(string):
   return string
 
 session = {}
+
+#Helpers for data preview_resource
+
+
+def predict_if_resource_will_preview(resource_dict):
+    format = resource_dict.get('format')
+
+    if not format:
+        return False
+
+    normalised_format = format.lower().split('/')[-1]
+    accepted_formats = (('csv', 'xls', 'rdf+xml', 'owl+xml', 'xlsx',
+                                  'xml', 'n-triples', 'turtle', 'plain',
+                                  'txt', 'atom', 'tsv', 'rss',
+                                  'geojson', 'kml', 'json-stat',
+                                  'doc', 'docx', 'pdf',
+                                  'jpeg', 'jpg', 'png', 'gif','wms', 'json'))
+    # Check format is TSV or CSV but url doesn't end in that extension
+    if normalised_format in ('csv', 'tsv'):
+        # Get url file extension
+        url = resource_dict.get('url')
+        tmp = url.split('/')
+        tmp = tmp[len(tmp) - 1]
+        tmp = tmp.split('?')
+        tmp = tmp[0]
+        ext = tmp.split('.')
+
+        file_extension = None
+        if len(ext) > 1: #Because a filename with /only/ an extension doesn't make much sense
+            file_extension = ext[-1]
+        if file_extension:
+            return file_extension in ('csv', 'tsv')
+        else:
+            #Get the downloaded file extension from the server (workaround for CKAN /dump URLs)
+            #Inspired by CKAN resourceproxy code but much simpler here
+            try:
+                r = requests.head(url)
+                cd = r.headers.get('Content-Disposition', '')
+                filename = cd.split('filename')[1].split('"')[1]
+            except:
+                return False
+
+            ext = filename.split('.')
+            file_extension = None
+            if len(ext) > 0:
+                file_extension = ext[-1]
+
+            if file_extension:
+                return file_extension in ('csv', 'tsv')
+            else:
+                return False
+
+    else:
+        return normalised_format in accepted_formats
+
+def resource_to_preview_on_dataset_page(resources):
+    possible_resources = {}
+    for resource in resources:
+        if not resource.get('format', None):
+            continue
+        normalised_format = resource.get('format').lower().split('/')[-1]
+        if (predict_if_resource_will_preview(resource)):
+            if (not possible_resources.get(normalised_format)):
+                possible_resources[normalised_format] = []
+            possible_resources[normalised_format].append(resource)
+
+    preview_priority = [
+        # if there are image resource, we want to show them first as they are fast to load
+        'jpeg', 'jpg', 'png', 'gif',
+        # if we have a kml resource we want to show that next
+        'kml',
+        # if we don't have kml, try geojson
+        'geojson', 'wms',
+        # no geojson, maybe json-stat?
+        'json-stat',
+        # welp, now it's tables I guess
+        'csv', 'tsv', 'xls', 'xlsx',
+        # and json
+        'json',
+        # no table? probably a pdf :(
+        'pdf',
+        # maybe a doc or ppt?
+        'doc',
+        'docx',
+        'ppt',
+        'pptx'
+        # not that? no need to preview
+    ]
+    view_types_priority = [
+        'geo_view',
+        'jsonstat_view',
+        'text_view'
+    ]
+    for possible_format in preview_priority:
+        if (possible_resources.get(possible_format) and len(possible_resources.get(possible_format))):
+            context ={}
+            resource_views = get_action('resource_view_list')(
+                context, {'id': possible_resources.get(possible_format)[0]['id']})
+            for vtype in view_types_priority:
+                for rv in resource_views:
+                    if vtype == rv['view_type']:
+                        rv['resource_name'] = possible_resources.get(possible_format)[0]['name']
+                        rv['resource_url'] = possible_resources.get(possible_format)[0]['url']
+                        return rv
+                    rv['resource_name'] = possible_resources.get(possible_format)[0]['name']
+                    rv['resource_url'] = possible_resources.get(possible_format)[0]['url']
+                    return rv
+            # return possible_resources.get(possible_format)[0]
+    return None
