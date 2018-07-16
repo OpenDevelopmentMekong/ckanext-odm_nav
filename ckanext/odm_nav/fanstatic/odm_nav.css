@@ -11,8 +11,8 @@ body {
   font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  color: #444444;
-  background-color: #ededed;
+  color: #333333;
+  background-color: #ffffff;
 }
 a {
   color: #333333;
@@ -394,18 +394,15 @@ a.tag:hover {
   box-sizing: border-box;
 }
 .wrapper {
- *zoom: 1;
  background-color: #FFF;
- border: 1px solid #CCC;
- box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
- box-sizing: border-box;
- margin-bottom: 10px;
- margin-left: 0;
+ margin: 0;
+ padding: 10px;
 }
 [role=main],
 .main {
   position: relative;
   padding-bottom: 20px;
+  background: #ffffff;
 }
 @media (min-width: 768px) {
   [role=main],
@@ -819,7 +816,7 @@ a.tag:hover {
   background-color: #ffffff;
 }
 body {
-  background: #333333;
+  background: #ffffff;
 }
 .stages {
   margin: 0;
@@ -1063,4 +1060,53 @@ a.header_tag:hover {
 
 .resource_explore_icon-eye{
 	width: 24px;
+}
+.dataset-resource-format {
+    padding-left: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    height: 65px;
+    background: #59AED1;
+    color: #fff;
+    font-weight: bold;
+    i {
+        display: inline-block;
+        position: absolute;
+        margin-top: 16px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 2em;
+    }
+}
+
+ .format-name {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media only screen and (max-width: 992px)  {
+    .dataset-resource-format {
+        height: 50px;
+        padding-left: 0px;
+        border-radius: 4px;
+        background: #4244d7;
+        color: #fff;
+        font-weight: bold;
+        i {
+            display: none;
+        }
+    }
+    .format-name {
+        margin-top: 10px;
+    }
+
+}
+
+.dataset-details p{
+    color: #333333;
 }

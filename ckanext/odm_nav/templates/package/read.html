@@ -1,9 +1,11 @@
 {% extends "package/read_base.html" %}
 
+{% block secondary %}{% endblock %}
+
 {% set pkg = c.pkg_dict %}
 
-{% block primary_content_inner %}
-  {{ super() }}
+{% block primary %}
+
   {% block package_description %}
     {% if pkg.private %}
       <span class="dataset-private label label-inverse pull-right">
@@ -27,6 +29,19 @@
       {% endblock %}
     </h1>
 
+<div>
+   <h5>
+{% set publisher    = pkg.get('organization') %}
+         {% if publisher %}
+          Published by: <strong>
+          <a href="{{h.url_for(controller='organization', action='read', id=pkg.get('organization',{}).get('name',''))}}">
+           {{pkg.get('organization',{}).get('title','')}}
+          </a></strong>
+          {% else %}
+              No publisher specified.
+           {% endif %}
+     </h5>
+</div>
     {% if "notes_translated" in pkg and pkg.notes_translated[h.odm_dataset_get_current_language()] %}
       {{ pkg.notes_translated[h.odm_dataset_get_current_language()] }}
     {% else %}
@@ -74,16 +89,5 @@
   {% block package_additional_info %}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
   {% endblock %}
-
-{% endblock %}
-
-{% block secondary_content %}
-
-  {% set dataset_extent = c.pkg_dict.spatial or '' %}
-  {% if dataset_extent %}
-    {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=dataset_extent %}
-  {% endif %}
-
-  {{ super() }}
 
 {% endblock %}
