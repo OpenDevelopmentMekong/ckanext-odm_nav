@@ -172,19 +172,12 @@ def recent_datasets():
 
   return dataset
 
-def last_dataset():
-  ''' Returns the last dataset info stored in session'''
-  if 'last_dataset' in session:
-    return session['last_dataset']
-
-  return None
 
 def sanitize_html(string):
   string = ''.join(ch for ch in string if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
   string = string.replace(' ','-').lower()
   return string
 
-session = {}
 
 #Helpers for data preview_resource
 

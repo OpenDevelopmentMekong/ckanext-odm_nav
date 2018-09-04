@@ -94,7 +94,6 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return {
       'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
       'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
-      'odm_nav_last_dataset': odm_nav_helper.last_dataset,
       'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
       'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
       'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
@@ -117,32 +116,11 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   # IPackageController
   def before_create(self, context, resource):
-	
     log.info('before_create')
-
-    try:
-      odm_nav_helper.session['last_dataset'] = None
-      odm_nav_helper.session.save()
-    except TypeError:
-      # evaluating session in non-session context
-      log.debug("TypeError evaluating session in odm_nav.plugin.before_create, session not available")
 
   def after_create(self, context, pkg_dict):
     log.debug('after_create: %s', pkg_dict['name'])
 
-    try:
-      odm_nav_helper.session['last_dataset'] = pkg_dict
-      odm_nav_helper.session.save()
-    except TypeError:
-      # evaluating session in non-session context
-      log.debug("TypeError evaluating session in odm_nav.plugin.after_create, session not available")
 
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])
-
-    try:
-      odm_nav_helper.session['last_dataset'] = pkg_dict
-      odm_nav_helper.session.save()
-    except TypeError:
-      # evaluating session in non-session context
-      log.debug("TypeError evaluating session in odm_nav.plugin.after_update, session not available")
