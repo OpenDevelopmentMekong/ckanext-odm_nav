@@ -1,93 +1,86 @@
-{% extends "package/read_base.html" %}
+{% ckan_extends %}
 
 {% block secondary %}{% endblock %}
 
 {% set pkg = c.pkg_dict %}
 
-{% block primary %}
-
-  {% block package_description %}
-    {% if pkg.private %}
-      <span class="dataset-private label label-inverse pull-right">
-        <i class="icon-lock"></i>
-        {{ _('Private') }}
-      </span>
-    {% endif %}
-    <h1>
-      {% block page_heading %}
-        {% if "title_translated" in pkg and pkg.title_translated[h.odm_dataset_get_current_language()] %}
-          {{ pkg.title_translated[h.odm_dataset_get_current_language()] }}
-        {% else %}
-          {{ pkg.title or pkg.name }}
-        {% endif %}
-        {% if pkg.state.startswith('draft') %}
-          [{{ _('Draft') }}]
-        {% endif %}
-        {% if pkg.state == 'deleted' %}
-          [{{ _('Deleted') }}]
-        {% endif %}
-      {% endblock %}
-    </h1>
-
-<div>
-   <h5>
-{% set publisher    = pkg.get('organization') %}
-         {% if publisher %}
-          Published by: <strong>
-          <a href="{{h.url_for(controller='organization', action='read', id=pkg.get('organization',{}).get('name',''))}}">
-           {{pkg.get('organization',{}).get('title','')}}
-          </a></strong>
-          {% else %}
-              No publisher specified.
-           {% endif %}
-     </h5>
-</div>
-    {% if "notes_translated" in pkg and pkg.notes_translated[h.odm_dataset_get_current_language()] %}
-      {{ pkg.notes_translated[h.odm_dataset_get_current_language()] }}
+{% block page_heading %}
+    {% if "title_translated" in pkg and pkg.title_translated[h.odm_dataset_get_current_language()] %}
+        {{ pkg.title_translated[h.odm_dataset_get_current_language()] }}
     {% else %}
-      {% if c.pkg_notes_formatted %}
-        <div class="notes embedded-content">
-          {{ c.pkg_notes_formatted }}
-        </div>
-      {% endif %}
+        {{ pkg.title or pkg.name }}
     {% endif %}
+    {% if pkg.state.startswith('draft') %}
+        [{{ _('Draft') }}]
+    {% endif %}
+    {% if pkg.state == 'deleted' %}
+        [{{ _('Deleted') }}]
+    {% endif %}
+{% endblock %}
 
-  {% endblock %}
+{% block content_primary_nav %}
+{% endblock %}
 
-  {% block package_resources %}
-    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
-  {% endblock %}
+{% block content_action %}
+    {% if h.check_access('package_update', {'id':pkg.id }) %}
+        <div class="actions">
+            {% link_for _('Manage'), controller='package', type='agreement', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+        </div>
+    {% endif%}
+{% endblock %}
 
-  {% block package_tags %}
-    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
-  {% endblock %}
-
-   {% set preview_resource = h.resource_to_preview_on_dataset_page(pkg.resources) %}
-    {% if preview_resource %}
-      <div class="dataset-resource-preview">
-            {% if preview_resource.get('description') %}
-              <h2>Data Resource Preview - {{preview_resource.get('description')}}</h2>
-            {% elif preview_resource.get('name') %}
-              <h2>Data Resource Preview - {{preview_resource.get('name')}}</h2>
-            {% elif preview_resource.get('resource_name') %}
-              <h2>Data Resource Preview - {{preview_resource.get('resource_name')}}</h2>
+{% block package_notes %}
+    <div>
+        <h5>
+            {% set publisher = pkg.get('organization') %}
+            {% if publisher %}
+                Published by: <strong>
+                <a href="{{h.url_for(controller='organization', action='read', id=pkg.get('organization',{}).get('name',''))}}">
+                    {{pkg.get('organization',{}).get('title','')}}
+                </a></strong>
             {% else %}
-              <h2>Data Resource Preview</h2>
+                No publisher specified.
             {% endif %}
-      {% set src = h.url_for(qualified=true, controller='package', action='resource_view',
-       id=pkg['name'], resource_id=preview_resource['resource_id']) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
-           {% if 'image_view' in preview_resource.get('view_type') %}
-                 <img src = {{ preview_resource.get('resource_url') }} style = "margin:auto ; max-width:100%">
-           {% else %}
-               <iframe src="{{ src }}" frameborder="0" width="100%" data-module="data-viewer">
-                <p>{{ _('Your browser does not support iframes.') }}</p>
+        </h5>
+    </div>
+
+    {% if "notes_translated" in pkg and pkg.notes_translated[h.odm_dataset_get_current_language()] %}
+        {{ pkg.notes_translated[h.odm_dataset_get_current_language()] }}
+    {% else %}
+        {% if c.pkg_notes_formatted %}
+            <div class="notes embedded-content">
+                {{ c.pkg_notes_formatted }}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{% block package_tags %}
+    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+
+    {% set preview_resource = h.resource_to_preview_on_dataset_page(pkg.resources) %}
+    {% if preview_resource %}
+        <div class="dataset-resource-preview">
+            {% if preview_resource.get('description') %}
+                <h2>Data Resource Preview - {{preview_resource.get('description')}}</h2>
+            {% elif preview_resource.get('name') %}
+                <h2>Data Resource Preview - {{preview_resource.get('name')}}</h2>
+            {% elif preview_resource.get('resource_name') %}
+                <h2>Data Resource Preview - {{preview_resource.get('resource_name')}}</h2>
+            {% else %}
+                <h2>Data Resource Preview</h2>
+            {% endif %}
+            {% set src = h.url_for(qualified=true, controller='package', action='resource_view',
+                id=pkg['name'], resource_id=preview_resource['resource_id']) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
+            {% if 'image_view' in preview_resource.get('view_type') %}
+                <img src = {{ preview_resource.get('resource_url') }} style = "margin:auto ; max-width:100%">
+            {% else %}
+                <iframe src="{{ src }}" frameborder="0" width="100%" data-module="data-viewer">
+                    <p>{{ _('Your browser does not support iframes.') }}</p>
                 </iframe>
             {% endif %}
-      </div>
-     {% endif %}
-
-  {% block package_additional_info %}
-    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
-  {% endblock %}
+        </div>
+    {% endif %}
 
 {% endblock %}
