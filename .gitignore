@@ -4,3 +4,5 @@
 **/odm_nav_config.py
 ckanext_odm_nav.egg-info
 **/.DS_STORE
+
+*~
