@@ -11,12 +11,70 @@ body {
   font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  color: #333333;
-  background-color: #ffffff;
+  color: #444444;
+  background-color: #ededed;
+  width: 100%;
 }
+
+
+#od-head {
+    margin-top: 26px;
+    padding: 10px;
+    background: #2a2d56;
+    color: #fff;
+    min-height: 72px;
+}
+
+/* color for the logo and OpenDevelopment header */
+.odt #od-head h1, .odt .icon-od-logo {
+    color: #f7904d;
+    fill: #f7904d;
+}
+.odm #od-head h1, .odm .icon-od-logo {
+    color: #6393d2;
+    fill: #6393d2;
+}
+.odc #od-head h1, .odc .icon-od-logo {
+    color: #97d320;
+    fill: #97d320;
+}
+.odl #od-head h1, .odl .icon-od-logo {
+    color: #d61e2a;
+    fill: #d61e2a;
+}
+.odmy #od-head h1, .odmy .icon-od-logo {
+    color: #f8bf42;
+    fill: #f8bf42;
+}
+.odv #od-head h1, .odv .icon-od-logo {
+    color: #beab74;
+    fill: #beab74;
+}
+
+/* bold for links that match the body class */
+body.odt a.odt {
+    font-weight: bold;
+}
+body.odm a.odm {
+    font-weight: bold;
+}
+body.odc a.odc {
+    font-weight: bold;
+}
+body.odl a.odl {
+    font-weight: bold;
+}
+body.odmy a.odmy {
+    font-weight: bold;
+}
+body.odv a.odv {
+    font-weight: bold;
+}
+
+
 a {
-  color: #333333;
-  text-decoration: none;
+    color: #333333;
+    text-decoration: none;
 }
 
 .context-info h1.heading {
