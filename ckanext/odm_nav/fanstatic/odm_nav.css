@@ -481,7 +481,7 @@ a.tag:hover {
   clear: both;
 }
 .account-masthead .account {
-  float: right;
+  /*float: right;*/
 }
 .account-masthead .account ul {
   *zoom: 1;
