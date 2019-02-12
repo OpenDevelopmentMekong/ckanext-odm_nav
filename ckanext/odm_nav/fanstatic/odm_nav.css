@@ -390,7 +390,7 @@ a.tag:hover {
   border-top-width: 1px;
 }
 [role=main] .primary {
-  float: right;
+  float: left;
   margin-left: 0;
   padding-left: 10px;
 }
@@ -481,7 +481,7 @@ a.tag:hover {
   clear: both;
 }
 .account-masthead .account {
-  /*float: right;*/
+  float: none;
 }
 .account-masthead .account ul {
   *zoom: 1;
@@ -1034,8 +1034,7 @@ a.header_tag:hover {
 }
 .dataset-resource-format {
     padding-left: 0px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 4px;
     height: 65px;
     background: #59AED1;
     color: #fff;
@@ -1080,4 +1079,133 @@ a.header_tag:hover {
 
 .dataset-details p{
     color: #333333;
+}
+
+.language-flag img {
+  width: 20px;
+  height: 15px;
+  border-radius: 3px;
+}
+
+.resources div {
+    margin-bottom: 15px;
+}
+
+#dataset-resources-old {
+
+  margin-bottom: 15px;
+
+}
+
+#file_icon_1{
+
+    font-size: 30px;
+    margin-top: 30%;
+    margin-left: 45%;
+}
+
+#file_icon_2{
+
+    font-size: 40px;
+    margin-top: 10%;
+    margin-left: 45%;
+
+}
+
+.tag-list {
+
+    margin-left: 0px!important;
+
+}
+
+#od-head {
+
+  margin-top: 0px!important;
+  padding: 0px!important;
+}
+
+.btn-download {
+  background: #5f5f5f!important;
+}
+
+.snippet_nav ul{
+
+  max-height: 200px;
+  overflow:hidden;
+  overflow-y:scroll;
+
+}
+
+.col-sm-9{
+  width: 80%!important;
+}
+
+.col-sm-3{
+  
+  width: 20%!important;
+}
+
+.snippet_nav ul::-webkit-scrollbar
+{
+	width: 4px;
+}
+
+.snippet_nav ul::-webkit-scrollbar-thumb
+{
+	background-color: #ccc;
+}
+
+.odm_default_rsrc {
+
+  background-color: #aaaaaa;
+}
+
+.odm_rsrc_shp {
+
+  background-color: #aaaaaa;
+}
+
+.odm_rsrc_geojson {
+
+  background-color: #9855e0;
+}
+
+.odm_rsrc_csv {
+
+  background-color: #dfb100;
+}
+
+.odm_rsrc_db_table {
+
+  background-color: #aaaaaa;
+}
+
+.odm_rsrc_wms {
+
+  background-color: #adc717;
+}
+
+.odm_rsrc_pdf {
+
+  background-color: #e0051e;
+}
+
+.odm_rsrc_html {
+
+  background-color: #55a1ce;
+}
+
+.odm_rsrc_xlxs {
+
+  background-color: #2db55d;
+}
+
+.odm_rsrc_kml {
+
+  background-color: #7aae3d;
+}
+
+ul.nav li:hover > ul.dropdown-menu {
+    display: inline-block;
+    z-index: 50;
 }

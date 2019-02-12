@@ -19,7 +19,8 @@ import requests
 import simplejson as json
 import traceback
 from pylons import config
-
+import ckan.lib.helpers as h
+import json
 import ckan.logic as logic
 
 get_action = logic.get_action
@@ -287,3 +288,103 @@ def resource_to_preview_on_dataset_page(resources):
                     return rv
             # return possible_resources.get(possible_format)[0]
     return None
+
+def active_search_link():
+
+    # List of path to identify as current active path
+    path_list = ['/agreement', '/library_record', '/dataset', '/laws_record']
+    active_path = {}
+
+    for path in path_list:
+
+        if path == h.current_url():
+
+            active_path[path.replace("/", '')] = True
+        else:
+
+            active_path[path.replace("/", '')] = False
+
+    return active_path
+
+
+def extract_wp_menu(wp_site_url, language_code):
+
+    result = {}
+
+    try:
+
+        if not language_code:
+            response = requests.get(wp_site_url+'/wp-json/odm/menu')
+        else:
+            response = requests.get(wp_site_url+'/'+language_code+'/wp-json/odm/menu')
+
+        if str(response.status_code) == "200":
+
+            items_list = ast.literal_eval(response.text)
+            result['status'] = "success"
+            result['result'] = items_list
+            result['message'] = "ok"
+            return result
+        else:
+            raise Exception
+
+    except Exception as e:
+        result['status'] = "failure"
+        result['message'] = "bad request"
+
+
+def get_menu_json(wp_site_url, filename, language_code=None):
+
+    try:
+        menu_items = extract_wp_menu(wp_site_url, language_code)['result']
+    except TypeError:
+        log.error("Error - Bad response")
+        sys.exit(1)
+
+    nav_item_meta = collections.OrderedDict()
+
+    # Convert list object to dictionary with key as items ID
+    for item in menu_items:
+        nav_item_meta[str(item['ID'])] = item
+
+    # Add a new empty list all the items to hold its children item
+    for item in menu_items:
+        item['child_menus'] = []
+
+    # Attach child corresponding to its parent ID
+    for item in menu_items:
+        if item['menu_item_parent'] != "0":
+            nav_item_meta[item['menu_item_parent']]['child_menus'].append(item)
+
+    # Extract root elements - which is nested dic/list containing its children
+    nav = [item for item in nav_item_meta.values() if item['menu_item_parent'] == '0']
+
+    with open(filename, 'w') as json_file:
+        json.dump(nav, json_file)
+
+
+def nav_html_parsing(list_element, first_pass=True):
+    items = []
+
+    if len(list_element) == 0:
+        return ""
+    else:
+        if first_pass:
+            items.append('<ul class="nav navbar-nav">')
+            first_pass=False
+        else:
+            items.append('<ul class="dropdown-menu">')
+
+        for element in list_element:
+            items.append('<li>')
+
+            if len(element['child_menus']) != 0:
+                items.append('<a href="' + element['url'].replace('/', '') + 'class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"">' + element['title'] + '<span class="caret"></span></a>')
+            else:
+                items.append('<a href="' + element['url'].replace('/', '') + 'class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"">' + element['title'] + '</a>')
+
+            items.append(nav_html_parsing(element['child_menus'], first_pass))
+            items.append('</li>')
+        items.append('</ul>')
+
+        return "".join(items)

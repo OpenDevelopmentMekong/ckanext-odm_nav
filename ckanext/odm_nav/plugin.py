@@ -21,106 +21,116 @@ import collections
 from genshi.template.text import NewTextTemplate
 from ckan.lib.base import render
 from pprint import pprint
+import collections
+
 log = logging.getLogger(__name__)
 
 
-
 class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-  '''OD Mekong Nav plugin.'''
+    '''OD Mekong Nav plugin.'''
 
-  plugins.implements(plugins.IConfigurer)
-  plugins.implements(plugins.ITemplateHelpers)
-  plugins.implements(plugins.IRoutes, inherit=True)
-  plugins.implements(plugins.IFacets)
-  plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IFacets)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
-  def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        log.debug('OdmNavPlugin init')
+        wsgi_app = SessionMiddleware(None, None)
+        odm_nav_helper.session = wsgi_app.session
 
-    log.debug('OdmNavPlugin init')
-    wsgi_app = SessionMiddleware(None, None)
-    odm_nav_helper.session = wsgi_app.session
+    # IFacets
+    def dataset_facets(self, facets_dict, package_type):
 
-  # IFacets
-  def dataset_facets(self, facets_dict, package_type):
+        """ Please enter a facet with a order"""
 
-    return {
+        ordered_facet = [("dataset_type", toolkit._('Search Result For')),
+                         ("extras_odm_spatial_range", toolkit._('Country')),
+                         ("extras_odm_language", toolkit._('Language')),
+                         ('res_format', toolkit._('Formats')),
+                         ('organization', toolkit._('Organizations')),
+                         ('license_id', toolkit._('License'))]
+
+        return collections.OrderedDict(ordered_facet)
+
+        # NOTE: Add support for tags -> 'tags': toolkit._('Topics'),
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        return {
             'license_id': toolkit._('License'),
             'organization': toolkit._('Organizations'),
             'res_format': toolkit._('Formats'),
             'extras_odm_language': toolkit._('Language'),
             'extras_odm_spatial_range': toolkit._('Country')
-            }
+        }
 
-    # NOTE: Add support for tags -> 'tags': toolkit._('Topics'),
-
-  def group_facets(self, facets_dict, group_type, package_type):
-
-    return {
-            'license_id': toolkit._('License'),
-            'organization': toolkit._('Organizations'),
-            'res_format': toolkit._('Formats'),
-            'extras_odm_language': toolkit._('Language'),
-            'extras_odm_spatial_range': toolkit._('Country')
-            }
-
-  def organization_facets(self, facets_dict, organization_type, package_type):
-
-    return {
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        return {
             'license_id': toolkit._('License'),
             'res_format': toolkit._('Formats'),
             'extras_odm_language': toolkit._('Language'),
             'extras_odm_spatial_range': toolkit._('Country')
+        }
+
+        # IRoutes
+    def before_map(self, m):
+        redirects = {
+                '/': '/dataset'
             }
 
-  # IRoutes
-  def before_map(self, m):
-    #m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
+        for k, v in redirects.iteritems():
+            m.redirect(k, v)
 
-    return m
+        return m
+        # m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
 
-  # IConfigurer
-  def update_config(self, config):
-    '''Update plugin config'''
+    # IConfigurer
+    def update_config(self, config):
+        '''Update plugin config'''
 
-    toolkit.add_template_directory(config, 'templates')
-    toolkit.add_resource('fanstatic', 'odm_nav')
-    toolkit.add_public_directory(config, 'public')
+        toolkit.add_template_directory(config, 'templates')
+        toolkit.add_resource('fanstatic', 'odm_nav')
+        toolkit.add_public_directory(config, 'public')
 
-  # IConfigurer
+    # IConfigurer
 
-  def get_helpers(self):
-    '''Register the plugin's functions above as a template helper function.'''
+    def get_helpers(self):
+        '''Register the plugin's functions above as a template helper function.'''
 
-    return {
-      'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
-      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
-      'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
-      'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
-      'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
-      'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
-      'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
-      'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
-      'odm_nav_sanitize_html':odm_nav_helper.sanitize_html,
-      'odm_nav_get_all_laws_records':odm_nav_helper.get_all_laws_records,
-      'odm_nav_get_all_laws_records_and_agreements':odm_nav_helper.get_all_laws_records_and_agreements,
-      'odm_nav_get_all_library_records':odm_nav_helper.get_all_library_records,
-      'odm_nav_get_all_agreements':odm_nav_helper.get_all_agreements,
-      'odm_nav_get_all_datasets':odm_nav_helper.get_all_datasets,
-      'odm_nav_get_all_laws_records_complete':odm_nav_helper.get_all_laws_records_complete,
-      'odm_nav_get_all_laws_records_and_agreements_complete':odm_nav_helper.get_all_laws_records_and_agreements_complete,
-      'odm_nav_get_all_library_records_complete':odm_nav_helper.get_all_library_records_complete,
-      'odm_nav_get_all_agreements_complete':odm_nav_helper.get_all_agreements_complete,
-      'odm_nav_get_all_datasets_complete':odm_nav_helper.get_all_datasets_complete,
-      'resource_to_preview_on_dataset_page' : odm_nav_helper.resource_to_preview_on_dataset_page
-	}
+        return {
+            'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
+            'odm_nav_sanitize_html': odm_nav_helper.sanitize_html,
+            'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
+            'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
+            'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
+            'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
+            'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
+            'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
+            'odm_nav_sanitize_html': odm_nav_helper.sanitize_html,
+            'odm_nav_get_all_laws_records': odm_nav_helper.get_all_laws_records,
+            'odm_nav_get_all_laws_records_and_agreements': odm_nav_helper.get_all_laws_records_and_agreements,
+            'odm_nav_get_all_library_records': odm_nav_helper.get_all_library_records,
+            'odm_nav_get_all_agreements': odm_nav_helper.get_all_agreements,
+            'odm_nav_get_all_datasets': odm_nav_helper.get_all_datasets,
+            'odm_nav_get_all_laws_records_complete': odm_nav_helper.get_all_laws_records_complete,
+            'odm_nav_get_all_laws_records_and_agreements_complete': odm_nav_helper.get_all_laws_records_and_agreements_complete,
+            'odm_nav_get_all_library_records_complete': odm_nav_helper.get_all_library_records_complete,
+            'odm_nav_get_all_agreements_complete': odm_nav_helper.get_all_agreements_complete,
+            'odm_nav_get_all_datasets_complete': odm_nav_helper.get_all_datasets_complete,
+            'resource_to_preview_on_dataset_page': odm_nav_helper.resource_to_preview_on_dataset_page,
+            'active_search_link': odm_nav_helper.active_search_link,
+            'extract_wp_menu': odm_nav_helper.extract_wp_menu,
+            'get_menu_json': odm_nav_helper.get_menu_json,
+            'nav_html_parsing': odm_nav_helper.nav_html_parsing
+        }
 
-  # IPackageController
-  def before_create(self, context, resource):
-    log.info('before_create')
+    # IPackageController
+    def before_create(self, context, resource):
+        log.info('before_create')
 
-  def after_create(self, context, pkg_dict):
-    log.debug('after_create: %s', pkg_dict['name'])
+    def after_create(self, context, pkg_dict):
+        log.debug('after_create: %s', pkg_dict['name'])
 
-
-  def after_update(self, context, pkg_dict):
-    log.debug('after_update: %s', pkg_dict['name'])
+    def after_update(self, context, pkg_dict):
+        log.debug('after_update: %s', pkg_dict['name'])
