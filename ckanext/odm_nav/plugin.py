@@ -11,8 +11,8 @@ from pylons import config
 from beaker.middleware import SessionMiddleware
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
-import odm_nav_helper
+from . import helpers 
+import helpers
 import datetime
 import time
 from urlparse import urlparse
@@ -37,8 +37,6 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def __init__(self, *args, **kwargs):
         log.debug('OdmNavPlugin init')
-        wsgi_app = SessionMiddleware(None, None)
-        odm_nav_helper.session = wsgi_app.session
 
     # IFacets
     def dataset_facets(self, facets_dict, package_type):
@@ -99,30 +97,31 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         '''Register the plugin's functions above as a template helper function.'''
 
         return {
-            'odm_nav_tag_for_topic': odm_nav_helper.tag_for_topic,
-            'odm_nav_sanitize_html': odm_nav_helper.sanitize_html,
-            'odm_nav_taxonomy_dictionary': odm_nav_helper.get_taxonomy_dictionary,
-            'odm_nav_localize_resource_url': odm_nav_helper.localize_resource_url,
-            'odm_nav_get_localized_tag': odm_nav_helper.get_localized_tag,
-            'odm_nav_get_localized_tag_string': odm_nav_helper.get_localized_tag_string,
-            'odm_nav_popular_datasets': odm_nav_helper.popular_datasets,
-            'odm_nav_recent_datasets': odm_nav_helper.recent_datasets,
-            'odm_nav_sanitize_html': odm_nav_helper.sanitize_html,
-            'odm_nav_get_all_laws_records': odm_nav_helper.get_all_laws_records,
-            'odm_nav_get_all_laws_records_and_agreements': odm_nav_helper.get_all_laws_records_and_agreements,
-            'odm_nav_get_all_library_records': odm_nav_helper.get_all_library_records,
-            'odm_nav_get_all_agreements': odm_nav_helper.get_all_agreements,
-            'odm_nav_get_all_datasets': odm_nav_helper.get_all_datasets,
-            'odm_nav_get_all_laws_records_complete': odm_nav_helper.get_all_laws_records_complete,
-            'odm_nav_get_all_laws_records_and_agreements_complete': odm_nav_helper.get_all_laws_records_and_agreements_complete,
-            'odm_nav_get_all_library_records_complete': odm_nav_helper.get_all_library_records_complete,
-            'odm_nav_get_all_agreements_complete': odm_nav_helper.get_all_agreements_complete,
-            'odm_nav_get_all_datasets_complete': odm_nav_helper.get_all_datasets_complete,
-            'resource_to_preview_on_dataset_page': odm_nav_helper.resource_to_preview_on_dataset_page,
-            'active_search_link': odm_nav_helper.active_search_link,
-            'extract_wp_menu': odm_nav_helper.extract_wp_menu,
-            'get_menu_json': odm_nav_helper.get_menu_json,
-            'nav_html_parsing': odm_nav_helper.nav_html_parsing
+            'odm_nav_tag_for_topic': helpers.tag_for_topic,
+            'odm_nav_sanitize_html': helpers.sanitize_html,
+            'odm_nav_taxonomy_dictionary': helpers.get_taxonomy_dictionary,
+            'odm_nav_localize_resource_url': helpers.localize_resource_url,
+            'odm_nav_get_localized_tag': helpers.get_localized_tag,
+            'odm_nav_get_localized_tag_string': helpers.get_localized_tag_string,
+            'odm_nav_popular_datasets': helpers.popular_datasets,
+            'odm_nav_recent_datasets': helpers.recent_datasets,
+            'odm_nav_sanitize_html': helpers.sanitize_html,
+            'odm_nav_get_all_laws_records': helpers.get_all_laws_records,
+            'odm_nav_get_all_laws_records_and_agreements': helpers.get_all_laws_records_and_agreements,
+            'odm_nav_get_all_library_records': helpers.get_all_library_records,
+            'odm_nav_get_all_agreements': helpers.get_all_agreements,
+            'odm_nav_get_all_datasets': helpers.get_all_datasets,
+            'odm_nav_get_all_laws_records_complete': helpers.get_all_laws_records_complete,
+            'odm_nav_get_all_laws_records_and_agreements_complete': helpers.get_all_laws_records_and_agreements_complete,
+            'odm_nav_get_all_library_records_complete': helpers.get_all_library_records_complete,
+            'odm_nav_get_all_agreements_complete': helpers.get_all_agreements_complete,
+            'odm_nav_get_all_datasets_complete': helpers.get_all_datasets_complete,
+            'resource_to_preview_on_dataset_page': helpers.resource_to_preview_on_dataset_page,
+            'active_search_link': helpers.active_search_link,
+            'extract_wp_menu': helpers.extract_wp_menu,
+            'get_menu_json': helpers.get_menu_json,
+            'nav_html_parsing': helpers.nav_html_parsing,
+            'odm_nav_ckan_url_for_site': helpers.ckan_url_for_site,
         }
 
     # IPackageController

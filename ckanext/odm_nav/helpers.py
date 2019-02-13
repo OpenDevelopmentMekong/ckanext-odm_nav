@@ -9,7 +9,8 @@ import ckan
 import logging
 import urlparse
 import urllib
-from ckan.common import request
+from ckan.common import request, config
+
 import ckan.plugins.toolkit as toolkit
 import os
 import socket
@@ -63,7 +64,7 @@ def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
   log.debug('odm_nav_get_localized_tag: %s', tag)
-
+  ## UNDONE -- future bug
   desired_lang_code = pylons.request.environ['CKAN_LANG']
 
   translations = ckan.logic.action.get.term_translation_show(
@@ -388,3 +389,7 @@ def nav_html_parsing(list_element, first_pass=True):
         items.append('</ul>')
 
         return "".join(items)
+
+
+def ckan_url_for_site(sitecode):
+    return ckan.config.get("ckanext.odm.%s_url" % sitecode, "")
