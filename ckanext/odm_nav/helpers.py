@@ -392,4 +392,4 @@ def nav_html_parsing(list_element, first_pass=True):
 
 
 def ckan_url_for_site(sitecode):
-    return ckan.config.get("ckanext.odm.%s_url" % sitecode, "")
+    return config.get("ckanext.odm.%s_url" % sitecode, "")
