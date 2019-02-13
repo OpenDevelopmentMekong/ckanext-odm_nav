@@ -380,9 +380,9 @@ def nav_html_parsing(list_element, first_pass=True):
             items.append('<li>')
 
             if len(element['child_menus']) != 0:
-                items.append('<a href="' + element['url'].replace('/', '') + 'class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"">' + element['title'] + '<span class="caret"></span></a>')
+                items.append('<a href="' + element['url'].replace('/', '') + '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + element['title'] + '<span class="caret"></span></a>')
             else:
-                items.append('<a href="' + element['url'].replace('/', '') + 'class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"">' + element['title'] + '</a>')
+                items.append('<a href="' + element['url'].replace('/', '') + '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + element['title'] + '</a>')
 
             items.append(nav_html_parsing(element['child_menus'], first_pass))
             items.append('</li>')
