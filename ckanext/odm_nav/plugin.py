@@ -2,12 +2,11 @@
 
 '''
 import ckan
-import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.helpers as h
-from pylons import config
+from ckan.common import config
 from beaker.middleware import SessionMiddleware
 import sys
 import os

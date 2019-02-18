@@ -3,13 +3,12 @@
 
 DEBUG = False
 
-import pylons
 import json
 import ckan
 import logging
 import urlparse
 import urllib
-from ckan.common import request, config
+from ckan.plugins.toolkit import request
 
 import ckan.plugins.toolkit as toolkit
 import os
@@ -19,7 +18,7 @@ import string
 import requests
 import simplejson as json
 import traceback
-from pylons import config
+from ckan.common import config
 import ckan.lib.helpers as h
 import json
 import ckan.logic as logic
@@ -64,8 +63,7 @@ def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
   log.debug('odm_nav_get_localized_tag: %s', tag)
-  ## UNDONE -- future bug
-  desired_lang_code = pylons.request.environ['CKAN_LANG']
+  desired_lang_code = request.environ['CKAN_LANG']
 
   translations = ckan.logic.action.get.term_translation_show(
           {'model': ckan.model},
