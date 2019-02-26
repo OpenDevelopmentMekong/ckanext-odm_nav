@@ -85,10 +85,6 @@ a {
   word-break: normal;
 }
 
-.row {
-  /*margin-left: -20px;*/
-  *zoom: 1;
-}
 .controls.lef{
   float:left;
 }
@@ -1136,14 +1132,6 @@ a.header_tag:hover {
 
 }
 
-.col-sm-9{
-  width: 80%!important;
-}
-
-.col-sm-3{
-  
-  width: 20%!important;
-}
 
 .snippet_nav ul::-webkit-scrollbar
 {
