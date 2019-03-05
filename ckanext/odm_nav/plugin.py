@@ -121,6 +121,7 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'odm_nav_ckan_url_for_site': helpers.ckan_url_for_site,
             'odm_nav_wp_url_for_site': helpers.wp_url_for_site,
             'odm_nav_country_name_for_site': helpers.country_name_for_site,
+            'odm_nav_menu': helpers.odm_nav_menu,
         }
 
     # IPackageController

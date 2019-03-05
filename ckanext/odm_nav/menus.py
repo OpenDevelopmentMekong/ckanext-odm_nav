@@ -2,6 +2,9 @@ import requests
 import json
 import collections
 
+# cache the rendered versions
+rendered = {}
+
 def extract_wp_menu(wp_site_url, language_code=None):
     result = {}
     

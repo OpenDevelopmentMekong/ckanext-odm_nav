@@ -179,7 +179,8 @@
 	  </nav>
 	{% endblock %}
         <div class="collapse navbar-collapse" id="main-navigation-toggle">
-          {% block odm_nav %}
+          {% block odm_nav_x %}
+	  {{ h.odm_nav_menu()|safe }}
             {% endblock %}
             <ul class="nav navbar-nav">
                 {% block header_site_navigation %}

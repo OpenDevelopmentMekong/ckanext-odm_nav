@@ -350,4 +350,15 @@ def country_name_for_site(site=None):
              'odv': 'Vietnam'}
     return names.get(site,'')
 
-
+def odm_nav_menu(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+    if not site in menus.rendered:
+        base_path = os.path.join(os.path.dirname(__file__), 'public')
+        filename = '%s_nav_items.json' % site
+        with open(os.path.join(base_path, filename), 'r') as f:
+            menu_items = json.load(f)
+            
+        menus.rendered[site] = gen_odm_menu(menu_items)
+        
+    return menus.rendered[site]

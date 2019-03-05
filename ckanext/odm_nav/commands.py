@@ -44,6 +44,7 @@ class OdmNav(CkanCommand):
     def load_menus(self, *args):
         for site in ('odm', 'odc', 'odl', 'odt', 'odmy', 'odv'):
             self.load_site(site)
+        menus.rendered = {}
             
     def load_site(self, site, *args):
         print("Loading %s" % site)
