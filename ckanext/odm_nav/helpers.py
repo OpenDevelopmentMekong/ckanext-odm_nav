@@ -402,3 +402,19 @@ def nav_html_parsing(list_element, first_pass=True):
 
 def ckan_url_for_site(sitecode):
     return config.get("ckanext.odm.%s_url" % sitecode, "")
+
+def wp_url_for_site(sitecode):
+    return config.get("ckanext.odm.%s_wp_url" % sitecode, "")
+
+def country_name_for_site(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+    names = {'odm': 'Mekong',
+             'odmy': 'Myanmar',
+             'odt': 'Thailand',
+             'odl': 'Laos',
+             'odc': 'Cambodia',
+             'odv': 'Vietnam'}
+    return names.get(site,'')
+
+
