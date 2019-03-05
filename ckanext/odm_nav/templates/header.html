@@ -148,9 +148,38 @@
         {% endblock %}
         <hr>
         {% block odm_head %}
-        {% endblock %}
+	  <nav id="od-head">
+	      <div class="container row">
+		  <div class="col-sm-9 col-xs-12">
+		      <div class="site-meta">
+			  <div id="od-logo">
+				  <span id="icon-od-logo">
+				      <svg class="svg-od-logo mekong-logo"><use xlink:href="#icon-od-logo"></use></svg>
+				  </span>
+			      <h1>Op<sup>e</sup>nDevelopment</h1>
+			      <div><h2 class="side-title">{{ h.odm_nav_country_name_for_site() }}</h2></div>
+			  </div>
+		      </div>
+		  </div>
+		  <div class="col-sm-3 col-xs-12">
+		      <div class="social">
+			<nav>
+			  {% block odm_social %}
+			      <a href="https://www.facebook.com/OpenDevThailand/" target="_blank" rel="external" title="Facebook"><i
+				      class="fa fa-facebook-official"></i></a>
+			      <a href="https://twitter.com/opendevthai" target="_blank" rel="external" title="Twitter"><i
+				      class="fa fa-twitter-square"></i></a>
+			      <a href="https://thailand.opendevelopmentmekong.net/contacts/" title="Subscribe"><i
+                                      class="fa fa-envelope"></i></a>
+			      {% endblock %}
+			  </nav>
+		      </div>
+		  </div>
+	      </div>
+	  </nav>
+	{% endblock %}
         <div class="collapse navbar-collapse" id="main-navigation-toggle">
-            {% block odm_nav %}
+          {% block odm_nav %}
             {% endblock %}
             <ul class="nav navbar-nav">
                 {% block header_site_navigation %}
