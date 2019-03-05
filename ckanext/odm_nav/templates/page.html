@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
                         {% block primary %}
-                            <div class="primary {% if self.secondary()|trim == '' or c.action=='resource_read' %}col-12{% else %}col-sm-9 col-xs-12{% endif %}">
+                            <div class="primary {% if self.secondary()|trim == '' or c.action=='resource_read' %}col-xs-12{% else %}col-sm-9 col-xs-12{% endif %}">
                                 {#
                                 The primary_content block can be used to add content to the page.
                                 This is the main block that is likely to be used within a template.
