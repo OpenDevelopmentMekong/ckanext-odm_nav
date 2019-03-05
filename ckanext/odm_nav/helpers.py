@@ -310,6 +310,7 @@ def active_search_link():
 def gen_odm_menu(list_element, first_pass=True):
     items = []
 
+    link_template = '<a href="%s" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%s%s</a>'
     if len(list_element) == 0:
         return ""
     else:
@@ -322,12 +323,13 @@ def gen_odm_menu(list_element, first_pass=True):
         for element in list_element:
             items.append('<li>')
 
+            child_span = ""
             if len(element['child_menus']) != 0:
-                items.append('<a href="' + element['url'].replace('/', '') + '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + element['title'] + '<span class="caret"></span></a>')
-            else:
-                items.append('<a href="' + element['url'].replace('/', '') + '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + element['title'] + '</a>')
+                child_span = '<span class="caret"></span>'
 
-            items.append(nav_html_parsing(element['child_menus'], first_pass))
+            items.append(link_template %(element['url'], element['title'], child_span))
+
+            items.append(gen_odm_menu(element['child_menus'], first_pass))
             items.append('</li>')
         items.append('</ul>')
 
