@@ -1,30 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DEBUG = False
-
 import json
 import ckan
-import logging
 import urlparse
-import urllib
-from ckan.plugins.toolkit import request
 
-import ckan.plugins.toolkit as toolkit
 import os
-import socket
-from pprint import pprint
-import string
 import requests
-import simplejson as json
-import traceback
+
 from ckan.common import config
 import ckan.lib.helpers as h
-import json
 import ckan.logic as logic
+from ckan.plugins.toolkit import request
+import ckan.plugins.toolkit as toolkit
 
-get_action = logic.get_action
+from . import menus
 
+import logging
 log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
@@ -169,8 +161,7 @@ def get_all_datasets_complete():
 def tag_for_topic(topic):
   '''Return the name of the tag corresponding to a top topic'''
 
-  if DEBUG:
-    log.debug('tag_for_topic')
+  log.debug('tag_for_topic')
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
@@ -285,7 +276,7 @@ def resource_to_preview_on_dataset_page(resources):
     for possible_format in preview_priority:
         if (possible_resources.get(possible_format) and len(possible_resources.get(possible_format))):
             context ={}
-            resource_views = get_action('resource_view_list')(
+            resource_views = toolkit.get_action('resource_view_list')(
                 context, {'id': possible_resources.get(possible_format)[0]['id']})
             for vtype in view_types_priority:
                 for rv in resource_views:
