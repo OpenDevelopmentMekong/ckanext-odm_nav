@@ -316,64 +316,7 @@ def active_search_link():
 
     return active_path
 
-
-def extract_wp_menu(wp_site_url, language_code):
-
-    result = {}
-
-    try:
-
-        if not language_code:
-            response = requests.get(wp_site_url+'/wp-json/odm/menu')
-        else:
-            response = requests.get(wp_site_url+'/'+language_code+'/wp-json/odm/menu')
-
-        if str(response.status_code) == "200":
-
-            items_list = ast.literal_eval(response.text)
-            result['status'] = "success"
-            result['result'] = items_list
-            result['message'] = "ok"
-            return result
-        else:
-            raise Exception
-
-    except Exception as e:
-        result['status'] = "failure"
-        result['message'] = "bad request"
-
-
-def get_menu_json(wp_site_url, filename, language_code=None):
-
-    try:
-        menu_items = extract_wp_menu(wp_site_url, language_code)['result']
-    except TypeError:
-        log.error("Error - Bad response")
-        sys.exit(1)
-
-    nav_item_meta = collections.OrderedDict()
-
-    # Convert list object to dictionary with key as items ID
-    for item in menu_items:
-        nav_item_meta[str(item['ID'])] = item
-
-    # Add a new empty list all the items to hold its children item
-    for item in menu_items:
-        item['child_menus'] = []
-
-    # Attach child corresponding to its parent ID
-    for item in menu_items:
-        if item['menu_item_parent'] != "0":
-            nav_item_meta[item['menu_item_parent']]['child_menus'].append(item)
-
-    # Extract root elements - which is nested dic/list containing its children
-    nav = [item for item in nav_item_meta.values() if item['menu_item_parent'] == '0']
-
-    with open(filename, 'w') as json_file:
-        json.dump(nav, json_file)
-
-
-def nav_html_parsing(list_element, first_pass=True):
+def gen_odm_menu(list_element, first_pass=True):
     items = []
 
     if len(list_element) == 0:
@@ -398,7 +341,6 @@ def nav_html_parsing(list_element, first_pass=True):
         items.append('</ul>')
 
         return "".join(items)
-
 
 def ckan_url_for_site(sitecode):
     return config.get("ckanext.odm.%s_url" % sitecode, "")
