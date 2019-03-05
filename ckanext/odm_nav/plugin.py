@@ -9,17 +9,14 @@ import logging
 log = logging.getLogger(__name__)
 
 
-class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+class OdmNavPlugin(plugins.SingletonPlugin):
     '''OD Mekong Nav plugin.'''
 
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IFacets)
-    plugins.implements(plugins.IPackageController, inherit=True)
 
-    def __init__(self, *args, **kwargs):
-        log.debug('OdmNavPlugin init')
 
     # IFacets
     def dataset_facets(self, facets_dict, package_type):
@@ -108,12 +105,4 @@ class OdmNavPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'odm_nav_menu': helpers.odm_nav_menu,
         }
 
-    # IPackageController
-    def before_create(self, context, resource):
-        log.info('before_create')
 
-    def after_create(self, context, pkg_dict):
-        log.debug('after_create: %s', pkg_dict['name'])
-
-    def after_update(self, context, pkg_dict):
-        log.debug('after_update: %s', pkg_dict['name'])
