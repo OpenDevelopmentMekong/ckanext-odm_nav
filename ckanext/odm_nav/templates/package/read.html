@@ -22,9 +22,10 @@
 {% endblock %}
 
 {% block content_action %}
+    {# UNDONE -- does this need to happen here or in the indivieual types? #}
     {% if h.check_access('package_update', {'id':pkg.id }) %}
         <div class="actions">
-            {% link_for _('Manage'), controller='package', type='agreement', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+            {% link_for _('Manage'), controller='package', type=pkg.dataset_type, action='edit', id=pkg.name, class_='btn', icon='wrench' %}
         </div>
     {% endif%}
 {% endblock %}
