@@ -175,10 +175,10 @@ def recent_datasets():
   return dataset
 
 
-def sanitize_html(string):
-  string = ''.join(ch for ch in string if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
-  string = string.replace(' ','-').lower()
-  return string
+def sanitize_html(s):
+  s = ''.join(ch for ch in s if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' '))
+  s = s.replace(' ','-').lower()
+  return s
 
 
 #Helpers for data preview_resource
