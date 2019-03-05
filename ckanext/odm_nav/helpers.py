@@ -29,6 +29,15 @@ log = logging.getLogger(__name__)
 
 taxonomy_dictionary = 'taxonomy'
 
+# memoization decorator from http://code.activestate.com/recipes/578231-probably-the-fastest-memoization-decorator-in-the-/
+# mit license
+def memoize(f):
+    class memoize(dict):
+        def __missing__(self, key):
+            ret = self[key] = f(key)
+            return ret
+    return memoize().__getitem__
+
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
 
@@ -59,6 +68,7 @@ def get_taxonomy_dictionary():
 
   return get_tag_dictionaries(taxonomy_dictionary)
 
+@memoize
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
@@ -75,6 +85,7 @@ def get_localized_tag(tag):
 
   return tag
 
+@memoize
 def get_localized_tag_string(tags_string):
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
