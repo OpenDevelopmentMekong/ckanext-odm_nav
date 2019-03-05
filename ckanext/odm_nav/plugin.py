@@ -1,27 +1,11 @@
-'''plugin.py
-
-'''
-import ckan
-import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-import ckan.lib.helpers as h
-from ckan.common import config
-from beaker.middleware import SessionMiddleware
-import sys
-import os
-from . import helpers 
-import helpers
-import datetime
-import time
-from urlparse import urlparse
-import json
-import collections
-from genshi.template.text import NewTextTemplate
-from ckan.lib.base import render
-from pprint import pprint
+
 import collections
 
+from . import helpers
+
+import logging
 log = logging.getLogger(__name__)
 
 
