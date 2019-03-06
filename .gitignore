@@ -6,3 +6,5 @@ ckanext_odm_nav.egg-info
 **/.DS_STORE
 
 *~
+
+*_nav_items.json
