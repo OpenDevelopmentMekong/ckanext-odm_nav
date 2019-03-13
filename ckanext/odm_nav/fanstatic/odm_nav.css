@@ -1197,3 +1197,9 @@ ul.nav li:hover > ul.dropdown-menu {
     display: inline-block;
     z-index: 50;
 }
+
+/* let the links in the odm profile body show */
+.odm_profile a {
+    color: inherit;
+    text-decoration: underline;
+}
