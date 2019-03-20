@@ -1203,3 +1203,14 @@ ul.nav li:hover > ul.dropdown-menu {
     color: inherit;
     text-decoration: underline;
 }
+
+.actions .dropdown-menu {
+    margin-top: 1rem;
+    padding: 1rem;
+    right: 0;
+    left: inherit;
+}
+
+.actions .dropdown-menu input {
+    width: 100%;
+}
