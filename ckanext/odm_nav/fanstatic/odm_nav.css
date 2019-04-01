@@ -20,33 +20,31 @@ body {
 #od-head {
     margin-top: 26px;
     padding: 10px;
-    background: #2a2d56;
-    color: #fff;
     min-height: 72px;
 }
 
 /* color for the logo and OpenDevelopment header */
-.odt #od-head h1, .odt .icon-od-logo {
+body.odt #od-head h1, a.odt .icon-od-logo, body.odt #od-logo .icon-od-logo {
     color: #f7904d;
     fill: #f7904d;
 }
-.odm #od-head h1, .odm .icon-od-logo {
+body.odm #od-head h1, a.odm .icon-od-logo, body.odm #od-logo .icon-od-logo {
     color: #6393d2;
     fill: #6393d2;
 }
-.odc #od-head h1, .odc .icon-od-logo {
+body.odc #od-head h1, a.odc .icon-od-logo, body.odc #od-logo .icon-od-logo {
     color: #97d320;
     fill: #97d320;
 }
-.odl #od-head h1, .odl .icon-od-logo {
+body.odl #od-head h1, a.odl .icon-od-logo, body.odl #od-logo .icon-od-logo {
     color: #d61e2a;
     fill: #d61e2a;
 }
-.odmy #od-head h1, .odmy .icon-od-logo {
+body.odmy #od-head h1, a.odmy .icon-od-logo, body.odmy #od-logo .icon-od-logo {
     color: #f8bf42;
     fill: #f8bf42;
 }
-.odv #od-head h1, .odv .icon-od-logo {
+body.odv #od-head h1, a.odv .icon-od-logo, body.odv #od-logo .icon-od-logo {
     color: #beab74;
     fill: #beab74;
 }
@@ -69,6 +67,25 @@ body.odmy a.odmy {
 }
 body.odv a.odv {
     font-weight: bold;
+}
+
+body.odt header.masthead {
+    background: #64161d;
+}
+body.odm header.masthead {
+    background: #292d56;
+}
+body.odc header.masthead {
+    background: #06323d;
+}
+body.odl header.masthead {
+    background: #3b2226;
+}
+body.odmy header.masthead {
+    background: #59396c;
+}
+body.odv header.masthead {
+    background: #50813b;
 }
 
 
@@ -568,9 +585,7 @@ a.tag:hover {
 .masthead .container {
   position: relative;
 }
-.masthead a {
-  color: #ffffff;
-}
+
 .masthead hgroup h1,
 .masthead hgroup h2 {
   float: left;
@@ -1214,3 +1229,293 @@ ul.nav li:hover > ul.dropdown-menu {
 .actions .dropdown-menu input {
     width: 100%;
 }
+
+.mekong-logo {
+    fill: #6393d2
+}
+
+.cambodia-logo {
+    fill: #97d320
+}
+
+.laos-logo {
+    fill: #d61e2a
+}
+
+.myanmar-logo {
+    fill: #f8bf42
+}
+
+.thailand-logo {
+    fill: #f7904d
+}
+
+.vietnam-logo {
+    fill: #beab74
+}
+
+#od-head #od-logo .icon-od-logo {
+    display: inline-block;
+    margin-right: 10px;
+    width: 40px;
+    float: left;
+}
+
+#od-head #od-logo .icon-od-logo .svg-od-logo {
+    width: 40px;
+    height: 68px;
+}
+
+#od-selector .icon-od-logo {
+    display: inline-block;
+    margin-right: 3px;
+    float: left
+}
+
+#od-selector .icon-od-logo .svg-od-logo {
+    width: 16px;
+    height: 16px
+}
+
+#od-breadcrumb .row,#od-head .row,#od-menu .row,#od-selector .row {
+    margin: 0;
+}
+
+#od-menu {
+    background: #373c6a;
+}
+
+#od-menu #menu-header-menu {
+    padding: 0;
+    margin: 0;
+}
+
+#od-menu #menu-header-menu li {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+#od-menu #menu-header-menu a {
+    text-decoration: none;
+    height: 40px;
+    padding: 0 10px 0 10px;
+    line-height: 40px;
+    font-weight: 400;
+    vertical-align: baseline;
+    text-align: left;
+    display: inline-block;
+}
+
+#od-menu #menu-header-menu a:hover {
+    background: #eee;
+}
+
+.country-selector ul li {
+    float: left;
+}
+
+#od-selector a {
+    font-size: small;
+    color: #fff;
+    text-decoration: none;
+}
+
+#od-selector a:hover {
+    color: #6393d2;
+}
+
+#od-selector .active-country {
+    font-weight: 700;
+    color: #fff;
+}
+
+.admin-bar #od-selector {
+    top: 32px;
+}
+
+#od-selector ul,#od-selector ul li {
+    margin: 0;
+    padding: 0;
+    float: left;
+    font-size: small;
+    padding: 2px 12px 2px 0;
+    list-style: none;
+}
+
+.language-selector ul li {
+    float: right;
+}
+
+#od-selector #qtranslate-chooser {
+    float: right;
+}
+
+#od-selector #qtranslate-chooser li {
+    display: inline-block;
+}
+
+
+
+#od-selector ul.menu>li>ul li:last-child a {
+    border-bottom: 0
+}
+
+#od-selector ul.menu>li>ul li a,#od-selector ul.menu>li>ul li:last-child>ul li a {
+    border-bottom: 1px solid #ddd
+}
+
+
+
+
+#od-head h1 {
+    font-family: 'Droid Serif';
+    text-decoration: none;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 700;
+    letter-spacing: -4px;
+    float: left;
+    margin: 10px 24px 0 0;
+}
+
+#od-head h1 sup {
+    font-size: 55%;
+    position: relative;
+    vertical-align: baseline;
+    top: -10px;
+}
+
+#od-head h1.with-logo,#od-head h1.with-logo a {
+    text-indent: -9999px;
+    line-height: 0
+}
+
+#od-head h2.side-title {
+    font-family: 'Droid Serif';
+    font-size: 30px;
+    line-height: 48px;
+    float: left;
+    margin: 16px 0 0 0;
+    color: #fff
+}
+
+#od-head h2[class*=" icon-"],#od-head h2[class^=icon-] {
+    font-size: 50%;
+    margin-left: 10px;
+}
+
+#od-head h2 img {
+    max-height: 38px;
+    display: block;
+    width: auto;
+    margin-top: 5px;
+}
+
+#breadcrumbs {
+    list-style: none;
+    margin: 5px 0 0 0;
+    overflow: hidden;
+    color: #444;
+    border-bottom: 1px solid #eee;
+}
+
+#breadcrumbs li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#breadcrumbs a.bread-link,#breadcrumbs li,#od-head #breadcrumbs a {
+    color: #333;
+}
+
+#breadcrumbs .separator {
+    background: url(../../img/breadcrumb-separator.png) center no-repeat;
+    width: 14px;
+    height: 11px;
+    font-size: 18px;
+    font-weight: 100;
+    color: #ccc;
+    margin-top: 3px;
+}
+
+#breadcrumbs .separator_by {
+    font-size: 18px;
+}
+
+#breadcrumbs .separator-topic:last-child {
+    display: none;
+}
+
+.bread-current {
+    font-weight: 700;
+}
+
+
+.social {
+    padding: 10px;
+    text-align: right;
+    margin-top: 18px
+}
+
+.social a {
+    margin-left: 6px;
+    color: #fff
+}
+
+.social a:hover {
+    margin-left: 6px;
+    color: #c8c8c8
+}
+
+.social i {
+    color: #fff;
+    font-size: 24px
+}
+
+@media (min-width: 768px) {
+    .wrapper:before {
+	border: 0;
+    }
+}
+
+
+.container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 960px)
+.container {
+    width: 100%;
+}
+
+@media (min-width: 1200px)
+.container {
+    width: 100%;
+}
+
+.result_links {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    line-height: 2em;
+}
+
+
+.dataset-detail table {
+    width: 100%;
+}
+
+.dataset-detail td {
+    padding: .33em;
+}
+
+.dataset-detail .head {
+    font-weight: bold;
+    width: 33%;
+}
+
