@@ -3,7 +3,7 @@
 
 import json
 import ckan
-import urlparse
+from urlparse import urlparse, urlunparse
 
 import os
 import requests
@@ -34,14 +34,13 @@ def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
 
   try:
-    parsed = urlparse(url)
-    str_index = url.index(parsed.netloc)
-    str_length = len(parsed.netloc)
-    localized = url[str_index+str_length:]
-    return localized
-
+    p = urlparse(url)
+    return urlunparse(('','',p.path, p.params, p.query, p.fragment))
   except:
     return url
+
+def thumbnail_img_url(url):
+    return url.replace('/download/', '/thumbnail/')
 
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''

@@ -53,16 +53,14 @@ class OdmNavPlugin(plugins.SingletonPlugin):
 
         # IRoutes
     def before_map(self, m):
-        redirects = {
-                '/': '/dataset'
-            }
+        m.redirect('/', '/dataset')
 
-        for k, v in redirects.iteritems():
-            m.redirect(k, v)
-
+        m.connect('odm_nav_thumbnail',
+                  '/dataset/{id}/resource/{resource_id}/thumbnail/{file_name}',
+                  controller='ckanext.odm_nav.thumbnail:Controller', action='read', ckan_icon='table')
         return m
-        # m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
 
+        
     # IConfigurer
     def update_config(self, config):
         '''Update plugin config'''
@@ -81,6 +79,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_sanitize_html': helpers.sanitize_html,
             'odm_nav_taxonomy_dictionary': helpers.get_taxonomy_dictionary,
             'odm_nav_localize_resource_url': helpers.localize_resource_url,
+            'odm_nav_thumbnail_img': helpers.thumbnail_img_url,
             'odm_nav_get_localized_tag': helpers.get_localized_tag,
             'odm_nav_get_localized_tag_string': helpers.get_localized_tag_string,
             'odm_nav_popular_datasets': helpers.popular_datasets,

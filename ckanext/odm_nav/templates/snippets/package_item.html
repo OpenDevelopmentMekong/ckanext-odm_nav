@@ -69,7 +69,7 @@ Example:
         {% block notes %}
           {% set resource = image_resources|last %}
          {% if resource %}
-          <img class="dataset_thumb_s" src="{{ h.odm_nav_localize_resource_url(resource.url) }}"></img>
+          <img class="dataset_thumb_s" src="{{ h.odm_nav_thumbnail_img(h.odm_nav_localize_resource_url(resource.url)) }}"></img>
          {% endif %}
          {% if notes %}
            <div>
