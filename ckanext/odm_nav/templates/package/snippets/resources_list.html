@@ -12,9 +12,8 @@ Example:
 {% macro resource_table(resources) %}
     <div class="row">
         {% for res in resources %}
-            <div class="{% if resources|length <= 3 %}col-sm-12{% else %}col-sm-6{% endif %}">
-                <div class="dataset-resource">
-                    <div class="dataset-resource-format col-md-2">
+            <div class="dataset-resource col-sm-12 {% if resources|length >= 3 %}col-lg-6{% endif %}">
+                    <div class="dataset-resource-format col-sm-2 col-lg-2">
                         <i class="fa fa-file-text-o" aria-hidden="true"></i>
                         <span class="format-name">
                             {% filter upper %}
@@ -22,7 +21,7 @@ Example:
                             {% endfilter %}
                         </span>
                     </div>
-                    <div class="dataset-resource-text col-md-7">
+                    <div class="dataset-resource-text col-sm-6">
 
                         {{res.get('date','')}}
 
@@ -36,7 +35,7 @@ Example:
                             </div>
                         {% endif %}
                     </div>
-                    <div class="dataset-resource-buttons col-md-3">
+                    <div class="dataset-resource-buttons col-sm-4 col-lg-4">
                         <a class="btn btn-lg btn-info btn-block" href="{{h.url_for(controller='package', action='resource_read', id=c.pkg_dict['name'], resource_id=res['id'])}}">
                             {% if res.has_views %}
                                 Preview
@@ -53,7 +52,6 @@ Example:
                         </a>
                     </div><!--/dropdown-->
                 </div><!-- /dataset-resource -->
-            </div><!-- /col-sm-6 -->
         {% endfor %}
 
     </div>

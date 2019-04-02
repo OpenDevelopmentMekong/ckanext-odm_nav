@@ -1050,24 +1050,25 @@ a.header_tag:hover {
     background: #59AED1;
     color: #fff;
     font-weight: bold;
-    i {
-        display: inline-block;
-        position: absolute;
-        margin-top: 16px;
-        width: 100%;
-        text-align: center;
-        color: #fff;
-        font-size: 2em;
-    }
 }
 
- .format-name {
+.dataset-resource-format i {
+    display: inline-block;
+    position: absolute;
+    margin-top: 6px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 1.67em;
+}
+
+.format-name {
     display: inline-block;
     position: absolute;
     width: 100%;
-    color: #fff;
     font-weight: bold;
     text-align: center;
+    margin-top: 34px;
 }
 
 @media only screen and (max-width: 992px)  {
@@ -1075,15 +1076,14 @@ a.header_tag:hover {
         height: 50px;
         padding-left: 0px;
         border-radius: 4px;
-        background: #4244d7;
-        color: #fff;
         font-weight: bold;
-        i {
-            display: none;
-        }
     }
+    .dataset-resource-format i {
+        display: none;
+    }
+
     .format-name {
-        margin-top: 10px;
+        margin-top: 14px;
     }
 
 }
@@ -1098,7 +1098,7 @@ a.header_tag:hover {
   border-radius: 3px;
 }
 
-.resources div {
+.dataset-resource {
     margin-bottom: 15px;
 }
 
