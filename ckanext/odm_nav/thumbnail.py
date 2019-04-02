@@ -10,19 +10,18 @@ import requests
 
 from ckan.lib.base import BaseController
 from ckan.plugins import toolkit
-from ckan.lib import helpers
+from ckan.lib import helpers, uploader
 from ckan.common import request, response, c
 
 from .helpers import memoize
 
 import logging
 log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
 
 @memoize
-def _thumbnail(url):
-    r = requests.get(url, stream=True)
-    r.raw.decode_content = True
-    im = Image.open(r.raw)
+def _thumbnail(path):
+    im = Image.open(path)
     log.debug('Initial size: %s, format: %s' %(im.size, im.format))
     im.thumbnail((120,58))
 
@@ -31,6 +30,13 @@ def _thumbnail(url):
     
     return (Image.MIME[im.format], out_buf.getvalue())
 
+def _blank():
+    im = Image.new('RGB', (58,58), 'white')
+    out_buf = io.BytesIO()
+    im.save(out_buf, "PNG")
+
+    return (Image.MIME['PNG'], out_buf.getvalue())
+    
 class Controller(BaseController):
     
     def read(self, id, resource_id, filename=None):
@@ -43,7 +49,17 @@ class Controller(BaseController):
             helpers.redirect_to(resource['url'])
             return
 
-        content_type, img_bytes = _thumbnail(resource['url'])
+        path = None
+        if resource['url_type'] == 'upload':
+            upload = uploader.get_resource_uploader(resource)
+            path = upload.get_path(resource['id'])
+                                    
+        try:
+            content_type, img_bytes = _thumbnail(path)
+        except IOError as e:
+            log.error("Exception thumbnailing %s %s: %s" %(
+                resource_id, filename, e))
+            content_type, img_bytes = _blank()
         
         response.headers['Content-type'] = content_type
         response.headers['cache-control'] = "max-age=86400"
