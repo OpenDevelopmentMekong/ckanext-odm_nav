@@ -102,6 +102,8 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_wp_url_for_site': helpers.wp_url_for_site,
             'odm_nav_country_name_for_site': helpers.country_name_for_site,
             'odm_nav_menu': helpers.odm_nav_menu,
+            'odm_nav_wms_download': helpers.odm_wms_download,
+            
         }
 
 

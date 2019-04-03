@@ -4,11 +4,12 @@
 import json
 import ckan
 from urlparse import urlparse, urlunparse
+from urllib import quote_plus
 
 import os
 import requests
 
-from ckan.common import config
+from ckan.common import config, _
 import ckan.lib.helpers as h
 import ckan.logic as logic
 from ckan.plugins.toolkit import request
@@ -367,3 +368,44 @@ def odm_nav_menu(site=None):
         menus.rendered[site] = gen_odm_menu(menu_items)
         
     return menus.rendered[site]
+
+def odm_wms_download(resource):
+    ows_server = resource['wms_server'].replace('/wms', '/')
+    layer = resource['wms_layer']
+    namespace = ''
+
+    try:
+        namespace, layer_name = layer.split(':',1)
+        namespace = "%s/" % namespace
+    except: pass
+
+    ows_templ = "%s%sows?service=WFS&version=1.0.0&request=GetFeature&typeName=%s&outputFormat=%s"
+    link_templ = """<li class="dropdown-item"><a target='_blank' href='%s'>%s <i class="fa fa-download" aria-hidden="true"></i></a></li>"""
+    # templ % (ows_server, namespace, layer, output_format)
+
+    layer = quote_plus(layer)
+    
+    output_formats = [(_('GeoJSON'), 'application/json'),
+                      (_('KML'),'application/vnd.google-earth.kml+xml'),
+                      (_('Shapefile'), 'SHAPE-ZIP')]
+
+    def _url(fmt):
+        return ows_templ % (ows_server, namespace, layer, quote_plus(fmt))
+
+    dl_list = "\n".join([ link_templ % (_url(fmt), name) for name, fmt in output_formats])
+
+    return """<span class='dropdown'>
+	   <a class='btn btn-primary btn-download btn-block btn-lg' id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
+	     <span class="caret"></span>
+	     </a>
+	   <div class='dropdown-menu' aria-labelledby="a_wms_dl_%s">
+             %s
+	   </div>
+	 </span>""" % (resource['id'],
+                       _('Download'),
+                       resource['id'],
+                       dl_list)
+
+
+    
+        
