@@ -32,14 +32,14 @@ def memoize(f):
     return memoize().__getitem__
 
 def localize_resource_url(url):
-  '''Converts a absolute URL in a relative, chopping out the domain'''
+    '''Converts a absolute URL in a relative, chopping out the domain'''
 
-  try:
-    p = urlparse(url)
-    return urlunparse(('','',p.path, p.params, p.query, p.fragment))
-  except:
-    return url
-
+    try:
+        p = urlparse(url)
+        return urlunparse(('','',p.path, p.params, p.query, p.fragment))
+    except:
+        return url
+    
 def thumbnail_img_url(url):
     return url.replace('/download/', '/thumbnail/')
 
