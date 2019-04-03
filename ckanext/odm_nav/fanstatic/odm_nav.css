@@ -637,6 +637,7 @@ a.tag:hover {
   width: 200px;
   padding: 4px 10px;
 }
+
 .masthead .debug {
   position: absolute;
   top: 37px;
@@ -1517,5 +1518,26 @@ ul.nav li:hover > ul.dropdown-menu {
 .dataset-detail .head {
     font-weight: bold;
     width: 33%;
+}
+
+
+/*
+ * Menu
+ */
+
+.masthead .nav>li>a:hover,
+.masthead .nav>li>a.focus {
+    background-color: #eee;
+    color: #333;
+}
+
+/* make the 2 level menus work better */
+.dropdown-menu li {
+    position: relative;
+}
+.dropdown-menu .dropdown-menu {
+    left: 200px; /* min width + padding */
+    top: 0;
+    float: right;
 }
 
