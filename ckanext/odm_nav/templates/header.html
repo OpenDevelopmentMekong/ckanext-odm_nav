@@ -177,35 +177,12 @@
 	      </div>
 	  </nav>
 	{% endblock %}
-        <div class="collapse navbar-collapse" id="main-navigation-toggle">
+        <div class="collapse navbar-collapse pull-left" id="main-navigation-toggle">
           {% block odm_nav_x %}
-	  {{ h.odm_nav_menu()|safe }}
-            {% endblock %}
-            <ul class="nav navbar-nav">
-                {% block header_site_navigation %}
-                <nav class="section navigation">
-                    <ul class="nav nav-pills">
-
-                    </ul>
-                    <ul class="nav nav-pills">
-
-                        {% block header_site_search %}
-                        <form class="section site-search simple-input"
-                              action="{% url_for controller='package', action='search' %}"
-                              method="get">
-                            <div class="field">
-                                <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search
-                                    Datasets') }}{% endblock %}</label>
-                                <input id="field-sitewide-search" type="text" class="form-control" name="q"
-                                       placeholder="{{ _('Search') }}"/>
-                                <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
-                        {% endblock %}
-                    </ul>
-                </nav>
-                {% endblock %}
-            </ul>
+	    {{ h.odm_nav_menu()|safe }}
+          {% endblock %}
+          {% block header_site_navigation %}	  
+          {% endblock %}
         </div>
     </div>
 </header>
