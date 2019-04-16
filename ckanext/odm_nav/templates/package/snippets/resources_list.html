@@ -46,7 +46,10 @@ Example:
                             {% endif %}
 
                         </a>
-			{% if res.format == 'WMS' %}{{ h.odm_nav_wms_download(res)|safe }}{% else %}
+			{% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
+			{% if dl %}
+			{{ dl|safe }}
+			{% else %}
                         <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
                             Download
                             <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
