@@ -1775,3 +1775,10 @@ ul.nav li:hover > ul.dropdown-menu {
     float: right;
 }
 
+/* fix stacking context issue with menu appearing behind other elements */
+.container-fluid {
+    position: relative;
+    z-index: 0;
+}
+
+/* profile related items */
