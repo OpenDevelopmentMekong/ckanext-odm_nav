@@ -10,6 +10,13 @@
   {% set ml_description = h.markdown_extract(res.description_translated[h.odm_dataset_get_current_language()]) %}
 {% endif %}
 
+{% block resource_actions_inner %}
+  {{ super() }}
+  {% if res.format == 'WMS' %}
+    {{ h.odm_nav_wms_download(res, large=False)|safe }}
+  {% endif %}
+{% endblock %}
+
 {% block head_extras -%}
   {{ super() }}
   {% set description = h.markdown_extract(ml_description or res.description, extract_length=200) if res.description else h.markdown_extract(c.package.notes, extract_length=200) %}
