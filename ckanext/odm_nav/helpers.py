@@ -39,7 +39,7 @@ def localize_resource_url(url):
         return urlunparse(('','',p.path, p.params, p.query, p.fragment))
     except:
         return url
-    
+
 def thumbnail_img_url(url):
     return url.replace('/download/', '/thumbnail/')
 
@@ -51,8 +51,8 @@ def get_tag_dictionaries(vocab_id):
         return tag_dictionaries
     except toolkit.ObjectNotFound:
         return []
-    
-  
+
+
 def get_taxonomy_dictionary():
     '''Returns the tag dictionary for the taxonomy'''
 
@@ -70,7 +70,7 @@ def _get_localized_tag((tag, lang)):
     '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
     log.debug('odm_nav_get_localized_tag: %s', tag)
-    
+
 
     translations = ckan.logic.action.get.term_translation_show(
         {'model': ckan.model},
@@ -87,7 +87,7 @@ def get_localized_tag_string(tags_string):
     '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
     lang = request.environ['CKAN_LANG']
-  
+
     return ",".join([_get_localized_tag((tag.strip(), lang))
                      for tag in tags_string.split(',')])
 
@@ -96,16 +96,16 @@ def tag_for_topic(topic):
     '''Return the name of the tag corresponding to a top topic'''
 
     log.debug('tag_for_topic')
-    
+
     tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
     return tag_name if len(tag_name)<=100 else tag_name[0:99]
 
 def popular_groups():
     '''Return a sorted list of the groups with the most datasets.'''
-    
+
     groups = toolkit.get_action('group_list')(
         data_dict={'sort': 'packages desc', 'all_fields': True})
-    
+
     groups = groups[:10]
     return groups
 
@@ -114,7 +114,7 @@ def popular_datasets(limit):
 
     result_dict = toolkit.get_action('package_search')(
         data_dict={'sort': 'views_recent desc', 'rows': limit})
-    
+
     return result_dict['results']
 
 def get_all_laws_records():
@@ -128,7 +128,7 @@ def get_all_laws_records_and_agreements():
 def get_all_library_records():
     result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record','rows':1000})
     return map(lambda x:x["name"], result['results'])
-    
+
 def get_all_agreements():
     result = toolkit.get_action('package_search')(data_dict={'fq': '+type:agreement','rows':1000})
     return map(lambda x:x["name"], result['results'])
@@ -161,7 +161,7 @@ def tag_for_topic(topic):
     '''Return the name of the tag corresponding to a top topic'''
 
     log.debug('tag_for_topic')
-    
+
     tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
     return tag_name if len(tag_name)<=100 else tag_name[0:99]
 
@@ -386,7 +386,7 @@ def odm_wms_download(resource, large=True):
     # templ % (ows_server, namespace, layer, output_format)
 
     layer = quote_plus(layer)
-    
+
     output_formats = [(_('GeoJSON'), 'application/json'),
                       (_('KML'),'application/vnd.google-earth.kml+xml'),
                       (_('Shapefile'), 'SHAPE-ZIP')]
@@ -408,7 +408,3 @@ def odm_wms_download(resource, large=True):
                        _('Download'),
                        resource['id'],
                        dl_list)
-
-
-    
-        
