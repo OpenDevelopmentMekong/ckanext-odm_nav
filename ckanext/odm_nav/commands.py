@@ -26,7 +26,7 @@ class OdmNav(CkanCommand):
     summary = __doc__.split('\n')[0]
     usage = __doc__
     min_args = 0
-    
+
     base_path = os.path.join(os.path.dirname(__file__), 'public')
 
     def command(self):
@@ -45,7 +45,7 @@ class OdmNav(CkanCommand):
         for site in ('odm', 'odc', 'odl', 'odt', 'odmy', 'odv'):
             self.load_site(site)
         menus.rendered = {}
-            
+
     def load_site(self, site, *args):
         print("Loading %s" % site)
         wp_url = helpers.wp_url_for_site(site)
@@ -53,6 +53,3 @@ class OdmNav(CkanCommand):
         with open(os.path.join(self.base_path, filename), 'w') as f:
             json.dump(menus.get_menu(wp_url), f, indent=2)
             print("Wrote: %s" % filename)
-            
-
-

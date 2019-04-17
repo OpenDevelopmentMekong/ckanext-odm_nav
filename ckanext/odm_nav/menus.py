@@ -7,7 +7,7 @@ rendered = {}
 
 def extract_wp_menu(wp_site_url, language_code=None):
     result = {}
-    
+
     if not language_code:
         response = requests.get(wp_site_url+'/wp-json/odm/menu')
     else:
@@ -50,6 +50,3 @@ def get_menu(wp_site_url, language_code=None):
     nav = [item for item in nav_item_meta.values() if item['menu_item_parent'] == '0']
 
     return nav
-
-
-
