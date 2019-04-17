@@ -275,8 +275,11 @@ def resource_to_preview_on_dataset_page(resources):
     for possible_format in preview_priority:
         if (possible_resources.get(possible_format) and len(possible_resources.get(possible_format))):
             context ={}
-            resource_views = toolkit.get_action('resource_view_list')(
-                context, {'id': possible_resources.get(possible_format)[0]['id']})
+            try:
+                resource_views = toolkit.get_action('resource_view_list')(
+                    context, {'id': possible_resources.get(possible_format)[0]['id']})
+            except:
+                continue
             for vtype in view_types_priority:
                 for rv in resource_views:
                     if vtype == rv['view_type']:
@@ -306,7 +309,7 @@ def active_search_link():
 
     return active_path
 
-def gen_odm_menu(list_element, first_pass=True):
+def gen_odm_menu(list_element, lang, first_pass=True):
     items = []
 
     link_template = '<a href="%s" %s>%s%s</a>'
@@ -327,12 +330,15 @@ def gen_odm_menu(list_element, first_pass=True):
             if len(element['child_menus']) != 0:
                 child_span = '<span class="caret"></span>'
                 # disabled here means "able to click on the link'. sigh.
-                # if it's missing, the root of a dropdown can't be clicked on. 
+                # if it's missing, the root of a dropdown can't be clicked on.
                 atts = """class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" """
 
-            items.append(link_template %(element['url'], atts, element['title'], child_span))
+            items.append(link_template %(element['url'],
+                                         atts,
+                                         element.get('title_translated',{}).get(lang, element['title']),
+                                         child_span))
 
-            items.append(gen_odm_menu(element['child_menus'], first_pass))
+            items.append(gen_odm_menu(element['child_menus'], lang, first_pass))
             items.append('</li>')
         items.append('</ul>')
 
@@ -355,18 +361,20 @@ def country_name_for_site(site=None):
              'odv': 'Vietnam'}
     return names.get(site,'')
 
-def odm_nav_menu(site=None):
+def odm_nav_menu(site=None, lang=None):
     if not site:
         site = config.get('ckanext.odm.site_code')
-    if not site in menus.rendered:
+    if not lang:
+        lang = request.environ['CKAN_LANG']
+    if not (site, lang) in menus.rendered:
         base_path = os.path.join(os.path.dirname(__file__), 'public')
         filename = '%s_nav_items.json' % site
         with open(os.path.join(base_path, filename), 'r') as f:
             menu_items = json.load(f)
-            
-        menus.rendered[site] = gen_odm_menu(menu_items)
-        
-    return menus.rendered[site]
+
+        menus.rendered[(site, lang)] = gen_odm_menu(menu_items, lang)
+
+    return menus.rendered[(site, lang)]
 
 def odm_wms_download(resource, large=True):
     try:

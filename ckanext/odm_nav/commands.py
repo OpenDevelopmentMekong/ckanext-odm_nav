@@ -42,14 +42,18 @@ class OdmNav(CkanCommand):
             self.load_site(*self.args[1:])
 
     def load_menus(self, *args):
-        for site in ('odm', 'odc', 'odl', 'odt', 'odmy', 'odv'):
-            self.load_site(site)
+        for site, langs in {'odm':[None], 'odc':[None,'km'], 'odl':[None, 'lo'],
+                            'odt':[None, 'th'], 'odmy':[None, 'my'], 'odv':[None, 'vi']}.items():
+            self.load_site(site, langs)
         menus.rendered = {}
 
     def load_site(self, site, *args):
         print("Loading %s" % site)
         wp_url = helpers.wp_url_for_site(site)
+        langs = [None]
+        if args[0]:
+            langs = args[0]
         filename = '%s_nav_items.json' % site
         with open(os.path.join(self.base_path, filename), 'w') as f:
-            json.dump(menus.get_menu(wp_url), f, indent=2)
+            json.dump(menus.get_menu(wp_url, langs), f, indent=2)
             print("Wrote: %s" % filename)
