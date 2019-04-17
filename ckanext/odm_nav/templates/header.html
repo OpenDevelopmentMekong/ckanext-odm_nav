@@ -156,7 +156,7 @@
 				      <svg class="svg-od-logo"><use xlink:href="#icon-od-logo"></use></svg>
 				  </span>
 			      <h1>Op<sup>e</sup>nDevelopment</h1>
-			      <div><h2 class="side-title">{{ h.odm_nav_country_name_for_site() }}</h2></div>
+			      <div><h2 class="side-title">{{ _(h.odm_nav_country_name_for_site()) }}</h2></div>
 			  </div>
 		      </div>
 		  </div>
@@ -164,12 +164,9 @@
 		      <div class="social">
 			<nav>
 			  {% block odm_social %}
-			      <a href="https://www.facebook.com/OpenDevThailand/" target="_blank" rel="external" title="Facebook"><i
-				      class="fa fa-facebook-official"></i></a>
-			      <a href="https://twitter.com/opendevthai" target="_blank" rel="external" title="Twitter"><i
-				      class="fa fa-twitter-square"></i></a>
-			      <a href="https://thailand.opendevelopmentmekong.net/contacts/" title="Subscribe"><i
-                                      class="fa fa-envelope"></i></a>
+			      {{ h.odm_nav_facebook_for_site()|safe }}
+			      {{ h.odm_nav_twitter_for_site()|safe }}
+			      {{ h.odm_nav_contact_for_site()|safe }}
 			      {% endblock %}
 			  </nav>
 		      </div>
@@ -179,9 +176,9 @@
 	{% endblock %}
         <div class="collapse navbar-collapse pull-left" id="main-navigation-toggle">
           {% block odm_nav_x %}
-	    {{ h.odm_nav_menu()|safe }}
+	          {{ h.odm_nav_menu()|safe }}
           {% endblock %}
-          {% block header_site_navigation %}	  
+          {% block header_site_navigation %}
           {% endblock %}
         </div>
     </div>

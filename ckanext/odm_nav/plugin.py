@@ -60,7 +60,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
                   controller='ckanext.odm_nav.thumbnail:Controller', action='read', ckan_icon='table')
         return m
 
-        
+
     # IConfigurer
     def update_config(self, config):
         '''Update plugin config'''
@@ -101,9 +101,10 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_ckan_url_for_site': helpers.ckan_url_for_site,
             'odm_nav_wp_url_for_site': helpers.wp_url_for_site,
             'odm_nav_country_name_for_site': helpers.country_name_for_site,
+            'odm_nav_twitter_for_site': helpers.twitter_for_site,
+            'odm_nav_contact_for_site': helpers.contact_for_site,
+            'odm_nav_facebook_for_site': helpers.facebook_for_site,
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_nav_wms_download': helpers.odm_wms_download,
-            
+
         }
-
-

@@ -361,6 +361,52 @@ def country_name_for_site(site=None):
              'odv': 'Vietnam'}
     return names.get(site,'')
 
+def twitter_for_site(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+
+    username = {'odm': 'opendevmekong',
+            'odmy': 'opendevmm',
+            'odt': 'opendevthai',
+            'odl': 'opendevlaos',
+            'odc': 'opendevcam',
+            'odv': ''}.get(site,'')
+
+    if username:
+        return """<a href="https://twitter.com/%s" target="_blank" rel="external" title="Twitter"><i class="fa fa-twitter-square"></i></a>""" % username
+    return ""
+
+def contact_for_site(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+
+    link = {'odm': 'contact',
+            'odmy': 'contacts',
+            'odt': 'contacts',
+            'odl': 'contacts',
+            'odc': 'contact',
+            'odv': 'contact-us'}.get(site,'')
+
+    if link:
+        return """<a href="%s/%s/" title="Subscribe"><i class="fa fa-envelope"></i></a>""" % (wp_url_for_site(site), link)
+    return ""
+
+def facebook_for_site(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+
+    username = {'odm': 'opendevmekong',
+                'odmy': 'opendevmm',
+                'odt': 'OpenDevThailand',
+                'odl': 'OpenDevLaos',
+                'odc': 'OpenDevCam',
+                'odv': 'opendevvn'}.get(site,'')
+
+    if username:
+        return """<a href="https://www.facebook.com/%s/" target="_blank" rel="external" title="Facebook"><i class="fa fa-facebook-official"></i></a>""" % username
+    return ""
+
+
 def odm_nav_menu(site=None, lang=None):
     if not site:
         site = config.get('ckanext.odm.site_code')
