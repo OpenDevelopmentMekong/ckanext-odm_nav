@@ -19,6 +19,7 @@ from . import menus
 
 import logging
 log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
 
 taxonomy_dictionary = 'taxonomy'
 
@@ -249,9 +250,9 @@ def resource_to_preview_on_dataset_page(resources):
         # if there are image resource, we want to show them first as they are fast to load
         'jpeg', 'jpg', 'png', 'gif',
         # if we have a kml resource we want to show that next
-        'kml',
-        # if we don't have kml, try geojson
-        'geojson', 'wms',
+        'wms',
+        # if we don't have kml, try wms and then geojson
+        'kml', 'geojson',
         # no geojson, maybe json-stat?
         'json-stat',
         # welp, now it's tables I guess
