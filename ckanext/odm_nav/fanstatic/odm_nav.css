@@ -230,6 +230,11 @@ Light grey: #ededed
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000
 }
 
+@font-face{
+    font-family:Myanmar3;
+    src:local('Myanmar3'),url(https://mmwebfonts.comquas.com/fonts/myanmar3.woff) format('woff'),url(https://mmwebfonts.comquas.com/fonts/myanmar3.ttf) format('ttf')
+}
+
 
 h1,h2,h3,h4,h5,h6 {
     font-family: Lato,sans-serif;
@@ -242,7 +247,8 @@ h1,h2,h3,h4,h5,h6 {
 
 body {
   margin: 0;
-  font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+  /*font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;*/
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #444444;
@@ -250,11 +256,33 @@ body {
   width: 100%;
 }
 
+/* Change of font for different language my and lm */
+body.odc:lang(km) {
+  font-family: Suwannaphum, "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.odmy:lang(my) {
+  font-family: "Open Sans", Helvetica, Arial, Myanmar3, sans-serif;
+}
 
 #od-head {
     margin-top: 26px;
     padding: 10px;
     min-height: 72px;
+}
+
+
+/* Change of logo for km language */
+#od-logo img {
+   display: none
+}
+
+body.odc #od-logo h1:lang(km), body.odc #od-logo div:lang(km) {
+   display: none
+}
+
+body.odc #od-logo img:lang(km) {
+   display: inline
 }
 
 /* color for the logo and OpenDevelopment header */
