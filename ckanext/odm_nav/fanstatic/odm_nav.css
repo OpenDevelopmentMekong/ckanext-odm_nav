@@ -1930,4 +1930,5 @@ ul.nav li:hover > ul.dropdown-menu {
     top: 0px;
     right: 0px;
     position: relative;
+    float: right;
 }
