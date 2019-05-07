@@ -18,9 +18,6 @@
     {% endif %}
 {% endblock %}
 
-{% block content_primary_nav %}
-{% endblock %}
-
 {% block content_action %}
     {# UNDONE -- does this need to happen here or in the indivieual types? #}
     {% if h.check_access('package_update', {'id':pkg.id }) %}
@@ -29,6 +26,11 @@
         </div>
     {% endif%}
 {% endblock %}
+
+{% block content_primary_nav %}
+   {{ super() }}
+{% endblock %}
+
 
 {% block package_notes %}
     <div>

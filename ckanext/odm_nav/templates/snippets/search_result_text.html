@@ -1,5 +1,10 @@
+{% if type!='issue' %}
+
 {% ckan_extends %}
 {#
+
+Do not extend the ckan template if the type is issues - 
+otherwise default text no dataset found will be displayed which dosent make sense for issues.
 
 Displays a test for results of a search.
 
@@ -49,6 +54,7 @@ Example:
   {% set text_no_query_none = _('No organizations found') %}
 {%- endif -%}
 
+
 {% if query %}
   {%- if count -%}
     {{ text_query.format(number=h.localised_number(count), query=query) }}
@@ -62,3 +68,4 @@ Example:
     {{ text_no_query_none }}
   {%- endif -%}
 {%- endif -%}
+{% endif %}
