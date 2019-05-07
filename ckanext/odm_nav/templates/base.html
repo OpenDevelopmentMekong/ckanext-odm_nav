@@ -84,7 +84,7 @@
         <link rel="stylesheet" href="/base/css/custom.css" />
       {% endblock %}
     #}
-    {%- block styles %}
+    {% block styles %}
       {% resource g.main_css[6:] %}
       {% resource 'odm_nav/odm_nav.css' %}
 
@@ -95,12 +95,12 @@
       {{ g.template_head_end | safe }}
     {% endblock %}
 
-    {%- block custom_styles %}
+    {% block custom_styles %}
       {%- if g.site_custom_css -%}
       <style>
         {{ g.site_custom_css | safe }}
       </style>
-      {%- endif %}
+      {% endif %}
     {% endblock %}
   </head>
 
@@ -119,7 +119,7 @@
         <div>Some other page content</div>
       {% endblock %}
     #}
-    {%- block page %}{% endblock -%}
+    {% block page %}{% endblock %}
 
     {#
     DO NOT USE THIS BLOCK FOR ADDING SCRIPTS
