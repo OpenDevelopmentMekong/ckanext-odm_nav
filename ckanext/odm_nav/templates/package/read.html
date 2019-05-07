@@ -3,6 +3,7 @@
 {% block secondary %}{% endblock %}
 
 {% set pkg = c.pkg_dict %}
+{% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
 
 {% block page_heading %}
     {% if "title_translated" in pkg and pkg.title_translated[h.odm_dataset_get_current_language()] %}
@@ -19,18 +20,19 @@
 {% endblock %}
 
 {% block content_action %}
-    {# UNDONE -- does this need to happen here or in the indivieual types? #}
-    {% if h.check_access('package_update', {'id':pkg.id }) %}
+    {# UNDONE -- does this need to happen here or in the individual types? #}
+    {% if can_edit %}
         <div class="actions">
-            {% link_for _('Manage'), controller='package', type=pkg.dataset_type, action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+            {% link_for _('Manage'), controller='package', type=pkg.dataset_type, action='edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
         </div>
     {% endif%}
 {% endblock %}
 
 {% block content_primary_nav %}
-   {{ super() }}
+   {% if pkg.type not in ('profile', 'map') and can_edit %}
+      {{ super() }}
+   {% endif %}
 {% endblock %}
-
 
 {% block package_notes %}
     <div>
