@@ -1923,3 +1923,11 @@ ul.nav li:hover > ul.dropdown-menu {
 .scheming-form-field:nth-of-type(odd) {
     background: #f0f0f0;
 }
+
+/* move the manage button into the bar, so that it's not
+   overhanging the edge of the content_primary_nav */
+.actions {
+    top: 0px;
+    right: 0px;
+    position: relative;
+}
