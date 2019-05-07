@@ -1910,4 +1910,16 @@ ul.nav li:hover > ul.dropdown-menu {
   float: right;
   padding-right: 27px;
 }
-/* profile related items */
+
+/* scheming -- style the div for alternating color */
+
+/* note margin here is important for margin-collapsing */
+.scheming-form-field {
+    padding-left: 1em;
+    padding-right: 1em;
+    background: #f8f8f8;
+    margin-bottom: 30px;
+}
+.scheming-form-field:nth-of-type(odd) {
+    background: #f0f0f0;
+}
