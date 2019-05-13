@@ -1932,3 +1932,11 @@ ul.nav li:hover > ul.dropdown-menu {
     position: relative;
     float: right;
 }
+
+/* Make the container not fluid at larger sizes */
+
+@media (min-width: 1200px) {
+    .container-lg {
+        width: 1170px;
+    }
+}
