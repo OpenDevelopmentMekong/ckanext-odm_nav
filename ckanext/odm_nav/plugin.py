@@ -8,6 +8,33 @@ from . import helpers
 import logging
 log = logging.getLogger(__name__)
 
+#
+# monkey patch resource proxy to not proxy internal items
+#
+
+try:
+    from ckanext import resourceproxy
+    from ckan.common import config
+
+    resourceproxy.plugin._get_proxified_resource_url = resourceproxy.plugin.get_proxified_resource_url
+    def proxy_wrapper(data_dict, proxy_schemes=['http', 'https']):
+        ckan_url = config.get('ckan.site_url', '')
+        internal_domains = (config.get('ckanext.odm.odm_url',''),
+                            config.get('ckanext.odm.odc_url',''),
+                            config.get('ckanext.odm.odl_url',''),
+                            config.get('ckanext.odm.odmy_url',''),
+                            config.get('ckanext.odm.odt_url',''),
+                            config.get('ckanext.odm.odv_url',''))
+        resource_url = data_dict['resource']['url']
+        for url in internal_domains:
+            if url in resource_url:
+                return resource_url.replace(url, ckan_url)
+        return resourceproxy.plugin._get_proxified_resource_url(data_dict, proxy_schemes)
+
+    resourceproxy.plugin.get_proxified_resource_url = proxy_wrapper
+except Exception as msg:
+    log.error('Monkeypatching resource proxy failed -- %s' % msg)
+
 
 class OdmNavPlugin(plugins.SingletonPlugin):
     '''OD Mekong Nav plugin.'''
