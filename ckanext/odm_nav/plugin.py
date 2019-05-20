@@ -16,6 +16,14 @@ try:
     from ckanext import resourceproxy
     from ckan.common import config
 
+
+    def _strip_lang(url):
+        for lang in ('km', 'my', 'lo', 'th', 'vi', 'en'):
+            fragment = '/%s/' % lang
+            if fragment in url:
+                return url.replace(fragment, '/')
+        return url
+
     resourceproxy.plugin._get_proxified_resource_url = resourceproxy.plugin.get_proxified_resource_url
     def proxy_wrapper(data_dict, proxy_schemes=['http', 'https']):
         ckan_url = config.get('ckan.site_url', '')
@@ -28,7 +36,7 @@ try:
         resource_url = data_dict['resource']['url']
         for url in internal_domains:
             if url in resource_url:
-                return resource_url.replace(url, ckan_url)
+                return _strip_lang(resource_url.replace(url, ckan_url))
         return resourceproxy.plugin._get_proxified_resource_url(data_dict, proxy_schemes)
 
     resourceproxy.plugin.get_proxified_resource_url = proxy_wrapper
