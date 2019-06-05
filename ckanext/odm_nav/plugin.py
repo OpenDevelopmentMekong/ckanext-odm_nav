@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as toolkit
 
 import collections
 
-from . import helpers
+from . import helpers, auth
 
 import logging
 log = logging.getLogger(__name__)
@@ -46,12 +46,12 @@ except Exception as msg:
 
 class OdmNavPlugin(plugins.SingletonPlugin):
     '''OD Mekong Nav plugin.'''
-
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IFacets)
-
+    plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IActions)
 
     # IFacets
     def dataset_facets(self, facets_dict, package_type):
@@ -86,7 +86,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'extras_odm_spatial_range': toolkit._('Country')
         }
 
-        # IRoutes
+    # IRoutes
     def before_map(self, m):
         m.redirect('/', '/dataset')
 
@@ -105,7 +105,6 @@ class OdmNavPlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config, 'public')
 
     # IConfigurer
-
     def get_helpers(self):
         '''Register the plugin's functions above as a template helper function.'''
 
@@ -141,5 +140,27 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_facebook_for_site': helpers.facebook_for_site,
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_nav_wms_download': helpers.odm_wms_download,
+            'linked_user': helpers.linked_user,
+        }
 
+    # IAuthFunctions
+    def get_auth_functions(self):
+        return {
+            'user_list': auth.user_list,
+            'user_show': auth.user_show,
+            'user_is_org_editor': auth.user_is_org_editor,
+            }
+
+    # IActions
+    def get_actions(self):
+        return {
+            'package_activity_list': auth.action_wrapper('package_activity_list', 'package_update'),
+            'package_activity_list_html': auth.action_wrapper_html('package_activity_list_html', 'package_update'),
+            'group_activity_list': auth.action_wrapper('group_activity_list', 'user_is_org_editor'),
+            'group_activity_list_html': auth.action_wrapper_html('group_activity_list_html', 'user_is_org_editor'),
+            'organization_activity_list': auth.action_wrapper('organization_activity_list', 'user_is_org_editor'),
+            'organization_activity_list_html': auth.action_wrapper_html('organization_activity_list_html', 'user_is_org_editor'),
+            # shorthand for is_sysadmin
+            'recently_changed_packages_activity_list': auth.action_wrapper('recently_changed_packages_activity_list', 'user_list'),
+            'recently_changed_packages_activity_list_html': auth.action_wrapper_html('recently_changed_packages_activity_list_html', 'user_list'),
         }
