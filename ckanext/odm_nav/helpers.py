@@ -8,12 +8,17 @@ from urllib import quote_plus
 
 import os
 import requests
+from six import text_type
 
-from ckan.common import config, _
+from ckan.common import config, _, c
 import ckan.lib.helpers as h
 import ckan.logic as logic
+import ckan.model as model
+
 from ckan.plugins.toolkit import request
 import ckan.plugins.toolkit as toolkit
+
+from webhelpers.html import tags
 
 from . import menus
 
@@ -463,3 +468,38 @@ def odm_wms_download(resource, large=True):
                        _('Download'),
                        resource['id'],
                        dl_list)
+
+
+# From core ckan.lib.helpers.linked_user
+def linked_user(user, maxlength=0, avatar=20):
+    if not isinstance(user, model.User):
+        user_name = text_type(user)
+        user = model.User.get(user_name)
+        if not user:
+            return _("A User")
+    if user:
+        name = user.id
+        displayname = user.name
+
+        if maxlength and len(user.display_name) > maxlength:
+            displayname = displayname[:maxlength] + '...'
+
+        if c.userobj:
+            if c.userobj.sysadmin:
+                # Sysadmins can see names, link to the user page
+                return tags.literal(u'{icon} {link}'.format(
+                    icon=h.gravatar(
+                        email_hash=user.email_hash,
+                        size=avatar
+                    ),
+                    link=tags.link_to(
+                        displayname,
+                        h.url_for('user.read', id=name)
+                    )
+                ))
+            else:
+                return user.name
+        return _("A User")
+
+# Monkeypatching the builtin.
+h.linked_user = linked_user
