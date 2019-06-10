@@ -37,13 +37,13 @@
     {% if preview_resource %}
         <div class="dataset-resource-preview">
             {% if preview_resource.get('description') %}
-                <h2>Data Resource Preview - {{preview_resource.get('description')}}</h2>
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('description')}}</h2>
             {% elif preview_resource.get('name') %}
-                <h2>Data Resource Preview - {{preview_resource.get('name')}}</h2>
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('name')}}</h2>
             {% elif preview_resource.get('resource_name') %}
-                <h2>Data Resource Preview - {{preview_resource.get('resource_name')}}</h2>
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('resource_name')}}</h2>
             {% else %}
-                <h2>Data Resource Preview</h2>
+                <h2>{% trans %}Data Resource Preview{% endtrans %}</h2>
             {% endif %}
             {% set src = h.url_for(qualified=true, controller='package', action='resource_view',
                 id=pkg['name'], resource_id=preview_resource['resource_id']) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
