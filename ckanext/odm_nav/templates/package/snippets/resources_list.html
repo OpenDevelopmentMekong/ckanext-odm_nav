@@ -9,57 +9,59 @@ Example:
 {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
 
 #}
+
 {% macro resource_table(resources) %}
-    <div class="row">
-        {% for res in resources %}
-            <div class="dataset-resource col-sm-12 {% if resources|length >= 3 %}col-lg-6{% endif %}">
-                    <div class="dataset-resource-format col-sm-2 col-lg-2">
-                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                        <span class="format-name">
+<div class="row">
+    {% for res in resources %}
+    {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
+    {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
+
+    <div class="dataset-resource col-md-12 ">
+        <a href="{{ url }}">
+
+        <div class="dataset-resource-format col-xs-4 col-sm-2">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span class="format-name">
                             {% filter upper %}
                                 {{ res.get('format','') }}
                             {% endfilter %}
                         </span>
-                    </div>
-                    <div class="dataset-resource-text col-sm-6">
+        </div>
+        </a>
+        <div class="dataset-resource-text col-md-10">
 
-                        {{res.get('date','')}}
+            {% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
+            {% if dl %}
+            {{ dl|safe }}
+            {% else %}
+            <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
+                {% trans %}Download{% endtrans %}
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+            </a>
+            {% endif %}
 
-                        {% if res.get('description') %}
-                            <div>
-                                {{res.get('description')|truncate(120)}}
-                            </div>
-                        {% else %}
-                            <div>
-                                {{h.resource_display_name(res)|truncate(60)}}
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="dataset-resource-buttons col-sm-4 col-lg-4">
-                        <a class="btn btn-lg btn-info btn-block" href="{{h.url_for(controller='package', action='resource_read', id=c.pkg_dict['name'], resource_id=res['id'])}}">
-                            {% if res.has_views %}
-                                Preview
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            {% else %}
-                                Details
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            {% endif %}
+            {{res.get('date','')}}
 
-                        </a>
-			{% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
-			{% if dl %}
-			{{ dl|safe }}
-			{% else %}
-                        <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
-                            Download
-                            <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
-                        </a>
-			{% endif %}
-                    </div><!--/dropdown-->
-                </div><!-- /dataset-resource -->
-        {% endfor %}
+            <a href="{{ url }}">
 
-    </div>
+            {% if res.get('description') %}
+            <div>
+                {{res.get('description')|truncate(120)}}
+            </div>
+            {% else %}
+            <div>
+                {{h.resource_display_name(res)|truncate(120)}}
+            </div>
+            {% endif %}
+            </a>
+
+        </div>
+
+
+    </div><!-- /dataset-resource -->
+    {% endfor %}
+
+</div>
 {% endmacro %}
 
 
