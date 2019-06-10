@@ -6,11 +6,7 @@
 {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
 
 {% block page_heading %}
-    {% if "title_translated" in pkg and pkg.title_translated[h.odm_dataset_get_current_language()] %}
-        {{ pkg.title_translated[h.odm_dataset_get_current_language()] }}
-    {% else %}
-        {{ pkg.title or pkg.name }}
-    {% endif %}
+    {{ h.odm_dataset_get_currentlang_data('title_translated', pkg) or pkg.name }}
     {% if pkg.state.startswith('draft') %}
         [{{ _('Draft') }}]
     {% endif %}
@@ -33,33 +29,6 @@
       {{ super() }}
    {% endif %}
 {% endblock %}
-
-{% block package_notes %}
-    <div>
-        <h5>
-            {% set publisher = pkg.get('organization') %}
-            {% if publisher %}
-                Published by: <strong>
-                <a href="{{h.url_for(controller='organization', action='read', id=pkg.get('organization',{}).get('name',''))}}">
-                    {{pkg.get('organization',{}).get('title','')}}
-                </a></strong>
-            {% else %}
-                No publisher specified.
-            {% endif %}
-        </h5>
-    </div>
-
-    {% if "notes_translated" in pkg and pkg.notes_translated[h.odm_dataset_get_current_language()] %}
-        {{ pkg.notes_translated[h.odm_dataset_get_current_language()] }}
-    {% else %}
-        {% if c.pkg_notes_formatted %}
-            <div class="notes embedded-content">
-                {{ c.pkg_notes_formatted }}
-            </div>
-        {% endif %}
-    {% endif %}
-{% endblock %}
-
 
 {% block package_tags %}
     {% snippet "package/snippets/tags.html", tags=pkg.tags %}
