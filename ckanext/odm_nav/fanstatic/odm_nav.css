@@ -2331,3 +2331,44 @@ ul.nav li:hover > ul.dropdown-menu {
     color: #505050;
     text-shadow: none;
 }}
+
+.format-name {
+    display: inline-block;
+    position: absolute;
+    margin-top: 60px;
+    width: 100%;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dataset-resource-format i {
+    display: inline-block;
+    position: absolute;
+    margin-top: 16px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+}
+
+.dataset-resource-format {
+    padding-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    height: 90px;
+    background: #6493d2;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Mobiles in potrait mode */
+@media only screen
+and (min-width : 768px)
+and (max-width: 1065px){
+.btn-download{
+ font-size: 10px;
+ padding-left: 9px;
+}
+}
+

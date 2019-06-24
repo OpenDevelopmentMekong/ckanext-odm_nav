@@ -16,19 +16,45 @@ Example:
     {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
     {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 
-    <div class="dataset-resource col-md-12 ">
-        <a href="{{ url }}">
+    <div class="dataset-resource col-md-12 col-sm-12 col-xs-12">
 
-        <div class="dataset-resource-format col-xs-4 col-sm-2">
+
+        <div class="dataset-resource-format col-md-2 col-sm-2 col-xs-4">
+            <a href="{{ url }}">
             <i class="fa fa-file-text-o" aria-hidden="true"></i>
             <span class="format-name">
-                            {% filter upper %}
-                                {{ res.get('format','') }}
-                            {% endfilter %}
-                        </span>
+                {% filter upper %}
+                    {{ res.get('format','') }}
+                {% endfilter %}
+            </span>
+            </a>
         </div>
-        </a>
-        <div class="dataset-resource-text col-md-10">
+
+        <div class="dataset-resource-title col-md-8 col-sm-8 col-xs-8">
+            <h4>
+            <a href="{{ url }}">
+
+                {% if h.resource_display_name(res) %}
+                    <div>
+                        {{h.resource_display_name(res)|truncate(120)}}
+                    </div>
+                {% elif res.get('description') %}
+                    <div>
+                        {{res.get('description')|truncate(120)}}
+                    </div>
+                {% endif %}
+            </a>
+            </h4>
+
+            {% if res.get('description')|truncate(200) %}
+                <p>{{res.get('description')|truncate(200)}}</p>
+            {% else %}
+                <p class="empty">This resource has no description</p>
+            {% endif %}
+            
+        </div>
+
+        <div class="dataset-resource-text col-md-2 col-sm-2 col-xs-12">
 
             {% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
             {% if dl %}
@@ -42,19 +68,6 @@ Example:
 
             {{res.get('date','')}}
 
-            <a href="{{ url }}">
-
-            {% if res.get('description') %}
-            <div>
-                {{res.get('description')|truncate(120)}}
-            </div>
-            {% else %}
-            <div>
-                {{h.resource_display_name(res)|truncate(120)}}
-            </div>
-            {% endif %}
-            </a>
-
         </div>
 
 
@@ -67,5 +80,6 @@ Example:
 
 <section id="dataset-resources" class="resources">
     <h2>{{ _('Data Resources') }} ({{resources|length}})</h2>
-    {{resource_table(resources)}}
+    {{ resource_table(resources) }}
+    {#% snippet "package/snippets/resource_item.html", pkg=pkg, resources=pkg.resources %#}
 </section>
