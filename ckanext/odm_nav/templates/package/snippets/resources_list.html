@@ -38,16 +38,16 @@ Example:
                     <div>
                         {{h.resource_display_name(res)|truncate(120)}}
                     </div>
-                {% elif res.get('description') %}
+                {% elif res.get('description_translated')[h.odm_dataset_get_current_language()] %}
                     <div>
-                        {{res.get('description')|truncate(120)}}
+                        {{res.get('description_translated')[h.odm_dataset_get_current_language()]|truncate(120)}}
                     </div>
                 {% endif %}
             </a>
             </h4>
 
-            {% if res.get('description')|truncate(200) %}
-                <p>{{res.get('description')|truncate(200)}}</p>
+            {% if res.get('description_translated')[h.odm_dataset_get_current_language()]|truncate(200) %}
+                <p>{{ res.get('description_translated')[h.odm_dataset_get_current_language()]|truncate(200) }}</p>
             {% else %}
                 <p class="empty">This resource has no description</p>
             {% endif %}
