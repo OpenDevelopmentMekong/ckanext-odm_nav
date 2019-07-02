@@ -278,24 +278,33 @@ def resource_to_preview_on_dataset_page(resources):
         'jsonstat_view',
         'text_view'
     ]
+
     for possible_format in preview_priority:
-        if (possible_resources.get(possible_format) and len(possible_resources.get(possible_format))):
+        rsrc_format_group = possible_resources.get(possible_format, [])
+
+        if rsrc_format_group:
             context ={}
-            try:
-                resource_views = toolkit.get_action('resource_view_list')(
-                    context, {'id': possible_resources.get(possible_format)[0]['id']})
-            except:
-                continue
-            for vtype in view_types_priority:
+
+            for resc in rsrc_format_group:
+                try:
+                    resource_views = toolkit.get_action('resource_view_list')(
+                        context, {'id': resc.get('id')})
+                except Exception as e:
+                    log.debug('resource_view debug from action resource_view_list: %s', e)
+                    continue
+
                 for rv in resource_views:
-                    if vtype == rv['view_type']:
-                        rv['resource_name'] = possible_resources.get(possible_format)[0]['name']
-                        rv['resource_url'] = possible_resources.get(possible_format)[0]['url']
+                    if possible_format in ('csv', 'tsv', 'xls', 'xlsx'):
+                        if resc.get('datastore_active'):
+                            rv['resource_name'] = resc['name']
+                            rv['resource_url'] = resc['url']
+                            return rv
+                    else:
+                        rv['resource_name'] = resc['name']
+                        rv['resource_url'] = resc['url']
+                        print(rv)
                         return rv
-                    rv['resource_name'] = possible_resources.get(possible_format)[0]['name']
-                    rv['resource_url'] = possible_resources.get(possible_format)[0]['url']
-                    return rv
-            # return possible_resources.get(possible_format)[0]
+
     return None
 
 def active_search_link():
