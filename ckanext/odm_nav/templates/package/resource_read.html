@@ -49,7 +49,13 @@
 {% block resource_view_content %}
     <div class="resource-view">
         {% set resource_preview = h.resource_preview(c.resource, c.package) %}
+        {% set formats = ('csv', 'tsv', 'xls', 'xlsx') %}
         {% set views_created = res.has_views or resource_preview %}
+
+        {% if res.get('format', '') and res.get('format', '').lower() in formats %}
+        {% set views_created = views_created and res.get('datastore_active') %}
+        {% endif %}
+
         {% if views_created %}
             {% if resource_preview and not current_resource_view %}
                 {{ h.resource_preview(c.resource, c.package) }}
@@ -66,7 +72,7 @@
             {% endif %}
         {% else %}
             {# Views not created #}
-            {#    <div class="data-viewer-info">
+            <div class="data-viewer-info">
             <p>{{ _("There are no views created for this resource yet.") }}</p>
             {% if h.check_access('resource_view_create', {'resource_id': c.resource.id}) %}
             <p class="text-muted">
@@ -79,12 +85,13 @@
             <p>{{ _('Here are some reasons you may not be seeing expected views:') }}</p>
             <ul>
             <li>{{ _("No view has been created that is suitable for this resource")}}</li>
+             <li>{{ _("Data not in the format that CKAN datastore can accept. ")}}</li>
             <li>{{ _("The site administrators may not have enabled the relevant view plugins")}}</li>
             <li>{{ _("If a view requires the DataStore, the DataStore plugin may not be enabled, or the data may not have been pushed to the DataStore, or the DataStore hasn't finished processing the data yet")}}</li>
             </ul>
             </div>
             {% endif %}
-            </div>            #}
+            </div>
         {% endif %}
     </div>
 {% endblock %}
