@@ -240,18 +240,9 @@ def predict_if_resource_will_preview(resource_dict):
     else:
         return normalised_format in accepted_formats
 
-def resource_to_preview_on_dataset_page(resources):
-    possible_resources = {}
-    for resource in resources:
-        if not resource.get('format', None):
-            continue
-        normalised_format = resource.get('format').lower().split('/')[-1]
-        if (predict_if_resource_will_preview(resource)):
-            if (not possible_resources.get(normalised_format)):
-                possible_resources[normalised_format] = []
-            possible_resources[normalised_format].append(resource)
 
-    preview_priority = [
+def _get_preview_priority(dataset_type):
+    default_preview_priority = (
         # if there are image resource, we want to show them first as they are fast to load
         'jpeg', 'jpg', 'png', 'gif',
         # if we have a kml resource we want to show that next
@@ -272,7 +263,47 @@ def resource_to_preview_on_dataset_page(resources):
         'ppt',
         'pptx'
         # not that? no need to preview
-    ]
+    )
+    preview_priority_laws_agreement_library = (
+        # pdf should be priority for laws, library and agreement
+        'pdf',
+        # docs, ppt next on preview order
+        'doc',
+        'docx',
+        'ppt',
+        'pptx'
+        # if there are image resource, we want to show them first as they are fast to load
+        'jpeg', 'jpg', 'png', 'gif',
+        # welp, now it's tables I guess
+        'csv', 'tsv', 'xls', 'xlsx',
+        # if we have a kml resource we want to show that next
+        'wms',
+        # if we don't have kml, try wms and then geojson
+        'kml', 'geojson',
+        # no geojson, maybe json-stat?
+        'json-stat',
+        # and json
+        'json'
+    )
+    if dataset_type in ('library_record', 'laws_record', 'agreement'):
+        return preview_priority_laws_agreement_library
+    else:
+        return default_preview_priority
+
+
+def resource_to_preview_on_dataset_page(pkg):
+    resources = pkg.get('resources')
+    possible_resources = {}
+    for resource in resources:
+        if not resource.get('format', None):
+            continue
+        normalised_format = resource.get('format').lower().split('/')[-1]
+        if (predict_if_resource_will_preview(resource)):
+            if (not possible_resources.get(normalised_format)):
+                possible_resources[normalised_format] = []
+            possible_resources[normalised_format].append(resource)
+
+    preview_priority = _get_preview_priority(pkg.get('type', ''))
     view_types_priority = [
         'geo_view',
         'jsonstat_view',

@@ -33,7 +33,7 @@
 {% block package_tags %}
     {% snippet "package/snippets/tags.html", tags=pkg.tags %}
 
-    {% set preview_resource = h.resource_to_preview_on_dataset_page(pkg.resources) %}
+    {% set preview_resource = h.resource_to_preview_on_dataset_page(pkg) %}
     {% if preview_resource %}
         <div class="dataset-resource-preview">
             {% if preview_resource.get('description') %}
