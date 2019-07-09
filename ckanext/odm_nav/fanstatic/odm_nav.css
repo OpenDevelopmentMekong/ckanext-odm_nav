@@ -2372,3 +2372,6 @@ and (max-width: 1065px){
 }
 }
 
+ul.dataset-resources {
+    float: right;
+}
