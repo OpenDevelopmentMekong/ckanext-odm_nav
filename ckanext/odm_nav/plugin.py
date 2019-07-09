@@ -141,6 +141,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_nav_wms_download': helpers.odm_wms_download,
             'linked_user': helpers.linked_user,
+            'get_title_for_languages_facet': helpers.get_title_for_languages_facet
         }
 
     # IAuthFunctions

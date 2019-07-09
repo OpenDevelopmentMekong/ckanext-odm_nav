@@ -77,14 +77,15 @@ def _get_localized_tag((tag, lang)):
 
     log.debug('odm_nav_get_localized_tag: %s', tag)
 
-
     translations = ckan.logic.action.get.term_translation_show(
         {'model': ckan.model},
-        {'terms': (tag),
-         'lang_codes': lang })
+        {'terms': (tag)})
 
     for translation in translations:
         if translation['lang_code'] == lang:
+            return translation['term_translation']
+        # This is for fall back to english
+        elif translation['lang_code'] == "en":
             return translation['term_translation']
 
     return tag
@@ -540,6 +541,24 @@ def linked_user(user, maxlength=0, avatar=20):
             else:
                 return user.name
         return _("A User")
+
+
+def get_title_for_languages_facet(language_code):
+    """
+    This has to be created because some of the language code and country codes are same.
+    Hence adding to term_translation table dosent help.
+    Currently this function support only for english.
+    :return:
+    """
+    language = {'fr': 'French', 'en': 'English', 'zh': 'Chinese',
+          'lo': 'Lao', 'de': 'German', 'ko': 'Korean',
+          'km': 'Khmer', 'th': 'Thai', 'vi': 'Vietnamese',
+          'my': 'Burmese', 'ja': 'Japanese'}
+    #lang = request.environ['CKAN_LANG']
+
+    return language.get(language_code, language_code)
+
+
 
 # Monkeypatching the builtin.
 h.linked_user = linked_user

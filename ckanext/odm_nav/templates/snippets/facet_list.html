@@ -71,6 +71,9 @@ within_tertiary
                     {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
                       <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
                         <a href="{{ href }}" title="{{ localized_label if localized_label != label_truncated else '' }}">
+                          {% if title.lower() == "language" %}
+                            {% set label_truncated = h.get_title_for_languages_facet(label_truncated) %}
+                          {% endif %}
                           <span>{{ label_truncated }} {{ count }}</span>
                         </a>
                       </li>
