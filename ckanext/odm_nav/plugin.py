@@ -141,7 +141,9 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_nav_wms_download': helpers.odm_wms_download,
             'linked_user': helpers.linked_user,
-            'odm_nav_get_title_for_languages_facet': helpers.get_title_for_languages_facet
+            'odm_nav_get_title_for_languages_facet': helpers.get_title_for_languages_facet,
+            'odm_nav_get_icon_dataset_type_for_facet': helpers.get_icon_dataset_type_for_facet,
+            'odm_nav_get_active_url_for_search_result_facet': helpers.get_active_url_for_search_result_facet
         }
 
     # IAuthFunctions

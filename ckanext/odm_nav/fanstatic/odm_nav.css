@@ -2303,7 +2303,7 @@ ul.nav li:hover > ul.dropdown-menu {
 }
 
 .facet-col {
-    background-color: #e2e7ed;
+    background-color: #ffffff;
 }
 
 .pagination > .active > a {
@@ -2372,6 +2372,76 @@ and (max-width: 1065px){
 }
 }
 
+/* float resouce format icons to right */
 ul.dataset-resources {
     float: right;
+}
+
+/* css for facet filters */
+.data-advanced-filters {
+    background-color: #f4f4f4;
+    border: 1px solid #d2d2d2;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    font-weight: 400;
+}
+.facet-title {
+    border-top: 0px;
+    border-bottom: 0px;
+    background-color: inherit;
+    color: #505050;
+    font-weight: 400;
+    padding-left: 0px!important;
+}
+
+.multiple-select-facet {
+    background-color: white;
+    border: 0px solid #4d4d4d;
+    border-radius: 4px;
+    cursor: text;
+    width: 98%;
+}
+.result_links, .data-advanced-filters{
+    margin: 10px;
+}
+
+.clear-filters{
+    margin: 10px;
+        text-align: center;
+}
+.clear-filters .button {
+    width: 80%;
+    height: auto;
+    color: #fff;
+    border: 1px #c8c8c8 solid;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+#facet-filters{
+    margin-top: 0px;
+}
+
+body.odt .clear-filters .button,  body.odt .btn-primary {
+    background: #64161d;
+}
+
+body.odm .clear-filters .button, body.odm .btn-primary{
+    background: #292d56;
+}
+
+body.odc .clear-filters .button, body.odc .btn-primary{
+    background: #06323d;
+}
+
+body.odl .clear-filters .button, body.odl .btn-primary{
+    background: #3b2226;
+}
+
+body.odmy .clear-filters .button, body.odmy .btn-primary{
+    background: #59396c;
+}
+
+body.odv .clear-filters .button, body.odv .btn-primary{
+    background: #50813b;
 }

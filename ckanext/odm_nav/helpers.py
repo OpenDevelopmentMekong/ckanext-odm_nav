@@ -17,7 +17,7 @@ import ckan.model as model
 
 from ckan.plugins.toolkit import request
 import ckan.plugins.toolkit as toolkit
-
+from collections import OrderedDict
 from webhelpers.html import tags
 
 from . import menus
@@ -558,6 +558,35 @@ def get_title_for_languages_facet(language_code):
 
     return language.get(language_code, language_code)
 
+
+def get_icon_dataset_type_for_facet(items):
+
+    rerquired_icon = OrderedDict([("dataset", " fa-database"),
+                                  ("library_record", " fa-book"),
+                                  ("laws_record", " fa-gavel"),
+                                  ("agreement", " fa-handshake-o"),
+                                  ("profile", " fa-eye"),
+                                  ("map", " fa-map-marker fa-md")])
+
+    for item in items:
+        if item.get('name') == 'dataset':
+            item['count'] = sum([x['count'] for x in items])
+        if item.get('name', '') in rerquired_icon:
+            item['icon'] = rerquired_icon[item.get('name')]
+
+    return sorted(items, key=lambda k: k['count'], reverse=True)
+
+
+def get_active_url_for_search_result_facet():
+
+    try:
+        current_url = h.current_url().split("?")[0].strip('/')
+        active_url = current_url.split("?")[0].strip('/')
+        return active_url
+    except Exception as e:
+        log.debug('Error in fetching the active ur for Search Result For facet: %s', str(e))
+
+    return ""
 
 
 # Monkeypatching the builtin.

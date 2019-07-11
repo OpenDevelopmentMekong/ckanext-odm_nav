@@ -38,7 +38,7 @@
 
     #}
     {% block facet_list %}
-      {% set hide_empty = hide_empty or false %}
+      {% set hide_empty = hide_empty or true %}
       {% with items = items or h.get_facet_items_dict(name) %}
         {% if items or not hide_empty %}
           {% if within_tertiary %}
@@ -49,55 +49,39 @@
           {% block facet_list_item %}
             <section class="{{ wrapper_class or 'module module-narrow module-shallow' }}">
               {% block facet_list_heading %}
-                <h2 class="module-heading">
-                  <i class="icon-medium icon-filter"></i>
+                <h2 class="module-heading facet-title">
                   {% set title = title or h.get_facet_title(name) %}
                   {{ title }}
                 </h2>
               {% endblock %}
               {% block facet_list_items %}
+              {% set placeholder = "Select "+title %}
+              {% set _name = "".join(title.strip().split(" ")).lower() %}
                 {% with items = items or h.get_facet_items_dict(name) %}
                 {% if items %}
-                  <nav>
-                    <ul class="{{ nav_class or 'unstyled nav nav-simple nav-facet' }}">
-                      {% for item in items[:10] %}
+                    <select class="multiple-select-facet chosen-select" data-placeholder="{{ placeholder }}" name="{{name}}" multiple="multiple">
+                      {% for item in items %}
                         {% if c.type %}
-                  {% set alternative_url = h.url_for(controller='package', action='search', type=c.type) %}
+                        {% set alternative_url = h.url_for(controller='package', action='search', type=c.type) %}
                         {% endif %}
                         {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
                         {% set label = label_function(item) if label_function else item.display_name %}
                         {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
                         {% set label_truncated = h.truncate(localized_label, 22) if not label_function else localized_label %}
                         {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
-                          <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-                            <a href="{{ href }}" title="{{ localized_label if localized_label != label_truncated else '' }}">
                               {% if title.lower() == "language" %}
                                 {% set label_truncated = h.odm_nav_get_title_for_languages_facet(label_truncated) %}
                               {% endif %}
-                              <span>{{ label_truncated }} {{ count }}</span>
-                            </a>
-                          </li>
+                        {% set active_link = "selected" if item.active else "" %}
+                              <option value="{{ item.name }}" {{ active_link }}>{{ label_truncated }} {{ count }}</option>
                       {% endfor %}
-                    </ul>
-                  </nav>
-
-                  <p class="module-footer">
-                    {% if h.get_param_int('_%s_limit' % name) %}
-                      {% if h.has_more_facets(name) %}
-                        <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{ _('Show More {facet_type}').format(facet_type=title) }}</a>
-                      {% endif %}
-                    {% else %}
-                      <a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{ _('Show Only Popular {facet_type}').format(facet_type=title) }}</a>
-                    {% endif %}
-                  </p>
-                {% else %}
-                  <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
+                    </select>
                 {% endif %}
                 {% endwith %}
               {% endblock %}
+            </section>
             </section>
           {% endblock %}
         {% endif %}
       {% endwith %}
     {% endblock %}
-    
