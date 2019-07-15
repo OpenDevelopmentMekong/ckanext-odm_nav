@@ -24,7 +24,7 @@ from . import menus
 
 import logging
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.ERROR)
 
 taxonomy_dictionary = 'taxonomy'
 
@@ -543,6 +543,11 @@ def linked_user(user, maxlength=0, avatar=20):
         return _("A User")
 
 
+# Monkeypatching the builtin.
+h.linked_user = linked_user
+
+
+
 def get_title_for_languages_facet(language_code):
     """
     This has to be created because some of the language code and country codes are same.
@@ -589,5 +594,22 @@ def get_active_url_for_search_result_facet():
     return ""
 
 
-# Monkeypatching the builtin.
-h.linked_user = linked_user
+
+taxonomy = {}
+
+def _load_taxonomy():
+    global taxonomy
+    if not taxonomy:
+        with open(os.path.join(os.path.dirname(__file__), 'odm-taxonomy','2.2', 'hierarchy.json')) as f:
+            taxonomy = json.load(f)
+
+def taxonomy_paths_from_tags(tags):
+    _load_taxonomy()
+    log.debug([tag for tag in tags])
+    return set(tuple(taxonomy['tag_to_path'].get(tag.get('name',''), '').split(',')) for tag in tags)
+
+def taxonomy_path_to_name(tag_path, lang):
+    """ Tag path as a tuple """
+    _load_taxonomy()
+    path_string = ','.join(str(s) for s in tag_path)
+    return taxonomy['translations'].get(path_string, {})[lang]
