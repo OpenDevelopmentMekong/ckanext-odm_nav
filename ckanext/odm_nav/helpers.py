@@ -566,20 +566,24 @@ def get_title_for_languages_facet(language_code):
 
 def get_icon_dataset_type_for_facet(items):
 
-    rerquired_icon = OrderedDict([("dataset", " fa-database"),
+    required_icon = OrderedDict([("dataset", " fa-database"),
                                   ("library_record", " fa-book"),
                                   ("laws_record", " fa-gavel"),
                                   ("agreement", " fa-handshake-o"),
                                   ("profile", " fa-eye"),
                                   ("map", " fa-map-marker fa-md")])
+    required_order = []
 
-    for item in items:
-        if item.get('name') == 'dataset':
-            item['count'] = sum([x['count'] for x in items])
-        if item.get('name', '') in rerquired_icon:
-            item['icon'] = rerquired_icon[item.get('name')]
 
-    return sorted(items, key=lambda k: k['count'], reverse=True)
+    for element in required_icon:
+        try:
+            ele = filter(lambda item: item['name'] == element, items)[0]
+            ele['icon'] = required_icon[ele.get('name')]
+            required_order.append(ele)
+        except IndexError:
+            pass
+
+    return required_order
 
 
 def get_active_url_for_search_result_facet():
