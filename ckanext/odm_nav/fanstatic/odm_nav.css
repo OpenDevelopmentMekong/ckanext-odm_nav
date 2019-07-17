@@ -2354,23 +2354,14 @@ ul.nav li:hover > ul.dropdown-menu {
 
 .dataset-resource-format {
     padding-left: 0;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 4px;
+    border-radius: 4px;
     height: 90px;
     background: #6493d2;
     color: #fff;
     font-weight: 700;
 }
 
-/* Mobiles in potrait mode */
-@media only screen
-and (min-width : 768px)
-and (max-width: 1065px){
-.btn-download{
- font-size: 10px;
- padding-left: 9px;
-}
-}
 
 /* float resouce format icons to right */
 ul.dataset-resources {
@@ -2444,4 +2435,10 @@ body.odmy .clear-filters .button, body.odmy .btn-primary{
 
 body.odv .clear-filters .button, body.odv .btn-primary{
     background: #50813b;
+}
+
+.btn-download {
+    background-color: #292e55;
+    width: 15rem;
+    float: right;
 }

@@ -11,70 +11,44 @@ Example:
 #}
 
 {% macro resource_table(resources) %}
-<div class="row">
     {% for res in resources %}
+<div class="row dataset-resource">
     {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
     {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
-
-    <div class="dataset-resource col-md-12 col-sm-12 col-xs-12">
-
-
-        <div class="dataset-resource-format col-md-2 col-sm-2 col-xs-4">
-            <a href="{{ url }}">
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            <span class="format-name">
-                {% filter upper %}
-                    {{ res.get('format','') }}
-                {% endfilter %}
-            </span>
-            </a>
-        </div>
-
-        <div class="dataset-resource-title col-md-8 col-sm-8 col-xs-8">
-            <h4>
-            <a href="{{ url }}">
-
-                {% if h.resource_display_name(res) %}
-                    <div>
-                        {{h.resource_display_name(res)|truncate(120)}}
-                    </div>
-                {% elif h.odm_dataset_get_currentlang_data('description_translated', res) %}
-                    <div>
-                        {{ h.odm_dataset_get_currentlang_data('description_translated', res)|truncate(120) }}
-                    </div>
+            <div class="dataset-resource-format col-sm-2 col-xs-3">
+                <a href="{{ url }}">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <span class="format-name">
+                        {% filter upper %}
+                            {{ res.get('format','') }}
+                        {% endfilter %}
+                    </span>
+                </a>
+            </div>
+            <div class="dataset-resource-text col-sm-10 col-xs-9">
+                {% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
+                {% if dl %}
+                    {{ dl|safe }}
+                {% else %}
+                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
+                        {% trans %}Download{% endtrans %}
+                        <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+                    </a>
                 {% endif %}
-            </a>
-            </h4>
-
-            {% if h.odm_dataset_get_currentlang_data('description_translated', res)|truncate(200) %}
-                <p>{{ h.odm_dataset_get_currentlang_data('description_translated', res)|truncate(200) }}</p>
-            {% else %}
-                <p class="empty">This resource has no description</p>
-            {% endif %}
-            
-        </div>
-
-        <div class="dataset-resource-text col-md-2 col-sm-2 col-xs-12">
-
-            {% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res) %}{% endif %}
-            {% if dl %}
-            {{ dl|safe }}
-            {% else %}
-            <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
-                {% trans %}Download{% endtrans %}
-                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
-            </a>
-            {% endif %}
-
-            {{res.get('date','')}}
-
-        </div>
-
-
-    </div><!-- /dataset-resource -->
-    {% endfor %}
-
+                <a href="{{ url }}">
+                    {% if h.resource_display_name(res) %}
+                        <div>
+                            <h4>{{h.resource_display_name(res)|truncate(120)}}</h4>
+                        </div>
+                    {% elif h.odm_dataset_get_currentlang_data('description_translated', res) %}
+                        <div>
+                            {{ h.odm_dataset_get_currentlang_data('description_translated', res)|truncate(120) }}
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
 </div>
+    {% endfor %}
 {% endmacro %}
 
 
