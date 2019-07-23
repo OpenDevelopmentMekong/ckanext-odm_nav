@@ -242,6 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #od-head h1, #od-head h2 {
     font-family: 'Droid Serif';
+    text-decoration: none;
 }
 
 body {
@@ -264,11 +265,6 @@ body.odmy:lang(my) {
     font-family: "Open Sans", Helvetica, Arial, Myanmar3, sans-serif;
 }
 
-#od-head {
-    margin-top: 26px;
-    padding: 10px;
-    min-height: 72px;
-}
 
 /* Change of logo for km language */
 #od-logo img {
@@ -1532,9 +1528,8 @@ a.header_tag:hover {
 }
 
 #od-head {
-
-    margin-top: 0px !important;
-    padding: 0px !important;
+    margin-top: 0px;
+    padding: 0px;
 }
 
 .snippet_nav ul {
@@ -1649,18 +1644,6 @@ ul.nav li:hover > ul.dropdown-menu {
     fill: #beab74
 }
 
-#od-head #od-logo .icon-od-logo {
-    display: inline-block;
-    margin-right: 10px;
-    width: 40px;
-    float: left;
-}
-
-#od-head #od-logo .icon-od-logo .svg-od-logo {
-    width: 40px;
-    height: 68px;
-}
-
 #od-selector .icon-od-logo {
     display: inline-block;
     margin-right: 3px;
@@ -1672,7 +1655,7 @@ ul.nav li:hover > ul.dropdown-menu {
     height: 16px
 }
 
-#od-breadcrumb .row, #od-head .row, #od-menu .row, #od-selector .row {
+#od-breadcrumb .row {
     margin: 0;
 }
 
@@ -1708,6 +1691,11 @@ ul.nav li:hover > ul.dropdown-menu {
 
 .country-selector ul li {
     float: left;
+}
+
+/* overriding the gutter in bootstrap */
+#od-selector {
+    margin-left: -15px;
 }
 
 #od-selector a {
@@ -1758,22 +1746,162 @@ ul.nav li:hover > ul.dropdown-menu {
     border-bottom: 1px solid #ddd
 }
 
+/* mobile version */
+
+#od-head .icon-od-logo, #od-head h1, #od-head h2 {
+    display: inline;
+    vertical-align: baseline;
+    line-height: 24px;
+    margin: 3px 5px 0 0;
+}
+
+.social {
+    float: right;
+    padding: 0;
+    text-align: right;
+    margin: .25rem; 0 0 0;
+}
+
+.social i {
+    color: #fff;
+    font-size: 16px;
+}
+
+.social a {
+    margin-left: 3px;
+    color: #fff
+}
+
+.social a:hover {
+    color: #c8c8c8
+}
+
+.social a:first-of-type {
+    margin-left: 0;
+}
+
+
+#od-head #od-logo .icon-od-logo {
+    margin-right: 5px;
+    width: 20px;
+}
+
+#od-head #od-logo .icon-od-logo .svg-od-logo {
+    width: 20px;
+    height: 20px;
+}
+
 #od-head h1 {
-    font-family: 'Droid Serif';
-    text-decoration: none;
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 24px;
+    line-height: 1rem;
     font-weight: 700;
-    letter-spacing: -4px;
-    float: left;
-    margin: 10px 24px 0 0;
+    letter-spacing: -0.1rem;
 }
 
 #od-head h1 sup {
     font-size: 55%;
     position: relative;
     vertical-align: baseline;
-    top: -10px;
+    top: -0.33rem;
+}
+
+#od-head h2.side-title {
+    font-size: 16px;
+    color: #fff
+}
+
+#od-head h2[class*=" icon-"], #od-head h2[class^=icon-] {
+    font-size: 50%;
+    margin-left: 0.2rem;
+}
+
+#od-head h2 img {
+    max-height: .75rem;
+    display: block;
+    width: auto;
+    margin-top: 0.1rem;
+}
+
+/* drop social out on really small phones */
+@media(max-width: 360px) {
+    .social {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    .navbar-toggle {
+        margin-top: 0;
+        padding-top: 1px;
+        margin-bottom: 0;
+        padding-bottom: 2px;
+    }
+}
+
+@media(min-width: 768px) {
+    #od-head {
+        min-height: 72px;
+    }
+
+    #od-head #od-logo .icon-od-logo {
+        display: inline-block;
+        margin-right: 10px;
+        width: 40px;
+        float: left;
+    }
+
+    #od-head #od-logo .icon-od-logo .svg-od-logo {
+        width: 40px;
+        height: 68px;
+    }
+
+    #od-head h1 {
+        font-size: 48px;
+        line-height: 48px;
+        font-weight: 700;
+        letter-spacing: -4px;
+        float: left;
+        margin: 10px 24px 0 0;
+    }
+
+    #od-head h1 sup {
+        font-size: 55%;
+        position: relative;
+        vertical-align: baseline;
+        top: -10px;
+    }
+
+    #od-head h2.side-title {
+        font-size: 30px;
+        line-height: 48px;
+        float: left;
+        margin: 16px 0 0 0;
+        color: #fff
+    }
+
+    #od-head h2[class*=" icon-"], #od-head h2[class^=icon-] {
+        font-size: 50%;
+        margin-left: 10px;
+    }
+
+    #od-head h2 img {
+        max-height: 38px;
+        display: block;
+        width: auto;
+        margin-top: 5px;
+    }
+    .social {
+        padding: 10px;
+        margin-top: 18px
+    }
+
+    .social i {
+        font-size: 24px
+    }
+
+    .social a {
+        margin-left: 6px;
+    }
 }
 
 #od-head h1.with-logo, #od-head h1.with-logo a {
@@ -1781,26 +1909,6 @@ ul.nav li:hover > ul.dropdown-menu {
     line-height: 0
 }
 
-#od-head h2.side-title {
-    font-family: 'Droid Serif';
-    font-size: 30px;
-    line-height: 48px;
-    float: left;
-    margin: 16px 0 0 0;
-    color: #fff
-}
-
-#od-head h2[class*=" icon-"], #od-head h2[class^=icon-] {
-    font-size: 50%;
-    margin-left: 10px;
-}
-
-#od-head h2 img {
-    max-height: 38px;
-    display: block;
-    width: auto;
-    margin-top: 5px;
-}
 
 #breadcrumbs {
     list-style: none;
@@ -1843,26 +1951,7 @@ ul.nav li:hover > ul.dropdown-menu {
     font-weight: 700;
 }
 
-.social {
-    padding: 10px;
-    text-align: right;
-    margin-top: 18px
-}
 
-.social a {
-    margin-left: 6px;
-    color: #fff
-}
-
-.social a:hover {
-    margin-left: 6px;
-    color: #c8c8c8
-}
-
-.social i {
-    color: #fff;
-    font-size: 24px
-}
 
 @media (min-width: 768px) {
     .wrapper:before {

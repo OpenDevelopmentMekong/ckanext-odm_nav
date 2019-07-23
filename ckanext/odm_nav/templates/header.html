@@ -96,8 +96,6 @@
         </div>
         {% block odm_selector %}
         <nav id="od-selector">
-            <div class="row">
-                <div class="col-xs-12">
                     <ul class="country-selector">
                         <li><a href="https://opendevelopmentmekong.net">
                             <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
@@ -140,38 +138,33 @@
                             Vietnam</a></li>
                     </ul>
                     <i class="fa fa-caret-down" style="display:none;" id="country-select-dropdown"></i>
-                </div>
-            </div>
         </nav>
-
         {% endblock %}
-        <hr>
+        <hr class='clearfix'>
         {% block odm_head %}
 	  <nav id="od-head">
-	      <div class="container-fluid container-lg row">
-		  <div class="col-sm-9 col-xs-12">
-		      <div class="site-meta">
-			  <div id="od-logo">
-				  <span class="icon-od-logo">
-				      <svg class="svg-od-logo"><use xlink:href="#icon-od-logo"></use></svg>
-				  </span>
-                              <img src="/odc-khmer-name.png">
-			      <h1>Op<sup>e</sup>nDevelopment</h1>
-			      <div><h2 class="side-title">{{ _(h.odm_nav_country_name_for_site()) }}</h2></div>
-			  </div>
-		      </div>
-		  </div>
-		  <div class="col-sm-3 col-xs-12">
-		      <div class="social">
-			<nav>
-			  {% block odm_social %}
-			      {{ h.odm_nav_facebook_for_site()|safe }}
-			      {{ h.odm_nav_twitter_for_site()|safe }}
-			      {{ h.odm_nav_contact_for_site()|safe }}
-			      {% endblock %}
-			  </nav>
-		      </div>
-		  </div>
+	      <div class="row row-no-gutters">
+		      <div class="col-xs-12">
+		          <div class="social">
+			          <nav>
+			              {% block odm_social %}
+			                  {{ h.odm_nav_facebook_for_site()|safe }}
+			                  {{ h.odm_nav_twitter_for_site()|safe }}
+			                  {{ h.odm_nav_contact_for_site()|safe }}
+			              {% endblock %}
+			          </nav>
+		          </div>
+		          <div class="site-meta">
+			          <div id="od-logo">
+				          <span class="icon-od-logo">
+				              <svg class="svg-od-logo"><use xlink:href="#icon-od-logo"></use></svg>
+				          </span>
+                          <img src="/odc-khmer-name.png">
+			              <h1>Op<sup>e</sup>nDevelopment</h1>
+			              <h2 class="side-title">{{ _(h.odm_nav_country_name_for_site()) }}</h2>
+			          </div>
+		          </div>
+              </div>
 	      </div>
 	  </nav>
 	{% endblock %}
