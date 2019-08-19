@@ -1,0 +1,44 @@
+{#
+Snippet to display package metadata
+
+package - package to display
+
+          {% snippet 'snippets/odm_dataset_metadata.html', package=package %}
+
+#}
+
+
+
+{% block odm_dataset_metadata %}
+    <div class='dataset-list-metadata'>
+    {% if package.MD_DataIdentification_language or package.odm_language%}
+        <span class='dataset-languages'> {{ h.odm_nav_lang_flags(package)|safe }} </span>
+    {% endif %}
+    {% if package.type == 'dataset' %}
+        {% if package.MD_Metadata_dateStamp %}
+            <span class='dataset-datestamp' data-date='{{package.MD_Metadata_dateStamp}}'><i class='fa fa-clock-o'></i> </span>
+        {% endif %}
+        {% if package.LI_Lineage %}
+            <span class='dataset-source'> <strong>Source:</strong> {{ h.odm_dataset_get_currentlang_data('LI_Lineage', package)|truncate(70) }}
+        {% endif %}
+    {% elif package.type == 'library_record' %}
+        {% set author_list = h.odm_library_author_list(package) %}
+        {% if author_list %}
+            <span class='dataset-source'> <i class='fa fa-user-circle-o'></i> {{ author_list|truncate(70) }}</span>
+        {% endif %}
+        {% if package.marc21_260c %}
+            <span class='dataset-published'><i class='fa fa-clock-o'></i> {{package.marc21_260c }} </span>
+        {% endif %}
+
+    {% elif package.type == 'laws_record' %}
+        <span class='dataset-law-number'> {{ h.odm_dataset_get_currentlang_data('odm_document_number', package) }}</span>
+        <span class='dataset-law-type'> {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',
+                                        package.odm_document_type)  }}</span>
+        <span class='dataset-datestamp' data-date='{{package.odm_promulgation_date}}'><i class='fa fa-clock-o'></i> </span>
+
+    {% endif %}
+    {% if package.tags %}
+        <span class='dataset-tags'> <i class='fa fa-folder-o'></i> {{ h.odm_nav_tag_list(package) }}</span>
+    {% endif %}
+    </div>
+{% endblock %}

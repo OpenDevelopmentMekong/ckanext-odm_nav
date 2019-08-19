@@ -40,7 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
      });
      var lang = $('html').attr('lang')
      $('.dataset-datestamp').each(function(ix,elt){
-         var dt = new Date($(elt).data('date'))
+         try {
+             var raw = $(elt).data('date')
+             if (!raw) {
+                 $(elt).html('')
+                 return
+             }
+             var dt = new Date($(elt).data('date'))
+         }
+         catch (e) {
+             $(elt).html('')
+             return;
+         }
          $(elt).append(dt.toLocaleString(lang, {dateStyle: "long"}))
      });
 
