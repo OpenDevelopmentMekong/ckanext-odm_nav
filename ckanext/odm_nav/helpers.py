@@ -599,7 +599,17 @@ def get_active_url_for_search_result_facet():
 
     return ""
 
+def get_tag_list(pkg):
+    lang = request.environ['CKAN_LANG']
+    return ', '.join(sorted(taxonomy_path_to_name(path, lang)
+                            for path in taxonomy_paths_from_tags(pkg.get('tags',[])) if path != ('',)
+    ))
 
+def get_lang_flags(pkg):
+    langs = pkg.get('MD_DataIdentification_language',pkg.get('odm_language', []))
+    base_url = wp_url_for_site('odm')
+    return ' '.join('<img class="lang_flag" alt="%s" src="%s/wp-content/themes/wp-odm_theme/img/%s.png">' %(lang, base_url, lang)
+                    for lang in langs)
 
 taxonomy = {}
 

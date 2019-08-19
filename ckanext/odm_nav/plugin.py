@@ -141,10 +141,13 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_nav_wms_download': helpers.odm_wms_download,
             'odm_nav_get_title_for_languages_facet': helpers.get_title_for_languages_facet,
+            'odm_nav_get_icon_for_dataset_type': helpers.get_icon_for_dataset_type,
             'odm_nav_get_icon_dataset_type_for_facet': helpers.get_icon_dataset_type_for_facet,
             'odm_nav_get_active_url_for_search_result_facet': helpers.get_active_url_for_search_result_facet,
             'odm_nav_taxonomy_paths_from_tags': helpers.taxonomy_paths_from_tags,
             'odm_nav_taxonomy_path_to_name': helpers.taxonomy_path_to_name,
+            'odm_nav_tag_list': helpers.get_tag_list,
+            'odm_nav_lang_flags': helpers.get_lang_flags,
             # core override
             'linked_user': helpers.linked_user,
         }

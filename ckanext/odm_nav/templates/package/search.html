@@ -28,24 +28,22 @@
 
 {% endblock %}
 
-
-{% block styles %}
-{{super()}}
-{% endblock %}
-
 {% block scripts %}
 {{ super() }}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 
-$( document ).ready(function()
-{
-  $(".multiple-select-facet").select2();
+document.addEventListener('DOMContentLoaded', function() {
+     $(".multiple-select-facet").select2();
 
-  $(".multiple-select-facet" ).change(function() {
+     $(".multiple-select-facet" ).change(function() {
           this.form.submit();
-});
+     });
+     var lang = $('html').attr('lang')
+     $('.dataset-datestamp').each(function(ix,elt){
+         var dt = new Date($(elt).data('date'))
+         $(elt).append(dt.toLocaleString(lang, {dateStyle: "long"}))
+     });
 
-});
+ });
 </script>
 {% endblock %}

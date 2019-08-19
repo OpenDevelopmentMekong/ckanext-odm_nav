@@ -24,6 +24,8 @@ Example:
   {% set notes = h.truncate(package.notes_translated[h.odm_dataset_get_current_language()], truncate_desc) %}
 {% endif %}
 
+{% set title_icon = h.odm_nav_get_icon_for_dataset_type(package.type) %}
+
 {% set image_resources = [] %}
 {% set image_formats = ['jpg','png','jpeg'] %}
 {% if package.resources and not hide_resources %}
@@ -49,7 +51,10 @@ Example:
               {% endif %}
             {% endblock %}
             {% block heading_title %}
-						 {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}
+                {% if title_icon %}
+                    <i class="fa {{ title_icon }}"></i>
+                {% endif %}
+				{{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}
             {% endblock %}
             {% block heading_meta %}
               {% if package.get('state', '').startswith('draft') %}
@@ -65,6 +70,20 @@ Example:
           {% if banner %}
             <span class="banner">{{ _('Popular') }}</span>
           {% endif %}
+        {% endblock %}
+        {% block odm_dataset_metadata %}
+            {% if package.MD_DataIdentification_language or package.odm_language%}
+                <span class='dataset-languages'> {{ h.odm_nav_lang_flags(package)|safe }} </span>
+            {% endif %}
+            {% if package.MD_Metadata_dateStamp %}
+                <span class='dataset-datestamp' data-date='{{package.MD_Metadata_dateStamp}}'><i class='fa fa-clock-o'></i> </span>
+            {% endif %}
+            {% if package.LI_Lineage %}
+                <span class='dataset-source'> <strong>Source:</strong> {{ h.odm_dataset_get_currentlang_data('LI_Lineage', package)|truncate(70) }}
+            {% endif %}
+            {% if package.tags %}
+                <span class='dataset-tags'> <i class='fa fa-folder-o'></i> {{ h.odm_nav_tag_list(package) }}</span>
+            {% endif %}
         {% endblock %}
         {% block notes %}
           {% set resource = image_resources|last %}
@@ -96,8 +115,8 @@ Example:
                 {% endfor %}
               {% endblock %}
             </ul>
-            <br>
-            <div class=class-clearfix></div>
+            <br class='clearfix' />
+
           {% endblock %}
         {% endif %}
       {% endblock %}
