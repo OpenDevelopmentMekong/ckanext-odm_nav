@@ -63,7 +63,12 @@ class OdmNavPlugin(plugins.SingletonPlugin):
                          ("extras_odm_language", toolkit._('Language')),
                          ('res_format', toolkit._('Formats')),
                          ('organization', toolkit._('Organizations')),
-                         ('license_id', toolkit._('License'))]
+                         ('tags', toolkit._('Topics')),
+                         ('license_id', toolkit._('License')),
+        ]
+
+        if package_type == 'laws_record':
+            ordered_facet.append(('odm_document_type', toolkit._('Document Type')))
 
         return collections.OrderedDict(ordered_facet)
 

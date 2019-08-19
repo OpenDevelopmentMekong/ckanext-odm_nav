@@ -14,6 +14,9 @@ package - package to display
     {% if package.MD_DataIdentification_language or package.odm_language%}
         <span class='dataset-languages'> {{ h.odm_nav_lang_flags(package)|safe }} </span>
     {% endif %}
+    {% if package.odm_spatial_range %}
+        <span class='dataset-spatial'> <i class='fa fa-globe'></i> {{ h.odm_dataset_spatial_range_list(package) }}</span>
+    {% endif %}
     {% if package.type == 'dataset' %}
         {% if package.MD_Metadata_dateStamp %}
             <span class='dataset-datestamp' data-date='{{package.MD_Metadata_dateStamp}}'><i class='fa fa-clock-o'></i> </span>
