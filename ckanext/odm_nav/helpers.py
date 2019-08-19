@@ -28,6 +28,14 @@ log.setLevel(logging.ERROR)
 
 taxonomy_dictionary = 'taxonomy'
 
+DATASET_ICON_MAP =  OrderedDict([("dataset", " fa-database"),
+                                 ("library_record", " fa-book"),
+                                 ("laws_record", " fa-gavel"),
+                                 ("agreement", " fa-handshake-o"),
+                                 ("profile", " fa-eye"),
+                                 ("map", " fa-map-marker fa-md")])
+
+
 # memoization decorator from http://code.activestate.com/recipes/578231-probably-the-fastest-memoization-decorator-in-the-/
 # mit license
 def memoize(f):
@@ -563,22 +571,16 @@ def get_title_for_languages_facet(language_code):
 
     return language.get(language_code, language_code)
 
+def get_icon_for_dataset_type(dataset_type):
+    return DATASET_ICON_MAP.get(dataset_type, '')
 
 def get_icon_dataset_type_for_facet(items):
 
-    required_icon = OrderedDict([("dataset", " fa-database"),
-                                  ("library_record", " fa-book"),
-                                  ("laws_record", " fa-gavel"),
-                                  ("agreement", " fa-handshake-o"),
-                                  ("profile", " fa-eye"),
-                                  ("map", " fa-map-marker fa-md")])
     required_order = []
-
-
-    for element in required_icon:
+    for element in DATASET_ICON_MAP:
         try:
             ele = filter(lambda item: item['name'] == element, items)[0]
-            ele['icon'] = required_icon[ele.get('name')]
+            ele['icon'] = DATASET_ICON_MAP[ele.get('name')]
             required_order.append(ele)
         except IndexError:
             pass
