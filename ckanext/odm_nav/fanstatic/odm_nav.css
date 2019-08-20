@@ -1434,8 +1434,8 @@ a.header_tag:hover {
 }
 
 .record_resources {
-    /*float: right;
-  width: 500px;*/
+    /* float: right;
+  width: 500px; */
     margin-top: 20px;
 }
 
@@ -1757,7 +1757,7 @@ ul.nav li:hover > ul.dropdown-menu {
     float: right;
     padding: 0;
     text-align: right;
-    margin: .25rem; 0 0 0;
+    margin: .25rem 0 0 0;
 }
 
 .social i {
