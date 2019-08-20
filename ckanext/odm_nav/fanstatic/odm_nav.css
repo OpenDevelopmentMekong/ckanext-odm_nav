@@ -2531,3 +2531,11 @@ body.odv .clear-filters .button, body.odv .btn-primary{
     width: 15rem;
     float: right;
 }
+
+div.dataset-list-metadata span {
+    padding-right: 1em;
+}
+
+div.dataset-list-metadata {
+    margin-bottom: .25em;
+}

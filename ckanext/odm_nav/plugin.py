@@ -67,8 +67,13 @@ class OdmNavPlugin(plugins.SingletonPlugin):
                          ('license_id', toolkit._('License')),
         ]
 
+        # Three different document type fields.
         if package_type == 'laws_record':
             ordered_facet.append(('odm_document_type', toolkit._('Document Type')))
+        if package_type == 'library_record':
+            ordered_facet.append(('document_type', toolkit._('Document Type')))
+        if package_type == 'laws_record':
+            ordered_facet.append(('odm_agreement_document_type', toolkit._('Document Type')))
 
         return collections.OrderedDict(ordered_facet)
 
