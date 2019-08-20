@@ -2136,14 +2136,14 @@ ul.nav li:hover > ul.dropdown-menu {
     padding-right: 1em;
     background: #f8f8f8;
     margin-bottom: 30px;
-    border-right: 3px solid blue;
-    border-left: 3px solid blue;
+    border-right: 3px solid orange;
+    border-left: 3px solid orange;
 }
 
 .scheming-form-field:nth-of-type(odd) {
     background: #f0f0f0;
-    border-right: 3px solid red;
-    border-left: 3px solid red;
+    border-right: 3px solid purple;
+    border-left: 3px solid purple;
 }
 
 /* move the manage button into the bar, so that it's not
