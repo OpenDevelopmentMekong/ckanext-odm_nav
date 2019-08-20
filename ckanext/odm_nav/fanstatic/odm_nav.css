@@ -445,10 +445,8 @@ a {
 }
 
 .nav-list .divider {
-    *width: 100%;
     height: 1px;
     margin: 9px 1px;
-    *margin: -5px 0 5px;
     overflow: hidden;
     background-color: #e5e5e5;
     border-bottom: 1px solid #ffffff;
@@ -456,7 +454,7 @@ a {
 
 .nav-tabs,
 .nav-pills {
-    *zoom: 1;
+
 }
 
 .nav .dropdown-toggle .caret {
@@ -517,7 +515,7 @@ a.tag:hover {
 .module-grid {
     margin: 0;
     list-style: none;
-    *zoom: 1;
+
     margin: 0 -25px;
     padding-bottom: 15px;
     background: #fbfbfb;
@@ -551,7 +549,7 @@ a.tag:hover {
 .media-grid {
     margin: 0;
     list-style: none;
-    *zoom: 1;
+
     margin: 0 -25px;
     padding-bottom: 15px;
     background: #fbfbfb;
@@ -652,7 +650,7 @@ a.tag:hover {
 }
 
 .toolbar {
-    *zoom: 1;
+
     position: relative;
     padding: 10px;
     background: #FFF;
@@ -755,7 +753,7 @@ a.tag:hover {
 }
 
 .homepage .module-search .tags {
-    *zoom: 1;
+
     padding: 5px 10px 10px 10px;
     background-color: #4c4c4c;
     -webkit-border-radius: 0 0 3px 3px;
@@ -784,7 +782,7 @@ a.tag:hover {
 }
 
 .account-masthead {
-    *zoom: 1;
+
     min-height: 30px;
     color: #ffffff;
     background: #333333 !important;
@@ -807,7 +805,7 @@ a.tag:hover {
 }
 
 .account-masthead .account ul {
-    *zoom: 1;
+
 }
 
 .account-masthead .account ul:before,
@@ -892,7 +890,7 @@ a.tag:hover {
 }
 
 .masthead {
-    *zoom: 1;
+
     min-height: 55px;
     color: #ffffff;
     background: #2a2d56;
@@ -982,7 +980,7 @@ a.tag:hover {
 }
 
 .site-footer {
-    *zoom: 1;
+
     min-height: 55px;
     color: #ffffff;
     background: #444444;
@@ -1174,7 +1172,7 @@ body {
 .stages {
     margin: 0;
     list-style: none;
-    *zoom: 1;
+
     color: #aeaeae;
     counter-reset: stage;
     margin: -20px -25px 20px;
@@ -2045,8 +2043,6 @@ ul.nav li:hover > ul.dropdown-menu {
 
 .pagination ul {
     display: inline-block;
-    *display: inline;
-    *zoom: 1;
     margin-left: 0;
     margin-bottom: 0;
     -webkit-border-radius: 4px;
@@ -2240,7 +2236,7 @@ ul.nav li:hover > ul.dropdown-menu {
 .pagination ul {
     display: inline-block;
     *display: inline;
-    *zoom: 1;
+
     margin-left: 0;
     margin-bottom: 0;
     -webkit-border-radius: 4px;
