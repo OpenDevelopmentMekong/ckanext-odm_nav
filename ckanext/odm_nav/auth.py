@@ -53,7 +53,10 @@ def user_is_org_admin_of_member(context, data_dict):
     if not authorized_user:
         return {'success': False, 'msg': _('Not authorized')}
 
-    requested_user = model.User.get(data_dict.get('id'))
+    if 'user_obj' in data_dict:
+        requested_user = data_dict.get('user_obj')
+    else:
+        requested_user = model.User.get(data_dict.get('id'))
 
     #memberalias = aliased(model.Member)
     # so, member is group_id (table_name = user, table_id = user_id), ...
