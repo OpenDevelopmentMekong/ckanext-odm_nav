@@ -395,8 +395,9 @@ def gen_odm_menu(list_element, lang, first_pass=True):
 
             items.append(gen_odm_menu(element['child_menus'], lang, first_pass))
             items.append('</li>')
+       
         items.append('</ul>')
-
+       
         return "".join(items)
 
 def ckan_url_for_site(sitecode):
@@ -472,6 +473,7 @@ def odm_nav_menu(site=None, lang=None):
         filename = '%s_nav_items.json' % site
         with open(os.path.join(base_path, filename), 'r') as f:
             menu_items = json.load(f)
+            menu_items = _add_additional_items_to_menu(menu_items)
 
         menus.rendered[(site, lang)] = gen_odm_menu(menu_items, lang)
 
@@ -629,3 +631,23 @@ def taxonomy_path_to_name(tag_path, lang):
     _load_taxonomy()
     path_string = ','.join(str(s) for s in tag_path)
     return taxonomy['translations'].get(path_string, {})[lang]
+
+
+def _add_additional_items_to_menu(menu_items):
+    lang = request.environ['CKAN_LANG']
+    items_to_add = [
+                    {u'title': u'Organizations',
+                     u"url":u"/organization",
+                     u"index_to_add": 3,
+                     u'child_menus': []}
+                   ]
+
+    for _item in items_to_add:
+        _index = _item.get('index_to_add')
+        _item[u"title_translated"] = {lang:_get_localized_tag((_item.get('title'), lang))}
+        if len(menu_items) > _index:
+            log.debug("Adding addition navidation item: {}".format(_item.get('post_title')))
+            menu_items.insert(_index, _item)
+        else:
+            log.debug("Navigation item cannot be inserted")
+    return menu_items
