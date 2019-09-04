@@ -634,6 +634,13 @@ def taxonomy_path_to_name(tag_path, lang):
 
 
 def _add_additional_items_to_menu(menu_items):
+    remove_items = ['Search']
+   
+    for _rm_item in remove_items:
+        for _item in menu_items:
+            if _item.get('title', 'NA').strip().lower() == _rm_item.strip().lower():
+                menu_items.remove(_item)
+
     lang = request.environ['CKAN_LANG']
     items_to_add = [
                     {u'title': u'Organizations',
