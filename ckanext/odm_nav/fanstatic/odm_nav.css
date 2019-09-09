@@ -231,6 +231,14 @@ Light grey: #ededed
 }
 
 @font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Serif Bold'), local('DroidSerif-Bold'), url(https://fonts.gstatic.com/s/droidserif/v10/tDbV2oqRg1oM3QBjjcaDkOJGiRD7OwGtT0rU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
     font-family: Myanmar3;
     src: local('Myanmar3'), url(https://mmwebfonts.comquas.com/fonts/myanmar3.woff) format('woff'), url(https://mmwebfonts.comquas.com/fonts/myanmar3.ttf) format('ttf')
 }
@@ -1750,7 +1758,7 @@ ul.nav li:hover > ul.dropdown-menu {
     display: inline;
     vertical-align: baseline;
     line-height: 24px;
-    margin: 3px 5px 0 0;
+    margin: 3px 2px 0 0;
 }
 
 .social {
@@ -1793,19 +1801,13 @@ ul.nav li:hover > ul.dropdown-menu {
     font-size: 24px;
     line-height: 1rem;
     font-weight: 700;
-    letter-spacing: -0.1rem;
-}
-
-#od-head h1 sup {
-    font-size: 55%;
-    position: relative;
-    vertical-align: baseline;
-    top: -0.33rem;
+    letter-spacing: -0.2rem;
 }
 
 #od-head h2.side-title {
-    font-size: 16px;
-    color: #fff
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: -0.2rem;
 }
 
 #od-head h2[class*=" icon-"], #od-head h2[class^=icon-] {
@@ -1857,23 +1859,15 @@ ul.nav li:hover > ul.dropdown-menu {
         font-size: 48px;
         line-height: 48px;
         font-weight: 700;
-        letter-spacing: -4px;
         float: left;
-        margin: 10px 24px 0 0;
-    }
-
-    #od-head h1 sup {
-        font-size: 55%;
-        position: relative;
-        vertical-align: baseline;
-        top: -10px;
+        margin: 10px 0.75rem 0 0;
     }
 
     #od-head h2.side-title {
-        font-size: 30px;
+        font-size: 40px;
         line-height: 48px;
         float: left;
-        margin: 16px 0 0 0;
+        margin: 12px 0 0 0;
         color: #fff
     }
 
