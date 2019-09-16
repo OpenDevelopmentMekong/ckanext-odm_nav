@@ -1,5 +1,5 @@
 {% block facet_list_heading %}
-<h4>{{ title }}</h4>
+<h4>{{ _(title) }}</h4>
 {% endblock %}
 
 {% block facet_list_items %}
@@ -21,9 +21,9 @@
           <a href="{{ href1 }}" value="{{ href }}">
               <i class="fa {{item.icon}}"></i>
               {% if active %}
-                <b>{{ label_truncated }} {{ count }}</b>
+                <b>{{ _(label_truncated) }} {{ count }}</b>
               {% else %}
-              {{ label_truncated }} {{ count }}
+              {{ _(label_truncated) }} {{ count }}
               {% endif %}
           </a>
       </div>

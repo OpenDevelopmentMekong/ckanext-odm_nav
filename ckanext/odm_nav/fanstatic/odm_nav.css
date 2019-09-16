@@ -1986,6 +1986,9 @@ ul.nav li:hover > ul.dropdown-menu {
     line-height: 2em;
 }
 
+.result_link_list i {
+    width: 1.6rem;
+}
 .dataset-detail table {
     width: 100%;
 }
