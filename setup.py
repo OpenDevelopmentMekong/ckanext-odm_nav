@@ -24,11 +24,19 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
     ],
+    message_extractors={
+        'ckanext': [
+            ('**.py', 'python', None),
+            ('**.js', 'javascript', None),
+            ('**.html', 'ckan', None),
+        ]
+        },
     entry_points='''
         [ckan.plugins]
         odm_nav=ckanext.odm_nav.plugin:OdmNavPlugin
         [paste.paster_command]
         odm_nav = ckanext.odm_nav.commands:OdmNav
-
+        [babel.extractors]
+        odm_nav = ckan.lib.extract:extract_ckan
     ''',
 )

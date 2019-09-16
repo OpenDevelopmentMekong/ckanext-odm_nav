@@ -1,67 +1,121 @@
+# Translations template for ckanext-odm_nav.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the ckanext-odm_nav
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-odm_nav\n"
-"POT-Creation-Date: 2016-12-06 15:38+0100\n"
-"PO-Revision-Date: 2016-12-06 15:38+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Project-Id-Version: ckanext-odm_nav 3.0.3\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-09-16 13:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"X-Poedit-Basepath: ../../../ckanext\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
+"Generated-By: Babel 2.3.4\n"
 
-#: odm_nav/plugin.py:47 odm_nav/plugin.py:59 odm_nav/plugin.py:69
-msgid "License"
+#: ckanext/odm_nav/auth.py:22 ckanext/odm_nav/auth.py:38
+#: ckanext/odm_nav/auth.py:45 ckanext/odm_nav/auth.py:54
+#: ckanext/odm_nav/auth.py:91
+msgid "Not authorized"
 msgstr ""
 
-#: odm_nav/plugin.py:48 odm_nav/plugin.py:60
-msgid "Organizations"
+#: ckanext/odm_nav/auth.py:132
+msgid "Not authorized to see this page"
 msgstr ""
 
-#: odm_nav/plugin.py:49 odm_nav/plugin.py:61 odm_nav/plugin.py:70
-msgid "Formats"
+#: ckanext/odm_nav/helpers.py:501
+msgid "GeoJSON"
 msgstr ""
 
-#: odm_nav/plugin.py:50 odm_nav/plugin.py:62 odm_nav/plugin.py:71
-msgid "Language"
+#: ckanext/odm_nav/helpers.py:502
+msgid "KML"
 msgstr ""
 
-#: odm_nav/plugin.py:51 odm_nav/plugin.py:63 odm_nav/plugin.py:72
+#: ckanext/odm_nav/helpers.py:503
+msgid "Shapefile"
+msgstr ""
+
+#: ckanext/odm_nav/helpers.py:519
+#: ckanext/odm_nav/templates/package/snippets/resource_item.html:49
+#: ckanext/odm_nav/templates/package/snippets/resources_list.html:34
+msgid "Download"
+msgstr ""
+
+#: ckanext/odm_nav/helpers.py:530 ckanext/odm_nav/helpers.py:553
+msgid "A User"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:61
+msgid "Search Result For"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:62 ckanext/odm_nav/plugin.py:88
+#: ckanext/odm_nav/plugin.py:96
 msgid "Country"
 msgstr ""
 
-#: odm_nav/templates/footer.html:5
+#: ckanext/odm_nav/plugin.py:63 ckanext/odm_nav/plugin.py:87
+#: ckanext/odm_nav/plugin.py:95
+msgid "Language"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:64 ckanext/odm_nav/plugin.py:86
+#: ckanext/odm_nav/plugin.py:94
+msgid "Formats"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:65 ckanext/odm_nav/plugin.py:85
+#: ckanext/odm_nav/templates/header.html:16
+msgid "Organizations"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:66
+msgid "Topics"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:67 ckanext/odm_nav/plugin.py:84
+#: ckanext/odm_nav/plugin.py:93
+msgid "License"
+msgstr ""
+
+#: ckanext/odm_nav/plugin.py:72 ckanext/odm_nav/plugin.py:74
+#: ckanext/odm_nav/plugin.py:76
+msgid "Document Type"
+msgstr ""
+
+#: ckanext/odm_nav/templates/footer.html:6
 msgid ""
 "This work and any original materials produced and published by Open "
-"Development Mekong herein are licensed under a CC BY-SA 4.0. News article "
-"summaries are extracted from their sources, as guided by fair-use principles "
-"and are copyrighted by their respective sources. Materials on the Open "
-"Development Mekong (ODM) website and its accompanying database are compiled "
-"from publicly available documentation and provided without fee for general "
-"informational purposes only. This is neither a commercial research service "
-"nor a domain managed by any governmental or inter-governmental agency; it is "
-"managed as a private non-profit open data/open knowledge media group. "
-"Information is publicly posted only after a careful vetting and verification "
-"process. However, ODM cannot guarantee accuracy, completeness or reliability "
-"from third party sources in every instance. ODM makes no representation or "
-"warranty, either expressed or implied, in fact or in law, with respect to "
-"the accuracy, completeness or appropriateness of the data, materials or "
-"documents contained or referenced herein or provided."
+"Development Mekong herein are licensed under a CC BY-SA 4.0. News article"
+" summaries are extracted from their sources, as guided by fair-use "
+"principles and are copyrighted by their respective sources. Materials on "
+"the Open Development Mekong (ODM) website and its accompanying database "
+"are compiled from publicly available documentation and provided without "
+"fee for general informational purposes only. This is neither a commercial"
+" research service nor a domain managed by any governmental or inter-"
+"governmental agency; it is managed as a private non-profit open data/open"
+" knowledge media group. Information is publicly posted only after a "
+"careful vetting and verification process. However, ODM cannot guarantee "
+"accuracy, completeness or reliability from third party sources in every "
+"instance. ODM makes no representation or warranty, either expressed or "
+"implied, in fact or in law, with respect to the accuracy, completeness or"
+" appropriateness of the data, materials or documents contained or "
+"referenced herein or provided."
 msgstr ""
 
-#: odm_nav/templates/footer.html:6
+#: ckanext/odm_nav/templates/footer.html:7
 msgid ""
 "Site users are encouraged to do additional research in support of their "
-"activities and to share the results of that research with our team, contact "
-"us to further improve the site accuracy."
+"activities and to share the results of that research with our team, "
+"contact us to further improve the site accuracy."
 msgstr ""
 
-#: odm_nav/templates/footer.html:7
+#: ckanext/odm_nav/templates/footer.html:8
 msgid ""
 "By accessing this ODM website or database users agree to take full "
 "responsibility for reliance on any site information provided and to hold "
@@ -70,290 +124,398 @@ msgid ""
 "damage suffered as a result of its use."
 msgstr ""
 
-#: odm_nav/templates/footer.html:14
+#: ckanext/odm_nav/templates/footer.html:16
 msgid "About us"
 msgstr ""
 
-#: odm_nav/templates/footer.html:18
+#: ckanext/odm_nav/templates/footer.html:20
 msgid "Contact"
 msgstr ""
 
-#: odm_nav/templates/footer.html:21
+#: ckanext/odm_nav/templates/footer.html:23
 msgid "Disclaimer"
 msgstr ""
 
-#: odm_nav/templates/home/index.html:4
+#: ckanext/odm_nav/templates/header.html:16
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:17
+msgid "About"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:27
+msgid "Sysadmin settings"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:29
+msgid "Admin"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:35
+msgid "View profile"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:42
+#, python-format
+msgid "Dashboard (%(num)d new item)"
+msgid_plural "Dashboard (%(num)d new items)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/odm_nav/templates/header.html:47
+msgid "Dashboard"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:53
+msgid "Edit settings"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:55
+msgid "Settings"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:60
+#: ckanext/odm_nav/templates/header.html:62
+msgid "Log out"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:74
+msgid "Log in"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:76
+msgid "Register"
+msgstr ""
+
+#: ckanext/odm_nav/templates/home/index.html:4
 msgid "Welcome"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:5
+#: ckanext/odm_nav/templates/home/layout1.html:5
 msgid "Welcome to Open Development Datahub"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:6
+#: ckanext/odm_nav/templates/home/layout1.html:6
 msgid ""
 "Open Development Mekong (OD Mekong) provides information on development "
-"trends in the Mekong Region to increase public awareness, enable individual "
-"analysis, improve information sharing, and inform debate - all contributing "
-"to sustainable development from a social, economic and environmental "
-"perspective."
+"trends in the Mekong Region to increase public awareness, enable "
+"individual analysis, improve information sharing, and inform debate - all"
+" contributing to sustainable development from a social, economic and "
+"environmental perspective."
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:10
+#: ckanext/odm_nav/templates/home/layout1.html:10
 msgid "Contribute"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:11
+#: ckanext/odm_nav/templates/home/layout1.html:11
 msgid "Add Dataset"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:14
+#: ckanext/odm_nav/templates/home/layout1.html:14
 msgid "Need Help?"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:15
+#: ckanext/odm_nav/templates/home/layout1.html:15
 msgid "Documentation"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:18
+#: ckanext/odm_nav/templates/home/layout1.html:18
 msgid "Discover more"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:19
+#: ckanext/odm_nav/templates/home/layout1.html:19
 msgid "Visit OD Mekong's website"
 msgstr ""
 
-#: odm_nav/templates/home/layout1.html:25
+#: ckanext/odm_nav/templates/home/layout1.html:25
 msgid "Statistics"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/popular_datasets.html:3
+#: ckanext/odm_nav/templates/home/snippets/popular_datasets.html:3
 msgid "Popular datasets"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/recent_datasets.html:3
+#: ckanext/odm_nav/templates/home/snippets/recent_datasets.html:3
 msgid "Recent datasets"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/search.html:2
+#: ckanext/odm_nav/templates/home/snippets/search.html:2
 msgid "E.g. environment"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/search.html:6
+#: ckanext/odm_nav/templates/home/snippets/search.html:6
 msgid "Search data"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/search.html:11
+#: ckanext/odm_nav/templates/home/snippets/search.html:11
 msgid "Search"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/search.html:16
+#: ckanext/odm_nav/templates/home/snippets/search.html:16
 msgid "Popular tags"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/stats.html:4
-#, python-brace-format
-msgid "{0} statistics"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:9
+#: ckanext/odm_nav/templates/home/snippets/stats.html:8
 msgid "dataset"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/stats.html:9
+#: ckanext/odm_nav/templates/home/snippets/stats.html:8
 msgid "datasets"
 msgstr ""
 
-#: odm_nav/templates/home/snippets/stats.html:15
-msgid "organization"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:15
-msgid "organizations"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:21
-msgid "group"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:21
-msgid "groups"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:27
-msgid "related item"
-msgstr ""
-
-#: odm_nav/templates/home/snippets/stats.html:27
-msgid "related items"
-msgstr ""
-
-#: odm_nav/templates/macros/form.html:22
-msgid "Title"
-msgstr ""
-
-#: odm_nav/templates/package/read.html:11
-#: odm_nav/templates/snippets/package_item.html:47
-msgid "Private"
-msgstr ""
-
-#: odm_nav/templates/package/read.html:22
-#: odm_nav/templates/snippets/package_item.html:56
+#: ckanext/odm_nav/templates/package/read.html:11
+#: ckanext/odm_nav/templates/snippets/package_item.html:61
 msgid "Draft"
 msgstr ""
 
-#: odm_nav/templates/package/read.html:25
-#: odm_nav/templates/snippets/package_item.html:58
+#: ckanext/odm_nav/templates/package/read.html:14
+#: ckanext/odm_nav/templates/snippets/package_item.html:63
 msgid "Deleted"
 msgstr ""
 
-#: odm_nav/templates/package/resource_read.html:31
-#: odm_nav/templates/package/resource_read.html:33
+#: ckanext/odm_nav/templates/package/read.html:22
+msgid "Manage"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/read.html:40
+#: ckanext/odm_nav/templates/package/read.html:42
+#: ckanext/odm_nav/templates/package/read.html:44
+#: ckanext/odm_nav/templates/package/read.html:46
+msgid "Data Resource Preview"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/read.html:54
+msgid "Your browser does not support iframes."
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:33
+#: ckanext/odm_nav/templates/package/resource_read.html:35
 msgid "URL:"
 msgstr ""
 
-#: odm_nav/templates/package/resource_read.html:41
+#: ckanext/odm_nav/templates/package/resource_read.html:42
 msgid "From the dataset abstract"
 msgstr ""
 
-#: odm_nav/templates/package/snippets/resources_list.html:17
-msgid "This dataset has no data"
+#: ckanext/odm_nav/templates/package/resource_read.html:44
+#, python-format
+msgid "Source: <a href=\"%(url)s\">%(dataset)s</a>"
 msgstr ""
 
-#: odm_nav/templates/snippets/facet_list.html:84
-#, python-brace-format
+#: ckanext/odm_nav/templates/package/resource_read.html:76
+msgid "There are no views created for this resource yet."
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:80
+msgid "Not seeing the views you were expecting?"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:82
+msgid "Click here for more information."
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:85
+msgid "Here are some reasons you may not be seeing expected views:"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:87
+msgid "No view has been created that is suitable for this resource"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:88
+msgid "Data not in the format that CKAN datastore can accept. "
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:89
+msgid "The site administrators may not have enabled the relevant view plugins"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/resource_read.html:90
+msgid ""
+"If a view requires the DataStore, the DataStore plugin may not be "
+"enabled, or the data may not have been pushed to the DataStore, or the "
+"DataStore hasn't finished processing the data yet"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/search.html:11
+msgid "Clear Search Results"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/search.html:16
+msgid "Filters"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/search.html:26
+msgid "Clear All Filters"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/snippets/resource_item.html:34
+msgid "Preview"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/snippets/resource_item.html:36
+msgid "More information"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/snippets/resource_item.html:42
+msgid "Edit"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/snippets/resource_item.html:51
+msgid "Go to resource"
+msgstr ""
+
+#: ckanext/odm_nav/templates/package/snippets/resources_list.html:56
+msgid "Data Resources"
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/facet_list.html:87
 msgid "Show More {facet_type}"
 msgstr ""
 
-#: odm_nav/templates/snippets/facet_list.html:87
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/facet_list.html:90
 msgid "Show Only Popular {facet_type}"
 msgstr ""
 
-#: odm_nav/templates/snippets/facet_list.html:91
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/facet_list.html:94
 msgid "There are no {facet_type} that match this search"
 msgstr ""
 
-#: odm_nav/templates/snippets/package_item.html:66
+#: ckanext/odm_nav/templates/snippets/language_selector_custom.html:11
+msgid "Go"
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/package_item.html:49
+msgid "Private"
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/package_item.html:71
 msgid "Popular"
 msgstr ""
 
-#: odm_nav/templates/snippets/package_item.html:79
+#: ckanext/odm_nav/templates/snippets/package_item.html:85
 msgid "This dataset has no description"
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:16
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:21
 msgid "{number} library record found for \"{query}\""
 msgid_plural "{number} library records found for \"{query}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:17
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:22
 msgid "No library records found for \"{query}\""
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:18
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:23
 msgid "{number} library record found"
 msgid_plural "{number} library records found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:19
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:24
 msgid "No library records found"
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:22
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:27
+msgid "{number} agreement found for \"{query}\""
+msgid_plural "{number} agreements found for \"{query}\""
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:28
+msgid "No agreements found for \"{query}\""
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:29
+msgid "{number} agreement found"
+msgid_plural "{number} agreements found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:30
+msgid "No agreements found"
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:33
 msgid "{number} laws found for \"{query}\""
 msgid_plural "{number} laws found for \"{query}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:23
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:34
 msgid "No laws found for \"{query}\""
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:24
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:35
 msgid "{number} law found"
 msgid_plural "{number} laws found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:25
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:36
 msgid "No laws found"
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:28
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:39
 msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:29
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:40
 msgid "No datasets found for \"{query}\""
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:30
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:41
 msgid "{number} dataset found"
 msgid_plural "{number} datasets found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:31
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:42
 msgid "No datasets found"
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:34
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:45
 msgid "{number} group found for \"{query}\""
 msgid_plural "{number} groups found for \"{query}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:35
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:46
 msgid "No groups found for \"{query}\""
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:36
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:47
 msgid "{number} group found"
 msgid_plural "{number} groups found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:37
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:48
 msgid "No groups found"
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:40
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:51
 msgid "{number} organization found for \"{query}\""
 msgid_plural "{number} organizations found for \"{query}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:41
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:52
 msgid "No organizations found for \"{query}\""
 msgstr ""
 
-#: odm_nav/templates/snippets/search_result_text.html:42
-#, python-brace-format
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:53
 msgid "{number} organization found"
 msgid_plural "{number} organizations found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: odm_nav/templates/snippets/search_result_text.html:43
+#: ckanext/odm_nav/templates/snippets/search_result_text.html:54
 msgid "No organizations found"
 msgstr ""
+
