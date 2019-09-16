@@ -8,12 +8,12 @@
     title=c.facet_titles["dataset_type"], name="dataset_type", search_facets=c.search_facets) }}
 </div>
 <div class="full-width single-filter clear-filters clear-serch-results">
-    <a href="/dataset"><input class="button" type="submit" value="Clear Search Results"></a>
+    <a href="/dataset"><input class="button" type="submit" value="{{_('Clear Search Results')}}"></a>
 </div>
 
 <form action="" method="get" id="facet-form">
     <div class="data-advanced-filters">
-        <h3 id="facet-filters"><i class="fa fa-filter"></i> Filters</h3>
+        <h3 id="facet-filters"><i class="fa fa-filter"></i> {{_('Filters')}}</h3>
             {% for facet in c.facet_titles %}
             {% if facet != "dataset_type" %}
               {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, search_facets=c.search_facets) }}
@@ -23,7 +23,7 @@
 </form>
 
 <div class="full-width single-filter clear-filters">
-    <input class="button" type="submit" value="Clear All Filters" onclick="location.href=window.location.pathname;">
+    <input class="button" type="submit" value="{{_('Clear All Filters')}}" onclick="location.href=window.location.pathname;">
 </div>
 
 {% endblock %}
