@@ -32,7 +32,7 @@ DATASET_ICON_MAP =  OrderedDict([("dataset", " fa-database"),
                                  ("library_record", " fa-book"),
                                  ("laws_record", " fa-gavel"),
                                  ("agreement", " fa-handshake-o"),
-                                 ("profile", " fa-eye"),
+                                 ("profile", " fa-briefcase"),
                                  ("map", " fa-map-marker fa-md")])
 
 
