@@ -17,17 +17,19 @@ def user_show(context, data_dict):
     model = context['model']
 
     # Visitors cannot see what users are following.
-    authorized_user = model.User.get(context.get('user'))
+    authorized_user = context.get('auth_user_obj', None) or model.User.get(context.get('user'))
     if not authorized_user:
+        log.debug('Requesting user is not authorized')
         return {'success': False, 'msg': _('Not authorized')}
 
     # Any user is authorized to see themselves.
-    requested_user = model.User.get(data_dict.get('id'))
+    requested_user = data_dict.get('user_obj', None) or model.User.get(data_dict.get('id'))
     if authorized_user == requested_user:
         return {'success': True}
 
     # Sysadmins are authorized to see anyone.
     #return authz.is_authorized('sysadmin', context, data_dict)
+    # Org admins can see anyone in their org.
     return user_is_org_admin_of_member(context, data_dict)
 
 def user_is_org_editor(context, data_dict):
