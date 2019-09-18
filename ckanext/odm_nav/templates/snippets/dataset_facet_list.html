@@ -55,7 +55,7 @@
                 </h2>
               {% endblock %}
               {% block facet_list_items %}
-              {% set placeholder = "Select "+title %}
+              {% set placeholder = _("Select")+" "+title %}
               {% set _name = "".join(title.strip().split(" ")).lower() %}
                 {% with items = items or h.get_facet_items_dict(name) %}
                 {% if items %}
