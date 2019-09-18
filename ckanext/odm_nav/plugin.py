@@ -63,7 +63,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
                          ("extras_odm_language", toolkit._('Language')),
                          ('res_format', toolkit._('Formats')),
                          ('organization', toolkit._('Organizations')),
-                         ('tags', toolkit._('Topics')),
+                         ('taxonomy', toolkit._('Topics')),
                          ('license_id', toolkit._('License')),
         ]
 
