@@ -279,7 +279,9 @@ body.odmy:lang(my) {
     display: none
 }
 
-body.odc #od-logo h1:lang(km), body.odc #od-logo div:lang(km) {
+body.odc #od-logo h1:lang(km),
+body.odc #od-logo h2:lang(km),
+body.odc #od-logo div:lang(km) {
     display: none
 }
 
