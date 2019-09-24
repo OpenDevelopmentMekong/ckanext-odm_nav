@@ -243,6 +243,16 @@ Light grey: #ededed
     src: local('Myanmar3'), url(https://mmwebfonts.comquas.com/fonts/myanmar3.woff) format('woff'), url(https://mmwebfonts.comquas.com/fonts/myanmar3.ttf) format('ttf')
 }
 
+/* khmer */
+@font-face {
+  font-family: 'Suwannaphum';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Suwannaphum Regular'), local('Suwannaphum-Regular'), url(https://fonts.gstatic.com/s/suwannaphum/v13/jAnCgHV7GtDvc8jbe8hXXLWp9cGWWR2URmk.woff2) format('woff2');
+  unicode-range: U+1780-17FF, U+200C, U+25CC;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     font-family: Lato, sans-serif;
     font-weight: bolder
@@ -272,6 +282,25 @@ body.odc:lang(km) {
 body.odmy:lang(my) {
     font-family: "Open Sans", Helvetica, Arial, Myanmar3, sans-serif;
 }
+
+body.odc:lang(km) h1,
+body.odc:lang(km) h2,
+body.odc:lang(km) h3,
+body.odc:lang(km) h4,
+body.odc:lang(km) h5,
+body.odc:lang(km) h6 {
+    font-family: Suwannaphum, "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.odmy:lang(my) h1,
+body.odmy:lang(my) h2,
+body.odmy:lang(my) h3,
+body.odmy:lang(my) h4,
+body.odmy:lang(my) h5,
+body.odmy:lang(my) h6 {
+    font-family: "Open Sans", Helvetica, Arial, Myanmar3, sans-serif;
+}
+
 
 
 /* Change of logo for km language */
