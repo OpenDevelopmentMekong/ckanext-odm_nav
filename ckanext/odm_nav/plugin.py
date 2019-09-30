@@ -158,6 +158,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_taxonomy_path_to_name': helpers.taxonomy_path_to_name,
             'odm_nav_tag_list': helpers.get_tag_list,
             'odm_nav_lang_flags': helpers.get_lang_flags,
+            'odm_nav_get_ga_tracking_id': helpers.get_ga_tracking_id,
             # core override
             'linked_user': helpers.linked_user,
         }

@@ -658,3 +658,18 @@ def _add_additional_items_to_menu(menu_items):
         else:
             log.debug("Navigation item cannot be inserted")
     return menu_items
+
+def get_ga_tracking_id():
+    """
+    Gets the current site Google Analytics Tracking id
+    """
+    site = config.get('ckanext.odm.site_code')
+    tracking_id = {'odm': "'UA-52846113-1'",
+            'odmy': "'UA-79798225-1'",
+            'odt': "'UA-79740098-1'",
+            'odl': "'UA-79794223-1'",
+            'odc': "''",
+            'odv': "'UA-79799309-1'"}
+
+    return tracking_id.get(site, '')
+
