@@ -668,7 +668,7 @@ def get_ga_tracking_id():
             'odmy': "'UA-79798225-1'",
             'odt': "'UA-79740098-1'",
             'odl': "'UA-79794223-1'",
-            'odc': "''",
+            'odc': "'UA-64869623-1'",
             'odv': "'UA-79799309-1'"}
 
     return tracking_id.get(site, '')
