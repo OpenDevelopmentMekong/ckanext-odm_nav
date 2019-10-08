@@ -8,7 +8,7 @@
     title=c.facet_titles["dataset_type"], name="dataset_type", search_facets=c.search_facets) }}
 </div>
 <div class="full-width single-filter clear-filters clear-serch-results">
-    <a href="/dataset"><input class="button" type="submit" value="{{_('Clear Search Results')}}"></a>
+    <a href="{{h.url_for(controller='package', action='search')}}"><input class="button" type="submit" value="{{_('Clear Search Results')}}"></a>
 </div>
 
 <form action="" method="get" id="facet-form">
