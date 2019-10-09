@@ -59,8 +59,8 @@ class OdmNavPlugin(plugins.SingletonPlugin):
         """ Please enter a facet with a order"""
 
         ordered_facet = [("dataset_type", toolkit._('Search Result For')),
-                         ("extras_odm_spatial_range", toolkit._('Country')),
-                         ("extras_odm_language", toolkit._('Language')),
+                         ("odm_spatial_range_list", toolkit._('Country')),
+                         ("odm_language_list", toolkit._('Language')),
                          ('res_format', toolkit._('Formats')),
                          ('organization', toolkit._('Organizations')),
                          ('taxonomy', toolkit._('Topics')),
