@@ -11,12 +11,11 @@ import requests
 from six import text_type
 
 from ckan.common import config, _, c
-import ckan.lib.helpers as h
-import ckan.logic as logic
-import ckan.model as model
+from ckan import logic, model
 
+from ckan.plugins import toolkit
 from ckan.plugins.toolkit import request
-import ckan.plugins.toolkit as toolkit
+
 from collections import OrderedDict
 from webhelpers.html import tags
 
@@ -25,6 +24,12 @@ from . import menus
 import logging
 log = logging.getLogger(__name__)
 log.setLevel(logging.ERROR)
+
+class _helpers(object):
+    def __getattr__(self, key):
+        return toolkit.h[key]
+helpers = _helpers()
+h = helpers
 
 taxonomy_dictionary = 'taxonomy'
 
@@ -556,22 +561,8 @@ def linked_user(user, maxlength=0, avatar=20):
 # Monkeypatching the builtin.
 h.linked_user = linked_user
 
-
-
 def get_title_for_languages_facet(language_code):
-    """
-    This has to be created because some of the language code and country codes are same.
-    Hence adding to term_translation table dosent help.
-    Currently this function support only for english.
-    :return:
-    """
-    language = {'fr': 'French', 'en': 'English', 'zh': 'Chinese',
-          'lo': 'Lao', 'de': 'German', 'ko': 'Korean',
-          'km': 'Khmer', 'th': 'Thai', 'vi': 'Vietnamese',
-          'my': 'Burmese', 'ja': 'Japanese'}
-    #lang = request.environ['CKAN_LANG']
-
-    return language.get(language_code, language_code)
+    return h.odm_dataset_get_resource_name_for_field_value('odm_language', language_code)
 
 def get_icon_for_dataset_type(dataset_type):
     return DATASET_ICON_MAP.get(dataset_type, '')
