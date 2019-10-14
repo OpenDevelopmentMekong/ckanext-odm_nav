@@ -65,13 +65,16 @@
                         {% set alternative_url = h.url_for(controller='package', action='search', type=c.type) %}
                         {% endif %}
                         {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
-                        {% set label = label_function(item) if label_function else item.display_name %}
-                        {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
-                        {% set label_truncated = h.truncate(localized_label, 22) if not label_function else localized_label %}
+                        {% if h.odm_dataset_get_resource_id_for_field(name)  %}
+                            {% set localized_label = h.odm_dataset_get_resource_name_for_field_value(name, item.name) or item.display_name%}
+                            {% set label_truncated = h.truncate(localized_label, 22) %}
+                        {% else %}
+                            {% set label = label_function(item) if label_function else item.display_name %}
+                            {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
+                            {% set label_truncated = h.truncate(localized_label, 22) if not label_function else localized_label %}
+                        {% endif %}
+
                         {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
-                              {% if title.lower() == "language" %}
-                                {% set label_truncated = h.odm_nav_get_title_for_languages_facet(label_truncated) %}
-                              {% endif %}
                         {% set active_link = "selected" if item.active else "" %}
                               <option value="{{ item.name }}" {{ active_link }}>{{ label_truncated }} {{ count }}</option>
                       {% endfor %}
