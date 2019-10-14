@@ -137,45 +137,13 @@ def popular_datasets(limit):
 
     return result_dict['results']
 
-def get_all_laws_records():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record','rows':1000})
-    return map(lambda x:x["name"], result['results'])
 
-def get_all_laws_records_and_agreements():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:(laws_record OR agreement)','rows':1000})
-    return map(lambda x:x["name"], result['results'])
-
-def get_all_library_records():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record','rows':1000})
-    return map(lambda x:x["name"], result['results'])
-
-def get_all_agreements():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:agreement','rows':1000})
-    return map(lambda x:x["name"], result['results'])
-
-def get_all_datasets():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset','rows':1000})
-    return map(lambda x:x["name"], result['results'])
-
-def get_all_laws_records_complete():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:laws_record','rows':1000})
+def get_library_for_doctype(document_type):
+    result = toolkit.get_action('package_search')(data_dict={'fq_list': ['+type:library_record',
+                                                                         '+document_type:%s' % document_type],
+                                                             'rows':1000})
     return result['results']
 
-def get_all_laws_records_and_agreements_complete():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:(laws_record OR agreement)','rows':1000})
-    return result['results']
-
-def get_all_library_records_complete():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:library_record','rows':1000})
-    return result['results']
-
-def get_all_agreements_complete():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:agreement','rows':1000})
-    return result['results']
-
-def get_all_datasets_complete():
-    result = toolkit.get_action('package_search')(data_dict={'fq': '+type:dataset','rows':1000})
-    return result['results']
 
 def tag_for_topic(topic):
     '''Return the name of the tag corresponding to a top topic'''
