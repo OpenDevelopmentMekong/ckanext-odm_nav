@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-odm_nav 3.0.3\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-16 13:47+0000\n"
+"POT-Creation-Date: 2019-10-14 10:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/odm_nav/auth.py:22 ckanext/odm_nav/auth.py:38
-#: ckanext/odm_nav/auth.py:45 ckanext/odm_nav/auth.py:54
-#: ckanext/odm_nav/auth.py:91
+#: ckanext/odm_nav/auth.py:23 ckanext/odm_nav/auth.py:40
+#: ckanext/odm_nav/auth.py:47 ckanext/odm_nav/auth.py:56
+#: ckanext/odm_nav/auth.py:93
 msgid "Not authorized"
 msgstr ""
 
-#: ckanext/odm_nav/auth.py:132
+#: ckanext/odm_nav/auth.py:134
 msgid "Not authorized to see this page"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgid "Formats"
 msgstr ""
 
 #: ckanext/odm_nav/plugin.py:65 ckanext/odm_nav/plugin.py:85
-#: ckanext/odm_nav/templates/header.html:16
+#: ckanext/odm_nav/templates/header.html:77
 msgid "Organizations"
 msgstr ""
 
@@ -136,55 +136,79 @@ msgstr ""
 msgid "Disclaimer"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:16
+#: ckanext/odm_nav/templates/header.html:39
+msgid "Mekong"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:44
+msgid "Cambodia"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:48
+msgid "Laos"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:53
+msgid "Myanmar"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:58
+msgid "Thailand"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:63
+msgid "Vietnam"
+msgstr ""
+
+#: ckanext/odm_nav/templates/header.html:77
 msgid "Datasets"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:17
+#: ckanext/odm_nav/templates/header.html:78
 msgid "About"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:27
+#: ckanext/odm_nav/templates/header.html:88
 msgid "Sysadmin settings"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:29
+#: ckanext/odm_nav/templates/header.html:90
 msgid "Admin"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:35
+#: ckanext/odm_nav/templates/header.html:96
 msgid "View profile"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:42
+#: ckanext/odm_nav/templates/header.html:103
 #, python-format
 msgid "Dashboard (%(num)d new item)"
 msgid_plural "Dashboard (%(num)d new items)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/odm_nav/templates/header.html:47
+#: ckanext/odm_nav/templates/header.html:108
 msgid "Dashboard"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:53
+#: ckanext/odm_nav/templates/header.html:114
 msgid "Edit settings"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:55
+#: ckanext/odm_nav/templates/header.html:116
 msgid "Settings"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:60
-#: ckanext/odm_nav/templates/header.html:62
+#: ckanext/odm_nav/templates/header.html:121
+#: ckanext/odm_nav/templates/header.html:123
 msgid "Log out"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:74
+#: ckanext/odm_nav/templates/header.html:135
 msgid "Log in"
 msgstr ""
 
-#: ckanext/odm_nav/templates/header.html:76
+#: ckanext/odm_nav/templates/header.html:137
 msgid "Register"
 msgstr ""
 
@@ -369,6 +393,10 @@ msgstr ""
 
 #: ckanext/odm_nav/templates/package/snippets/resources_list.html:56
 msgid "Data Resources"
+msgstr ""
+
+#: ckanext/odm_nav/templates/snippets/dataset_facet_list.html:58
+msgid "Select"
 msgstr ""
 
 #: ckanext/odm_nav/templates/snippets/facet_list.html:87
