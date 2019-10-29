@@ -15,7 +15,7 @@
     <div class="data-advanced-filters">
         <h3 id="facet-filters"><i class="fa fa-filter"></i> {{_('Filters')}}</h3>
             {% for facet in c.facet_titles %}
-            {% if facet != "dataset_type" %}
+                {% if facet != "dataset_type" %}
               {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, search_facets=c.search_facets) }}
             {% endif %}
             {% endfor %}

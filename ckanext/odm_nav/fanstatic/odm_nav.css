@@ -231,11 +231,11 @@ Light grey: #ededed
 }
 
 @font-face {
-  font-family: 'Droid Serif';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Droid Serif Bold'), local('DroidSerif-Bold'), url(https://fonts.gstatic.com/s/droidserif/v10/tDbV2oqRg1oM3QBjjcaDkOJGiRD7OwGtT0rU.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-family: 'Droid Serif';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Droid Serif Bold'), local('DroidSerif-Bold'), url(https://fonts.gstatic.com/s/droidserif/v10/tDbV2oqRg1oM3QBjjcaDkOJGiRD7OwGtT0rU.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -245,13 +245,12 @@ Light grey: #ededed
 
 /* khmer */
 @font-face {
-  font-family: 'Suwannaphum';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Suwannaphum Regular'), local('Suwannaphum-Regular'), url(https://fonts.gstatic.com/s/suwannaphum/v13/jAnCgHV7GtDvc8jbe8hXXLWp9cGWWR2URmk.woff2) format('woff2');
-  unicode-range: U+1780-17FF, U+200C, U+25CC;
+    font-family: 'Suwannaphum';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Suwannaphum Regular'), local('Suwannaphum-Regular'), url(https://fonts.gstatic.com/s/suwannaphum/v13/jAnCgHV7GtDvc8jbe8hXXLWp9cGWWR2URmk.woff2) format('woff2');
+    unicode-range: U+1780-17FF, U+200C, U+25CC;
 }
-
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Lato, sans-serif;
@@ -301,8 +300,6 @@ body.odmy:lang(my) h6 {
     font-family: "Open Sans", Helvetica, Arial, Myanmar3, sans-serif;
 }
 
-
-
 /* Change of logo for km language */
 #od-logo img {
     display: none
@@ -351,27 +348,27 @@ body.odv #od-head h1, a.odv .icon-od-logo, body.odv #od-logo .icon-od-logo {
 
 /* bold for links that match the body class */
 body.odt a.odt {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odm a.odm {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odc a.odc {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odl a.odl {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odmy a.odmy {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odv a.odv {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 body.odt header.masthead {
@@ -824,7 +821,7 @@ a.tag:hover {
 
     min-height: 30px;
     color: #ffffff;
-    background: #333333 !important;
+    background: none !important;
     background-image: none;
 }
 
@@ -840,7 +837,7 @@ a.tag:hover {
 }
 
 .account-masthead .account {
-    float: none;
+    float: right;
 }
 
 .account-masthead .account ul {
@@ -933,6 +930,8 @@ a.tag:hover {
     min-height: 55px;
     color: #ffffff;
     background: #2a2d56;
+    /*padding-top: 8px;*/
+    padding-bottom: 0;
 }
 
 .masthead:before,
@@ -1730,10 +1729,25 @@ ul.nav li:hover > ul.dropdown-menu {
     float: left;
 }
 
+.country-selector {
+    font-weight: 200;
+}
+
 /* overriding the gutter in bootstrap */
 #od-selector {
-    margin-left: -15px;
+    margin-left: 143px;
+    z-index: 5;
+    position: relative;
 }
+
+@media only screen and (max-width: 1000px) {
+  #od-selector {
+    margin-left: 0;
+  }
+
+}
+
+
 
 #od-selector a {
     font-size: small;
@@ -1797,6 +1811,7 @@ ul.nav li:hover > ul.dropdown-menu {
     padding: 0;
     text-align: right;
     margin: .25rem 0 0 0;
+    margin-right: 150px;
 }
 
 .social i {
@@ -1817,7 +1832,6 @@ ul.nav li:hover > ul.dropdown-menu {
     margin-left: 0;
 }
 
-
 #od-head #od-logo .icon-od-logo {
     margin-right: 5px;
     width: 20px;
@@ -1832,18 +1846,18 @@ ul.nav li:hover > ul.dropdown-menu {
     font-size: 24px;
     line-height: 1rem;
     font-weight: 700;
-    letter-spacing: -0.2rem;
+    letter-spacing: -0.3rem;
 }
 
 #od-head h2.side-title {
     font-size: 20px;
     color: #fff;
-    letter-spacing: -0.2rem;
+    letter-spacing: -0.3rem;
 }
 
 #od-head h2[class*=" icon-"], #od-head h2[class^=icon-] {
     font-size: 50%;
-    margin-left: 0.2rem;
+    margin-left: 0.3rem;
 }
 
 #od-head h2 img {
@@ -1854,13 +1868,13 @@ ul.nav li:hover > ul.dropdown-menu {
 }
 
 /* drop social out on really small phones */
-@media(max-width: 360px) {
+@media (max-width: 360px) {
     .social {
         display: none;
     }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
     .navbar-toggle {
         margin-top: 0;
         padding-top: 1px;
@@ -1869,7 +1883,7 @@ ul.nav li:hover > ul.dropdown-menu {
     }
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
     #od-head {
         min-height: 72px;
     }
@@ -1913,6 +1927,7 @@ ul.nav li:hover > ul.dropdown-menu {
         width: auto;
         margin-top: 5px;
     }
+
     .social {
         padding: 10px;
         margin-top: 18px
@@ -1931,7 +1946,6 @@ ul.nav li:hover > ul.dropdown-menu {
     text-indent: -9999px;
     line-height: 0
 }
-
 
 #breadcrumbs {
     list-style: none;
@@ -1973,7 +1987,6 @@ ul.nav li:hover > ul.dropdown-menu {
 .bread-current {
     font-weight: 700;
 }
-
 
 @media (min-width: 768px) {
     .wrapper:before {
@@ -2020,6 +2033,7 @@ ul.nav li:hover > ul.dropdown-menu {
 .result_link_list i {
     width: 1.6rem;
 }
+
 .dataset-detail table {
     width: 100%;
 }
@@ -2243,10 +2257,11 @@ ul.nav li:hover > ul.dropdown-menu {
 }
 
 @media (max-width: 767px) {
-.toolbar .breadcrumb a {
-    color: #505050;
-    text-shadow: none;
-}}
+    .toolbar .breadcrumb a {
+        color: #505050;
+        text-shadow: none;
+    }
+}
 
 .format-name {
     display: inline-block;
@@ -2278,7 +2293,6 @@ ul.nav li:hover > ul.dropdown-menu {
     font-weight: 700;
 }
 
-
 /* float resouce format icons to right */
 ul.dataset-resources {
     float: right;
@@ -2293,13 +2307,14 @@ ul.dataset-resources {
     margin-top: 40px;
     font-weight: 400;
 }
+
 .facet-title {
     border-top: 0px;
     border-bottom: 0px;
     background-color: inherit;
     color: #505050;
     font-weight: 400;
-    padding-left: 0px!important;
+    padding-left: 0px !important;
 }
 
 .multiple-select-facet {
@@ -2309,14 +2324,16 @@ ul.dataset-resources {
     cursor: text;
     width: 98%;
 }
-.result_links, .data-advanced-filters{
+
+.result_links, .data-advanced-filters {
     margin: 10px;
 }
 
-.clear-filters{
+.clear-filters {
     margin: 10px;
-        text-align: center;
+    text-align: center;
 }
+
 .clear-filters .button {
     width: 80%;
     height: auto;
@@ -2325,31 +2342,32 @@ ul.dataset-resources {
     padding: 10px 10px;
     text-decoration: none;
 }
-#facet-filters{
+
+#facet-filters {
     margin-top: 0px;
 }
 
-body.odt .clear-filters .button,  body.odt .btn-primary {
+body.odt .clear-filters .button, body.odt .btn-primary {
     background: #64161d;
 }
 
-body.odm .clear-filters .button, body.odm .btn-primary{
+body.odm .clear-filters .button, body.odm .btn-primary {
     background: #292d56;
 }
 
-body.odc .clear-filters .button, body.odc .btn-primary{
+body.odc .clear-filters .button, body.odc .btn-primary {
     background: #06323d;
 }
 
-body.odl .clear-filters .button, body.odl .btn-primary{
+body.odl .clear-filters .button, body.odl .btn-primary {
     background: #3b2226;
 }
 
-body.odmy .clear-filters .button, body.odmy .btn-primary{
+body.odmy .clear-filters .button, body.odmy .btn-primary {
     background: #59396c;
 }
 
-body.odv .clear-filters .button, body.odv .btn-primary{
+body.odv .clear-filters .button, body.odv .btn-primary {
     background: #50813b;
 }
 
@@ -2366,3 +2384,99 @@ div.dataset-list-metadata span {
 div.dataset-list-metadata {
     margin-bottom: .25em;
 }
+
+.clearfix {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.masthead .navbar-collapse {
+    padding: 0;
+    width:100%;
+}
+
+/*colour the hr under the top menu*/
+body.odt .clearfix {
+    border-top: 1px solid #f7904d;
+}
+
+body.odm .clearfix {
+    border-top: 1px solid #6393d2;
+}
+
+body.odc .clearfix {
+    border-top: 1px solid #97d320;
+}
+
+body.odl .clearfix {
+    border-top: 1px solid #d61e2a;
+}
+
+body.odmy .clearfix {
+    border-top: 1px solid #f8bf42;
+}
+
+body.odv .clearfix {
+    border-top: 1px solid #beab74;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom 0;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.container-header {
+    width: 100% !important;
+    padding-left: 0;
+    padding-right:0;
+
+}
+
+.select2-container {
+    /*margin-top: 1px;*/
+    margin-bottom: 0px;
+}
+
+#od-logo {
+    margin-left:146px;
+}
+
+#mega-menu-wrap-header_menu {
+    padding-left:143px !important;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  #mega-menu-wrap-header_menu {
+    padding-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #od-logo {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .social {
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #main-navigation-toggle {
+    z-index: 5;
+  }
+}
+
+
+
+
