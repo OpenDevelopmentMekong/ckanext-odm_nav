@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as toolkit
 
 import collections
 
-from . import helpers, auth
+from . import helpers, auth, collect_menu_html
 
 import logging
 log = logging.getLogger(__name__)
@@ -140,6 +140,8 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_contact_for_site': helpers.contact_for_site,
             'odm_nav_facebook_for_site': helpers.facebook_for_site,
             'odm_nav_menu': helpers.odm_nav_menu,
+            'odm_nav_selector': helpers.odm_nav_selector,
+            'odm_menu_path': helpers.odm_menu_path,
             'odm_nav_wms_download': helpers.odm_wms_download,
             'odm_nav_get_title_for_languages_facet': helpers.get_title_for_languages_facet,
             'odm_nav_get_icon_for_dataset_type': helpers.get_icon_for_dataset_type,

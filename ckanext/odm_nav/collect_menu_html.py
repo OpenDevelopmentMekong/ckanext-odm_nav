@@ -1,3 +1,5 @@
+import os
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -22,5 +24,23 @@ def extract_wp_menu(site):
 
     return menu
 
+def extract_all_wp_menus():
+    sites = [
+        'odmy',
+        'odc',
+        'odt',
+        'odv',
+        'odl',
+        'odm'
+    ]
 
+    for site in sites:
+        if site == 'odm':
+            site_url = 'odm'
+        else:
+            site_url = site
+
+        current_path = os.path.dirname(os.path.abspath(__file__))
+        with open(current_path + "/templates/snippets/{}_menu.html".format(site_url), "w") as file:
+            file.write(str(extract_wp_menu(site)))
 

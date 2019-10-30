@@ -436,21 +436,22 @@ def facebook_for_site(site=None):
     return ""
 
 
-def odm_nav_menu(site=None, lang=None):
+def odm_nav_menu(site=None):
     if not site:
         site = config.get('ckanext.odm.site_code')
-    if not lang:
-        lang = request.environ['CKAN_LANG']
-    if not (site, lang) in menus.rendered:
-        base_path = os.path.join(os.path.dirname(__file__), 'public')
-        filename = '%s_nav_items.json' % site
-        with open(os.path.join(base_path, filename), 'r') as f:
-            menu_items = json.load(f)
-            menu_items = _add_additional_items_to_menu(menu_items)
+    return menus.extract_wp_menu(site)
 
-        menus.rendered[(site, lang)] = gen_odm_menu(menu_items, lang)
 
-    return menus.rendered[(site, lang)]
+def odm_nav_selector(site=None):
+    if not site:
+        site = config.get('ckanext.odm.site_code')
+    return menus.extract_all_wp_menus()
+
+
+def odm_menu_path():
+    site = config.get('ckanext.odm.site_code')
+    return "home/snippets/{}_menu.html".format(site)
+    
 
 def odm_wms_download(resource, large=True):
     try:
