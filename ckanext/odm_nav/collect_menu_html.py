@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 import os
 
 import requests
@@ -44,3 +46,6 @@ def extract_all_wp_menus():
         with open(current_path + "/templates/snippets/{}_menu.html".format(site_url), "w") as file:
             file.write(str(extract_wp_menu(site)))
 
+if __name__ == "__main__":
+
+    extract_all_wp_menus()
