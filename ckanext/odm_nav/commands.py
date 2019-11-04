@@ -18,16 +18,14 @@ class OdmNav(CkanCommand):
     """
 
     """
-    paster --plugin=ckanext-odm_nav odmnav load_menus
-    1  paster --plugin=ckanext-vectorstorer vectorstorer add_wms_for_layer post-office-2018 "ODCambodia:Cambodia_post_office"
-    2  paster --plugin=ckanext-vectorstorer vectorstorer add_wms_for_layer post-office-2018 "ODCambodia:Cambodia_post_office_kh"
+    paster --plugin=ckanext-odm_nav odm_nav load_menus
 """
 
     summary = __doc__.split('\n')[0]
     usage = __doc__
     min_args = 0
 
-    base_path = os.path.join(os.path.dirname(__file__), 'public')
+    base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
 
     def command(self):
         self._load_config()
@@ -42,18 +40,20 @@ class OdmNav(CkanCommand):
             self.load_site(*self.args[1:])
 
     def load_menus(self, *args):
-        for site, langs in {'odm':[None], 'odc':[None,'km'], 'odl':[None, 'lo'],
-                            'odt':[None, 'th'], 'odmy':[None, 'my'], 'odv':[None, 'vi']}.items():
+        for site, langs in {'odm':['en'], 'odc':['en','km'], 'odl':['en', 'lo'],
+                            'odt':['en', 'th'], 'odmy':['en', 'my'], 'odv':['en', 'vi']}.items():
             self.load_site(site, langs)
         menus.rendered = {}
 
     def load_site(self, site, *args):
         print("Loading %s" % site)
         wp_url = helpers.wp_url_for_site(site)
-        langs = [None]
+        langs = ['en']
         if args[0]:
             langs = args[0]
-        filename = '%s_nav_items.json' % site
-        with open(os.path.join(self.base_path, filename), 'w') as f:
-            json.dump(menus.get_menu(wp_url, langs), f, indent=2)
-            print("Wrote: %s" % filename)
+
+        for lang in langs:
+            filename = '%s_%s_menu.html' % (site, lang)
+            with open(os.path.join(self.base_path, filename), 'w') as f:
+                f.write(menus.extract_wp_menu(wp_url, lang))
+                print("Wrote: %s" % filename)

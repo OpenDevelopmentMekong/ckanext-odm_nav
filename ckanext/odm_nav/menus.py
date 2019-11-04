@@ -1,26 +1,32 @@
 import requests
 from bs4 import BeautifulSoup
+import os
 
 # cache the rendered versions
 rendered = {}
 
-def extract_wp_menu(site):
-    if site == 'odm':
-        site_code = ''
-    else:
-        site_code = site + '.'
+def extract_wp_menu(site_url, language=None):
+    """
+    :param wp_site_url: a url to the wordpress site
+    :returns: nested array of menu item dicts.
+    """
 
-    url = 'https://{}odm-eu.staging.derilinx.com'.format(site_code)
+    if not language:
+        language = 'en'
+
+    url = os.path.join(site_url, language)
+
     r = requests.get(url)
-    html = r.content
+    r.raise_for_status()
 
+    html = r.content
     soup = BeautifulSoup(html, 'html.parser')
 
     menu = soup.find(id="mega-menu-wrap-header_menu")
     for div in menu.find_all("div", {'class': 'mega-search-wrap'}):
         div.decompose()
 
-    return menu
+    return str(menu)
 
 def extract_all_wp_menus():
     sites = [
