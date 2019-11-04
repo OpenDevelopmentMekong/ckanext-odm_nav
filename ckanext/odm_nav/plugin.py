@@ -135,6 +135,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'nav_html_parsing': helpers.gen_odm_menu,
             'odm_nav_ckan_url_for_site': helpers.ckan_url_for_site,
             'odm_nav_wp_url_for_site': helpers.wp_url_for_site,
+            'odm_nav_megamenu_css_url_for_site': helpers.megamenu_css_url_for_site,
             'odm_nav_country_name_for_site': helpers.country_name_for_site,
             'odm_nav_twitter_for_site': helpers.twitter_for_site,
             'odm_nav_contact_for_site': helpers.contact_for_site,

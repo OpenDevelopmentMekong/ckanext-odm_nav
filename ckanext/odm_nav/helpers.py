@@ -383,6 +383,25 @@ def wp_url_for_site(sitecode=None):
         sitecode = config.get('ckanext.odm.site_code')
     return config.get("ckanext.odm.%s_wp_url" % sitecode, "")
 
+def megamenu_css_url_for_site(sitecode=None):
+    """
+      "https://thailand.opendevelopmentmekong.net/wp-content/uploads/sites/5/maxmegamenu/style.css?ver=d2ec35"
+      " https://odt.odm-eu.staging.derilinx.com/wp-content/uploads/maxmegamenu/style.css?ver=630c06"
+    """
+    site_id_map = { 'odc': '2',
+                    'odl': '3',
+                    'odmy': '4',
+                    'odt': '5',
+                    'odv': '6'}
+
+    if not sitecode:
+        sitecode = config.get('ckanext.odm.site_code')
+    site_id = site_id_map.get(sitecode,None)
+    if not site_id:
+        return "%s/wp-content/uploads/maxmegamenu/style.css" % wp_url_for_site(sitecode)
+    return "%s/wp-content/uploads/sites/%s/maxmegamenu/style.css" % (wp_url_for_site(sitecode), site_id)
+
+
 def country_name_for_site(site=None):
     if not site:
         site = config.get('ckanext.odm.site_code')
