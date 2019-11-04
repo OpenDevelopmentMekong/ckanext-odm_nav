@@ -76,17 +76,7 @@
 
 {% block scripts %}
 {{super()}}
-<script type='text/javascript'
-        src='https://odm-eu.staging.derilinx.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
 <script type='text/javascript'>
-    var megamenu = {"timeout": "300", "interval": "100"};
+    var megamenu = {"timeout": "300", "interval": "100", "wp_url":"{{h.odm_nav_wp_url_for_site()}}"};
 </script>
-<script type='text/javascript'
-        src='https://odm-eu.staging.derilinx.com/wp-includes/js/hoverIntent.min.js?ver=1.8.1'></script>
-
-<script type='text/javascript'
-        src='https://odm-eu.staging.derilinx.com/wp-content/plugins/megamenu/js/maxmegamenu.js?ver=2.6'></script>
-<script type='text/javascript'
-        src='https://odm-eu.staging.derilinx.com/wp-content/plugins/megamenu-pro/assets/public.js?ver=1.6.2.1'></script>
-
 {% endblock %}

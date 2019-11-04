@@ -373,10 +373,14 @@ def gen_odm_menu(list_element, lang, first_pass=True):
        
         return "".join(items)
 
-def ckan_url_for_site(sitecode):
+def ckan_url_for_site(sitecode=None):
+    if not sitecode:
+        sitecode = config.get('ckanext.odm.site_code')
     return config.get("ckanext.odm.%s_url" % sitecode, "")
 
-def wp_url_for_site(sitecode):
+def wp_url_for_site(sitecode=None):
+    if not sitecode:
+        sitecode = config.get('ckanext.odm.site_code')
     return config.get("ckanext.odm.%s_wp_url" % sitecode, "")
 
 def country_name_for_site(site=None):
