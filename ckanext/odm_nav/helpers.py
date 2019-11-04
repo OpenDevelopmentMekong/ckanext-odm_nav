@@ -462,14 +462,7 @@ def facebook_for_site(site=None):
 def odm_nav_menu(site=None):
     if not site:
         site = config.get('ckanext.odm.site_code')
-    return menus.extract_wp_menu(site)
-
-
-def odm_nav_selector(site=None):
-    if not site:
-        site = config.get('ckanext.odm.site_code')
-    return menus.extract_all_wp_menus()
-
+    return menus.extract_wp_menu(wp_url_for_site(site))
 
 def odm_menu_path():
     site = config.get('ckanext.odm.site_code')
