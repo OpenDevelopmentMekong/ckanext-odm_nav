@@ -467,6 +467,9 @@ def odm_nav_menu(site=None):
 def odm_menu_path():
     site = config.get('ckanext.odm.site_code')
     lang = request.environ['CKAN_LANG']
+    if site == 'odm':
+        # we only have english on ODM
+        lang = 'en'
     return "home/snippets/{}_{}_menu.html".format(site, lang)
 
 def odm_wms_download(resource, large=True):
