@@ -315,7 +315,6 @@ def resource_to_preview_on_dataset_page(pkg):
                     else:
                         rv['resource_name'] = resc['name']
                         rv['resource_url'] = resc['url']
-                        print(rv)
                         return rv
 
     return None
