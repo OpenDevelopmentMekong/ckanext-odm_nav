@@ -19,6 +19,9 @@ from ckan.plugins.toolkit import request
 from collections import OrderedDict
 from webhelpers.html import tags
 
+# This is to get the current language resource display name
+from ckanext.odm_dataset_ext import helpers as dt_helpers
+
 from . import menus
 
 import logging
@@ -309,11 +312,11 @@ def resource_to_preview_on_dataset_page(pkg):
                 for rv in resource_views:
                     if possible_format in ('csv', 'tsv', 'xls', 'xlsx'):
                         if resc.get('datastore_active'):
-                            rv['resource_name'] = resc['name']
+                            rv['resource_name'] = dt_helpers.resource_display_name(resc)
                             rv['resource_url'] = resc['url']
                             return rv
                     else:
-                        rv['resource_name'] = resc['name']
+                        rv['resource_name'] = dt_helpers.resource_display_name(resc)
                         rv['resource_url'] = resc['url']
                         return rv
 
