@@ -26,6 +26,8 @@ class OdmNav(CkanCommand):
     min_args = 0
 
     base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
+    lang_map = {'odm':['en'], 'odc':['en','km'], 'odl':['en', 'lo'],
+                'odt':['en', 'th'], 'odmy':['en', 'my'], 'odv':['en', 'vi']}
 
     def command(self):
         self._load_config()
@@ -40,16 +42,15 @@ class OdmNav(CkanCommand):
             self.load_site(*self.args[1:])
 
     def load_menus(self, *args):
-        for site, langs in {'odm':['en'], 'odc':['en','km'], 'odl':['en', 'lo'],
-                            'odt':['en', 'th'], 'odmy':['en', 'my'], 'odv':['en', 'vi']}.items():
+        for site, langs in self.lang_map.items():
             self.load_site(site, langs)
         menus.rendered = {}
 
     def load_site(self, site, *args):
         print("Loading %s" % site)
         wp_url = helpers.wp_url_for_site(site)
-        langs = ['en']
-        if args[0]:
+        langs = self.lang_map[site]
+        if args and args[0]:
             langs = args[0]
 
         for lang in langs:
