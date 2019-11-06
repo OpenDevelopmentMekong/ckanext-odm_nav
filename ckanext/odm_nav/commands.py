@@ -1,5 +1,4 @@
 from ckan.lib.cli import CkanCommand
-from ckan.plugins import toolkit
 
 import os
 import json
@@ -40,11 +39,17 @@ class OdmNav(CkanCommand):
             self.load_menus(*self.args[1:])
         elif cmd == "load_menu":
             self.load_site(*self.args[1:])
+        elif cmd == "load_this_site_menu":
+            self.load_this_site(*self.args[1:])
 
     def load_menus(self, *args):
         for site, langs in self.lang_map.items():
             self.load_site(site, langs)
         menus.rendered = {}
+
+    def load_this_site(self):
+        from ckan.common import config
+        self.load_site(config.get('ckanext.odm.site_code'))
 
     def load_site(self, site, *args):
         print("Loading %s" % site)
