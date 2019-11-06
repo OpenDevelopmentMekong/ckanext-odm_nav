@@ -16,7 +16,9 @@ def extract_wp_menu(site_url, language=None):
 
     url = os.path.join(site_url, language)
 
-    r = requests.get(url)
+    # need to do this without ssl verification because
+    # we are doing things with monkeyed urls before we have actual certs
+    r = requests.get(url, verify=False)
     r.raise_for_status()
 
     html = r.content
