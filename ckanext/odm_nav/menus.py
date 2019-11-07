@@ -28,6 +28,6 @@ def extract_wp_menu(site_url, language=None):
     for div in menu.find_all("div", {'class': 'mega-search-wrap'}):
         div.decompose()
 
-    s_menu = str(menu).replace('href="/', 'href="%s' % site_url)
+    s_menu = str(menu).replace('href="/', 'href="%s/' % site_url)
 
     return s_menu
