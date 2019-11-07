@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import os
+import re
 
 # cache the rendered versions
 rendered = {}
@@ -16,16 +17,17 @@ def extract_wp_menu(site_url, language=None):
 
     url = os.path.join(site_url, language)
 
-    # need to do this without ssl verification because
-    # we are doing things with monkeyed urls before we have actual certs
-    r = requests.get(url, verify=False)
+    r = requests.get(url)
     r.raise_for_status()
 
     html = r.content
     soup = BeautifulSoup(html, 'html.parser')
 
     menu = soup.find(id="mega-menu-wrap-header_menu")
+
     for div in menu.find_all("div", {'class': 'mega-search-wrap'}):
         div.decompose()
 
-    return str(menu)
+    s_menu = str(menu).replace('href="/', 'href="%s' % site_url)
+
+    return s_menu
