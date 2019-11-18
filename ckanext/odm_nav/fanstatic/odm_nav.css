@@ -271,6 +271,7 @@ body {
     color: #444444;
     background-color: #ededed;
     width: 100%;
+    overflow-x: hidden;
 }
 
 /* Change of font for different language my and lm */
@@ -1735,19 +1736,10 @@ ul.nav li:hover > ul.dropdown-menu {
 
 /* overriding the gutter in bootstrap */
 #od-selector {
-    margin-left: 143px;
+    margin-left: -8px;
     z-index: 5;
     position: relative;
 }
-
-@media only screen and (max-width: 1000px) {
-  #od-selector {
-    margin-left: 0;
-  }
-
-}
-
-
 
 #od-selector a {
     font-size: small;
@@ -1811,7 +1803,7 @@ ul.nav li:hover > ul.dropdown-menu {
     padding: 0;
     text-align: right;
     margin: .25rem 0 0 0;
-    margin-right: 150px;
+    /*margin-right: 150px;*/
 }
 
 .social i {
@@ -2392,7 +2384,7 @@ div.dataset-list-metadata {
 
 .masthead .navbar-collapse {
     padding: 0;
-    width:100%;
+    width: 100%;
 }
 
 /*colour the hr under the top menu*/
@@ -2433,9 +2425,9 @@ body.odv .clearfix {
 }
 
 .container-header {
-    width: 100% !important;
+    /*width: 100% !important;*/
     padding-left: 0;
-    padding-right:0;
+    padding-right: 0;
 
 }
 
@@ -2445,38 +2437,45 @@ body.odv .clearfix {
 }
 
 #od-logo {
-    margin-left:146px;
+    /*margin-left:146px;*/
 }
 
 #mega-menu-wrap-header_menu {
-    padding-left:143px !important;
-}
-
-
-@media only screen and (max-width: 1000px) {
-  #mega-menu-wrap-header_menu {
-    padding-left: 0 !important;
-  }
+    /*padding-left:143px !important;*/
+    margin-left: -99999px !important;
+    padding-left: 99999px !important;
+    margin-right: -99999px !important;
 }
 
 @media only screen and (max-width: 1000px) {
-  #od-logo {
-    margin-left: 0;
-  }
+    #mega-menu-wrap-header_menu {
+        padding-left: 0 !important;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
-  .social {
-    margin-right: 5px;
-  }
+    #od-logo {
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
-  #main-navigation-toggle {
-    z-index: 5;
-  }
+    .social {
+        margin-right: 5px;
+    }
 }
 
+@media only screen and (max-width: 1000px) {
+    #main-navigation-toggle {
+        z-index: 5;
+    }
+}
+
+
+.header-hr {
+    margin-left: -99999px;
+    margin-right: -99999px;
+}
 
 
 
