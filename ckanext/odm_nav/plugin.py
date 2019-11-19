@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as toolkit
 
 import collections
 
-from . import helpers, auth, collect_menu_html
+from . import helpers, auth
 
 import logging
 log = logging.getLogger(__name__)
