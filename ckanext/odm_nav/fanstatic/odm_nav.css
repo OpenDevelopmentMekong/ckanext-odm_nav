@@ -2447,23 +2447,23 @@ body.odv .clearfix {
     margin-right: -99999px !important;
 }
 
-@media only screen and (max-width: 1000px) {
-    #mega-menu-wrap-header_menu {
-        padding-left: 0 !important;
-    }
-}
+/*@media only screen and (max-width: 1000px) {*/
+    /*#mega-menu-wrap-header_menu {*/
+        /*padding-left: 0 !important;*/
+    /*}*/
+/*}*/
 
-@media only screen and (max-width: 1000px) {
-    #od-logo {
-        margin-left: 0;
-    }
-}
+/*@media only screen and (max-width: 1000px) {*/
+    /*#od-logo {*/
+        /*margin-left: 0;*/
+    /*}*/
+/*}*/
 
-@media only screen and (max-width: 1000px) {
-    .social {
-        margin-right: 5px;
-    }
-}
+/*@media only screen and (max-width: 1000px) {*/
+    /*.social {*/
+        /*margin-right: 5px;*/
+    /*}*/
+/*}*/
 
 @media only screen and (max-width: 1000px) {
     #main-navigation-toggle {
