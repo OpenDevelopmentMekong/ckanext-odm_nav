@@ -130,7 +130,7 @@
     Scripts should be loaded by the {% resource %} tag except in very special
     circumstances
     #}
-    {%- block scripts %}
+    {#%- block scripts %}
     <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -148,7 +148,7 @@
     </script>
 
 
-    {% endblock -%}
+    {% endblock -%#}
 
     {% block body_extras -%}
       {# defined in the config.ini under "ckan.template_footer_end" #}
