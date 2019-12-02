@@ -654,3 +654,12 @@ def get_ga_tracking_id():
 
     return tracking_id.get(site, '')
 
+def convert_num_to_year(year):
+    try:
+        year = int(float(year))
+        return year
+    except ValueError:
+        return year
+
+
+
