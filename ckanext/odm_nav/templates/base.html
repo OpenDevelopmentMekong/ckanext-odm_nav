@@ -89,9 +89,10 @@
       {% resource g.main_css[6:] %}
       {% resource 'odm_nav/main' %}
     <link rel='stylesheet' id='megamenu-css'  href='{{h.odm_nav_megamenu_css_url_for_site()}}' type='text/css' media='all' />
-    <link rel='stylesheet' id='dashicons-css'  href='{{h.odm_nav_wp_url_for_site()}}/wp-includes/css/dashicons.min.css?ver=5.2.3' type='text/css' media='all' />
-    <link rel='stylesheet' id='megamenu-genericons-css'  href='{{h.odm_nav_wp_url_for_site()}}/wp-content/plugins/megamenu-pro/icons/genericons/genericons/genericons.css?ver=1.6.2.1' type='text/css' media='all' />
-
+    {# inline the three items from dashicons that we're using #}
+    <style>
+     {% include 'dashicons_css.html' %}
+    </style>
     {% endblock %}
 
     {% block head_extras %}
