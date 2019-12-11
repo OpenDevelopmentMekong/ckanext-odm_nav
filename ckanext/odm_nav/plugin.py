@@ -133,6 +133,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'resource_to_preview_on_dataset_page': helpers.resource_to_preview_on_dataset_page,
             'active_search_link': helpers.active_search_link,
             'nav_html_parsing': helpers.gen_odm_menu,
+            'odm_nav_sitecode': helpers.sitecode,
             'odm_nav_ckan_url_for_site': helpers.ckan_url_for_site,
             'odm_nav_wp_url_for_site': helpers.wp_url_for_site,
             'odm_nav_megamenu_css_url_for_site': helpers.megamenu_css_url_for_site,

@@ -370,10 +370,13 @@ def gen_odm_menu(list_element, lang, first_pass=True):
 
             items.append(gen_odm_menu(element['child_menus'], lang, first_pass))
             items.append('</li>')
-       
+
         items.append('</ul>')
-       
+
         return "".join(items)
+
+def sitecode():
+    return config.get('ckanext.odm.site_code')
 
 def ckan_url_for_site(sitecode=None):
     if not sitecode:
