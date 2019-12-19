@@ -1687,7 +1687,7 @@ ul.nav li:hover > ul.dropdown-menu {
     float: left
 }
 
-#od-selector .icon-od-logo .svg-od-logo {
+#od-selector .icon-od-logo .svg-od-logo, .odm-nv-logos {
     width: 16px;
     height: 16px
 }
@@ -1880,9 +1880,23 @@ ul.nav li:hover > ul.dropdown-menu {
         margin-top: 0;
         padding-top: 1px;
         margin-bottom: 0;
+        z-index: 100;
+        float: left;
         padding-bottom: 2px;
     }
 }
+@media (max-width: 768px) {
+#od-selector ul, #od-selector ul li {
+    margin: 0;
+    padding: 0;
+    font-size: small;
+    padding: 2px 12px 2px 0;
+    float: none;
+    list-style: none;
+    padding-left: 5px;
+}
+}
+
 
 @media (min-width: 768px) {
     #od-head {
