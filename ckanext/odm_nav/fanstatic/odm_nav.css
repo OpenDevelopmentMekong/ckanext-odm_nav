@@ -1899,6 +1899,15 @@ ul.nav li:hover > ul.dropdown-menu {
     #od-selector ul li.active {
         display: none;
     }
+#od-selector ul, #od-selector ul li {
+    margin: 0;
+    padding: 0;
+    font-size: small;
+    padding: 2px 12px 2px 0;
+    float: none;
+    list-style: none;
+    padding-left: 5px;
+}
 }
 
 
@@ -2516,7 +2525,6 @@ body.odv .clearfix {
     color: #CCCCCC;
 }
 
-<<<<<<< baf5549eb979767e6f62fa498706dd98d0574f29
 /* fix the plus button alignment in resource view filters */
 /* this actually centers all icon only buttons */
 .btn .fa:first-child:last-child {

@@ -89,6 +89,7 @@
     </div>
 </header>    
     {% set country_name = h.odm_nav_country_name_for_site() %}
+
     <div class="container-fluid container-lg container-header">
         <div class="navbar-right">
             <button data-target="#main-navigation-toggle" data-toggle="collapse" class="navbar-toggle collapsed"
@@ -103,6 +104,11 @@
 
         {% block odm_selector %}
         {% set country_name = h.odm_nav_country_name_for_site() %}
+                {{ h.odm_nav_country_name_for_site() }}
+                <span class="fa fa-caret-down"></span>
+            </button>
+        </div>
+        {% block odm_selector %}
         <div class="collapse navbar-collapse" id="main-navigation-toggle">
         <nav id="od-selector">
                     <ul class="country-selector">
@@ -117,11 +123,13 @@
                                 </defs>
                             </svg>
                         <li {% if country_name == 'Mekong' %} class="active" {% endif %}><a class="odm" href="{{ h.odm_nav_wp_url_for_site('odm') }}"><span class="icon-od-logo">
+                        <li><a class="odm" href="{{ h.odm_nav_wp_url_for_site('odm') }}"><span class="icon-od-logo">
                                         <svg class="svg-od-logo mekong-logo"><use
                                                 xlink:href="#icon-od-logo"></use></svg>
                                     </span>
                             {{_('Mekong')}}</a></li>
                         <li {% if country_name == 'Cambodia' %} class="active" {% endif %}><a class="odc" href="{{ h.odm_nav_wp_url_for_site('odc') }}"><span class="icon-od-logo">
+                        <li><a class="odc" href="{{ h.odm_nav_wp_url_for_site('odc') }}"><span class="icon-od-logo">
                                         <svg class="svg-od-logo cambodia-logo"><use
                                                 xlink:href="#icon-od-logo"></use></svg>
                                     </span>
@@ -131,16 +139,23 @@
                                     </span>
                             {{_('Laos')}}</a></li>
                         <li {% if country_name == 'Myanmar' %} class="active" {% endif %}><a class="odmy" href="{{ h.odm_nav_wp_url_for_site('odmy') }}">    <span class="icon-od-logo">
+                        <li><a class="odl" href="{{ h.odm_nav_wp_url_for_site('odl') }}">    <span class="icon-od-logo">
+                                        <svg class="svg-od-logo laos-logo"><use xlink:href="#icon-od-logo"></use></svg>
+                                    </span>
+                            {{_('Laos')}}</a></li>
+                        <li><a class="odmy" href="{{ h.odm_nav_wp_url_for_site('odmy') }}">    <span class="icon-od-logo">
                                         <svg class="svg-od-logo myanmar-logo"><use
                                                 xlink:href="#icon-od-logo"></use></svg>
                                     </span>
                             {{_('Myanmar')}}</a></li>
                         <li {% if country_name == 'Thailand' %} class="active" {% endif %}><a class="odt" href="{{ h.odm_nav_wp_url_for_site('odt') }}">    <span class="icon-od-logo">
+                        <li><a class="odt" href="{{ h.odm_nav_wp_url_for_site('odt') }}">    <span class="icon-od-logo">
                                         <svg class="svg-od-logo thailand-logo"><use
                                                 xlink:href="#icon-od-logo"></use></svg>
                                     </span>
                             {{_('Thailand')}}</a></li>
                         <li {% if country_name == 'Vietnam' %} class="active" {% endif %}><a class="odv" href="{{ h.odm_nav_wp_url_for_site('odv') }}">    <span class="icon-od-logo">
+                        <li><a class="odv" href="{{ h.odm_nav_wp_url_for_site('odv') }}">    <span class="icon-od-logo">
                                         <svg class="svg-od-logo vietnam-logo"><use
                                                 xlink:href="#icon-od-logo"></use></svg>
                                     </span>
@@ -149,6 +164,7 @@
                     <i class="fa fa-caret-down" style="display:none;" id="country-select-dropdown"></i>
         </nav></div>
         {% endblock %}
+        <hr class='clearfix'>
         {% block odm_head %}
 	  <nav id="od-head">
 	      <div class="row row-no-gutters">

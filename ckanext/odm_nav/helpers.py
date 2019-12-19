@@ -670,6 +670,7 @@ def convert_num_to_year(year):
     except ValueError:
         return year
 
+
 def prepare_site_nav_mobile():
     site_title = country_name_for_site()
     _literal = """
