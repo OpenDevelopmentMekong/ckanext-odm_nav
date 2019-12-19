@@ -662,3 +662,19 @@ def get_ga_tracking_id():
             'odv': "'UA-79799309-1'"}
 
     return tracking_id.get(site, '')
+
+def convert_num_to_year(year):
+    try:
+        year = int(float(year))
+        return year
+    except ValueError:
+        return year
+
+def prepare_site_nav_mobile():
+    site_title = country_name_for_site()
+    _literal = """
+               <svg class="svg-od-logo {}-logo odm-nv-logos"><use
+                   xlink:href="#icon-od-logo"></use>
+               </svg>
+               """.format(site_title.lower())
+    return h.literal(_literal)
