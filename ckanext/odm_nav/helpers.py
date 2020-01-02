@@ -656,13 +656,3 @@ def get_ga_tracking_id():
             'odv': "'UA-79799309-1'"}
 
     return tracking_id.get(site, '')
-
-def convert_num_to_year(year):
-    try:
-        year = int(float(year))
-        return year
-    except ValueError:
-        return year
-
-
-
