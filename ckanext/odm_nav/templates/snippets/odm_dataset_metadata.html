@@ -34,7 +34,7 @@ package - package to display
             <span class='dataset-source'> <i class='fa fa-user-circle-o'></i> {{ author_list|truncate(70) }}</span>
         {% endif %}
         {% if package.marc21_260c %}
-            <span class='dataset-published'><i class='fa fa-clock-o'></i> {{ h.odm_nav_convert_num_to_year(package.marc21_260c) }} </span>
+            <span class='dataset-published'><i class='fa fa-clock-o'></i> {{ h.odm_dataset_convert_num_to_year(package.marc21_260c) }} </span>
         {% endif %}
 
     {% elif package.type == 'laws_record' %}
