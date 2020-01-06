@@ -2489,3 +2489,9 @@ body.odv .clearfix {
     text-decoration: line-through;
     color: #CCCCCC;
 }
+
+/* fix the plus button alignment in resource view filters */
+/* this actually centers all icon only buttons */
+.btn .fa:first-child:last-child {
+    margin-right: 0;
+}
