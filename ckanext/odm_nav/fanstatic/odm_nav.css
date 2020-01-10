@@ -2196,6 +2196,7 @@ ul.nav li:hover > ul.dropdown-menu {
     right: 0px;
     position: relative;
     float: right;
+    z-index: auto;
 }
 
 /* Make the container not fluid at larger sizes */
@@ -2499,4 +2500,8 @@ body.odv .clearfix {
 
 .reference a {
     color: #3030ab;
+}
+
+.resource-view-filters a{
+    margin: 2px;
 }
