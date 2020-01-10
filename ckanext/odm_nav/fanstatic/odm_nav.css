@@ -2505,3 +2505,10 @@ body.odv .clearfix {
 .resource-view-filters a{
     margin: 2px;
 }
+
+.map-explorer-fullscreen{
+    display: none;
+    margin-top: 10px;
+    position: relative;
+    text-align: right;
+}
