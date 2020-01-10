@@ -1652,6 +1652,7 @@ ul.nav li:hover > ul.dropdown-menu {
     left: inherit;
 }
 
+
 .actions .dropdown-menu input {
     width: 100%;
 }
@@ -2494,4 +2495,8 @@ body.odv .clearfix {
 /* this actually centers all icon only buttons */
 .btn .fa:first-child:last-child {
     margin-right: 0;
+}
+
+.reference a {
+    color: #3030ab;
 }
