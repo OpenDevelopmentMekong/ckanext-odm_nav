@@ -2502,25 +2502,30 @@ body.odv .clearfix {
     color: #3030ab;
 }
 
+/* ensures margin between any two successive buttons */
 a.btn + a.btn {
     margin-left: 4px;
+}
+
+.resource-view-filters-header {
+    display: none;
+}
+
+.used .resource-view-filters-header {
+    display: block;
+    margin: 1rem;
 }
 
 .resource-view-filter-label {
     display: inline-block;
     padding: 4px;
     margin: 2px;
-    /* border: 1px solid #ccc; */
-/*    border-radius: 3px;
-    background: white;*/
+    width: 150px;
 }
 
 .resource-view-filters .resource-view-filter {
     margin-bottom: .25em;
     padding: .25em;
-/*    background: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 5px;*/
 }
 
 .resource-view-filter-values {
@@ -2528,8 +2533,9 @@ a.btn + a.btn {
     max-width: 100%;
 }
 
+/* must be important, there's an auto on the element */
 .resource-view-filters .resource-view-filter-values .select2-container {
-    width: auto!important;
+    width: 250px!important;
 }
 
 .resource-view-filters>div.used {
