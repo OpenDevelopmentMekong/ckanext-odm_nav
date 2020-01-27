@@ -2551,3 +2551,10 @@ a.btn + a.btn {
     position: relative;
     text-align: right;
 }
+
+.dataset-resource-text .dropdown-menu{
+    position: relative;
+    float: right;
+}
+
+
