@@ -506,13 +506,14 @@ def odm_wms_download(resource, large=True):
     dl_list = "\n".join([ link_templ % (_url(fmt), name) for name, fmt in output_formats])
 
     return """<span class='dropdown'>
-	   <a class='btn btn-primary btn-download %s' id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
+	   <a class='btn btn-primary btn-download %s' resource_id="%s" id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
 	     <span class="caret"></span>
 	     </a>
 	   <div class='dropdown-menu' aria-labelledby="a_wms_dl_%s">
              %s
 	   </div>
 	 </span>""" % (large and "btn-block btn-lg" or "",
+                       resource['id'],
                        resource['id'],
                        _('Download'),
                        resource['id'],

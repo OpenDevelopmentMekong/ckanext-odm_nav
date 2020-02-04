@@ -30,7 +30,7 @@ Example:
                 {% if dl %}
                     {{ dl|safe }}
                 {% else %}
-                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" href="{{res.get('url', '')}}">
+                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" resource_id="{{res.id}}" href="{{res.get('url', '')}}">
                         {% trans %}Download{% endtrans %}
                         <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
                     </a>

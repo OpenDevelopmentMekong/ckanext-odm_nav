@@ -44,7 +44,7 @@
       {% endif %}
 
       {% if res.url and h.is_url(res.url) %}
-        <a href="{{ res.url }}" class="resource-url-analytics" target="_blank">
+        <a href="{{ res.url }}" class="resource-url-analytics" resource_id="{{res.id}}" target="_blank">
           {% if res.has_views %}
             <img alt="{{ _('Download') }}" class="resource_explore_icon" src="/icons/arrow-down.svg">
           {% else %}
