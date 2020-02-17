@@ -2557,4 +2557,6 @@ a.btn + a.btn {
     float: right;
 }
 
-
+.select2-results .select2-disabled, .select2-results__option[aria-disabled=true] { 
+    display: none;
+}
