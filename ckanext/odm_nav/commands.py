@@ -1,10 +1,11 @@
 from ckan.lib.cli import CkanCommand
-
+from ckanext.odm_nav import model as nav_model
 import os
 import json
 
 from . import menus
 from . import helpers
+
 
 class OdmNav(CkanCommand):
 
@@ -41,6 +42,10 @@ class OdmNav(CkanCommand):
             self.load_site(*self.args[1:])
         elif cmd == "load_this_site_menu":
             self.load_this_site(*self.args[1:])
+        elif cmd == "initdb":
+            nav_model.init_tables()
+        elif cmd == "load_taxonomy":
+            self.load_taxonomy()
 
     def load_menus(self, *args):
         for site, langs in self.lang_map.items():
@@ -63,3 +68,59 @@ class OdmNav(CkanCommand):
             with open(os.path.join(self.base_path, filename), 'w') as f:
                 f.write(menus.extract_wp_menu(wp_url, lang))
                 print("Wrote: %s" % filename)
+
+    def _parse_taxonomy(self, tax, flatten=None):
+        """
+        Flatten the childrent elements from the json file
+        :param tax: list
+        :param flatten: list
+        :return: list
+        """
+        if not flatten:
+            flatten = []
+        for _x in tax:
+            if "children" in _x:
+                flatten.append(_x.get('name'))
+                self._parse_taxonomy(_x['children'], flatten)
+            else:
+                flatten.append(_x.get('name'))
+        return flatten
+
+    def load_taxonomy(self):
+        """
+        Load the postgres taxonomy table from json file. Only english taxonomy is loaded.
+        Table Name: odm_taxonomy
+        :return:
+        """
+        file_name = "taxonomy_en.json"
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        taxonomy_dir = "odm-taxonomy"
+        file_full_path = "{}/{}/{}".format(dir_path, taxonomy_dir, file_name)
+        print("File path: {}".format(file_full_path))
+
+        try:
+            with open(file_full_path, 'r') as tax:
+                content = json.load(tax)
+                tax.close()
+
+            parent_taxonomy = dict()
+
+            for x in content['children']:
+                parent_taxonomy[x.get('name')] = []
+            print("Total parent taxonomy: {}".format(len(parent_taxonomy)))
+
+            if not parent_taxonomy:
+                raise ValueError("No data found in taxonomy json file")
+
+            for _tax in content.get('children'):
+                ls = []
+                _parent = _tax.get('name')
+                parent_taxonomy[_parent] = self._parse_taxonomy(_tax['children'], ls)
+
+            if parent_taxonomy:
+                md = nav_model.Taxonomy
+                md.load_table(parent_taxonomy)
+        except Exception as e:
+            print("Error")
+            print(e)
+

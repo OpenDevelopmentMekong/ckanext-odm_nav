@@ -1,6 +1,5 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-
 import collections
 
 from . import helpers, auth
@@ -103,6 +102,12 @@ class OdmNavPlugin(plugins.SingletonPlugin):
         m.connect('odm_nav_thumbnail',
                   '/dataset/{id}/resource/{resource_id}/thumbnail/{file_name}',
                   controller='ckanext.odm_nav.thumbnail:Controller', action='read', ckan_icon='table')
+
+        # Donor report controller
+        m.connect('donor_report', '/user/{id}/donor_report',
+                  controller='ckanext.odm_nav.controller:DonorReport',
+                  action='index')
+
         return m
 
 
@@ -120,7 +125,6 @@ class OdmNavPlugin(plugins.SingletonPlugin):
 
         return {
             'odm_nav_tag_for_topic': helpers.tag_for_topic,
-            'odm_nav_sanitize_html': helpers.sanitize_html,
             'odm_nav_taxonomy_dictionary': helpers.get_taxonomy_dictionary,
             'odm_nav_localize_resource_url': helpers.localize_resource_url,
             'odm_nav_thumbnail_img': helpers.thumbnail_img_url,
