@@ -1,0 +1,35 @@
+{% extends "user/read_base.html" %}
+
+{% import 'macros/form.html' as form %}
+
+
+{% block primary_content_inner %}
+    <div class="container">
+        <div class="row">
+
+        {% block donor_header %}
+            <h1>
+              Donor Report
+            </h1>
+        {% endblock %}
+
+        {% block donor_form %}
+            <form id="donor-report" class="dataset-form" method="post" action="{{ action }}" data-module="basic-form">
+
+                {{ form.select('report_type', label=_('Select Donor Report Type'),
+                options=[
+                    {'name': 'gp_pkg', 'value': 'Group By Dataset'},
+                    {'name': 'gp_org', 'value': 'Group By Organization'},
+                    {'name':'raw_data', 'value': 'Raw Data'}
+                ],
+                selected=raw_data, error=errors.report_type, is_required=true) }}
+
+                <button class="btn btn-primary" type="submit" name="run">{{ _("Generate Report") }}</button>
+
+            </form>
+        {% endblock %}
+
+        </div>
+    </div>
+
+{% endblock %}
