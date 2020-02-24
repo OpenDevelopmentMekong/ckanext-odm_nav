@@ -13,13 +13,32 @@
             </h1>
         {% endblock %}
 
+        {% block donor_notes %}
+            <div class="notes embedded-content">
+                <h4>
+                    Note:
+                </h4>
+                <p>
+                    The date range from and to date includes package created or package modified date.
+                    The from date and to date are inclusive, i.e. both dates are included.
+                </p>
+            </div>
+            {% endblock %}
+
         {% block donor_form %}
             <form id="donor-report" class="dataset-form" method="post" action="{{ action }}" data-module="basic-form">
+
+                {{ form.input('from_dt', label=_('From Date'), type='date', value=data.from_dt, error=errors.from_dt,
+                    classes=[], attrs={'class': 'form-control'}, is_required=true) }}
+                {{ form.input('to_dt', label=_('To Date'), type='date', value=data.to_dt, error=errors.to_dt,
+                    classes=[], attrs={'class': 'form-control'}, is_required=true) }}
 
                 {{ form.select('report_type', label=_('Select Donor Report Type'),
                 options=[
                     {'name': 'gp_pkg', 'value': 'Group By Dataset'},
                     {'name': 'gp_org', 'value': 'Group By Organization'},
+                    {'name': 'gp_pkg_sdg', 'value': 'Group By Dataset SDG'},
+                    {'name': 'gp_org_sdg', 'value': 'Group By Organization SDG'},
                     {'name':'raw_data', 'value': 'Raw Data'}
                 ],
                 selected=raw_data, error=errors.report_type, is_required=true) }}
