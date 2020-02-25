@@ -38,7 +38,12 @@ package - package to display
         {% endif %}
 
     {% elif package.type == 'laws_record' %}
-        <span class='dataset-law-number'> {{ h.odm_dataset_get_currentlang_data('odm_document_number', package) }}</span>
+        {% set document_number =  h.odm_dataset_get_currentlang_data('odm_document_number', package) %}
+        {% if document_number %}
+            <span class='dataset-law-number'><i class="fa fa-file-text-o"></i>
+               {{ document_number }}
+            </span>
+        {% endif %}
         <span class='dataset-law-type'> <i class="fa fa-building-o"></i>
             {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}</span>
         <span class='dataset-datestamp' data-date='{{package.odm_promulgation_date}}'><i class='fa fa-clock-o'></i> </span>
