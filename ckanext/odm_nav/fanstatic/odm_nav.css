@@ -2560,3 +2560,7 @@ a.btn + a.btn {
 .select2-results .select2-disabled, .select2-results__option[aria-disabled=true] { 
     display: none;
 }
+
+.panel-body{
+   overflow: scroll;
+}
