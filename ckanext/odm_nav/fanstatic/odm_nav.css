@@ -2582,7 +2582,8 @@ a.btn + a.btn {
 
 .panel-body{
    overflow: scroll;
+}
 
-.mega-menu-horizontal{
+#mega-menu-header_menu{
     padding: 10px!important;
 }
