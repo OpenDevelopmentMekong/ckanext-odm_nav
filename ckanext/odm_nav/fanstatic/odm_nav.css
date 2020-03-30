@@ -2510,6 +2510,7 @@ body.odv .clearfix {
     color: #CCCCCC;
 }
 
+<<<<<<< baf5549eb979767e6f62fa498706dd98d0574f29
 /* fix the plus button alignment in resource view filters */
 /* this actually centers all icon only buttons */
 .btn .fa:first-child:last-child {
@@ -2581,4 +2582,7 @@ a.btn + a.btn {
 
 .panel-body{
    overflow: scroll;
+}
+.mega-menu-horizontal{
+    padding: 10px!important;
 }
