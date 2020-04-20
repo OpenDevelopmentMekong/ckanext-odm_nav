@@ -110,30 +110,31 @@ class DonorReport(UserController):
         :return: csv response
         """
         query = """
-            SELECT p.pkg_id AS pkg_id, p.title AS pkg_title, p.type AS pkg_type, p.org AS org_id, 
+            SELECT p.pkg_id AS pkg_id, p.title AS pkg_title, p.type AS pkg_type, p.private AS is_private,
+            TO_CHAR(p.package_created, 'YYYY-MM-DD HH24:MI:SS:MS') AS package_created, p.org AS org_id, 
             PUBLIC.group.title AS org_title, TRIM(p.pkg_taxonomy) AS pkg_taxonomy, 
             TRIM(p.parent_taxonomy) AS parent_taxonomy 
             FROM PUBLIC.group, (SELECT 
-            pkg_id, title, type, pkg_state, private, org, pkg_taxonomy, taxonomy AS odm_taxonomy, parent_taxonomy 
+            pkg_id, title, type, pkg_state, private, org, pkg_taxonomy, taxonomy AS odm_taxonomy, 
+            parent_taxonomy, package_created 
             FROM (SELECT 
             package.id AS pkg_id, package.title AS title, package.type AS type, 
+            package.metadata_created AS package_created,
             package.state AS pkg_state, package.private AS private, package.owner_org AS org, 
-            TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]"', '') AS pkg_taxonomy 
+            TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]{}"', '') AS pkg_taxonomy 
             FROM package, package_extra 
             WHERE package.state = 'active'
             AND (
                     package.metadata_created 
                     BETWEEN '{from_dt}' AND '{to_dt}'
-                    OR package.metadata_modified 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
                     )
-            AND package.id = package_extra.package_id 
+            AND package.id = package_extra.package_id
+            AND NOT package.private
             AND package_extra.key = 'taxonomy') AS tb 
             LEFT JOIN odm_taxonomy 
             ON LOWER(TRANSLATE(tb.pkg_taxonomy, ' ', '')) = LOWER(TRANSLATE(odm_taxonomy.taxonomy, ' ', ''))) AS p 
             WHERE PUBLIC.group.id = p.org;
-        """.format(from_dt=str(from_dt), to_dt=str(to_dt))
-
+        """.format('{}', from_dt=str(from_dt), to_dt=str(to_dt))
         conn = model.Session.connection()
         res = conn.execute(query).fetchall()
 
@@ -154,152 +155,27 @@ class DonorReport(UserController):
               FROM (SELECT 
               package.id AS pkg_id, package.title AS title, package.type AS type, 
               package.state AS pkg_state, package.private AS private, package.owner_org AS org, 
-              TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]"', '') AS pkg_taxonomy 
+              TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]{}"', '') AS pkg_taxonomy 
               FROM package, package_extra 
               WHERE package.state = 'active'
               AND (
                     package.metadata_created 
                     BETWEEN '{from_dt}' AND '{to_dt}'
-                    OR package.metadata_modified 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
                   )
-              AND package.id = package_extra.package_id 
+              AND package.id = package_extra.package_id
+              AND NOT package.private 
               AND package_extra.key = 'taxonomy') AS tb 
               LEFT JOIN odm_taxonomy 
               ON LOWER(TRANSLATE(tb.pkg_taxonomy, ' ', '')) = LOWER(TRANSLATE(odm_taxonomy.taxonomy, ' ', ''))) AS p 
               WHERE PUBLIC.group.id = p.org) as raw_data
               GROUP BY pkg_type, parent_taxonomy
               ORDER BY pkg_count DESC;
-        """.format(from_dt=str(from_dt), to_dt=str(to_dt))
+        """.format('{}', from_dt=str(from_dt), to_dt=str(to_dt))
         log.info(query)
         conn = model.Session.connection()
         res = conn.execute(query).fetchall()
 
         return self._download(res, "odm_group_by_dataset")
-
-    def _process_gp_org(self, from_dt, to_dt):
-        """
-
-        :return:
-        """
-        query = """
-                SELECT PUBLIC.group.title as org_title, gp.pkg_type as pkg_type, gp.pkg_count as pkg_count, 
-                gp.parent_taxonomy as parent_taxonomy
-                FROM(SELECT raw_data.pkg_type AS pkg_type, raw_data.parent_taxonomy as parent_taxonomy,
-                raw_data.org_id as org_id, COUNT(raw_data.pkg_id) AS pkg_count 
-                FROM (SELECT p.pkg_id AS pkg_id, p.title AS pkg_title, p.type AS pkg_type, p.org AS org_id, 
-                PUBLIC.group.title AS org_title, p.pkg_taxonomy AS pkg_taxonomy, p.parent_taxonomy AS parent_taxonomy
-                FROM PUBLIC.group, (SELECT 
-                pkg_id, title, type, pkg_state, private, org, pkg_taxonomy, taxonomy AS odm_taxonomy, parent_taxonomy 
-                FROM (SELECT 
-                package.id AS pkg_id, package.title AS title, package.type AS type, 
-                package.state AS pkg_state, package.private AS private, package.owner_org AS org, 
-                TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]"', '') AS pkg_taxonomy 
-                FROM package, package_extra 
-                WHERE package.state = 'active'
-                AND (
-                      package.metadata_created 
-                      BETWEEN '{from_dt}' AND '{to_dt}'
-                      OR package.metadata_modified 
-                      BETWEEN '{from_dt}' AND '{to_dt}'
-                    )
-                AND package.id = package_extra.package_id 
-                AND package_extra.key = 'taxonomy') AS tb 
-                LEFT JOIN odm_taxonomy 
-                ON LOWER(TRANSLATE(tb.pkg_taxonomy, ' ', '')) = LOWER(TRANSLATE(odm_taxonomy.taxonomy, ' ', ''))) AS p 
-                WHERE PUBLIC.group.id = p.org) as raw_data
-                GROUP BY org_id, pkg_type, parent_taxonomy
-                ORDER BY pkg_count DESC) as gp, PUBLIC.group
-                WHERE gp.org_id = PUBLIC.group.id;
-                """.format(from_dt=str(from_dt), to_dt=str(to_dt))
-        log.info(query)
-        conn = model.Session.connection()
-        res = conn.execute(query)
-        return self._download(res, "odm_group_by_org")
-
-    def _process_pkg_sdg(self, from_dt, to_dt):
-        """
-        Count of all SDGs
-        :param from_dt: str
-        :param to_dt: str
-        :return: str
-        """
-        query = """
-            SELECT raw_data.pkg_type AS pkg_type, raw_data.pkg_taxonomy as pakcage_taxonomy, count(raw_data.pkg_id) AS pkg_count 
-            FROM (SELECT p.pkg_id AS pkg_id, p.title AS pkg_title, p.type AS pkg_type, p.org AS org_id, 
-            PUBLIC.group.title AS org_title, p.pkg_taxonomy AS pkg_taxonomy, p.parent_taxonomy AS parent_taxonomy
-            FROM PUBLIC.group, (SELECT 
-            pkg_id, title, type, pkg_state, private, org, pkg_taxonomy, taxonomy AS odm_taxonomy, parent_taxonomy 
-            FROM (SELECT 
-            package.id AS pkg_id, package.title AS title, package.type AS type, 
-            package.state AS pkg_state, package.private AS private, package.owner_org AS org, 
-            TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]"', '') AS pkg_taxonomy 
-            FROM package, package_extra 
-            WHERE package.state = 'active'
-            AND (
-                    package.metadata_created 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
-                    OR package.metadata_modified 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
-                    )
-            AND package.id = package_extra.package_id 
-            AND package_extra.key = 'taxonomy') AS tb 
-            LEFT JOIN odm_taxonomy 
-            ON LOWER(TRANSLATE(tb.pkg_taxonomy, ' ', '')) = LOWER(TRANSLATE(odm_taxonomy.taxonomy, ' ', ''))) AS p 
-            WHERE PUBLIC.group.id = p.org
-            AND LOWER(TRANSLATE(p.parent_taxonomy, ' ', '')) = 'sustainabledevelopmentgoals'
-            ) as raw_data
-            GROUP BY pkg_type, pkg_taxonomy
-            ORDER BY pkg_count DESC;
-        """.format(from_dt=str(from_dt), to_dt=str(to_dt))
-        log.info(query)
-        conn = model.Session.connection()
-        res = conn.execute(query)
-        return self._download(res, "odm_group_by_pkg_sdg")
-
-    def _process_org_sdg(self, from_dt, to_dt):
-        """
-        Count of all SDGs
-        :param from_dt: str
-        :param to_dt: str
-        :return: str
-        """
-        query = """
-            SELECT PUBLIC.group.title as org_title, gp.pkg_type as pkg_type, gp.pkg_count as pkg_count, 
-            gp.pkg_taxonomy as pkg_taxonomy
-            FROM(SELECT raw_data.pkg_type AS pkg_type, raw_data.pkg_taxonomy as pkg_taxonomy,
-            raw_data.org_id as org_id, COUNT(raw_data.pkg_id) AS pkg_count 
-            FROM (SELECT p.pkg_id AS pkg_id, p.title AS pkg_title, p.type AS pkg_type, p.org AS org_id, 
-            PUBLIC.group.title AS org_title, p.pkg_taxonomy AS pkg_taxonomy, p.parent_taxonomy AS parent_taxonomy
-            FROM PUBLIC.group, (SELECT 
-            pkg_id, title, type, pkg_state, private, org, pkg_taxonomy, taxonomy AS odm_taxonomy, parent_taxonomy 
-            FROM (SELECT 
-            package.id AS pkg_id, package.title AS title, package.type AS type, 
-            package.state AS pkg_state, package.private AS private, package.owner_org AS org, 
-            TRANSLATE(unnest(string_to_array(package_extra.value, ',')), '[]"', '') AS pkg_taxonomy 
-            FROM package, package_extra 
-            WHERE package.state = 'active'
-            AND (
-                    package.metadata_created 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
-                    OR package.metadata_modified 
-                    BETWEEN '{from_dt}' AND '{to_dt}'
-                    )
-            AND package.id = package_extra.package_id 
-            AND package_extra.key = 'taxonomy') AS tb 
-            LEFT JOIN odm_taxonomy 
-            ON LOWER(TRANSLATE(tb.pkg_taxonomy, ' ', '')) = LOWER(TRANSLATE(odm_taxonomy.taxonomy, ' ', ''))) AS p 
-            WHERE PUBLIC.group.id = p.org
-            AND LOWER(TRANSLATE(p.parent_taxonomy, ' ', '')) = 'sustainabledevelopmentgoals'
-            ) as raw_data
-            GROUP BY org_id, pkg_type, pkg_taxonomy
-            ORDER BY pkg_count DESC) as gp, PUBLIC.group
-            WHERE gp.org_id = PUBLIC.group.id;
-        """.format(from_dt=str(from_dt), to_dt=str(to_dt))
-        log.info(query)
-        conn = model.Session.connection()
-        res = conn.execute(query)
-        return self._download(res, "odm_group_by_org_sdg")
 
     def index(self, id=None):
 
@@ -356,12 +232,6 @@ class DonorReport(UserController):
                         return self._process_raw_data(data_dict['from_dt'], data_dict['to_dt'])
                     elif report_type == "Group By Dataset":
                         return self._process_gp_pkg(data_dict['from_dt'], data_dict['to_dt'])
-                    elif report_type == "Group By Organization":
-                        return self._process_gp_org(data_dict['from_dt'], data_dict['to_dt'])
-                    elif report_type == "Group By Dataset SDG":
-                        return self._process_pkg_sdg(data_dict['from_dt'], data_dict['to_dt'])
-                    elif report_type == "Group By Organization SDG":
-                        return self._process_org_sdg(data_dict['from_dt'], data_dict['to_dt'])
                     else:
                         # This should not occur
                         vars['errors'] = ["Unkown Report Type"]

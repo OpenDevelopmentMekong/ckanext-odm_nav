@@ -35,11 +35,8 @@
 
                 {{ form.select('report_type', label=_('Select Donor Report Type'),
                 options=[
-                    {'name': 'gp_pkg', 'value': 'Group By Dataset'},
-                    {'name': 'gp_org', 'value': 'Group By Organization'},
-                    {'name': 'gp_pkg_sdg', 'value': 'Group By Dataset SDG'},
-                    {'name': 'gp_org_sdg', 'value': 'Group By Organization SDG'},
-                    {'name':'raw_data', 'value': 'Raw Data'}
+                    {'name':'raw_data', 'value': 'Raw Data'},
+                    {'name': 'gp_pkg', 'value': 'Group By Dataset'}
                 ],
                 selected=raw_data, error=errors.report_type, is_required=true) }}
 
