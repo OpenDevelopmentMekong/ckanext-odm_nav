@@ -2507,6 +2507,12 @@ body.odv .clearfix {
 }
 
 @media only screen and (max-width: 1000px) {
+  .site-meta {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
   #main-navigation-toggle {
     z-index: 5;
   }
