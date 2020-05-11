@@ -490,7 +490,7 @@ def odm_wms_download(resource, large=True):
         namespace = "%s/" % namespace
     except: pass
 
-    ows_templ = "%s%sows?service=WFS&version=1.0.0&request=GetFeature&typeName=%s&outputFormat=%s"
+    ows_templ = "%s%sows?service=WFS&version=1.0.0&request=GetFeature&typeName=%s&outputFormat=%s%s"
     link_templ = """<li class="dropdown-item"><a target='_blank' href='%s'>%s <i class="fa fa-download" aria-hidden="true"></i></a></li>"""
     # templ % (ows_server, namespace, layer, output_format)
 
@@ -500,8 +500,13 @@ def odm_wms_download(resource, large=True):
                       (_('KML'),'application/vnd.google-earth.kml+xml'),
                       (_('Shapefile'), 'SHAPE-ZIP')]
 
+    # Note -- we're inlining the format options here, requires geoserver 2.17.0
+    # fixes an issue with SHP files coming back in ISO8859, killing the Khmer layer info
+    format_options = { 'SHAPE-ZIP': '&format_options=CHARSET:UTF-8' }
+
     def _url(fmt):
-        return ows_templ % (ows_server, namespace, layer, quote_plus(fmt))
+        options = format_options.get(fmt, '')
+        return ows_templ % (ows_server, namespace, layer, quote_plus(fmt), options)
 
     dl_list = "\n".join([ link_templ % (_url(fmt), name) for name, fmt in output_formats])
 
