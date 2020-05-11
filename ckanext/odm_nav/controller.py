@@ -223,7 +223,7 @@ class DonorReport(UserController):
                             raise ValidationError("Not a valid date")
                     err = validators.check_date_period(data_dict, vars['errors'])
                     if err:
-                        raise ValidationError
+                        raise ValidationError("Exceeded limit - max allowed is 12 months")
 
                     if not report_type:
                         raise ValidationError('Not a valid report type. Please select the proper report type')
