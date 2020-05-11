@@ -38,11 +38,11 @@ Example:
                 <a href="{{ url }}">
                     {% if h.resource_display_name(res) %}
                         <div>
-                            <h4>{{h.resource_display_name(res)|truncate(120)}}</h4>
+                            <h4>{{h.resource_display_name(res)}}</h4>
                         </div>
                     {% elif h.odm_dataset_get_currentlang_data('description_translated', res) %}
                         <div>
-                            {{ h.odm_dataset_get_currentlang_data('description_translated', res)|truncate(120) }}
+                            {{ h.odm_dataset_get_currentlang_data('description_translated', res) }}
                         </div>
                     {% endif %}
                 </a>
