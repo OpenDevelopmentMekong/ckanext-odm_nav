@@ -102,13 +102,6 @@
             </button>
         </div>
 
-        {% block odm_selector %}
-        {% set country_name = h.odm_nav_country_name_for_site() %}
-                {{ h.odm_nav_country_name_for_site() }}
-                {{ country_name }}
-                <span class="fa fa-caret-down"></span>
-            </button>
-        </div>
 
         {% block odm_selector %}
         {% set country_name = h.odm_nav_country_name_for_site() %}
@@ -172,15 +165,6 @@
 	      <div class="row row-no-gutters">
 		      <div class="col-xs-12">
                           <hr class="clearfix">
-		          <div class="social">
-			          <nav>
-			              {% block odm_social %}
-			                  {{ h.odm_nav_facebook_for_site()|safe }}
-			                  {{ h.odm_nav_twitter_for_site()|safe }}
-			                  {{ h.odm_nav_contact_for_site()|safe }}
-			              {% endblock %}
-			          </nav>
-		          </div>
 		          <div class="site-meta">
 			          <div id="od-logo">
 				          <span class="icon-od-logo">
@@ -190,6 +174,15 @@
 			              <h1>OpenDevelopment</h1>
 			              <h2 class="side-title">{{ _(h.odm_nav_country_name_for_site()) }}</h2>
 			          </div>
+                              <div class="social">
+                                  <nav>
+                                      {% block odm_social %}
+                                          {{ h.odm_nav_facebook_for_site()|safe }}
+                                          {{ h.odm_nav_twitter_for_site()|safe }}
+                                          {{ h.odm_nav_contact_for_site()|safe }}
+                                      {% endblock %}
+                                  </nav>
+                          </div>
 		          </div>
               </div>
 	      </div>

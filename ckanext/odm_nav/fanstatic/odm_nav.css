@@ -312,7 +312,9 @@ body.odc #od-logo div:lang(km) {
 }
 
 body.odc #od-logo img:lang(km) {
-    display: inline
+    display: inline;
+    max-width: 338.97px;
+    max-height: 53.64px;
 }
 
 /* color for the logo and OpenDevelopment header */
@@ -1531,6 +1533,7 @@ a.header_tag:hover {
     height: 15px;
     border-radius: 3px;
 }
+d-head,
 
 .dataset-resource {
     margin-bottom: 15px;
@@ -1563,7 +1566,7 @@ a.header_tag:hover {
 
 }
 
-#od-head {
+#od-head, .social {
     margin-top: 0px;
     padding: 0px;
 }
@@ -1813,6 +1816,9 @@ ul.nav li:hover > ul.dropdown-menu {
     text-align: right;
     margin: .25rem 0 0 0;
     margin-right: 150px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .social i {
@@ -2497,6 +2503,7 @@ body.odv .clearfix {
 @media only screen and (max-width: 1000px) {
   .social {
     margin-right: 5px;
+    padding-right: 15px;
   }
 }
 
