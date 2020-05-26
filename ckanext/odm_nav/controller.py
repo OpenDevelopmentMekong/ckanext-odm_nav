@@ -8,6 +8,7 @@ import ckan.logic as logic
 import ckan.lib.helpers as h
 from ckan.controllers.user import UserController
 from ckanext.odm_nav import validators
+from datetime import datetime
 import logging
 
 log = logging.getLogger(__name__)
@@ -196,7 +197,8 @@ class DonorReport(UserController):
         vars = {
             "user_dict": c.user_dict,
             "errors": {},
-            "error_summary": {}
+            "error_summary": {},
+            "data": data_dict
         }
 
         # Allow to generate report only for sysadmin
@@ -206,7 +208,8 @@ class DonorReport(UserController):
             abort(403, _('Unauthorized to view or run this.'))
 
         if request.method == 'GET':
-            vars['data'] = data_dict
+            vars['data']['report_type'] = "raw_data"
+            vars['data']['to_dt'] = datetime.now().strftime('%Y-%m-%d')
             return render('user/donor_report.html', extra_vars=vars)
 
         if request.method == "POST":
