@@ -14,6 +14,7 @@ import logging
 log = logging.getLogger(__name__)
 check_access = logic.check_access
 ValidationError = logic.ValidationError
+NotAuthorized = logic.NotAuthorized
 
 
 class UnicodeDictWriter:
@@ -203,9 +204,9 @@ class DonorReport(UserController):
 
         # Allow to generate report only for sysadmin
         try:
-            check_access('user_update', context, data_dict)
+            check_access('sysadmin', context, data_dict)
         except NotAuthorized:
-            abort(403, _('Unauthorized to view or run this.'))
+            abort(403, _('Unauthorized to view or run this. Only sysadmin can run this.'))
 
         if request.method == 'GET':
             vars['data']['report_type'] = "raw_data"
