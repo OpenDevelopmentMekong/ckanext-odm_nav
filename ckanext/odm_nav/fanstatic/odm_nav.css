@@ -2573,3 +2573,7 @@ a.btn + a.btn {
    position: relative;
    max-width: 80%;
 }
+
+.dropdown-item, .dropdown-menu>li{
+   width: 100%
+}
