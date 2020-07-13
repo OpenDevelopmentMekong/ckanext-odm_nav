@@ -317,6 +317,14 @@ body.odc #od-logo img:lang(km) {
     max-height: 53.64px;
 }
 
+@media (max-width: 768px) {
+    body.odc #od-logo img:lang(km) {
+        display: inline;
+        max-width: 300px;
+        max-height: 48px;
+    }
+}
+
 /* color for the logo and OpenDevelopment header */
 body.odt #od-head h1, a.odt .icon-od-logo, body.odt #od-logo .icon-od-logo {
     color: #f7904d;
