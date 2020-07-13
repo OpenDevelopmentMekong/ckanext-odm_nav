@@ -312,7 +312,9 @@ body.odc #od-logo div:lang(km) {
 }
 
 body.odc #od-logo img:lang(km) {
-    display: inline
+    display: inline;
+    max-width: 338.97px;
+    max-height: 53.64px;
 }
 
 /* color for the logo and OpenDevelopment header */
@@ -1531,6 +1533,7 @@ a.header_tag:hover {
     height: 15px;
     border-radius: 3px;
 }
+d-head,
 
 .dataset-resource {
     margin-bottom: 15px;
@@ -1563,7 +1566,7 @@ a.header_tag:hover {
 
 }
 
-#od-head {
+#od-head, .social {
     margin-top: 0px;
     padding: 0px;
 }
@@ -1687,7 +1690,7 @@ ul.nav li:hover > ul.dropdown-menu {
     float: left
 }
 
-#od-selector .icon-od-logo .svg-od-logo {
+#od-selector .icon-od-logo .svg-od-logo, .odm-nv-logos {
     width: 16px;
     height: 16px
 }
@@ -1813,6 +1816,9 @@ ul.nav li:hover > ul.dropdown-menu {
     text-align: right;
     margin: .25rem 0 0 0;
     margin-right: 150px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .social i {
@@ -1880,9 +1886,36 @@ ul.nav li:hover > ul.dropdown-menu {
         margin-top: 0;
         padding-top: 1px;
         margin-bottom: 0;
+        z-index: 100;
+        float: left;
+        font-weight: 700;
         padding-bottom: 2px;
     }
 }
+@media (max-width: 768px) {
+    #od-selector ul, #od-selector ul li {
+        margin: 0;
+        padding: 0;
+        font-size: small;
+        padding: 2px 12px 2px 0;
+        float: none;
+        list-style: none;
+        padding-left: 5px;
+    }
+    #od-selector ul li.active {
+        display: none;
+    }
+#od-selector ul, #od-selector ul li {
+    margin: 0;
+    padding: 0;
+    font-size: small;
+    padding: 2px 12px 2px 0;
+    float: none;
+    list-style: none;
+    padding-left: 5px;
+}
+}
+
 
 @media (min-width: 768px) {
     #od-head {
@@ -2388,7 +2421,7 @@ div.dataset-list-metadata {
 }
 
 .clearfix {
-    margin-bottom: 0;
+    margin-bottom: 6px;
     margin-top: 0;
 }
 
@@ -2470,6 +2503,19 @@ body.odv .clearfix {
 @media only screen and (max-width: 1000px) {
   .social {
     margin-right: 5px;
+    padding-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .site-meta {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .site-meta {
+    padding: 10px;
   }
 }
 
