@@ -160,6 +160,11 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_prepare_site_nav_mobile': helpers.prepare_site_nav_mobile,
             # core override
             'linked_user': helpers.linked_user,
+            # Download option for raster vs vector
+            'odm_nav_odm_wms_raster_vector': helpers.odm_wms_raster_vector,
+            'odm_nav_get_bounding_box_from_package': helpers.get_bounding_box_from_package,
+            'odm_nav_styles_for_given_layer': helpers.get_styles_for_given_layer,
+            'odm_nav_download_wms_layers_link_given_formats': helpers.download_wms_layers_link_given_formats
         }
 
     # IAuthFunctions

@@ -21,6 +21,7 @@ from webhelpers.html import tags
 
 # This is to get the current language resource display name
 from ckanext.odm_dataset_ext import helpers as dt_helpers
+from ckanext.vectorstorer import wms as v_wms
 
 from . import menus
 
@@ -477,7 +478,165 @@ def odm_menu_path():
         lang = 'en'
     return "home/snippets/{}_{}_menu.html".format(site, lang)
 
-def odm_wms_download(resource, large=True):
+
+def get_bounding_box_from_package(package):
+    """
+    Get the package from the bounding box
+    :param package: xml tree type
+    :return: tuple
+    """
+
+    bbox_west = package.get('EX_GeographicBoundingBox_west', '')
+    bbox_north = package.get('EX_GeographicBoundingBox_north', '')
+    bbox_south = package.get('EX_GeographicBoundingBox_south', '')
+    bbox_east = package.get('EX_GeographicBoundingBox_east', '')
+
+    bbox = (
+        bbox_west, bbox_south, bbox_east, bbox_north
+    )
+
+    return bbox
+
+
+def get_styles_for_given_layer(layer):
+    """
+    extract styles for a given layer. Style may be multiple
+    :param layer: xml tree type
+    :return: tuple
+    """
+    styles = [x.find(v_wms.ns('Name')).text for x in layer.findall(v_wms.ns('Style'))]
+
+    return tuple(styles)
+
+
+def download_wms_layers_link_given_formats(package, url, layer_name, formats,
+                                           width=None, height=None, is_html_links=True):
+    """
+     Get download links for given wms layer and formats
+
+    e.g: /geoserver/wms?service=WMS&
+        request=GetMap&layers=ODCambodia%3AReserved_land_for_social_land_concession_points_en
+        &srs=EPSG:32648
+        &bbox=357678.513323801,%201182912.10854474,%20703184.839163763,%201575378.42709723
+        &width=600&height=800&format=kmlz
+
+    Supported Formats:
+        - png
+        - jpeg
+        - kmlz
+        - geotiff
+
+    :param package: dict
+    :param url: str
+    :param layer_name: str <workspace:layer_name>
+    :param formats: tuple (containing required formats)
+    :param width: int/str numbers
+    :param height: int/str numbers
+    :param is_html_links: boolean (if true returns html list elements else returns tuple of urls
+    :return:
+    """
+    request_type = "GetMap"
+    service = "WMS"
+    link_templ = """
+        <li class="dropdown-item"><a target='_blank' href='%s'>%s 
+        <i class="fa fa-download" aria-hidden="true"></i></a></li>
+    """
+    format_mapping = {
+        "png": "image/png",
+        "jpeg": "image/jpeg",
+        "kmz": "kmz",
+        "geotiff": "image/geotiff",
+        "kml (compressed)": "kmz"
+    }
+    try:
+        _width = int(width)
+        _height = int(height)
+    except Exception as e:
+        log.error(e)
+        log.info("Setting height and width to default 600, 600")
+        _width = 600
+        _height = 600
+
+    dl_url_templ = "{url_scheme}://{net_loc}" \
+                   "{url_path}?service={service}&request={request}&layers={layers}&" \
+                   "srs={srs}&bbox={bbox}&width={width}&height={height}&format={format_type}"
+
+    bbox = get_bounding_box_from_package(package)
+    srs = package.get('MD_DataIdentification_spatialReferenceSystem', '').upper()
+    if srs and srs.strip().lower() == "epsg:32648":
+        srs = "CRS:84"
+    try:
+        _parsed_url = urlparse(url)
+        url_scheme, url_netloc, url_path = _parsed_url.scheme, _parsed_url.netloc, _parsed_url.path
+    except Exceptionn as e:
+        log.error(e)
+        return
+
+    results = []
+
+    for _format in formats:
+        val = format_mapping.get(_format.lower().strip(), '')
+        if val:
+            if is_html_links:
+                dl_url = dl_url_templ.format(
+                    url_scheme=url_scheme,
+                    net_loc=url_netloc,
+                    url_path=url_path,
+                    service=service,
+                    request=request_type,
+                    layers=layer_name,
+                    srs=srs,
+                    bbox=", ".join(list(bbox)),
+                    width=_width,
+                    height=_height,
+                    format_type=val
+                )
+                if is_html_links:
+                    results.append(link_templ % (dl_url, _(_format)))
+                else:
+                    results.append(dl_url)
+
+    if results:
+        return tuple(results)
+    else:
+        return
+
+
+def odm_wms_raster_vector(resource, package):
+    """
+    Check if the wms resource is raster or vector. If vector parent resource_id should be db_table
+    Returns true if vector
+    :param resource: list
+    :param package: dict
+    :return: Boolean
+    """
+
+    _parent_resource_id = resource.get('parent_resource_id', '')
+    if _parent_resource_id:
+        try:
+            parent_resource = [x for x in package['resources'] if x.get('id') == _parent_resource_id or x.get('name')
+                               == _parent_resource_id][0]
+            if parent_resource.get('format', '').strip().lower() == "db_table" or resource.get(
+                    'vectorstorer_resource', '') == "vectorstorer_db":
+                return True
+            return False
+        except IndexError as e:
+            log.error("No parent resource for the given wms resource: {}".format(resource.get('id')))
+            return False
+    else:
+        return False
+
+
+def odm_wms_download(resource, package, large=True):
+    """
+    Check if the resource is wms raster or vector file. If the resource contains parent
+    :param package:
+    :param resource:
+    :param large:
+    :return:
+    """
+    is_vector = odm_wms_raster_vector(resource, package)
+
     try:
         ows_server = resource['wms_server'].replace('/wms', '/')
         layer = resource['wms_layer']
@@ -496,33 +655,35 @@ def odm_wms_download(resource, large=True):
 
     layer = quote_plus(layer)
 
-    output_formats = [(_('GeoJSON'), 'application/json'),
-                      (_('KML'),'application/vnd.google-earth.kml+xml'),
-                      (_('Shapefile'), 'SHAPE-ZIP')]
-
-    # Note -- we're inlining the format options here, requires geoserver 2.17.0
-    # fixes an issue with SHP files coming back in ISO8859, killing the Khmer layer info
-    format_options = { 'SHAPE-ZIP': '&format_options=CHARSET:UTF-8' }
-
     def _url(fmt):
         options = format_options.get(fmt, '')
         return ows_templ % (ows_server, namespace, layer, quote_plus(fmt), options)
 
-    dl_list = "\n".join([ link_templ % (_url(fmt), name) for name, fmt in output_formats])
+    if is_vector:
+        output_formats = [(_('GeoJSON'), 'application/json'),
+                          (_('KML'), 'application/vnd.google-earth.kml+xml'),
+                          (_('Shapefile'), 'SHAPE-ZIP')]
 
-    return """<span class='dropdown'>
-	   <a class='btn btn-primary btn-download %s' resource_id="%s" id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
-	     <span class="caret"></span>
-	     </a>
-	   <div class='dropdown-menu' aria-labelledby="a_wms_dl_%s">
-             %s
-	   </div>
-	 </span>""" % (large and "btn-block btn-lg" or "",
-                       resource['id'],
-                       resource['id'],
-                       _('Download'),
-                       resource['id'],
-                       dl_list)
+        # Note -- we're inlining the format options here, requires geoserver 2.17.0
+        # fixes an issue with SHP files coming back in ISO8859, killing the Khmer layer info
+        format_options = {'SHAPE-ZIP': '&format_options=CHARSET:UTF-8'}
+        dl_list = "\n".join([link_templ % (_url(fmt), name) for name, fmt in output_formats])
+
+        return """<span class='dropdown'>
+           <a class='btn btn-primary btn-download %s' resource_id="%s" id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
+             <span class="caret"></span>
+             </a>
+           <div class='dropdown-menu' aria-labelledby="a_wms_dl_%s">
+                 %s
+           </div>
+         </span>""" % (large and "btn-block btn-lg" or "",
+                           resource['id'],
+                           resource['id'],
+                           _('Download'),
+                           resource['id'],
+                           dl_list)
+
+    return ""
 
 
 # From core ckan.lib.helpers.linked_user
