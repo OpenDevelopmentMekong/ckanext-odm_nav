@@ -6,7 +6,7 @@
 <ul class="{{ _class }}">
   {% for tag in tags %}
   <li>
-    <a class="tag" href="{% url_for controller='package', action='search', type=c.pkg_dict.type, extras_taxonomy=tag.name %}">{{ h.odm_nav_get_localized_tag(tag.display_name) }}</a>
+    <a class="tag" href="{% url_for controller='package', action='search', type=c.pkg_dict.type, taxonomy=tag.name %}">{{ h.odm_nav_get_localized_tag(tag.display_name) }}</a>
   </li>
   {% endfor %}
 </ul>
