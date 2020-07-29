@@ -7,6 +7,7 @@ import ckan.model as model
 import ckan.logic as logic
 import ckan.lib.helpers as h
 from ckan.controllers.user import UserController
+from ckan.controllers.package import PackageController
 from ckanext.odm_nav import validators
 from datetime import datetime
 import logging
@@ -255,3 +256,14 @@ class DonorReport(UserController):
                 )
                 h.flash_error(_("Something went wrong contact sysadmin"))
                 h.redirect_to(donor_report_page)
+
+
+class GeoserverNewWMSResource(PackageController):
+
+    def new_mws_resource(self, id, data=None, errors=None, error_summary=None):
+        c.resource_type = "wms"
+        if not data:
+            data = dict()
+            data['format'] = "WMS"
+        return self.new_resource(id, data, errors, error_summary)
+

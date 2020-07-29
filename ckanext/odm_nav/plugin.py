@@ -108,6 +108,11 @@ class OdmNavPlugin(plugins.SingletonPlugin):
                   controller='ckanext.odm_nav.controller:DonorReport',
                   action='index')
 
+        m.connect('odm_dataset_new_geoserver_resource', '/dataset/new_geoserver_resource/{id}',
+                  controller='ckanext.odm_nav.controller:GeoserverNewWMSResource',
+                  action='new_mws_resource'
+                  )
+
         return m
 
 
@@ -188,3 +193,4 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'recently_changed_packages_activity_list': auth.action_wrapper('recently_changed_packages_activity_list', 'user_list'),
             'recently_changed_packages_activity_list_html': auth.action_wrapper_html('recently_changed_packages_activity_list_html', 'user_list'),
         }
+

@@ -2631,3 +2631,8 @@ a.btn + a.btn {
 .dropdown-item, .dropdown-menu>li{
    width: 100%
 }
+
+.resource-form-helper-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
