@@ -30,7 +30,7 @@ Example:
 {% set image_formats = ['jpg','png','jpeg'] %}
 {% if package.resources and not hide_resources %}
  {% for resource in package.resources %}
-  {% if (resource.format.lower() in image_formats) %}
+  {% if (resource.format.lower() in image_formats) and resource.url_type=='upload' %}
    {% do image_resources.append(resource) %}
   {% endif %}
  {% endfor %}
