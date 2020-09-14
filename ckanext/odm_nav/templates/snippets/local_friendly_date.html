@@ -1,0 +1,7 @@
+
+{% set value = h.odm_nav_parse_datetime_string_to_object(datetime_obj) %}
+
+<i class='fa fa-clock-o'></i>
+<span class="automatic-local-date" data-datetime="{{ h.render_datetime(value, with_hours=False) }}">
+   {{ h.render_datetime(value, with_hours=False) }}
+</span>
