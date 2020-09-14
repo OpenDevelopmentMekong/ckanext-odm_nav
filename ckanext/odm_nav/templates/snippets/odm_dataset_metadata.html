@@ -19,10 +19,10 @@ package - package to display
     {% endif %}
     {% if package.type == 'dataset' %}
         {% if package.MD_Metadata_dateStamp %}
-            <span class='dataset-datestamp' data-date='{{package.MD_Metadata_dateStamp}}'><i class='fa fa-clock-o'></i> </span>
+            {% snippet 'snippets/local_friendly_date.html', datetime_obj=package.MD_Metadata_dateStamp %}
         {% endif %}
         {% if package.LI_Lineage %}
-            <span class='dataset-source'> <strong>Source:</strong> {{ h.odm_dataset_get_currentlang_data('LI_Lineage', package)|truncate(70) }}
+            <span class='dataset-source'> <strong>{{ _('Source') }}:</strong> {{ h.odm_dataset_get_currentlang_data('LI_Lineage', package)|truncate(70) }}
         {% endif %}
     {% elif package.type == 'library_record' %}
         {% set document_type = h.odm_dataset_get_resource_name_for_field_value('document_type', package.document_type) %}
@@ -45,8 +45,11 @@ package - package to display
             </span>
         {% endif %}
         <span class='dataset-law-type'> <i class="fa fa-building-o"></i>
-            {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}</span>
-        <span class='dataset-datestamp' data-date='{{package.odm_promulgation_date}}'><i class='fa fa-clock-o'></i> </span>
+            {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}i
+        </span>
+         {% if package.odm_promulgation_date %}
+             {% snippet 'snippets/local_friendly_date.html', datetime_obj=package.odm_promulgation_date %}
+	 {% endif %}
 
     {% endif %}
     {% if package.tags %}

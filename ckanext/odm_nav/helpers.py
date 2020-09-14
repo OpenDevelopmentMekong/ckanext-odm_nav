@@ -5,7 +5,7 @@ import json
 import ckan
 from urlparse import urlparse, urlunparse
 from urllib import quote_plus
-
+from dateutil.parser import parse
 import os
 import requests
 from six import text_type
@@ -832,3 +832,15 @@ def prepare_site_nav_mobile():
                </svg>
                """.format(site_title.lower())
     return h.literal(_literal)
+
+
+def parse_datetime_string_to_object(value):
+    """
+    Parse string to datetime object
+    """
+    try:
+        res = parse(value)
+        return res
+    except Excpetion as e:
+        log.error(e)
+    return value

@@ -169,7 +169,8 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_odm_wms_raster_vector': helpers.odm_wms_raster_vector,
             'odm_nav_get_bounding_box_from_package': helpers.get_bounding_box_from_package,
             'odm_nav_styles_for_given_layer': helpers.get_styles_for_given_layer,
-            'odm_nav_download_wms_layers_link_given_formats': helpers.download_wms_layers_link_given_formats
+            'odm_nav_download_wms_layers_link_given_formats': helpers.download_wms_layers_link_given_formats,
+            'odm_nav_parse_datetime_string_to_object': helpers.parse_datetime_string_to_object
         }
 
     # IAuthFunctions
