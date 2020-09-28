@@ -841,6 +841,6 @@ def parse_datetime_string_to_object(value):
     try:
         res = parse(value)
         return res
-    except Excpetion as e:
+    except Exception as e:
         log.error(e)
     return value
