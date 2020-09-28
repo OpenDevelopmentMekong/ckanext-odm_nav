@@ -45,7 +45,7 @@ package - package to display
             </span>
         {% endif %}
         <span class='dataset-law-type'> <i class="fa fa-building-o"></i>
-            {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}i
+            {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}
         </span>
          {% if package.odm_promulgation_date %}
              {% snippet 'snippets/local_friendly_date.html', datetime_obj=package.odm_promulgation_date %}
