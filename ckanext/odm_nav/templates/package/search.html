@@ -19,6 +19,8 @@
               {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, search_facets=c.search_facets) }}
             {% endif %}
             {% endfor %}
+        <input id="search-query" type="hidden" name="q" value="">
+        <input id="search-order" type="hidden" name="sort" value="">
     </div>
 </form>
 
@@ -34,9 +36,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
      $(".multiple-select-facet").select2();
+     // These two should solves the search and filter together
+     $("#search-query").attr('value', $('#field-giant-search').val());
+     $("#search-order").attr('value', $('#field-order-by').val());
 
      $(".multiple-select-facet" ).change(function() {
-          this.form.submit();
+         this.form.submit();
      });
      var lang = $('html').attr('lang')
      $('.dataset-datestamp').each(function(ix,elt){
