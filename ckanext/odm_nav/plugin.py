@@ -84,15 +84,17 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'organization': toolkit._('Organizations'),
             'res_format': toolkit._('Formats'),
             'odm_language_list': toolkit._('Language'),
-            'odm_spatial_range_list': toolkit._('Country')
+            'odm_spatial_range_list': toolkit._('Country'),
+            'taxonomy': toolkit._('Topics')
         }
 
     def organization_facets(self, facets_dict, organization_type, package_type):
         return {
             'license_id': toolkit._('License'),
             'res_format': toolkit._('Formats'),
-            'odm_spatial_range_list': toolkit._('Language'),
-            'odm_language_list': toolkit._('Country')
+            'odm_language_list': toolkit._('Language'),
+            'odm_spatial_range_list': toolkit._('Country'),
+            'taxonomy': toolkit._('Topics')
         }
 
     # IRoutes
