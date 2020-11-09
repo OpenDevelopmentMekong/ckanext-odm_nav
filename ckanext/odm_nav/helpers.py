@@ -685,6 +685,48 @@ def odm_wms_download(resource, package, large=True):
 
     return ""
 
+def odm_wms_download_res(resource, package, large=True):
+    """
+    Check if the resource is wms raster or vector file. If the resource contains parent
+    :param package:
+    :param resource:
+    :param large:
+    :return:
+    """
+    is_vector = odm_wms_raster_vector(resource, package)
+    format_options = {'SHAPE-ZIP': '&format_options=CHARSET:UTF-8'}
+ 
+    try:
+        ows_server = resource['wms_server'].replace('/wms', '/')
+        layer = resource['wms_layer']
+    except:
+        return ''
+    namespace = ''
+
+    try:
+        namespace, layer_name = layer.split(':',1)
+        namespace = "%s/" % namespace
+    except: pass
+
+    ows_templ = "%s%sows?service=WFS&version=1.0.0&request=GetFeature&typeName=%s&outputFormat=%s%s"
+    layer = quote_plus(layer)
+
+    def _url(fmt):
+        options = format_options.get(fmt, '')
+        return ows_templ % (ows_server, namespace, layer, quote_plus(fmt), options)
+
+    if is_vector:
+        output_formats = [(_('GeoJSON'), 'application/json'),
+                          (_('KML'), 'application/vnd.google-earth.kml+xml'),
+                          (_('Shapefile'), 'SHAPE-ZIP')]
+
+        downloads = dict()
+        for name, fmt in output_formats:
+            downloads[name] = _url(fmt)
+        return downloads
+
+    return ""
+
 
 # From core ckan.lib.helpers.linked_user
 def linked_user(user, maxlength=0, avatar=20):

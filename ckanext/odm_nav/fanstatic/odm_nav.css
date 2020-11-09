@@ -2636,3 +2636,11 @@ a.btn + a.btn {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.geoserver-resources .label {
+    font-size: 90%;
+}
+
+.geoserver-resources {
+    padding-right: 30px;
+}

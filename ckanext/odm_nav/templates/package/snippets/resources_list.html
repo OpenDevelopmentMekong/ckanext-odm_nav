@@ -26,10 +26,9 @@ Example:
                 </a>
             </div>
             <div class="dataset-resource-text col-sm-10 col-xs-9">
-                {% if res.format == 'WMS' %}{% set dl= h.odm_nav_wms_download(res, pkg) %}{% else %}{% set dl='' %}{% endif %}
-                {% if dl %}
-                    {{ dl|safe }}
-                {% elif res.format == 'WMS' %}
+                {% set dl='' %}
+                {% if res.format == 'WMS' %}
+                     {% set dl= h.odm_nav_wms_download_res(res, pkg) %}
                      <a class="btn btn-lg btn-primary btn-block btn-download" href="{{ url }}">
                         {% trans %}View{% endtrans %}
                         <i class="fa fa-external-link"></i>&nbsp;
@@ -52,7 +51,17 @@ Example:
                     {% endif %}
                 </a>
             </div>
+            {% if dl %}
+                <div class="row geoserver-resources">
+                    <ul class="dataset-resources unstyled">
+                        {% for g_res in dl %}
+                        <li><a class="label" target="_blank" href="{{ dl[g_res] }}" data-format="{{g_res.lower() }}"><i class="fa fa-download"></i> {{ g_res }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 </div>
+
     {% endfor %}
 {% endmacro %}
 

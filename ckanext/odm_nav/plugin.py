@@ -155,6 +155,7 @@ class OdmNavPlugin(plugins.SingletonPlugin):
             'odm_nav_menu': helpers.odm_nav_menu,
             'odm_menu_path': helpers.odm_menu_path,
             'odm_nav_wms_download': helpers.odm_wms_download,
+            'odm_nav_wms_download_res': helpers.odm_wms_download_res,
             'odm_nav_get_title_for_languages_facet': helpers.get_title_for_languages_facet,
             'odm_nav_get_icon_for_dataset_type': helpers.get_icon_for_dataset_type,
             'odm_nav_get_icon_dataset_type_for_facet': helpers.get_icon_dataset_type_for_facet,
