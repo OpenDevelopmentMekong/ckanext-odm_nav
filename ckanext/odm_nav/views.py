@@ -1,6 +1,8 @@
-from ckanext.odm_nav.controller import DonorReport, GeoserverNewWMSResource
-from ckanext.odm_nav.thumbnail import Controller
+from ckanext.odm_nav.controller import donor_report_index, set_resource_format_wms
+from ckanext.odm_nav.thumbnail import read
 import ckan.lib.helpers as h
+from ckan.common import _, c
+from ckan.views.resource import CreateView
 from flask import Blueprint
 import logging
 
@@ -14,18 +16,17 @@ def redirect_base_url_to_dataset():
 
 
 def thumbnail_read(id, resource_id, filename=None):
-    thumbnail_controller = Controller()
-    return thumbnail_controller.read(id, resource_id, filename=filename)
+    return read(id, resource_id, filename=filename)
 
 
-def donor_report_index(id):
-    donor_report_controller = DonorReport()
-    return donor_report_controller.index(id)
+def index(id=None):
+    return donor_report_index(id)
 
 
-def new_mws_resource(id, data=None, errors=None, error_summary=None):
-    geoserver_new_resource_controller = GeoserverNewWMSResource()
-    return geoserver_new_resource_controller.new_mws_resource(id, data=data, errors=errors, error_summary=error_summary)
+class GeoserverResourceCreateView(CreateView, object):
+    def get(self, id, data=None, errors=None, error_summary=None):
+        data = set_resource_format_wms(c, data)
+        return super(CreateView, self).get(id, data=data, errors=errors, error_summary=error_summary)
 
 
 odm_nav_views.add_url_rule(
@@ -44,5 +45,5 @@ odm_nav_views.add_url_rule(
 )
 
 odm_nav_views.add_url_rule(
-    "/dataset/new_geoserver_resource/<id>", methods=["GET"], view_func=new_mws_resource,
+    "/dataset/new_geoserver_resource/<id>", methods=["GET", "POST"], view_func=CreateView.as_view(str(u'new')),
 )
