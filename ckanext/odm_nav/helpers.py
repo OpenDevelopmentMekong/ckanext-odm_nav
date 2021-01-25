@@ -662,7 +662,7 @@ def odm_wms_download(resource, package, large=True):
     if is_vector:
         output_formats = [(_('GeoJSON'), 'application/json'),
                           (_('KML'), 'application/vnd.google-earth.kml+xml'),
-                          (_('Shapefile'), 'SHAPE-ZIP')]
+                          (_('Shapefile'), 'geopackage')]
 
         # Note -- we're inlining the format options here, requires geoserver 2.17.0
         # fixes an issue with SHP files coming back in ISO8859, killing the Khmer layer info
