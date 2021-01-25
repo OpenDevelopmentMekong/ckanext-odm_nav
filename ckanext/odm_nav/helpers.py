@@ -718,7 +718,7 @@ def odm_wms_download_res(resource, package, large=True):
     if is_vector:
         output_formats = [(_('GeoJSON'), 'application/json'),
                           (_('KML'), 'application/vnd.google-earth.kml+xml'),
-                          (_('Shapefile'), 'SHAPE-ZIP')]
+                          (_('Shapefile'), 'geopackage')]
 
         downloads = dict()
         for name, fmt in output_formats:
