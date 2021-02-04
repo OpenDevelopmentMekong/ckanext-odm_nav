@@ -1,4 +1,4 @@
-from ckanext.odm_nav.controller import donor_report_index, set_resource_format_wms
+from ckanext.odm_nav.utils import donor_report_index, set_resource_format_wms
 from ckanext.odm_nav.thumbnail import read
 import ckan.lib.helpers as h
 from ckan.common import _, c
