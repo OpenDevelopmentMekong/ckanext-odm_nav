@@ -8,13 +8,14 @@
 {% if items %}
     {% set items = h.odm_nav_get_icon_dataset_type_for_facet(items) %}
     {% for item in items %}
-        {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+        {% set alternative_url = h.url_for('%s.search' % item.name) %}
+        {% set href1 = h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
         {% set label = label_function(item) if label_function else item.display_name %}
         {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
         {% set label_truncated = h.truncate(localized_label, 22) if not label_function else localized_label %}
         {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
         <div class="result_link_list data-number-results-medium">
-            <a href="{{ href }}">
+            <a href="{{ href1 }}">
                 <i class="fa {{item.icon}}"></i>
                 {% if not items[1] %}
                     <b>{{ _(label_truncated) }} {{ count }}</b>
