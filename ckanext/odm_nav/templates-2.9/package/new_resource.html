@@ -1,0 +1,18 @@
+{% ckan_extends %}
+
+
+{% block form %}
+
+    {% if c.resource_type == "wms" %}
+        {% set exclude_fields = ['url'] %}
+    {% else %}
+        {% set exclude_fields = ['odm_geoserver_layer_name', 'odm_external_geoserver_url'] %}
+    {% endif %}
+
+    {% snippet 'package/snippets/resource_form_geoserver.html',
+        data=data, errors=errors, error_summary=error_summary,
+        include_metadata=false, pkg_name=pkg_name, stage=stage,
+        dataset_type=dataset_type, exclude_fields=exclude_fields,
+        show_form_nav=True if dataset_type == "dataset" else False %}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+
+{% ckan_extends %}
+
+{% block content_primary_nav %}
+  {{ super() }}
+
+    {% if h.check_access('sysadmin') %}
+        {{ h.build_nav_icon('donor_report', _('Donor Report'), id=user.name, icon='clock-o') }}
+    {% endif %}
+
+{% endblock %}

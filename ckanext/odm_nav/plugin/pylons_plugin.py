@@ -1,10 +1,19 @@
 import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
 import logging
 log = logging.getLogger(__name__)
 
 
 class OdmNavMixinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes, inherit=True)
+
+    # IConfigurer
+    def update_config(self, config):
+        '''Update plugin config'''
+
+        toolkit.add_template_directory(config, '../templates')
+        toolkit.add_resource('../fanstatic', 'odm_nav')
+        toolkit.add_public_directory(config, '../public')
 
     # IRoutes
     def before_map(self, m):

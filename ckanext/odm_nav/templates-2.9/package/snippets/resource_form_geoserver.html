@@ -1,0 +1,59 @@
+{% extends 'package/snippets/resource_form.html' %}
+
+{% block errors %}
+  {%- if errors -%}
+    {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+    {%- snippet 'scheming/snippets/errors.html',
+      errors=errors, fields=schema.resource_fields,
+      entity_type='dataset', object_type=dataset_type -%}
+  {%- endif -%}
+{% endblock %}
+
+{% block stages %}
+  {{ super() }}
+  {% block new_resource_nav %}
+    {% if show_form_nav %}
+      <ul class="nav nav-tabs mb-5">
+        <li class="{% if c.resource_type != 'wms' %} active{% endif %}">
+            <a href="/dataset/new_resource/{{pkg_name}}">
+                <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
+            </a>
+        </li>
+        {{ h.build_nav_icon('odm_dataset_new_geoserver_resource',
+            _('New geoserver WMS resource'),
+            id=pkg_name, type=dataset_type, icon='plus') }}
+      </ul>
+    {% endif %}
+  {% endblock %}
+{% endblock %}
+
+
+{% block basic_fields %}
+  {%- if not dataset_type -%}
+    <p>
+    dataset_type not passed to template. your version of CKAN
+    might not be compatible with ckanext-scheming
+    </p>
+  {%- endif -%}
+   <div class="container resource-form-helper-text">
+    {% if c.resource_type == "wms" %}
+      <h5>
+        Please note - this form is to add existing wms geoserver resource. Given field <i>Layer Name</i>
+        should match the layer name in geoserver for the sites workspace. If you are trying to upload a new resource,
+        please use -  <i>New Resource Tab.</i>
+      </h5>
+    {% endif %}
+   </div>
+
+  {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+  {%- for field in schema.resource_fields -%}
+    {%- if field.form_snippet is not none and field.field_name not in exclude_fields -%}
+      {%- snippet 'scheming/snippets/form_field.html',
+        field=field, data=data, errors=errors,
+	entity_type='dataset', object_type=dataset_type -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endblock %}
+
+{% block metadata_fields %}
+{% endblock %}

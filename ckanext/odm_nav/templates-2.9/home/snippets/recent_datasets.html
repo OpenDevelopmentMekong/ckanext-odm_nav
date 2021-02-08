@@ -1,0 +1,10 @@
+<div class="box">
+ <div class="inner dataset-list">
+  <h3>{{_('Recent datasets')}}</h3>
+  <ul>
+    {% for dataset in h.odm_nav_recent_datasets() %}
+    <li><a href="{% url_for dataset.type ~ '.read', id=dataset.id %}">{{ dataset.title }}</a></li>
+    {% endfor %}
+  </ul>
+ </div>
+</div>

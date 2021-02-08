@@ -1,0 +1,82 @@
+{#
+Renders a list of resources with icons and view links.
+
+resources - A list of resources to render
+pkg - A package object that the resources belong to.
+
+Example:
+
+{% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+
+#}
+
+{% macro resource_table(resources) %}
+    {% for res in resources %}
+<div class="row dataset-resource">
+    {% set url_action = pkg.type ~ ('_resource.edit' if url_is_edit and can_edit else '_resource.read') %}
+    {% set url = h.url_for(url_action, id=pkg.name, resource_id=res.id) %}
+
+            <div class="dataset-resource-format col-sm-2 col-xs-3">
+                <a href="{{ url }}">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <span class="format-name">
+                        {% filter upper %}
+                            {{ res.get('format','') }}
+                        {% endfilter %}
+                    </span>
+                </a>
+            </div>
+            <div class="dataset-resource-text col-sm-10 col-xs-9">
+                {% set dl='' %}
+                {% if res.format == 'WMS' %}
+                     {% set dl= h.odm_nav_wms_download_res(res, pkg) %}
+                     <a class="btn btn-lg btn-primary btn-block btn-download" href="{{ url }}">
+                        {% trans %}View{% endtrans %}
+                        <i class="fa fa-external-link"></i>&nbsp;
+                    </a>
+                {% else %}
+                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" resource_id="{{res.id}}" href="{{res.get('url', '')}}">
+                        {% trans %}Download{% endtrans %}
+                        <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+                    </a>
+                {% endif %}
+                <a href="{{ url }}">
+                    {% if h.resource_display_name(res) %}
+                        <div>
+                            <h4>{{h.resource_display_name(res)}}</h4>
+                        </div>
+                    {% elif h.odm_dataset_get_currentlang_data('description_translated', res) %}
+                        <div>
+                            {{ h.odm_dataset_get_currentlang_data('description_translated', res) }}
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+            {% if dl %}
+                <div class="row geoserver-resources">
+                    <ul class="dataset-resources unstyled">
+                        {% for g_res in dl %}
+                        <li><a class="label" target="_blank" href="{{ dl[g_res] }}" data-format="{{g_res.lower() }}"><i class="fa fa-download"></i> {{ g_res }}</a></li>
+                        {% endfor %}
+                        <li class="dropdown show">
+                            <a class="resource-disclaimer-link dropdown-toggle" data-toggle="dropdown" id="collapse-resource-disclaimer" role="link" aria-expanded="false" aria-haspopup="true">
+				Show Disclaimer  <span class="fa fa-caret-down"></span>
+			    </a>
+			    <div class="dropdown-menu resource-disclaimer" aria-labelledby="collapse-resource-disclaimer">
+    			       <small class="text-justify">Shape file download directs to geopackage to avoid file corruption. The downloaded geopackage will have a shapefile and still be easily dropped and dragged into QGIS or ARC.</small>
+  			    </div>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+</div>
+
+    {% endfor %}
+{% endmacro %}
+
+
+<section id="dataset-resources" class="resources">
+    <h2>{{ _('Data Resources') }} ({{resources|length}})</h2>
+    {{ resource_table(resources) }}
+    {#% snippet "package/snippets/resource_item.html", pkg=pkg, resources=pkg.resources %#}
+</section>

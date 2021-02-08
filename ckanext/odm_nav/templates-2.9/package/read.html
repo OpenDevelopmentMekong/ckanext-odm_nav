@@ -1,0 +1,61 @@
+{% ckan_extends %}
+
+{% block secondary %}{% endblock %}
+
+{% set pkg = c.pkg_dict %}
+{% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
+
+{% block page_heading %}
+    {{ h.odm_dataset_get_currentlang_data('title_translated', pkg) or pkg.name }}
+    {% if pkg.state.startswith('draft') %}
+        [{{ _('Draft') }}]
+    {% endif %}
+    {% if pkg.state == 'deleted' %}
+        [{{ _('Deleted') }}]
+    {% endif %}
+{% endblock %}
+
+{% block content_action %}
+    {# UNDONE -- does this need to happen here or in the individual types? #}
+    {% if can_edit %}
+        <div class="actions">
+            {% link_for _('Manage'), named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
+        </div>
+    {% endif%}
+{% endblock %}
+
+{% block content_primary_nav %}
+   {% if pkg.type not in ('profile', 'map') and can_edit %}
+      {{ super() }}
+   {% endif %}
+{% endblock %}
+
+{% block package_tags %}
+    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+
+    {% set preview_resource = h.resource_to_preview_on_dataset_page(pkg) %}
+    {% if preview_resource %}
+        <div class="dataset-resource-preview">
+            {% if preview_resource.get('description') %}
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('description')}}</h2>
+            {% elif preview_resource.get('name') %}
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('name')}}</h2>
+            {% elif preview_resource.get('resource_name') %}
+                <h2>{% trans %}Data Resource Preview{% endtrans %} - {{preview_resource.get('resource_name')}}</h2>
+            {% else %}
+                <h2>{% trans %}Data Resource Preview{% endtrans %}</h2>
+            {% endif %}
+            {% set src = h.url_for(package['type'] ~ '_resource.view', id=package['name'],
+                resource_id=preview_resource['resource_id'], qualified=true) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
+            
+            {% if 'image_view' in preview_resource.get('view_type') %}
+                <img src = {{ preview_resource.get('resource_url') }} style = "margin:auto ; max-width:100%">
+            {% else %}
+                <iframe src="{{ src }}" frameborder="0" width="100%" height="640px" data-module="data-viewer">
+                    <p>{{ _('Your browser does not support iframes.') }}</p>
+                </iframe>
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}

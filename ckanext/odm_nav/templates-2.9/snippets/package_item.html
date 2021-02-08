@@ -1,0 +1,112 @@
+{#
+Displays a single of dataset.
+
+package        - A package to display.
+item_class     - The class name to use on the list item.
+hide_resources - If true hides the resources (default: false).
+banner         - If true displays a popular banner (default: false).
+truncate       - The length to trucate the description to (default: 180)
+truncate_title - The length to truncate the title to (default: 80).
+
+Example:
+
+  {% snippet 'snippets/package_item.html', package=c.datasets[0] %}
+
+#}
+{% set truncate_desc = truncate_desc or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate_desc) %}
+{% if "title_translated" in package and package.title_translated[h.odm_dataset_get_current_language()] %}
+  {% set title = package.title_translated[h.odm_dataset_get_current_language()] %}
+{% endif %}
+{% if "notes_translated" in package and package.notes_translated[h.odm_dataset_get_current_language()] %}
+  {% set notes = h.truncate(package.notes_translated[h.odm_dataset_get_current_language()], truncate_desc) %}
+{% endif %}
+
+{% set title_icon = h.odm_nav_get_icon_for_dataset_type(package.type) %}
+
+{% set image_resources = [] %}
+{% set image_formats = ['jpg','png','jpeg'] %}
+{% if package.resources and not hide_resources %}
+ {% for resource in package.resources %}
+  {% if (resource.format.lower() in image_formats) and resource.url_type=='upload' %}
+   {% do image_resources.append(resource) %}
+  {% endif %}
+ {% endfor %}
+{% endif %}
+
+{% block package_item %}
+  <li class="{{ item_class or "dataset-item" }}">
+    {% block content %}
+      <div class="dataset-content">
+        {% block heading %}
+          <h3 class="dataset-heading">
+            {% block heading_private %}
+              {% if package.private %}
+                <span class="dataset-private label label-inverse">
+                  <i class="icon-lock"></i>
+                  {{ _('Private') }}
+                </span>
+              {% endif %}
+            {% endblock %}
+            {% block heading_title %}
+                {% if title_icon %}
+                    <i class="fa {{ title_icon }}"></i>
+                {% endif %}
+				{{ h.link_to(title, h.url_for('%s.read' % package.type, id=package.name)) }}
+            {% endblock %}
+            {% block heading_meta %}
+              {% if package.get('state', '').startswith('draft') %}
+                <span class="label label-info">{{ _('Draft') }}</span>
+              {% elif package.get('state', '').startswith('deleted') %}
+                <span class="label label-important">{{ _('Deleted') }}</span>
+              {% endif %}
+              {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
+            {% endblock %}
+          </h3>
+        {% endblock %}
+        {% block banner %}
+          {% if banner %}
+            <span class="banner">{{ _('Popular') }}</span>
+          {% endif %}
+        {% endblock %}
+          {% snippet 'snippets/odm_dataset_metadata.html', package=package %}
+        {% block notes %}
+          {% set resource = image_resources|last %}
+         {% if resource %}
+          <img class="dataset_thumb_s" src="{{ h.odm_nav_thumbnail_img(h.odm_nav_localize_resource_url(resource.url)) }}"></img>
+         {% endif %}
+         {% if notes %}
+           <div>
+            {{ notes |urlize }}
+           </div>
+          {% else %}
+            <p class="empty">{{ _("This dataset has no description") }}</p>
+          {% endif %}
+        {% endblock %}
+      </div>
+      {% block resources %}
+        {% if package.resources and not hide_resources %}
+          {% block resources_outer %}
+            <ul class="dataset-resources unstyled">
+              {% block resources_inner %}
+                {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                <li>
+                 {% if package.type == h.odm_library_get_dataset_type() %}
+                  <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                 {% else %}
+                  <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                 {% endif %}
+                </li>
+                {% endfor %}
+              {% endblock %}
+            </ul>
+            <br class='clearfix' />
+
+          {% endblock %}
+        {% endif %}
+      {% endblock %}
+    {% endblock %}
+  </li>
+{% endblock %}

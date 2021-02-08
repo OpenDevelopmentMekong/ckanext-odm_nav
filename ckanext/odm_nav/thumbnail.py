@@ -7,17 +7,15 @@ except:
 import io
 import requests
 
-
 from ckan.lib.base import BaseController
 from ckan.plugins import toolkit
 from ckan.lib import helpers, uploader
 from ckan.common import request, response, c
-
 from .helpers import memoize
-
 import logging
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
+
 
 @memoize
 def _thumbnail(path):
@@ -61,13 +59,13 @@ def read(id, resource_id, filename=None):
             resource_id, filename, e))
         content_type, img_bytes = _blank()
 
-    response.headers['Content-type'] = content_type
-    response.headers['cache-control'] = "max-age=86400"
-
-    return img_bytes
+    return img_bytes, content_type
 
 
 class Controller(BaseController):
     
     def read(self, id, resource_id, filename=None):
-        return read(id, resource_id, filename=filename)
+        img_bytes, content_type = read(id, resource_id, filename=filename)
+        response.headers['Content-type'] = content_type
+        response.headers['cache-control'] = "max-age=86400"
+        return img_bytes

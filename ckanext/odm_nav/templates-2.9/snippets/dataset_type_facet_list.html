@@ -1,0 +1,29 @@
+{% block facet_list_heading %}
+<h4>{{ _(title) }}</h4>
+{% endblock %}
+
+{% block facet_list_items %}
+{% set current_url = h.odm_nav_get_active_url_for_search_result_facet() %}
+{% with items = items or h.get_facet_items_dict(name) %}
+{% if items %}
+    {% set items = h.odm_nav_get_icon_dataset_type_for_facet(items) %}
+    {% for item in items %}
+        {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+        {% set label = label_function(item) if label_function else item.display_name %}
+        {% set localized_label = h.odm_nav_get_localized_tag_string(label) %}
+        {% set label_truncated = h.truncate(localized_label, 22) if not label_function else localized_label %}
+        {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
+        <div class="result_link_list data-number-results-medium">
+            <a href="{{ href }}">
+                <i class="fa {{item.icon}}"></i>
+                {% if not items[1] %}
+                    <b>{{ _(label_truncated) }} {{ count }}</b>
+                {% else %}
+                    {{ _(label_truncated) }} {{ count }}
+                {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}

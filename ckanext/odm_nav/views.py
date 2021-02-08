@@ -3,12 +3,12 @@ from ckanext.odm_nav.thumbnail import read
 import ckan.lib.helpers as h
 from ckan.common import _, c
 from ckan.views.resource import CreateView
-from flask import Blueprint
+from flask import Blueprint, make_response
 import logging
 
 log = logging.getLogger(__name__)
 
-odm_nav_views = Blueprint("odm_nav", "odm_nav")
+odm_nav_views = Blueprint("odm_nav", __name__)
 
 
 def redirect_base_url_to_dataset():
@@ -16,7 +16,11 @@ def redirect_base_url_to_dataset():
 
 
 def thumbnail_read(id, resource_id, filename=None):
-    return read(id, resource_id, filename=filename)
+    img_bytes, content_type = read(id, resource_id, filename=filename)
+    response = make_response(img_bytes)
+    response.headers['Content-type'] = content_type
+    response.headers['cache-control'] = "max-age=86400"
+    return response
 
 
 def index(id=None):
@@ -34,10 +38,12 @@ odm_nav_views.add_url_rule(
 )
 
 odm_nav_views.add_url_rule(
-    "/dataset/<id>/resource/<resource_id>/thumbnail/<file_name>", methods=["GET"], view_func=thumbnail_read,
+    "/dataset/<id>/resource/<resource_id>/thumbnail",
+    methods=["GET"], view_func=thumbnail_read, defaults={'filename': None}
 )
 odm_nav_views.add_url_rule(
-    "/dataset/<id>/resource/<resource_id>/thumbnail", methods=["GET"], view_func=thumbnail_read,
+    "/dataset/<id>/resource/<resource_id>/thumbnail/<filename>",
+    methods=["GET"], view_func=thumbnail_read
 )
 
 odm_nav_views.add_url_rule(

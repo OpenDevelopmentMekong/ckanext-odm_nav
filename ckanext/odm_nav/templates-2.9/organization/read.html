@@ -1,0 +1,41 @@
+{% ckan_extends %}
+
+
+{% block organization_facets %}
+
+<form action="" method="get" id="facet-form">
+    <div class="data-advanced-filters">
+        <h3 id="facet-filters"><i class="fa fa-filter"></i> {{_('Filters')}}</h3>
+            {% for facet in c.facet_titles %}
+                {% if facet != "dataset_type" %}
+              {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, search_facets=c.search_facets) }}
+            {% endif %}
+            {% endfor %}
+        <input id="search-query" type="hidden" name="q" value="">
+        <input id="search-order" type="hidden" name="sort" value="">
+    </div>
+</form>
+
+<div class="full-width single-filter clear-filters">
+    <input class="button" type="submit" value="{{_('Clear All Filters')}}" onclick="location.href=window.location.pathname;">
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+     $(".multiple-select-facet").select2();
+     // These two should solves the search and filter together
+     $("#search-query").attr('value', $('#field-giant-search').val());
+     $("#search-order").attr('value', $('#field-order-by').val());
+
+     $(".multiple-select-facet" ).change(function() {
+          this.form.submit();
+     });
+ });
+</script>
+{% endblock %}

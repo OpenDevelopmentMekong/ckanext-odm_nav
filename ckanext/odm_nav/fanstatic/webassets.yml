@@ -1,0 +1,13 @@
+odm_nav_css:
+  output: ckanext-odm_nav/%(version)s_odm_nav_css.css
+  contents:
+    - odm_nav.css
+
+odm_nav_js:
+  contents:
+    - megamenu.js
+    - date_to_local.js
+  output: ckanext-odm_nav/%(version)s_odm_nav_js.js
+  extra:
+    preload:
+      - base/main

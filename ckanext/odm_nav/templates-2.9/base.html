@@ -1,0 +1,148 @@
+{# Allows the DOCTYPE to be set on a page by page basis #}
+{%- block doctype %}<!DOCTYPE html>{% endblock -%}
+
+{# Allows custom attributes to be added to the <html> tag #}
+{%- block htmltag -%}
+{% set lang = h.lang() %}
+{% set dataCountry = "mekong" %}
+<html lang="{{lang}}" data-country={{dataCountry}}>
+<!--[if IE 7]> <html lang="{{ lang }}" class="ie ie7" data-country={{dataCountry}}> <![endif]-->
+<!--[if IE 8]> <html lang="{{ lang }}" class="ie ie8" data-country={{dataCountry}}> <![endif]-->
+<!--[if IE 9]> <html lang="{{ lang }}" class="ie9" data-country={{dataCountry}}> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang }}"> <!--<![endif]-->
+{%- endblock -%}
+
+  {# Allows custom attributes to be added to the <head> tag #}
+  <head>
+    {% block headtag %}
+    {% endblock %}
+    {#
+    Add custom meta tags to the page. Call super() to get the default tags
+    such as charset, viewport and generator.
+
+    Example:
+
+    {% block meta %}
+      {{ super() }}
+      <meta name="description" value="My website description" />
+    {% endblock %}
+
+    #}
+    {%- block meta -%}
+      <meta name=viewport content="width=device-width">
+      <meta charset="utf-8" />
+      {% block meta_generator %}<meta name="generator" content="ckan {{ c.__version__ }}" />{% endblock %}
+    {%- endblock -%}
+
+		<meta name="google-site-verification" content="wSjmxxjHngo-qyApV6i_ACDJ6EgX6bkl1VthAXS0s_I" />
+                <meta name="referrer" content="origin">
+		{% if c.pkg_dict %}
+			{% set package = c.pkg_dict %}
+			{% for country_code in package["odm_spatial_range"] %}
+				<meta property="odm_spatial_range" content="{{country_code}}"/>
+			{% endfor %}
+			{% for language in package["odm_language"] %}
+				<meta property="odm_language" content="{{language}}"/>
+			{% endfor %}
+			<meta property="odm_type" content="{{package['type']}}"/>
+			<meta property="odm_license" content="{{package['license_id']}}"/>
+		{% endif %}
+
+    {#
+    Add a custom title to the page by extending the title block. Call super()
+    to get the default page title.
+
+    Example:
+
+      {% block title %}My Subtitle - {{ super() }}{% endblock %}
+
+    #}
+    <title>
+      {%- block title -%}
+        {%- block subtitle %}{% endblock -%}
+        {%- if self.subtitle()|trim %} {{ g.template_title_deliminater }} {% endif -%}
+        {{ g.site_title }}
+      {%- endblock -%}
+    </title>
+
+    {#
+    The links block allows you to add additonal content before the stylesheets
+    such as rss feeds and favicons in the same way as the meta block.
+    #}
+    {% block links -%}
+      <link rel="shortcut icon" href="{{ g.favicon }}" />
+    {% endblock -%}
+
+    {#
+    The styles block allows you to add additonal stylesheets to the page in
+    the same way as the meta block. Use super() to include the default
+    stylesheets before or after your own.
+
+    Example:
+
+      {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet" href="/base/css/custom.css" />
+      {% endblock %}
+    #}
+    {% block styles %}
+      {% set main_css = h.get_rtl_css() if h.is_rtl_language() else g.main_css %}
+      {% asset main_css[6:-4] %}
+      {% asset 'odm_nav/odm_nav_css' %}
+      {% asset 'odm_nav/odm_nav_js' %}
+    <link rel='stylesheet' id='megamenu-css'  href='{{h.odm_nav_megamenu_css_url_for_site()}}' type='text/css' media='all' />
+    {# inline the three items from dashicons that we're using #}
+    <style>
+     {% include 'dashicons_css.html' %}
+    </style>
+    {% endblock %}
+
+    {% block head_extras %}
+      {# defined in the config.ini under "ckan.template_head_end" #}
+      {{ g.template_head_end | safe }}
+    {% endblock %}
+
+    {{ h.render_assets('style') }}
+
+    {% block custom_styles %}
+      {%- if g.site_custom_css -%}
+      <style>
+        {{ g.site_custom_css | safe }}
+      </style>
+      {% endif %}
+    {% endblock %}
+  </head>
+
+  {# Allows custom attributes to be added to the <body> tag #}
+  <body {% block bodytag %}data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" class="{{ h.odm_nav_sitecode() }}" {% endblock %}>
+
+    {#
+    The page block allows you to add content to the page. Most of the time it is
+    recommended that you extend one of the page.html templates in order to get
+    the site header and footer. If you need a clean page then this is the
+    block to use.
+
+    Example:
+
+      {% block page %}
+        <div>Some other page content</div>
+      {% endblock %}
+    #}
+    {% block page %}{% endblock %}
+
+    {#
+    DO NOT USE THIS BLOCK FOR ADDING SCRIPTS
+    Scripts should be loaded by the {% resource %} tag except in very special
+    circumstances
+    #}
+    {%- block scripts %}
+    {% endblock -%}
+
+    {% block body_extras -%}
+      {# defined in the config.ini under "ckan.template_footer_end" #}
+      {{ g.template_footer_end | safe }}
+    {%- endblock %}
+    {{ h.render_assets('style') }}
+    {{ h.render_assets('script') }}
+  </body>
+</html>

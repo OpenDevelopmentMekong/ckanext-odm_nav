@@ -1,0 +1,59 @@
+{#
+Snippet to display package metadata
+
+package - package to display
+
+          {% snippet 'snippets/odm_dataset_metadata.html', package=package %}
+
+#}
+
+
+
+{% block odm_dataset_metadata %}
+    <div class='dataset-list-metadata'>
+    {% if package.MD_DataIdentification_language or package.odm_language%}
+        <span class='dataset-languages'> {{ h.odm_nav_lang_flags(package)|safe }} </span>
+    {% endif %}
+    {% if package.odm_spatial_range %}
+        <span class='dataset-spatial'> <i class='fa fa-globe'></i> {{ h.odm_dataset_spatial_range_list(package) }}</span>
+    {% endif %}
+    {% if package.type == 'dataset' %}
+        {% if package.MD_Metadata_dateStamp %}
+            {% snippet 'snippets/local_friendly_date.html', datetime_obj=package.MD_Metadata_dateStamp %}
+        {% endif %}
+        {% if package.LI_Lineage %}
+            <span class='dataset-source'> <strong>{{ _('Source') }}:</strong> {{ h.odm_dataset_get_currentlang_data('LI_Lineage', package)|truncate(70) }}
+        {% endif %}
+    {% elif package.type == 'library_record' %}
+        {% set document_type = h.odm_dataset_get_resource_name_for_field_value('document_type', package.document_type) %}
+        {% if document_type %}
+            <span class='dataset-library-type'> <i class="fa fa-building-o"></i> {{document_type}} </span>
+        {% endif %}
+        {% set author_list = h.odm_library_author_list(package) %}
+        {% if author_list %}
+            <span class='dataset-source'> <i class='fa fa-user-circle-o'></i> {{ author_list|truncate(70) }}</span>
+        {% endif %}
+        {% if package.marc21_260c %}
+            <span class='dataset-published'><i class='fa fa-clock-o'></i> {{ h.odm_dataset_convert_num_to_year(package.marc21_260c) }} </span>
+        {% endif %}
+
+    {% elif package.type == 'laws_record' %}
+        {% set document_number =  h.odm_dataset_get_currentlang_data('odm_document_number', package) %}
+        {% if document_number %}
+            <span class='dataset-law-number'><i class="fa fa-file-text-o"></i>
+               {{ document_number }}
+            </span>
+        {% endif %}
+        <span class='dataset-law-type'> <i class="fa fa-building-o"></i>
+            {{ h.odm_dataset_get_resource_name_for_field_value('odm_document_type',package.odm_document_type)  }}
+        </span>
+         {% if package.odm_promulgation_date %}
+             {% snippet 'snippets/local_friendly_date.html', datetime_obj=package.odm_promulgation_date %}
+	 {% endif %}
+
+    {% endif %}
+    {% if package.tags %}
+        <span class='dataset-tags'> <i class='fa fa-folder-o'></i> {{ h.odm_nav_tag_list(package) }}</span>
+    {% endif %}
+    </div>
+{% endblock %}

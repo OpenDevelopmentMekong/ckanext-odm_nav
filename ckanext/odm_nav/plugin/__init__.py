@@ -42,12 +42,10 @@ except Exception as msg:
     log.error('Monkeypatching resource proxy failed -- %s' % msg)
 
 
-try:
-    toolkit.requires_ckan_version("2.9")
-except CkanVersionException:
-    from ckanext.odm_nav.plugin.pylons_plugin import OdmNavMixinPlugin
-else:
+if toolkit.check_ckan_version(min_version='2.9.0'):
     from ckanext.odm_nav.plugin.flask_plugin import OdmNavMixinPlugin
+else:
+    from ckanext.odm_nav.plugin.pylons_plugin import OdmNavMixinPlugin
 
 
 class OdmNavPlugin(OdmNavMixinPlugin):
@@ -104,14 +102,6 @@ class OdmNavPlugin(OdmNavMixinPlugin):
         }
 
     # IConfigurer
-    def update_config(self, config):
-        '''Update plugin config'''
-
-        toolkit.add_template_directory(config, 'templates')
-        toolkit.add_resource('fanstatic', 'odm_nav')
-        toolkit.add_public_directory(config, 'public')
-
-    # IConfigurer
     def get_helpers(self):
         '''Register the plugin's functions above as a template helper function.'''
 
@@ -158,7 +148,8 @@ class OdmNavPlugin(OdmNavMixinPlugin):
             'odm_nav_get_bounding_box_from_package': helpers.get_bounding_box_from_package,
             'odm_nav_styles_for_given_layer': helpers.get_styles_for_given_layer,
             'odm_nav_download_wms_layers_link_given_formats': helpers.download_wms_layers_link_given_formats,
-            'odm_nav_parse_datetime_string_to_object': helpers.parse_datetime_string_to_object
+            'odm_nav_parse_datetime_string_to_object': helpers.parse_datetime_string_to_object,
+            'check_ckan_version': toolkit.check_ckan_version
         }
 
     # IAuthFunctions

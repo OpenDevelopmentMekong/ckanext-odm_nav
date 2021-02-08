@@ -1,0 +1,32 @@
+{% ckan_extends %}
+
+
+{% block content_primary_nav %}
+    {% if pkg.type == "dataset" %}
+    <li class="{% if c.resource_type != 'wms' %} active{% endif %}">
+        <a href="/dataset/new_resource/{{pkg.id}}">
+            <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
+        </a>
+    </li>
+
+    {{ h.build_nav_icon('odm_dataset_new_geoserver_resource', _('New geoserver WMS resource'),
+        id=pkg.id, type=pkg.type, icon='plus') }}
+    {% else %}
+        {{ super() }}
+    {% endif %}
+
+{% endblock %}
+
+{% block form %}
+    {% if c.resource_type == "wms" %}
+        {% set exclude_fields = ['url'] %}
+    {% else %}
+        {% set exclude_fields = ['odm_geoserver_layer_name', 'odm_external_geoserver_url'] %}
+    {% endif %}
+
+    {% snippet 'package/snippets/resource_form_geoserver.html',
+        data=data, errors=errors, error_summary=error_summary,
+        include_metadata=false, pkg_name=pkg_name, stage=stage,
+        dataset_type=dataset_type, exclude_fields=exclude_fields %}
+
+{% endblock %}
