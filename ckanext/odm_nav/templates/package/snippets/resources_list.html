@@ -59,15 +59,15 @@ Example:
                         {% endfor %}
                         <li>
                             <a class="btn btn-link resource-disclaimer-link" data-toggle="collapse"
-                               href="#resource-disclaimer-{{pkg.id}}" role="button"
-                               aria-expanded="false" aria-controls="resource-disclaimer-{{pkg.id}}">
+                               href="#resource-disclaimer-{{res.id}}" role="button"
+                               aria-expanded="false" aria-controls="resource-disclaimer-{{res.id}}">
     				            Show Disclaimer
                                 <span class="fa fa-caret-down"></span>
   			                </a>
                         </li>
                     </ul>
                 </div>
-                <div class="collapse col-sm-12 col-xs-12 disclaimer-row" id="resource-disclaimer-{{pkg.id}}">
+                <div class="collapse col-sm-12 col-xs-12 disclaimer-row" id="resource-disclaimer-{{res.id}}">
                     <div class="resource-disclaimer">
                         <div>
                             <small>Shape file associated within this resource directs to geopackage to avoid file corruption.
