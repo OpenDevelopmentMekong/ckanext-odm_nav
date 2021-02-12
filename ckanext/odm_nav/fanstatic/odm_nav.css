@@ -2645,11 +2645,6 @@ a.btn + a.btn {
     padding-right: 30px;
 }
 
-.resource-disclaimer {
-    padding: 10px;
-    margin-top: 10px;
-}
-
 .resource-disclaimer-link {
     background-color: inherit!important;
     display: inline;
@@ -2663,4 +2658,17 @@ a.btn + a.btn {
     border-radius: 0.25em;
 }
 
+.resource-disclaimer {
+    text-align: justify;
+    border: 1px solid #dddddd;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+}
+.resource-disclaimer div {
+    padding: 5px;
+}
+
+.disclaimer-row {
+    padding-left: 0;
+}
 

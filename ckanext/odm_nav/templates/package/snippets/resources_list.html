@@ -57,18 +57,28 @@ Example:
                         {% for g_res in dl %}
                         <li><a class="label" target="_blank" href="{{ dl[g_res] }}" data-format="{{g_res.lower() }}"><i class="fa fa-download"></i> {{ g_res }}</a></li>
                         {% endfor %}
-                        <li class="dropdown show">
-                            <a class="resource-disclaimer-link dropdown-toggle" data-toggle="dropdown" id="collapse-resource-disclaimer" role="link" aria-expanded="false" aria-haspopup="true">
-				Show Disclaimer  <span class="fa fa-caret-down"></span>
-			    </a>
-			    <div class="dropdown-menu resource-disclaimer" aria-labelledby="collapse-resource-disclaimer">
-    			       <small class="text-justify">Shape file download directs to geopackage to avoid file corruption. The downloaded geopackage will have a shapefile and still be easily dropped and dragged into QGIS or ARC.</small>
-  			    </div>
+                        <li>
+                            <a class="btn btn-link resource-disclaimer-link" data-toggle="collapse"
+                               href="#resource-disclaimer-{{pkg.id}}" role="button"
+                               aria-expanded="false" aria-controls="resource-disclaimer-{{pkg.id}}">
+    				            Show Disclaimer
+                                <span class="fa fa-caret-down"></span>
+  			                </a>
                         </li>
                     </ul>
                 </div>
+                <div class="collapse col-sm-12 col-xs-12 disclaimer-row" id="resource-disclaimer-{{pkg.id}}">
+                    <div class="resource-disclaimer">
+                        <div>
+                            <small>Shape file associated within this resource directs to geopackage to avoid file corruption.
+                            The downloaded geopackage will have a shapefile and still be easily dropped and
+                            dragged into QGIS or ARC.</small>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
 </div>
+
 
     {% endfor %}
 {% endmacro %}
