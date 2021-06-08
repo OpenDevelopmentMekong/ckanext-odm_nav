@@ -5,7 +5,7 @@
   {{ super() }}
 
     {% if h.check_access('sysadmin') %}
-        {{ h.build_nav_icon('donor_report', _('Donor Report'), id=user.name, icon='clock-o') }}
+        {{ h.build_nav_icon('odm_nav.donor_report_index', _('Donor Report'), id=user.name, icon='clock-o') }}
     {% endif %}
 
 {% endblock %}
