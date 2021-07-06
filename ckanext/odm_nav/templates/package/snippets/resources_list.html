@@ -34,7 +34,7 @@ Example:
                         <i class="fa fa-external-link"></i>&nbsp;
                     </a>
                 {% else %}
-                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download" resource_id="{{res.id}}" href="{{res.get('url', '')}}">
+                    <a target="_blank" class="btn btn-lg btn-primary btn-block btn-download resource-url-analytics resource-type-None" resource_id="{{res.id}}" href="{{res.get('url', '')}}">
                         {% trans %}Download{% endtrans %}
                         <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
                     </a>
@@ -55,7 +55,7 @@ Example:
                 <div class="row geoserver-resources">
                     <ul class="dataset-resources unstyled">
                         {% for g_res in dl %}
-                        <li><a class="label" target="_blank" href="{{ dl[g_res] }}" data-format="{{g_res.lower() }}"><i class="fa fa-download"></i> {{ g_res }}</a></li>
+                        <li><a class="label resource-url-analytics resource-type-None" resource_id="{{res.id}}" target="_blank" href="{{ dl[g_res] }}" data-format="{{g_res.lower() }}"><i class="fa fa-download"></i> {{ g_res }}</a></li>
                         {% endfor %}
                         <li>
                             <a class="btn btn-link resource-disclaimer-link" data-toggle="collapse"
