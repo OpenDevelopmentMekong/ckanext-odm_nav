@@ -44,6 +44,7 @@
       <p>{% trans dataset=h.odm_dataset_get_currentlang_data('title_translated', c.package), url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}
     {% endif %}
   </div>
+  {% snippet "snippets/stats.html", data=res, stats_type="resource", title="Recent Downloads" %}
 {% endblock %}
 
 {% block resource_view_content %}
