@@ -27,9 +27,9 @@ class OdmNav(CkanCommand):
     min_args = 0
 
     if toolkit.check_ckan_version(min_version='2.9.0'):
-        base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
-    else:
         base_path = os.path.join(os.path.dirname(__file__), 'templates-2.9/home/snippets/')
+    else:
+        base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
 
     lang_map = {'odm':['en'], 'odc':['en','km'], 'odl':['en', 'lo'],
                 'odt':['en', 'th'], 'odmy':['en', 'my'], 'odv':['en', 'vi']}
