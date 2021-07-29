@@ -1,5 +1,6 @@
 from ckan.lib.cli import CkanCommand
 from ckanext.odm_nav import model as nav_model
+import ckan.plugins.toolkit as toolkit
 import os
 import json
 
@@ -25,7 +26,11 @@ class OdmNav(CkanCommand):
     usage = __doc__
     min_args = 0
 
-    base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
+    if toolkit.check_ckan_version(min_version='2.9.0'):
+        base_path = os.path.join(os.path.dirname(__file__), 'templates/home/snippets/')
+    else:
+        base_path = os.path.join(os.path.dirname(__file__), 'templates-2.9/home/snippets/')
+
     lang_map = {'odm':['en'], 'odc':['en','km'], 'odl':['en', 'lo'],
                 'odt':['en', 'th'], 'odmy':['en', 'my'], 'odv':['en', 'vi']}
 
