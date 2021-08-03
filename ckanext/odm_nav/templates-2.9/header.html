@@ -21,8 +21,7 @@
         <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
             <ul class="nav nav-pills pull-left">
                 {% block header_site_navigation_tabs %}
-                {{ h.build_nav_main( ('search', _('Datasets')), ('organizations_index', _('Organizations')),
-                ('home.about', _('About')) ) }}
+                    {{ super() }}
                 {% endblock %}
             </ul>
             <ul class="list-unstyled pull-right">
