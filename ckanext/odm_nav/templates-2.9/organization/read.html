@@ -8,7 +8,7 @@
         <h3 id="facet-filters"><i class="fa fa-filter"></i> {{_('Filters')}}</h3>
             {% for facet in c.facet_titles %}
                 {% if facet != "dataset_type" %}
-              {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, search_facets=c.search_facets) }}
+              {{ h.snippet('snippets/dataset_facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':group_dict.id}) }}
             {% endif %}
             {% endfor %}
         <input id="search-query" type="hidden" name="q" value="">
