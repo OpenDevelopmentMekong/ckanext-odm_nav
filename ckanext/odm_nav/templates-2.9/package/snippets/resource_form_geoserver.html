@@ -19,9 +19,11 @@
                 <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
             </a>
         </li>
-        {{ h.build_nav_icon('odm_dataset_new_geoserver_resource',
-            _('New geoserver WMS resource'),
-            id=pkg_name, type=dataset_type, icon='plus') }}
+        <li class="{% if c.resource_type == 'wms' %} active{% endif %}">
+            <a href="/dataset/new_geoserver_resource/{{pkg.id}}">
+                <i class="fa fa-pencil-square-o"></i>{{ _('New geoserver WMS resource') }}
+            </a>
+        </li>
       </ul>
     {% endif %}
   {% endblock %}
