@@ -29,8 +29,9 @@ def index(id=None):
 
 class GeoserverResourceCreateView(CreateView, object):
     def get(self, id, data=None, errors=None, error_summary=None):
+        pkg_type = 'dataset'
         data = set_resource_format_wms(c, data)
-        return super(CreateView, self).get(id, data=data, errors=errors, error_summary=error_summary)
+        return CreateView().get(pkg_type, id, data=data, errors=errors, error_summary=error_summary)
 
 
 odm_nav_views.add_url_rule(
@@ -51,5 +52,6 @@ odm_nav_views.add_url_rule(
 )
 
 odm_nav_views.add_url_rule(
-    "/dataset/new_geoserver_resource/<id>", methods=["GET", "POST"], view_func=CreateView.as_view(str(u'new')),
+    "/dataset/new_geoserver_resource/<id>", methods=["GET", "POST"],
+    view_func=GeoserverResourceCreateView.as_view(str(u'new')),
 )
