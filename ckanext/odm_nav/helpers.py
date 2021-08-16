@@ -568,7 +568,7 @@ def download_wms_layers_link_given_formats(package, url, layer_name, formats,
     try:
         _parsed_url = urlparse(url)
         url_scheme, url_netloc, url_path = _parsed_url.scheme, _parsed_url.netloc, _parsed_url.path
-    except Exceptionn as e:
+    except Exception as e:
         log.error(e)
         return
 
