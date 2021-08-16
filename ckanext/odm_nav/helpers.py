@@ -604,27 +604,32 @@ def download_wms_layers_link_given_formats(package, url, layer_name, formats,
 
 def odm_wms_raster_vector(resource, package):
     """
-    Check if the wms resource is raster or vector. If vector parent resource_id should be db_table
+    Check if the wms resource is raster or vector.
+      * If vector parent resource_id should be db_table for original vectorstorer
+      * Will be a GEO resource of some format for vectorconverter.
+      * In either case, the resource will have "vectorstorer_resource == 'vectorstorere_wms'}
     Returns true if vector
-    :param resource: list
-    :param package: dict
+    :param resource: Resource Dictionary
+    :param package: Package Dictionary
     :return: Boolean
     """
 
     _parent_resource_id = resource.get('parent_resource_id', '')
-    if _parent_resource_id:
-        try:
-            parent_resource = [x for x in package['resources'] if x.get('id') == _parent_resource_id or x.get('name')
-                               == _parent_resource_id][0]
-            if parent_resource.get('format', '').strip().lower() == "db_table" or resource.get(
-                    'vectorstorer_resource', '') == "vectorstorer_db":
-                return True
-            return False
-        except IndexError as e:
-            log.error("No parent resource for the given wms resource: {}".format(resource.get('id')))
-            return False
-    else:
-        return False
+    if not _parent_resource_id: return False
+
+    try:
+        log.debug("odm_wms_raster_vector: parent_id: %s, resource: %s", _parent_resource_id, resource)
+        if resource.get('vectorstorer_resource', '') == "vectorstorer_wms": return True
+
+        parent_resource = [rsrc for rsrc in package['resources']
+                           if rsrc.get('id') == _parent_resource_id
+                              or rsrc.get('name') == _parent_resource_id][0]
+
+        if parent_resource.get('format', '').strip().lower() == "db_table": return True
+    except IndexError as e:
+        log.error("No parent resource for the given wms resource: {}".format(resource.get('id')))
+
+    return False
 
 
 def odm_wms_download(resource, package, large=True):
