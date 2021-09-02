@@ -21,7 +21,6 @@ from webhelpers.html import tags
 
 # This is to get the current language resource display name
 from ckanext.odm_dataset_ext import helpers as dt_helpers
-from ckanext.vectorstorer import wms as v_wms
 
 from . import menus
 
@@ -496,17 +495,6 @@ def get_bounding_box_from_package(package):
     )
 
     return bbox
-
-
-def get_styles_for_given_layer(layer):
-    """
-    extract styles for a given layer. Style may be multiple
-    :param layer: xml tree type
-    :return: tuple
-    """
-    styles = [x.find(v_wms.ns('Name')).text for x in layer.findall(v_wms.ns('Style'))]
-
-    return tuple(styles)
 
 
 def download_wms_layers_link_given_formats(package, url, layer_name, formats,
