@@ -4,7 +4,7 @@
 {% block content_primary_nav %}
   {{ super() }}
 
-    {% if h.check_access('sysadmin') %}
+    {% if h.check_access('sysadmin') and g.user == user.name %}
         {{ h.build_nav_icon('odm_nav.donor_report_index', _('Donor Report'), id=user.name, icon='clock-o') }}
     {% endif %}
 

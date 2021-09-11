@@ -219,6 +219,8 @@ def donor_report_index(id=None):
     # Allow to generate report only for sysadmin
     try:
         check_access('sysadmin', context, data_dict)
+        if not (context['auth_user_obj'].name == id or context['auth_user_obj'].id == id):
+            raise NotAuthorized
     except NotAuthorized:
         abort(403, _('Unauthorized to view or run this. Only sysadmin can run this.'))
 
