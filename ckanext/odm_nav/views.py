@@ -48,7 +48,7 @@ odm_nav_views.add_url_rule(
 )
 
 odm_nav_views.add_url_rule(
-    "/user/<id>/donor_report", methods=["GET"], view_func=donor_report_index,
+    "/user/<id>/donor_report", methods=["GET", "POST"], view_func=donor_report_index,
 )
 
 odm_nav_views.add_url_rule(

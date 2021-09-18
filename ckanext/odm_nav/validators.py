@@ -19,11 +19,12 @@ def validate_date(key, data_dict, errors):
     return None
 
 
-def check_date_period(data_dict, errors):
+def check_date_period(data_dict, errors, period=366):
     """
     Check the dates from and two dates. Allowed period is only for 12 months period.
     :param data_dict: dict
     :param errors: dict
+    :param period: int
     :return: errors
     """
 
@@ -35,8 +36,9 @@ def check_date_period(data_dict, errors):
         return errors
 
     diff = to_dt - from_dt
-    if diff.days > 367:
-        errors['from_dt'] = ["From date and To date period is greater than the allowed period - 366 days"]
+    if diff.days > period:
+        errors['from_dt'] = ["From date and To date period is greater than the "
+                             "allowed period - {} days".format(str(period))]
         return errors
 
     return errors

@@ -92,6 +92,7 @@ def _download(data, action_name):
     """
     file_object = StringIO.StringIO()
     fieldnames = None
+
     for _r in data:
         fieldnames = list(dict(_r).keys())
         break
@@ -112,8 +113,19 @@ def _download(data, action_name):
             file_object.close()
 
         file_name = "{}".format(action_name)
-        p.toolkit.response.headers['Content-type'] = 'text/csv'
-        p.toolkit.response.headers['Content-disposition'] = 'attachment;filename=%s.csv' % str(file_name)
+
+        def _setheaders(response):
+            response.headers['Content-type'] = 'text/csv'
+            response.headers['Content-disposition'] = 'attachment;filename=%s.csv' % str(file_name)
+
+        try:
+            _setheaders(p.toolkit.response)
+        except TypeError:
+            import flask
+            response = flask.make_response(result)
+            _setheaders(response)
+            return response
+
         return result
     else:
         raise ValidationError("No data found for the given report type")
@@ -230,7 +242,7 @@ def donor_report_index(id=None):
         return render('user/donor_report.html', extra_vars=vars)
 
     if request.method == "POST":
-        _parms = request.params
+        _parms = request.form
         if "run" in _parms:
             report_type = data_dict['report_type'] = _parms.get('report_type', '')
             data_dict['from_dt'] = _parms.get('from_dt', '')
