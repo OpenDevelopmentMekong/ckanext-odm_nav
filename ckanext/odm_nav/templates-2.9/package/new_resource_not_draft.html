@@ -21,7 +21,7 @@
 
 {% block form %}
     {% if c.resource_type == "wms" %}
-        {% set exclude_fields = ['url'] %}
+        {% set exclude_fields = [] %}
     {% else %}
         {% set exclude_fields = ['odm_geoserver_layer_name', 'odm_external_geoserver_url'] %}
     {% endif %}
