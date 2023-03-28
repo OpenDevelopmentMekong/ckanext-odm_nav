@@ -475,7 +475,7 @@ def odm_menu_path():
     if site == 'odm':
         # we only have english on ODM
         lang = 'en'
-    return "home/snippets/{}_{}_menu.html".format(site, lang)
+    return "home/snippets/menus/{}_{}_menu.html".format(site, lang)
 
 
 def get_bounding_box_from_package(package):
