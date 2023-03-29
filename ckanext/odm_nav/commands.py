@@ -69,10 +69,12 @@ class OdmNav(CkanCommand):
             langs = args[0]
 
         for lang in langs:
-            filename = '%s_%s_menu.html' % (site, lang)
+            filename = 'menus/%s_%s_menu.html' % (site, lang)
+            if not os.path.exists(os.path.join(self.base_path, 'menus')):
+                os.makedir(os.path.join(self.base_path, 'menus'))
             with open(os.path.join(self.base_path, filename), 'w') as f:
                 f.write(menus.extract_wp_menu(wp_url, lang))
-                print("Wrote: %s" % filename)
+                print("Wrote: %s" % os.path.join(self.base_path, filename))
 
     def _parse_taxonomy(self, tax, flatten=None):
         """
