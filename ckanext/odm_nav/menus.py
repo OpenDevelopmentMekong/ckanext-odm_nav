@@ -1,11 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-import re
-from urlparse import urlparse, urlunparse
-
-# cache the rendered versions
-rendered = {}
+from urllib.parse import urlparse, urlunparse
 
 
 def _replace_urls_language_specific(url, language):

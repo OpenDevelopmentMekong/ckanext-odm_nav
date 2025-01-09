@@ -1,16 +1,13 @@
 try:
     from PIL import Image
     HAS_PIL = True
-except:
+except ImportError:
     HAS_PIL = False
 
 import io
-import requests
 
-from ckan.lib.base import BaseController
 from ckan.plugins import toolkit
-from ckan.lib import helpers, uploader
-from ckan.common import request, response, c
+from ckan.lib import uploader
 from .helpers import memoize
 import logging
 log = logging.getLogger(__name__)
@@ -38,13 +35,13 @@ def _blank():
 
 
 def read(id, resource_id, filename=None):
-    context = {'user': c.user,
-               'auth_user_obj': c.userobj}
+    context = {'user': toolkit.g.user,
+               'auth_user_obj': toolkit.g.userobj}
 
     resource = toolkit.get_action('resource_show')(context,
                                                    {'id': resource_id})
     if not HAS_PIL:
-        helpers.redirect_to(resource['url'])
+        toolkit.redirect_to(resource['url'])
         return
 
     path = None
@@ -60,12 +57,3 @@ def read(id, resource_id, filename=None):
         content_type, img_bytes = _blank()
 
     return img_bytes, content_type
-
-
-class Controller(BaseController):
-    
-    def read(self, id, resource_id, filename=None):
-        img_bytes, content_type = read(id, resource_id, filename=filename)
-        response.headers['Content-type'] = content_type
-        response.headers['cache-control'] = "max-age=86400"
-        return img_bytes

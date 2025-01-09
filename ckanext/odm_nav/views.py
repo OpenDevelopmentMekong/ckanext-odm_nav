@@ -1,7 +1,6 @@
 from ckanext.odm_nav.utils import donor_report_index, set_resource_format_wms
 from ckanext.odm_nav.thumbnail import read
-import ckan.lib.helpers as h
-from ckan.common import _, c
+from ckan.plugins import toolkit
 from ckan.views.resource import CreateView
 from flask import Blueprint, make_response
 import logging
@@ -12,7 +11,7 @@ odm_nav_views = Blueprint("odm_nav", __name__)
 
 
 def redirect_base_url_to_dataset():
-    return h.redirect_to('dataset.search')
+    return toolkit.redirect_to('dataset.search')
 
 
 def thumbnail_read(id, resource_id, filename=None):
@@ -30,7 +29,7 @@ def index(id=None):
 class GeoserverResourceCreateView(CreateView, object):
     def get(self, id, data=None, errors=None, error_summary=None):
         pkg_type = 'dataset'
-        data = set_resource_format_wms(c, data)
+        data = set_resource_format_wms(toolkit.g, data)
         return CreateView().get(pkg_type, id, data=data, errors=errors, error_summary=error_summary)
 
 

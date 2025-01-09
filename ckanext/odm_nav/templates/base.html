@@ -31,13 +31,13 @@
     {%- block meta -%}
       <meta name=viewport content="width=device-width">
       <meta charset="utf-8" />
-      {% block meta_generator %}<meta name="generator" content="ckan {{ c.__version__ }}" />{% endblock %}
+      {% block meta_generator %}<meta name="generator" content="ckan {{ g.__version__ }}" />{% endblock %}
     {%- endblock -%}
 
 		<meta name="google-site-verification" content="wSjmxxjHngo-qyApV6i_ACDJ6EgX6bkl1VthAXS0s_I" />
                 <meta name="referrer" content="origin">
-		{% if c.pkg_dict %}
-			{% set package = c.pkg_dict %}
+		{% if g.pkg_dict %}
+			{% set package = g.pkg_dict %}
 			{% for country_code in package["odm_spatial_range"] %}
 				<meta property="odm_spatial_range" content="{{country_code}}"/>
 			{% endfor %}
@@ -86,8 +86,10 @@
       {% endblock %}
     #}
     {% block styles %}
-      {% resource g.main_css[6:] %}
-      {% resource 'odm_nav/main' %}
+      {% set main_css = h.get_rtl_css() if h.is_rtl_language() else g.main_css %}
+      {% asset main_css[6:-4] %}
+      {% asset 'odm_nav/odm_nav_css' %}
+      {% asset 'odm_nav/odm_nav_js' %}
     <link rel='stylesheet' id='megamenu-css'  href='{{h.odm_nav_megamenu_css_url_for_site()}}' type='text/css' media='all' />
     {# inline the three items from dashicons that we're using #}
     <style>
@@ -99,6 +101,8 @@
       {# defined in the config.ini under "ckan.template_head_end" #}
       {{ g.template_head_end | safe }}
     {% endblock %}
+
+    {{ h.render_assets('style') }}
 
     {% block custom_styles %}
       {%- if g.site_custom_css -%}
@@ -138,5 +142,7 @@
       {# defined in the config.ini under "ckan.template_footer_end" #}
       {{ g.template_footer_end | safe }}
     {%- endblock %}
+    {{ h.render_assets('style') }}
+    {{ h.render_assets('script') }}
   </body>
 </html>

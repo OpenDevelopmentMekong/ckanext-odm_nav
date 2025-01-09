@@ -1,86 +1,29 @@
-import csv, codecs, cStringIO
-import StringIO
-from ckan.lib.base import BaseController, render, abort
-from ckan.common import _, c, request, response
+import csv
+import io
 import ckan.authz as authz
 import ckan.plugins as p
+from ckan.plugins.toolkit import g, _, abort, h, check_access, ValidationError, NotAuthorized, ObjectNotFound, get_action, request, render
 import ckan.model as model
-import ckan.logic as logic
-import ckan.lib.helpers as h
 from ckanext.odm_nav import validators
 from datetime import datetime
 import logging
 
 log = logging.getLogger(__name__)
-check_access = logic.check_access
-ValidationError = logic.ValidationError
-NotAuthorized = logic.NotAuthorized
-NotFound = logic.NotFound
-
-
-class UnicodeDictWriter:
-    """
-    Mod for CSV DICT writer UTF-8
-    """
-
-    def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
-        # Redirect output to a queue
-        self.queue = cStringIO.StringIO()
-        self.writer = csv.DictWriter(self.queue, dialect=dialect, **kwds)
-        self.stream = f
-        self.encoder = codecs.getincrementalencoder(encoding)()
-
-    def writerow(self, row):
-        """
-        Convert dictionary values if not null to utf-8
-        :param row: dict
-        :return: None
-        """
-        item = dict()
-        for k, v in row.iteritems():
-            # Cannot encode if its none type
-            try:
-                if v:
-                    v = v.encode("utf-8")
-                if k:
-                    k = k.encode("utf-8")
-            except AttributeError as e:
-                # Numbers cannot be encoded
-                pass
-            item[k] = v
-
-        self.writer.writerow(item)
-        # Fetch UTF-8 output from the queue ...
-        data = self.queue.getvalue()
-        data = data.decode("utf-8")
-        # ... and reencode it into the target encoding
-        data = self.encoder.encode(data)
-        # write to the target stream
-        self.stream.write(data)
-        # empty queue
-        self.queue.truncate(0)
-
-    def writerows(self, rows):
-        for item in rows:
-            self.writerow(item)
-
-    def writeheader(self):
-        self.writer.writeheader()
 
 
 def _setup_template_variables(context, data_dict):
-    c.is_sysadmin = authz.is_sysadmin(c.user)
+    g.is_sysadmin = authz.is_sysadmin(g.user)
     try:
-        user_dict = logic.get_action('user_show')(context, data_dict)
-    except NotFound:
+        user_dict = get_action('user_show')(context, data_dict)
+    except ObjectNotFound:
         h.flash_error(_('Not authorized to see this page'))
-        h.redirect_to(controller='user', action='login')
+        h.redirect_to('user.login')
     except NotAuthorized:
         abort(403, _('Not authorized to see this page'))
 
-    c.user_dict = user_dict
-    c.is_myself = user_dict['name'] == c.user
-    c.about_formatted = h.render_markdown(user_dict['about'])
+    g.user_dict = user_dict
+    g.is_myself = user_dict['name'] == g.user
+    g.about_formatted = h.render_markdown(user_dict['about'])
 
 
 def _download(data, action_name):
@@ -90,7 +33,7 @@ def _download(data, action_name):
     :param fieldnames: list of table columns
     :return: csv response
     """
-    file_object = StringIO.StringIO()
+    file_object = io.StringIO()
     fieldnames = None
 
     for _r in data:
@@ -98,7 +41,7 @@ def _download(data, action_name):
         break
     if fieldnames:
         try:
-            writer = UnicodeDictWriter(file_object, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+            writer = csv.writer(file_object, dialect=csv.excel, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             writer.writeheader()
 
             # For each row in a data
@@ -209,12 +152,12 @@ def donor_report_index(id=None):
 
     context = {
         'model': model, 'session': model.Session,
-        'user': c.user, 'auth_user_obj': c.userobj,
+        'user': g.user, 'auth_user_obj': g.userobj,
         'for_view': True
     }
     data_dict = {
         'id': id,
-        'user_obj': c.userobj,
+        'user_obj': g.userobj,
         'include_datasets': True,
         'include_num_followers': True
     }
@@ -222,7 +165,7 @@ def donor_report_index(id=None):
     _setup_template_variables(context, data_dict)
 
     vars = {
-        "user_dict": c.user_dict,
+        "user_dict": g.user_dict,
         "errors": {},
         "error_summary": {},
         "data": data_dict

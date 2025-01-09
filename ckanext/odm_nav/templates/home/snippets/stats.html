@@ -3,7 +3,7 @@
   <div class="inner">
     <ul>
       <li>
-        <a href="{{ h.url_for(controller='package', action='search') }}">
+        <a href="{{ h.url_for('dataset.search') }}">
           <b>{{ h.SI_number_span(stats.dataset_count) }}
           {{ _('dataset') if stats.dataset_count == 1 else _('datasets') }}</b>
         </a>

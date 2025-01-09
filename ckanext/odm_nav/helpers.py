@@ -3,21 +3,20 @@
 
 import json
 import ckan
-from urlparse import urlparse, urlunparse
-from urllib import quote_plus
+from urllib.parse import urlparse, urlunparse, quote_plus
 from dateutil.parser import parse
 import os
 import requests
 from six import text_type
 
-from ckan.common import config, _, c
-from ckan import logic, model
+from ckan import model
+
+import dominate.tags
 
 from ckan.plugins import toolkit
 from ckan.plugins.toolkit import request
 
 from collections import OrderedDict
-from webhelpers.html import tags
 
 # This is to get the current language resource display name
 from ckanext.odm_dataset_ext import helpers as dt_helpers
@@ -85,10 +84,10 @@ def get_localized_tag(tag):
     '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
     lang = request.environ['CKAN_LANG']
-    return _get_localized_tag((tag, lang))
+    return _get_localized_tag(tag, lang)
 
 @memoize
-def _get_localized_tag((tag, lang)):
+def _get_localized_tag(tag, lang):
     '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
     log.debug('odm_nav_get_localized_tag: %s', tag)
@@ -111,7 +110,7 @@ def get_localized_tag_string(tags_string):
 
     lang = request.environ['CKAN_LANG']
 
-    return ",".join([_get_localized_tag((tag.strip(), lang))
+    return ",".join([_get_localized_tag(tag.strip(), lang)
                      for tag in tags_string.split(',')])
 
 
@@ -146,15 +145,6 @@ def get_library_for_doctype(document_type):
                                                                          '+document_type:%s' % document_type],
                                                              'rows':1000})
     return result['results']
-
-
-def tag_for_topic(topic):
-    '''Return the name of the tag corresponding to a top topic'''
-
-    log.debug('tag_for_topic')
-
-    tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
-    return tag_name if len(tag_name)<=100 else tag_name[0:99]
 
 def recent_datasets():
     '''Return a sorted list of the datasets updated recently.'''
@@ -289,11 +279,6 @@ def resource_to_preview_on_dataset_page(pkg):
             possible_resources[normalised_format].append(resource)
 
     preview_priority = _get_preview_priority(pkg.get('type', ''))
-    view_types_priority = [
-        'geo_view',
-        'jsonstat_view',
-        'text_view'
-    ]
 
     for possible_format in preview_priority:
         rsrc_format_group = possible_resources.get(possible_format, [])
@@ -376,17 +361,17 @@ def gen_odm_menu(list_element, lang, first_pass=True):
         return "".join(items)
 
 def sitecode():
-    return config.get('ckanext.odm.site_code')
+    return toolkit.config.get('ckanext.odm.site_code')
 
 def ckan_url_for_site(sitecode=None):
     if not sitecode:
-        sitecode = config.get('ckanext.odm.site_code')
-    return config.get("ckanext.odm.%s_url" % sitecode, "")
+        sitecode = toolkit.config.get('ckanext.odm.site_code')
+    return toolkit.config.get("ckanext.odm.%s_url" % sitecode, "")
 
 def wp_url_for_site(sitecode=None):
     if not sitecode:
-        sitecode = config.get('ckanext.odm.site_code')
-    return config.get("ckanext.odm.%s_wp_url" % sitecode, "")
+        sitecode = toolkit.config.get('ckanext.odm.site_code')
+    return toolkit.config.get("ckanext.odm.%s_wp_url" % sitecode, "")
 
 def megamenu_css_url_for_site(sitecode=None):
     """
@@ -400,7 +385,7 @@ def megamenu_css_url_for_site(sitecode=None):
                     'odv': '6'}
 
     if not sitecode:
-        sitecode = config.get('ckanext.odm.site_code')
+        sitecode = toolkit.config.get('ckanext.odm.site_code')
     site_id = site_id_map.get(sitecode,None)
     if not site_id:
         return "%s/wp-content/uploads/maxmegamenu/style.css" % wp_url_for_site(sitecode)
@@ -409,7 +394,7 @@ def megamenu_css_url_for_site(sitecode=None):
 
 def country_name_for_site(site=None):
     if not site:
-        site = config.get('ckanext.odm.site_code')
+        site = toolkit.config.get('ckanext.odm.site_code')
     names = {'odm': 'Mekong',
              'odmy': 'Myanmar',
              'odt': 'Thailand',
@@ -420,7 +405,7 @@ def country_name_for_site(site=None):
 
 def twitter_for_site(site=None):
     if not site:
-        site = config.get('ckanext.odm.site_code')
+        site = toolkit.config.get('ckanext.odm.site_code')
 
     username = {'odm': 'opendevmekong',
             'odmy': 'opendevmm',
@@ -435,7 +420,7 @@ def twitter_for_site(site=None):
 
 def contact_for_site(site=None):
     if not site:
-        site = config.get('ckanext.odm.site_code')
+        site = toolkit.config.get('ckanext.odm.site_code')
 
     link = {'odm': 'contact',
             'odmy': 'contacts',
@@ -450,7 +435,7 @@ def contact_for_site(site=None):
 
 def facebook_for_site(site=None):
     if not site:
-        site = config.get('ckanext.odm.site_code')
+        site = toolkit.config.get('ckanext.odm.site_code')
 
     username = {'odm': 'opendevmekong',
                 'odmy': 'opendevmm',
@@ -466,11 +451,11 @@ def facebook_for_site(site=None):
 
 def odm_nav_menu(site=None):
     if not site:
-        site = config.get('ckanext.odm.site_code')
+        site = toolkit.config.get('ckanext.odm.site_code')
     return menus.extract_wp_menu(wp_url_for_site(site))
 
 def odm_menu_path():
-    site = config.get('ckanext.odm.site_code')
+    site = toolkit.config.get('ckanext.odm.site_code')
     lang = request.environ['CKAN_LANG']
     if site == 'odm':
         # we only have english on ODM
@@ -580,7 +565,7 @@ def download_wms_layers_link_given_formats(package, url, layer_name, formats,
                     format_type=val
                 )
                 if is_html_links:
-                    results.append(link_templ % (dl_url, _(_format)))
+                    results.append(link_templ % (dl_url, toolkit._(_format)))
                 else:
                     results.append(dl_url)
 
@@ -614,8 +599,8 @@ def odm_wms_raster_vector(resource, package):
                               or rsrc.get('name') == _parent_resource_id][0]
 
         if parent_resource.get('format', '').strip().lower() == "db_table": return True
-    except IndexError as e:
-        log.error("No parent resource for the given wms resource: {}".format(resource.get('id')))
+    except IndexError:
+        log.exception("No parent resource for the given wms resource: {}".format(resource.get('id')))
 
     return False
 
@@ -653,9 +638,9 @@ def odm_wms_download(resource, package, large=True):
         return ows_templ % (ows_server, namespace, layer, quote_plus(fmt), options)
 
     if is_vector:
-        output_formats = [(_('GeoJSON'), 'application/json'),
-                          (_('KML'), 'application/vnd.google-earth.kml+xml'),
-                          (_('Shapefile'), 'geopackage')]
+        output_formats = [(toolkit._('GeoJSON'), 'application/json'),
+                          (toolkit._('KML'), 'application/vnd.google-earth.kml+xml'),
+                          (toolkit._('Shapefile'), 'geopackage')]
 
         # Note -- we're inlining the format options here, requires geoserver 2.17.0
         # fixes an issue with SHP files coming back in ISO8859, killing the Khmer layer info
@@ -673,7 +658,7 @@ def odm_wms_download(resource, package, large=True):
          </span>""" % (large and "btn-block btn-lg" or "",
                            resource['id'],
                            resource['id'],
-                           _('Download'),
+                           toolkit._('Download'),
                            resource['id'],
                            dl_list)
 
@@ -710,9 +695,9 @@ def odm_wms_download_res(resource, package, large=True):
         return ows_templ % (ows_server, namespace, layer, quote_plus(fmt), options)
 
     if is_vector:
-        output_formats = [(_('GeoJSON'), 'application/json'),
-                          (_('KML'), 'application/vnd.google-earth.kml+xml'),
-                          (_('Shapefile'), 'geopackage')]
+        output_formats = [(toolkit._('GeoJSON'), 'application/json'),
+                          (toolkit._('KML'), 'application/vnd.google-earth.kml+xml'),
+                          (toolkit._('Shapefile'), 'geopackage')]
 
         downloads = dict()
         for name, fmt in output_formats:
@@ -728,7 +713,7 @@ def linked_user(user, maxlength=0, avatar=20):
         user_name = text_type(user)
         user = model.User.get(user_name)
         if not user:
-            return _("A User")
+            return toolkit._("A User")
     if user:
         name = user.id
         displayname = user.name
@@ -736,22 +721,22 @@ def linked_user(user, maxlength=0, avatar=20):
         if maxlength and len(user.display_name) > maxlength:
             displayname = displayname[:maxlength] + '...'
 
-        if c.userobj:
-            if c.userobj.sysadmin:
+        if toolkit.g.userobj:
+            if toolkit.g.userobj.sysadmin:
                 # Sysadmins can see names, link to the user page
-                return tags.literal(u'{icon} {link}'.format(
+                return h.literal('{icon} {link}'.format(
                     icon=h.gravatar(
                         email_hash=user.email_hash,
                         size=avatar
                     ),
-                    link=tags.link_to(
+                    link=dominate.tags.a(
                         displayname,
-                        h.url_for('user.read', id=name)
+                        href=h.url_for('user.read', id=name)
                     )
                 ))
             else:
                 return user.name
-        return _("A User")
+        return toolkit._("A User")
 
 
 # Monkeypatching the builtin.
@@ -838,7 +823,7 @@ def _add_additional_items_to_menu(menu_items):
 
     for _item in items_to_add:
         _index = _item.get('index_to_add')
-        _item[u"title_translated"] = {lang:_get_localized_tag((_item.get('title'), lang))}
+        _item[u"title_translated"] = {lang:_get_localized_tag(_item.get('title'), lang)}
         if len(menu_items) > _index:
             log.debug("Adding addition navidation item: {}".format(_item.get('post_title')))
             menu_items.insert(_index, _item)
@@ -850,7 +835,7 @@ def get_ga_tracking_id():
     """
     Gets the current site Google Analytics Tracking id
     """
-    site = config.get('ckanext.odm.site_code')
+    site = toolkit.config.get('ckanext.odm.site_code')
     tracking_id = {'odm': "'UA-52846113-1'",
             'odmy': "'UA-79798225-1'",
             'odt': "'UA-79740098-1'",

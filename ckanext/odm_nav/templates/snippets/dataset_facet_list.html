@@ -61,8 +61,8 @@
                 {% if items %}
                     <select class="multiple-select-facet chosen-select" data-placeholder="{{ placeholder }}" name="{{name}}" multiple="multiple">
                       {% for item in items %}
-                        {% if c.type %}
-                        {% set alternative_url = h.url_for(controller='package', action='search', type=c.type) %}
+                        {% if g.type %}
+                        {% set alternative_url = h.url_for(g.type ~ '.search') %}
                         {% endif %}
                         {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
                         {% if h.odm_dataset_get_resource_id_for_field(name)  %}

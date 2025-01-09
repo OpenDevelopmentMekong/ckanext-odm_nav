@@ -3,14 +3,16 @@
 
 {% block content_primary_nav %}
     {% if pkg.type == "dataset" %}
-    <li class="{% if c.resource_type != 'wms' %} active{% endif %}">
+    <li class="{% if g.resource_type != 'wms' %} active{% endif %}">
         <a href="/dataset/new_resource/{{pkg.id}}">
             <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
         </a>
     </li>
-
-    {{ h.build_nav_icon('odm_dataset_new_geoserver_resource', _('New geoserver WMS resource'),
-        id=pkg.id, type=pkg.type, icon='plus') }}
+    <li class="{% if g.resource_type == 'wms' %} active{% endif %}">
+        <a href="/dataset/new_geoserver_resource/{{pkg.id}}">
+            <i class="fa fa-pencil-square-o"></i>{{ _('New geoserver WMS resource') }}
+        </a>
+    </li>
     {% else %}
         {{ super() }}
     {% endif %}
@@ -18,8 +20,8 @@
 {% endblock %}
 
 {% block form %}
-    {% if c.resource_type == "wms" %}
-        {% set exclude_fields = ['url'] %}
+    {% if g.resource_type == "wms" %}
+        {% set exclude_fields = [] %}
     {% else %}
         {% set exclude_fields = ['odm_geoserver_layer_name', 'odm_external_geoserver_url'] %}
     {% endif %}

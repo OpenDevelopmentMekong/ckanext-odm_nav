@@ -2,7 +2,7 @@
 
 {% block secondary %}{% endblock %}
 
-{% set pkg = c.pkg_dict %}
+{% set pkg = g.pkg_dict %}
 {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
 
 {% block page_heading %}
@@ -19,7 +19,7 @@
     {# UNDONE -- does this need to happen here or in the individual types? #}
     {% if can_edit %}
         <div class="actions">
-            {% link_for _('Manage'), controller='package', type=pkg.dataset_type, action='edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
+            {% link_for _('Manage'), named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
         </div>
     {% endif%}
 {% endblock %}
@@ -45,8 +45,9 @@
             {% else %}
                 <h2>{% trans %}Data Resource Preview{% endtrans %}</h2>
             {% endif %}
-            {% set src = h.url_for(qualified=true, controller='package', action='resource_view',
-                id=pkg['name'], resource_id=preview_resource['resource_id']) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
+            {% set src = h.url_for(package['type'] ~ '_resource.view', id=package['name'],
+                resource_id=preview_resource['resource_id'], qualified=true) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
+            
             {% if 'image_view' in preview_resource.get('view_type') %}
                 <img src = {{ preview_resource.get('resource_url') }} style = "margin:auto ; max-width:100%">
             {% else %}

@@ -1,7 +1,6 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from ckan.exceptions import CkanVersionException
-from ckanext.odm_nav import helpers, auth
+from ckanext.odm_nav import helpers, auth, views, commands
 import collections
 import logging
 log = logging.getLogger(__name__)
@@ -42,19 +41,26 @@ except Exception as msg:
     log.error('Monkeypatching resource proxy failed -- %s' % msg)
 
 
-if toolkit.check_ckan_version(min_version='2.9.0'):
-    from ckanext.odm_nav.plugin.flask_plugin import OdmNavMixinPlugin
-else:
-    from ckanext.odm_nav.plugin.pylons_plugin import OdmNavMixinPlugin
-
-
-class OdmNavPlugin(OdmNavMixinPlugin):
+class OdmNavPlugin(plugins.SingletonPlugin):
     '''OD Mekong Nav plugin.'''
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.IClick)
+
+    # IConfigurer
+    def update_config(self, config):
+        '''Update plugin config'''
+
+        toolkit.add_template_directory(config, 'templates')
+        toolkit.add_resource('fanstatic', 'odm_nav')
+        toolkit.add_public_directory(config, 'public')
+
+    def get_blueprint(self):
+        return [views.odm_nav_views]
 
     # IFacets
     def dataset_facets(self, facets_dict, package_type):
@@ -161,16 +167,15 @@ class OdmNavPlugin(OdmNavMixinPlugin):
 
     # IActions
     def get_actions(self):
-
-        version_actions = self.get_actions_versions()
-        common_actions = {
+        return {
             'package_activity_list': auth.action_wrapper('package_activity_list', 'package_update'),
             'group_activity_list': auth.action_wrapper('group_activity_list', 'user_is_org_editor'),
             'organization_activity_list': auth.action_wrapper('organization_activity_list', 'user_is_org_editor'),
             # shorthand for is_sysadmin
             'recently_changed_packages_activity_list': auth.action_wrapper('recently_changed_packages_activity_list', 'user_list')
         }
-        version_actions.update(common_actions)
 
-        return version_actions
+    def get_commands(self):
+        return [commands.odm_nav]
+
 

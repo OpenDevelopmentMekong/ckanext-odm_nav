@@ -1,6 +1,6 @@
 {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
-{% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
-{% set url = h.url_for(controller='package', action=url_action, type=pkg.type, id=pkg.name, resource_id=res.id) %}
+{% set url_action = pkg.type ~ ('_resource.edit' if url_is_edit and can_edit else '_resource.read') %}
+{% set url = h.url_for(url_action, id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
 
 {% if res.name_translated %}
   {% set ml_name = res.name_translated[h.odm_dataset_get_current_language()] %}
@@ -38,7 +38,7 @@
         </a>
 
       {% if can_edit %}
-        <a href="{{ h.url_for(controller='package', action='resource_edit', type=pkg.type, id=pkg.name, resource_id=res.id) }}">
+        <a href="{{ h.url_for(pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id) }}">
           <img alt="{{ _('Edit') }}"class="resource_explore_icon" src="/icons/pencil.svg">
         </a>
       {% endif %}
