@@ -86,8 +86,8 @@
       {% endblock %}
     #}
     {% block styles %}
-      {% set main_css = h.get_rtl_css() if h.is_rtl_language() else g.main_css %}
-      {% asset main_css[6:-4] %}
+      {% set theme = h.get_rtl_theme() if h.is_rtl_language() else g.theme %}
+      {% asset theme %}
       {% asset 'odm_nav/odm_nav_css' %}
       {% asset 'odm_nav/odm_nav_js' %}
     <link rel='stylesheet' id='megamenu-css'  href='{{h.odm_nav_megamenu_css_url_for_site()}}' type='text/css' media='all' />
@@ -114,7 +114,7 @@
   </head>
 
   {# Allows custom attributes to be added to the <body> tag #}
-  <body {% block bodytag %}data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" class="{{ h.odm_nav_sitecode() }}" {% endblock %}>
+  <body {% block bodytag %}data-site-root="{{ h.url_for('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url_for('/', qualified=true) }}" class="{{ h.odm_nav_sitecode() }}" {% endblock %}>
 
     {#
     The page block allows you to add content to the page. Most of the time it is
