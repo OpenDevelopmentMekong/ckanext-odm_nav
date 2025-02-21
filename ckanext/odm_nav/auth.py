@@ -104,11 +104,11 @@ def action_wrapper(action, permission):
     in get_actions:
     'package_activity_list': auth.action_wrapper('package_activity_list', 'package_update')
     """
-    existing = toolkit.get_action(action)
 
-    def wrapper(context, data_dict):
+    @toolkit.chained_action
+    def wrapper(next, context, data_dict):
         check_access(permission, context, data_dict)
-        return existing(context, data_dict)
+        return next(context, data_dict)
 
     return wrapper
 
