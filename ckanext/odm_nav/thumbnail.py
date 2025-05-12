@@ -8,13 +8,13 @@ import io
 
 from ckan.plugins import toolkit
 from ckan.lib import uploader
-from .helpers import memoize
+from functools import cache
 import logging
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
 
-@memoize
+@cache
 def _thumbnail(path):
     im = Image.open(path)
     log.debug('Initial size: %s, format: %s' %(im.size, im.format))

@@ -8,6 +8,7 @@ from dateutil.parser import parse
 import os
 import requests
 from six import text_type
+from functools import cache
 
 from ckan import model
 
@@ -43,15 +44,6 @@ DATASET_ICON_MAP =  OrderedDict([("dataset", " fa-database"),
                                  ("map", " fa-map-marker fa-md")])
 
 
-# memoization decorator from http://code.activestate.com/recipes/578231-probably-the-fastest-memoization-decorator-in-the-/
-# mit license
-def memoize(f):
-    class memoize(dict):
-        def __missing__(self, key):
-            ret = self[key] = f(key)
-            return ret
-    return memoize().__getitem__
-
 def localize_resource_url(url):
     '''Converts a absolute URL in a relative, chopping out the domain'''
 
@@ -86,7 +78,7 @@ def get_localized_tag(tag):
     lang = request.environ['CKAN_LANG']
     return _get_localized_tag(tag, lang)
 
-@memoize
+@cache
 def _get_localized_tag(tag, lang):
     '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
