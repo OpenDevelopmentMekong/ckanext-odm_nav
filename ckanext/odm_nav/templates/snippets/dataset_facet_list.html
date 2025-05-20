@@ -39,7 +39,7 @@
     #}
     {% block facet_list %}
       {% set hide_empty = hide_empty or true %}
-      {% with items = items or h.get_facet_items_dict(name) %}
+      {% with items = items or h.get_facet_items_dict(name, search_facets) %}
         {% if items or not hide_empty %}
           {% if within_tertiary %}
             {% set nav_class = 'nav nav-pills nav-stacked' %}
@@ -57,7 +57,7 @@
               {% block facet_list_items %}
               {% set placeholder = _("Select")+" "+title %}
               {% set _name = "".join(title.strip().split(" ")).lower() %}
-                {% with items = items or h.get_facet_items_dict(name) %}
+                {% with items = items or h.get_facet_items_dict(name, search_facets) %}
                 {% if items %}
                     <select class="multiple-select-facet chosen-select" data-placeholder="{{ placeholder }}" name="{{name}}" multiple="multiple">
                       {% for item in items %}

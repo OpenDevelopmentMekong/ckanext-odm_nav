@@ -503,7 +503,7 @@ def download_wms_layers_link_given_formats(package, url, layer_name, formats,
     request_type = "GetMap"
     service = "WMS"
     link_templ = """
-        <li class="dropdown-item"><a target='_blank' href='%s'>%s 
+        <li class="dropdown-item"><a target='_blank' href='%s'>%s
         <i class="fa fa-download" aria-hidden="true"></i></a></li>
     """
     format_mapping = {
@@ -640,7 +640,7 @@ def odm_wms_download(resource, package, large=True):
         dl_list = "\n".join([link_templ % (_url(fmt), name) for name, fmt in output_formats])
 
         return """<span class='dropdown'>
-           <a class='btn btn-primary btn-download %s' style="margin: 0 5px;"  resource_id="%s" 
+           <a class='btn btn-primary btn-download %s' style="margin: 0 5px;"  resource_id="%s"
                      id="a_wms_dl_%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">%s
              <span class="caret"></span>
              </a>
@@ -666,7 +666,7 @@ def odm_wms_download_res(resource, package, large=True):
     """
     is_vector = odm_wms_raster_vector(resource, package)
     format_options = {'SHAPE-ZIP': '&format_options=CHARSET:UTF-8'}
- 
+
     try:
         ows_server = resource['wms_server'].replace('/wms', '/')
         layer = resource['wms_layer']
@@ -745,10 +745,10 @@ def get_icon_dataset_type_for_facet(items):
     required_order = []
     for element in DATASET_ICON_MAP:
         try:
-            ele = filter(lambda item: item['name'] == element, items)[0]
+            ele = next(filter(lambda item: item['name'] == element, items))
             ele['icon'] = DATASET_ICON_MAP[ele.get('name')]
             required_order.append(ele)
-        except IndexError:
+        except StopIteration:
             pass
 
     return required_order
@@ -799,7 +799,7 @@ def taxonomy_path_to_name(tag_path, lang):
 
 def _add_additional_items_to_menu(menu_items):
     remove_items = ['Search']
-   
+
     for _rm_item in remove_items:
         for _item in menu_items:
             if _item.get('title', 'NA').strip().lower() == _rm_item.strip().lower():

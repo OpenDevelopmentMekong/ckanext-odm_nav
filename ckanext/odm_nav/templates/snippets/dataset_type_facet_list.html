@@ -4,7 +4,7 @@
 
 {% block facet_list_items %}
 {% set current_url = h.odm_nav_get_active_url_for_search_result_facet() %}
-{% with items = items or h.get_facet_items_dict(name) %}
+{% with items = items or h.get_facet_items_dict(name, search_facets) %}
 {% if items %}
     {% set items = h.odm_nav_get_icon_dataset_type_for_facet(items) %}
     {% for item in items %}

@@ -5,7 +5,7 @@
 
 <div class="result_links">
     {{ h.snippet('snippets/dataset_type_facet_list.html',
-    title=g.facet_titles["dataset_type"], name="dataset_type", search_facets=g.search_facets) }}
+    title=facet_titles["dataset_type"], name="dataset_type", search_facets=search_facets) }}
 </div>
 <div class="full-width single-filter clear-filters clear-serch-results">
     <a href="{{h.url_for('dataset.search')}}"><input class="button" type="submit" value="{{_('Clear Search Results')}}"></a>
@@ -14,10 +14,10 @@
 <form action="" method="get" id="facet-form">
     <div class="data-advanced-filters">
         <h3 id="facet-filters"><i class="fa fa-filter"></i> {{_('Filters')}}</h3>
-            {% for facet in g.facet_titles %}
-                {% if facet != "dataset_type" %}
-              {{ h.snippet('snippets/dataset_facet_list.html', title=g.facet_titles[facet], name=facet, search_facets=g.search_facets) }}
-            {% endif %}
+            {% for facet in facet_titles %}
+              {% if facet != "dataset_type" %}
+	              {{ h.snippet('snippets/dataset_facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
+	            {% endif %}
             {% endfor %}
         <input id="search-query" type="hidden" name="q" value="">
         <input id="search-order" type="hidden" name="sort" value="">

@@ -47,7 +47,7 @@
             {% endif %}
             {% set src = h.url_for(package['type'] ~ '_resource.view', id=package['name'],
                 resource_id=preview_resource['resource_id'], qualified=true) + '?' + h.urlencode({'resource_view': h.dump_json(preview_resource)}) %}
-            
+
             {% if 'image_view' in preview_resource.get('view_type') %}
                 <img src = {{ preview_resource.get('resource_url') }} style = "margin:auto ; max-width:100%">
             {% else %}
