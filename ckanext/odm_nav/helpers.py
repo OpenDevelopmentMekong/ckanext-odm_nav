@@ -407,7 +407,7 @@ def twitter_for_site(site=None):
             'odv': ''}.get(site,'')
 
     if username:
-        return """<a href="https://twitter.com/%s" target="_blank" rel="external" title="Twitter"><i class="fa fa-twitter-square"></i></a>""" % username
+        return """<a href="https://twitter.com/%s" target="_blank" rel="external" title="Twitter"><i class="fa-brands fa-twitter-square"></i></a>""" % username
     return ""
 
 def contact_for_site(site=None):
