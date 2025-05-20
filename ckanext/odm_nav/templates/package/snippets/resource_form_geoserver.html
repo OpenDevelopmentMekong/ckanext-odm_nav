@@ -15,7 +15,7 @@
     {% if show_form_nav %}
       <ul class="nav nav-tabs mb-5">
         <li class="{% if g.resource_type != 'wms' %} active{% endif %}">
-            <a href="/dataset/new_resource/{{pkg_name}}">
+            <a href="{{ h.url_for(dataset_type ~ '_resource.new', id=pkg_name)}}">
                 <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
             </a>
         </li>

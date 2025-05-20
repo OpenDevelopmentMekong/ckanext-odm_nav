@@ -4,7 +4,7 @@
 {% block content_primary_nav %}
     {% if pkg.type == "dataset" %}
     <li class="{% if g.resource_type != 'wms' %} active{% endif %}">
-        <a href="/dataset/new_resource/{{pkg.id}}">
+        <a href="{{ h.url_for(dataset_type ~ '_resource.new', id=pkg_name)}}">
             <i class="fa fa-pencil-square-o"></i>{{ _('New resource') }}
         </a>
     </li>
