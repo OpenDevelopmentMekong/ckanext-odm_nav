@@ -2661,6 +2661,16 @@ a.btn + a.btn {
     padding: 10px!important;
 }
 
+/* ODC megamenu use old font for time being — use the old Open Sans stack
+   The WP megamenu CSS uses font-family: inherit, so without this the menu
+   inherits the new DM Serif Display/DM Sans body stack. ODC-scoped only —
+ */
+body.odc #mega-menu-wrap-header_menu,
+body.odc #mega-menu-wrap-header_menu #mega-menu-header_menu,
+body.odc #mega-menu-wrap-header_menu #mega-menu-header_menu a.mega-menu-link {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
 .resource-reorder-title{
    position: relative;
    max-width: 80%;
