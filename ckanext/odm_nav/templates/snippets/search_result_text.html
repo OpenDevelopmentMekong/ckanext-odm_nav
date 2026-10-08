@@ -3,7 +3,7 @@
 {% ckan_extends %}
 {#
 
-Do not extend the ckan template if the type is issues - 
+Do not extend the ckan template if the type is issues -
 otherwise default text no dataset found will be displayed which dosent make sense for issues.
 
 Displays a test for results of a search.
@@ -29,11 +29,12 @@ Example:
   {% set text_no_query = ungettext('{number} agreement found', '{number} agreements found', count) %}
   {% set text_no_query_none = _('No agreements found') %}
 
-{% elif type == 'laws_record' %}
-  {% set text_query = ungettext('{number} laws found for "{query}"', '{number} laws found for "{query}"', count) %}
-  {% set text_query_none = _('No laws found for "{query}"') %}
-  {% set text_no_query = ungettext('{number} law found', '{number} laws found', count) %}
-  {% set text_no_query_none = _('No laws found') %}
+{% elif type == 'laws_records' %}
+  {% set type_display = _('Legal documents') %}
+  {% set text_query = ungettext('{number} Legal document found for "{query}"', '{number} Legal documents found for "{query}"', count) %}
+  {% set text_query_none = _('No Legal document found for "{query}"') %}
+  {% set text_no_query = _(ungettext('{number} Legal document found', '{number} Legal documents found', count))%}
+  {% set text_no_query_none = _('No Legal document found') %}
 
 {% elif type == 'dataset' %}
   {% set text_query = ungettext('{number} dataset found for "{query}"', '{number} datasets found for "{query}"', count) %}

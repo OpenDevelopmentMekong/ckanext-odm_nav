@@ -266,7 +266,7 @@ body {
     margin: 0;
     /*font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;*/
     font-family: "Open Sans", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     color: #444444;
     background-color: #ededed;
@@ -305,10 +305,48 @@ body.odmy:lang(my) h6 {
     display: none
 }
 
+/* Khmer site name in header (replaces odc-khmer-name.png) */
+@font-face {
+    font-family: "Khmer OS Kangrey";
+    src: url("/fonts/newfont/KhmerOSKangrey.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+#od-logo .odc-khmer-name {
+    display: none;
+    font-family: "Khmer OS Kangrey", "DM Serif Display", serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: normal;
+    margin: 0;
+    color: #fff;
+    vertical-align: middle;
+}
+
+/* km logo row: keep the icon + Khmer site name centered and spaced as a unit */
+body.odc:lang(km) #od-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+body.odc:lang(km) #od-logo h1.odc-khmer-name {
+    margin: 0;
+    line-height: 1.2;
+    padding-top: 0.125rem;
+}
+
 body.odc #od-logo h1:lang(km),
 body.odc #od-logo h2:lang(km),
 body.odc #od-logo div:lang(km) {
     display: none
+}
+
+body.odc #od-logo h1.odc-khmer-name:lang(km) {
+    display: inline;
 }
 
 body.odc #od-logo img:lang(km) {
@@ -2611,7 +2649,7 @@ a.btn + a.btn {
     float: right;
 }
 
-.select2-results .select2-disabled, .select2-results__option[aria-disabled=true] { 
+.select2-results .select2-disabled, .select2-results__option[aria-disabled=true] {
     display: none;
 }
 
@@ -2621,6 +2659,16 @@ a.btn + a.btn {
 
 .mega-menu-horizontal{
     padding: 10px!important;
+}
+
+/* ODC megamenu use old font for time being — use the old Open Sans stack
+   The WP megamenu CSS uses font-family: inherit, so without this the menu
+   inherits the new DM Serif Display/DM Sans body stack. ODC-scoped only —
+ */
+body.odc #mega-menu-wrap-header_menu,
+body.odc #mega-menu-wrap-header_menu #mega-menu-header_menu,
+body.odc #mega-menu-wrap-header_menu #mega-menu-header_menu a.mega-menu-link {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .resource-reorder-title{
@@ -2671,4 +2719,3 @@ a.btn + a.btn {
 .disclaimer-row {
     padding-left: 0;
 }
-
